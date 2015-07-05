@@ -1,0 +1,10 @@
+client/public/browser-bundle.js
+client/public/.browser-bundle.js
+node_modules
+*~
+*.swp
+npm-debug.log
+my-bookmarks-db
+my-places-db
+my-places-db-*
+build
