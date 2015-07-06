@@ -3,7 +3,8 @@
 ## Description
 Cozy-Map is a standalone interactive maps with the API [leafletjs](http://leafletjs.com/) and also working on [Cozy](cozy.io).
 ## Development
-`I am not a developer, but more a pre school SandBox foreman :)`  
+>I am not a developer, but more a pre school SandBox foreman :)  
+
 This project is still an attempt to provide a user friendly Geolocalisation WebbApp.
 It's also a part of a French [mentorship programme](https://forum.cozy.io/t/app-geozy-en-developpement/511) with Cozy members.
 ## Project status
@@ -11,13 +12,13 @@ It's also a part of a French [mentorship programme](https://forum.cozy.io/t/app-
 Let's [contribute](#contributing) together!
 ## Releases
 
-	- V0.1: Original Mockup
-	- V0.2: Work In Progress
-		- [x] remove CDN
-		- [x] dealing with technologies <del>(need improvement)</del>
-		- [x] organize / hack some leaflets on map
-		- [ ] rendering bookmarks on map from an imported .geojson
-		- [ ] making a REST API
+- V0.1: Original Mockup
+- V0.2: Work In Progress
+	- [x] remove CDN
+	- [x] dealing with technologies <del>(need improvement)</del>
+	- [x] organize / hack some leaflets on map
+	- [ ] rendering bookmarks on map from an imported .geojson
+	- [ ] making a REST API
 
 ## Configuration & Programming style
 The server is based  on [shareable-app-coffee-americano](https://github.com/frankrousseau/shareable-app-coffee-americano/), with a standalone focus but also [CozyCloud](https://github.com/mycozycloud) friendly. The front-end is built with [React](https://facebook.github.io/react/), and [leaflet](http://leafletjs.com/)
