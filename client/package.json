@@ -1,0 +1,37 @@
+{
+  "name": "cozy-map-client",
+  "version": "0.0.1",
+  "description": "Client for Cozy-Map.",
+  "main": "src/index.coffee",
+  "dependencies": {
+    "leaflet": "^0.7.3",
+    "react": "^0.13.1",
+    "superagent": "^1.1.0"
+  },
+  "devDependencies": {
+    "browserify": "^9.0.3",
+    "envify": "^3.4.0",
+    "reactify": "^1.1.0",
+    "uglify-js": "^2.4.17",
+    "watchify": "^2.5.0",
+    "coffeeify": "^1.0.0"
+  },
+  "scripts": {
+    "start": "node_modules/.bin/watchify -t coffeeify .  -o ./public/browser-bundle.js -v -d .",
+    "build": "./node_modules/.bin/browserify -t coffeeify . > ./public/browser-bundle.js",
+    "build-min": "NODE_ENV=production ./node_modules/.bin/browserify -t coffeeify . | ./node_modules/.bin/uglifyjs -cm > ./public/browser-bundle.min.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "RobyRemzy",
+  "license": "MIT",
+  "browserify": {
+    "transform": [
+      "reactify",
+      "envify"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/RobyRemzy/cozy-map.git"
+  }
+}

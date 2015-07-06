@@ -1,0 +1,36 @@
+{
+  "name": "cozy-map",
+  "displayName": "Map",
+  "version": "0.0.1",
+  "description": "simple tool for GeoBookmarks.",
+  "author": "RobyRemzy <robyremzy@openmailbox.org>",
+  "license": "MIT",
+  "homepage": "https://github.com/RobyRemzy/cozy-map#readme",
+    "bugs": {
+    "url": "https://github.com/RobyRemzy/cozy-map/issues"
+  },
+  "main": "server.js",
+  "bin": {
+    "my-bookmarks": "bin/my-bookmarks"
+  },
+  "scripts": {
+    "build": "coffee -cb -o build server* && cd client && npm run-script build && cd .. && mkdir -p build/client && cp -r client/public build/client",
+    "test": "mocha test",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/RobyRemzy/cozy-map.git"
+  },
+  "keywords": [
+    "Bookmarks",
+    "Cozy"
+  ],
+  "dependencies": {
+    "path-extra": "^1.0.2",
+    "americano": "^0.4.1",
+    "cozy-db-pouchdb": "0.0.13",
+    "pouchdb": "^3.5.0",
+    "async": "^0.9.0"
+  }
+}
