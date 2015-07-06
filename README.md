@@ -1,6 +1,6 @@
 # Cozy-Map
 ![screenshot](https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/client/public/screenshot/m.png)  
-exemple on `gh-pages` not ready yet.
+example on `gh-pages` not ready yet.
 ## Description
 Cozy-Map is a standalone interactive maps built with [LeafletJs](http://leafletjs.com/) API, design to working on [Cozy](https://cozy.io/en/).
 ## Development
