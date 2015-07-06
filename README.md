@@ -1,5 +1,6 @@
 # Cozy-Map
-![screenshot](https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/client/public/screenshot/m.png)
+![screenshot](https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/client/public/screenshot/m.png)  
+exemple on `gh-pages` not ready yet.
 ## Description
 Cozy-Map is a standalone interactive maps built with [LeafletJs](http://leafletjs.com/) API, design to working on [Cozy](https://cozy.io/en/).
 ## Development
@@ -58,11 +59,17 @@ note: `Ctrl+c` to stop the process (server and/or the debug)
 ## Usage as a Cozy App
 i hope soon!!!
 ## Contributing
+If you would like to contribute enhancements, fixes or say hi! on IRC #cozycloud on irc.freenode.net
+please do the following:
 
-* pull request `gh-pages`
-* issues
-* comments
-* say hi! on IRC #cozycloud on irc.freenode.net
+- Make a pull requests
+	- Fork the `master` repository.
+	- Hack on a separate topic branch.
+	- Commit and push the topic branch.
+	- Make a pull request.
+	- Welcome to the Cozy community and thank you.
+- For issues [follow this link](https://github.com/RobyRemzy/cozy-map/issues).
+- IRC if you don't have IRC installed yet, [just follow this link](http://webchat.freenode.net/?channels=cozycloud)
 
 ## links
 [https://switch2osm.org](https://switch2osm.org)  
