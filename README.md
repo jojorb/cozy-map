@@ -1,7 +1,7 @@
 # Cozy-Map
 ![screenshot](https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/client/public/screenshot/m.png)
 ## Description
-Cozy-Map is a standalone interactive maps with the API [leafletjs](http://leafletjs.com/) and also working on [Cozy](cozy.io).
+Cozy-Map is a standalone interactive maps built with [LeafletJs](http://leafletjs.com/) API, design to working on [Cozy](cozy.io).
 ## Development
 >I am not a developer, but more a pre school SandBox foreman :)  
 
