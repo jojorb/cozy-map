@@ -1,5 +1,5 @@
 # Cozy-Map
-![screeshot](https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/client/public/assets/img/m.png)
+![screenshot](https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/client/public/screenshot/m.png)
 ## Description
 Cozy-Map is a standalone interactive maps with the API [leafletjs](http://leafletjs.com/) and also working on [Cozy](cozy.io).
 ## Development
@@ -18,7 +18,7 @@ Let's [contribute](#contributing) together!
 	- [x] dealing with technologies <del>(need improvement)</del>
 	- [x] organize / hack some leaflets on map
 	- [ ] rendering bookmarks on map from an imported .geojson
-	- [ ] making a REST API
+	- [ ] REST API
 
 ## Configuration & Programming style
 The server is based  on [shareable-app-coffee-americano](https://github.com/frankrousseau/shareable-app-coffee-americano/), with a standalone focus but also [CozyCloud](https://github.com/mycozycloud) friendly. The front-end is built with [React](https://facebook.github.io/react/), and [leaflet](http://leafletjs.com/)
@@ -26,7 +26,9 @@ with [OSM](http://osm.org).
 - Leaflet Follow "mostly" the [Airbnb JavaScript Style Guide](https://github.com/Leaflet/Leaflet/blob/master/PLUGIN-GUIDE.md#code-conventions)
 - React [Getting Started](https://facebook.github.io/react/docs/getting-started.html)
 - CoffeeScript [The Little Book on CoffeeScript](https://arcturo.github.io/library/coffeescript/02_syntax.html)
+
 ## Usage as a standalone App  
+
 ##### install what you need first
 ```shell
 $ sudo apt-get install npm
