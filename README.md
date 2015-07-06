@@ -59,7 +59,7 @@ note: `Ctrl+c` to stop the process (server and/or the debug)
 ## Usage as a Cozy App
 i hope soon!!!
 ## Contributing
-If you would like to contribute enhancements, fixes or say hi! on IRC #cozycloud on irc.freenode.net
+If you would like to contribute enhancements, fixes or say hi! with IRC #cozycloud on irc.freenode.net
 please do the following:
 
 - Make a pull requests
