@@ -26,6 +26,7 @@ with [OSM](http://osm.org).
 - Leaflet Follow "mostly" the [Airbnb JavaScript Style Guide](https://github.com/Leaflet/Leaflet/blob/master/PLUGIN-GUIDE.md#code-conventions)
 - React [Getting Started](https://facebook.github.io/react/docs/getting-started.html)
 - CoffeeScript [The Little Book on CoffeeScript](https://arcturo.github.io/library/coffeescript/02_syntax.html)
+- [coffeelint](https://github.com/clutchski/coffeelint/blob/master/doc/user.md)
 
 ## Usage as a standalone App  
 
@@ -68,6 +69,7 @@ i hope soon!!!
 [GPX file](http://en.wikipedia.org/wiki/GPS_Exchange_Format)  
 [geojson](http://geojson.org/)  
 [SuperAgent](http://visionmedia.github.io/superagent/#setting-the%20content-type)
+
 ### shareable-app-coffee-americano:
 A propos de NPM
 ### Publication

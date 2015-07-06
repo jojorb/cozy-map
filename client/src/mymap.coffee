@@ -5,6 +5,7 @@ L = require 'leaflet'
 L.Icon.Default.imagePath = '/styles/images'
 
 
+
 map = L.map 'map',
     center: [38, 0]
     zoom: 2
