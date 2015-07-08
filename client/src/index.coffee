@@ -8,7 +8,7 @@ MyMap = require './mymap.coffee'
 # Utilitaires pour requêter notre serveur.
 homedata =
 
-    # Avec cette fonction, on récupère la home.geojson
+    # Avec cette fonction, on récupère le home.geojson
     getHomeBookmarks: (callback) ->
         request
             .get('/geojsondata/home.geojson')
@@ -18,7 +18,7 @@ homedata =
 
 placesdata =
 
-    # Avec cette fonction, on récupère la home.geojson
+    # Avec cette fonction, on récupère le places.geojson
     getPlacesBookmarks: (callback) ->
         request
             .get('/geojsondata/places.geojson')
@@ -26,7 +26,7 @@ placesdata =
             .end (err, res) ->
                 callback err, res.body
 
-data =
+originaldata =
 
     # Avec cette fonction, on récupère les bookmarks depuis le serveur.
     getBookmarks: (callback) ->
@@ -51,6 +51,12 @@ data =
             .del('/api/bookmarks/' + bookmark.id)
             .end callback
 
+data = {
+    getHomeBookmarks: homedata
+    getPlacesBookmarks: placesdata
+    getBookmarks: originaldata
+    }
+
 
 # C'est le composant principal de l'application.
 App = React.createClass
@@ -73,7 +79,7 @@ App = React.createClass
 # Ici on démarre !
 #
 # On récupère d'abord les bookmarks stockées sur le home.geoJson
-homedata.getHomeBookmarks (err, homedata) ->
+homedata.getHomeBookmarks (err, res) ->
     console.log homedata
 
 # On récupère d'abord les bookmarks stockées sur le places.geoJson
@@ -81,7 +87,7 @@ placesdata.getPlacesBookmarks (err, placesdata) ->
     console.log placesdata
 
 # On récupère d'abord les bookmarks stockées sur le serveur.
-data.getBookmarks (err, bookmarks) ->
+originaldata.getBookmarks (err, bookmarks) ->
     console.log bookmarks
 
     if not bookmarks?
