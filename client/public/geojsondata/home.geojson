@@ -1,0 +1,21 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "zoom": 14,
+        "who": "you",
+        "are": "are",
+        "what": "awesome"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.454444,
+          -4.623611
+        ]
+      }
+    }
+  ]
+}

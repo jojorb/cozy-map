@@ -1,0 +1,20 @@
+/* required styles */
+
+.leaflet-homegeojson-icon {
+    width: 25px;
+    height: 41px;
+    background: url(homemarker.png);
+    background-size: 100%;
+}
+.leaflet-homegeojson-popup {
+    margin-top: 8px;
+    font: 500 13px 'Source Sans Pro';
+    line-height: 14px;
+    color: #777777;
+}
+.leaflet-homegeojson-popup-title {
+    margin-top: 8px;
+    font: 600 15px 'Source Sans Pro';
+    line-height: 17px;
+    color: #34A6FF;
+}

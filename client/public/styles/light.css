@@ -18,7 +18,7 @@ a {
     cursor:pointer;
 }
 a:hover { color:#09da0f; }
-a.active {
+.active {
   color:#fe8800;
   cursor:initial;
 }
@@ -26,7 +26,7 @@ a.active {
   width: 77%;
   height: 100%;
   left: 23%;
-  right: 0px;
+  right: 0;
 }
 .sidebar {
   position:absolute;
@@ -35,7 +35,8 @@ a.active {
   top:0;left:0;
   overflow:hidden;
   background: lightgrey;
-  border-right:1px solid rgba(0,0,0,0.25);
+  border-right:1px solid lightgrey;
+  border-right: rgba(0,0,0,0.25);
 }
 .isearch {
     border: 1px solid #34A6FF;
@@ -46,7 +47,7 @@ a.active {
 }
 .search {
   background: lightgrey;
-  border: 0px;
+  border: 0;
   height: 45px;
   padding: 10px 20px;
   padding-right: 5px;

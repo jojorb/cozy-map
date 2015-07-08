@@ -8,7 +8,9 @@ module.exports = SideBar = React.createFactory React.createClass
     render: ->
         div className: 'sidebar',
             div className: 'search', 'search'
-            input id: "mainsearch", className: 'isearch', type: 'text', placeholder: 'search for address on map...'
+            input {
+                id: "mainsearch", className: 'isearch',
+                type: 'text', placeholder: 'search for address on map...'}
             div className: 'heading', 'My Places'
             BookmarkList
                 bookmarks: @props.bookmarks
@@ -22,7 +24,7 @@ BookmarkList = React.createFactory React.createClass
     # se déclenche et que l'écran soit mis à jour en fonction.
     getInitialState: ->
         return {
-          bookmarks: @props.bookmarks
+            bookmarks: @props.bookmarks
         }
 
     # Quand le bouton ajout est cliqué, on récupère les valeurs des
@@ -49,10 +51,10 @@ BookmarkList = React.createFactory React.createClass
     removeLine: (line) ->
         bookmarks = @state.bookmarks
         index = 0
-
+# coffeelint: disable=max_line_length
         while (index < bookmarks.length and bookmarks[index].link isnt line.link)
             index++
-
+# coffeelint: enable=max_line_length
         if (index < bookmarks.length)
             bookmark = bookmarks.splice(index, 1)[0]
 
