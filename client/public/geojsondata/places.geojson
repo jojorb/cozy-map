@@ -5,16 +5,16 @@
       "type": "Feature",
       "properties": {
         "zoom": 14,
-        "title": "cool places",
-        "address": "",
-        "postalCode": "",
-        "city": "",
+        "title": "MoZilla France",
+        "address": "16bis Boulevard Montmartre",
+        "postalCode": "75009",
+        "city": "Paris",
         "state": "",
         "country": "",
         "phone": "",
         "email": "",
-        "website": "",
-        "tag": "",
+        "website": "https://twitter.com/MozillaParis",
+        "tag": "meetups",
         "class_icon": "",
         "class_marker": "",
         "class_markerColor": "",
@@ -24,8 +24,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          2.3500,
-          48.8528
+          2.3412305116653442,
+          48.871969704539794
         ]
       }
     }
