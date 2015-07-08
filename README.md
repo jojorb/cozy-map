@@ -57,7 +57,12 @@ $ npm start
 ```
 note: `Ctrl+c` to stop the process (server and/or the debug)
 ## Usage as a Cozy App
-i hope soon!!!
+**i hope soon!!! not working yet**  
+But should be:  
+inside your Cozy instance go to `Platform` - `Store`  
+At the bottom of the page you are able to past the HTTPS clone URL of a CozyCloud friendly project ex:  
+![screenshot](https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/client/public/screenshot/oncozy.png)  
+
 ## Contributing
 If you would like to contribute enhancements, fixes or say hi! with IRC #cozycloud on irc.freenode.net
 please do the following:
