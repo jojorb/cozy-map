@@ -98,9 +98,8 @@ request.onload = function() {
             feature.geometry.coordinates[0] + '](' +
             feature.properties.zoom + ')' + '</div>' +
             '<labels class="leaflet-homegeojson-popup">' +
-            feature.properties.who + ' ' +
-            feature.properties.are + ' ' +
-            feature.properties.what +
+            feature.properties.title + ' / ' +
+            feature.properties.name +
             '</labels>'
           );
         // map.panTo([lat, lng]);

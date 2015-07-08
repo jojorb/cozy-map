@@ -5,8 +5,8 @@
       "type": "Feature",
       "properties": {
         "zoom": 8,
-        "title": "cool home",
-        "name": "cool name",
+        "title": "string",
+        "name": "my string",
         "show_pin_point": true,
         "class_icon": "",
         "class_marker": "",

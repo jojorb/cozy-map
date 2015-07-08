@@ -4,10 +4,17 @@
     {
       "type": "Feature",
       "properties": {
-        "zoom": 8,
-        "title": "cool home",
-        "name": "cool name",
-        "show_pin_point": true,
+        "zoom": true,
+        "title": true,
+        "address": "",
+        "postalCode": "",
+        "city": "",
+        "state": "",
+        "country": "",
+        "phone": "",
+        "email": "",
+        "website": "",
+        "tag": "",
         "class_icon": "",
         "class_marker": "",
         "class_markerColor": "",
@@ -17,8 +24,8 @@
       "geometry": {
         "type": "Point",
         "coordinates": [
-          1,
-          42
+          true,
+          true
         ]
       }
     }
