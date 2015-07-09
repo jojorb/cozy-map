@@ -1,7 +1,7 @@
 React = require 'react'
 {div, p, a, button, span, input, label, h1} = React.DOM
 L = require 'leaflet'
-
+L.Icon.Default.imagePath = '/styles/images'
 # {homegeojsonDir} = '/cozymap-leaflet/leaflet.homegeojson.js'
 # onMapClick = '/cozymap-leaflet/PeaceMarker.js'
 
@@ -48,7 +48,7 @@ MarkerDefault = L.marker markerPosition
 .openPopup map
 
 
-L.Icon.Default.imagePath = '/styles/images'
+
 
 redIcon = L.icon(
     iconUrl: '/styles/images/marker2-icon.png'
@@ -60,7 +60,7 @@ redIcon = L.icon(
 
 
 onMapClick = (e) ->
-    marker = new (L.marker)(e.latlng,
+    marker = new L.marker(e.latlng,
       icon: redIcon
       draggable: 'true'
       opacity: '0.65')
@@ -86,10 +86,10 @@ onMapClick = (e) ->
             '<input type="hidden" class="placemarker-form-id" value="goto">' +
             '<button type="submit" class="placemarker-form-submit">' +
             '@</button></div></form>')
-      marker.setLatLng new (L.LatLng)(position.lat, position.lng), draggable: 'true'
+      marker.setLatLng new L.LatLng(position.lat, position.lng), draggable: 'true'
       # coffeelint: enable=max_line_length
       marker.bindPopup(popupContent).openPopup()
-      map.panTo new (L.LatLng)(position.lat, position.lng)
+      map.panTo new L.LatLng(position.lat, position.lng)
     return
     map.addLayer marker
     return
