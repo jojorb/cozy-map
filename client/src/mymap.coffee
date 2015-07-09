@@ -59,11 +59,10 @@ redIcon = L.icon(
     shadowSize: [41, 41])
 
 
-onMapClick = (e) ->
-    marker = new L.marker(e.latlng,
-        icon: redIcon
-        draggable: true
-        opacity: 0.65)
+onMapClick: (e) ->
+    marker = new L.marker(e.latlng, {
+        icon: redIcon, draggable:'true', opacity: '0.65'
+        })
     marker.on dragend, (event) ->
         marker = event.target
         markerzoom = map.getZoom()
@@ -86,11 +85,11 @@ onMapClick = (e) ->
             '<input type="hidden" class="placemarker-form-id" value="goto">' +
             '<button type="submit" class="placemarker-form-submit">' +
             '@</button></div></form>')
-      marker.setLatLng new L.LatLng(position.lat, position.lng), draggable: true
+      marker.setLatLng(new L.LatLng(position.lat, position.lng), {draggable: 'true'})
       # coffeelint: enable=max_line_length
       marker.bindPopup(popupContent).openPopup()
-      map.panTo new L.LatLng(position.lat, position.lng)
+      map.panTo(new L.LatLng(position.lat, position.lng))
     return
-    map.addLayer marker
+    map.addLayer(marker)
   return
-map.on dblclick, onMapClick
+map.on('dblclick', onMapClick)
