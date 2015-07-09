@@ -1,6 +1,6 @@
 React = require 'react'
 {div, p, a, button, span, input, label, h1} = React.DOM
-L = require 'leaflet'
+L = global.L or require('leaflet')
 L.Icon.Default.imagePath = '/styles/images'
 # {homegeojsonDir} = '/cozymap-leaflet/leaflet.homegeojson.js'
 # onMapClick = '/cozymap-leaflet/PeaceMarker.js'
@@ -91,5 +91,5 @@ onMapClick: (e) ->
       map.panTo(new L.LatLng(position.lat, position.lng))
     return
     map.addLayer(marker)
-  return
+return
 map.on('dblclick', onMapClick)
