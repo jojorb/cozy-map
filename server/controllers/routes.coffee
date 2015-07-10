@@ -1,5 +1,6 @@
 base = require './base'
 bookmarks = require './bookmarks'
+# homedata = require '.homedata'
 
 
 module.exports =
@@ -11,3 +12,11 @@ module.exports =
     'api/bookmarks/:id':
         delete: bookmarks.delete
 
+    #Homedata
+    # 'api':
+    #     get: base.indexhome
+    # 'api/homedata':
+    #     get: homedata.all
+    #     post: homedata.create
+    # 'api/Homedata/:id':
+    #     delete: Homedata.delete

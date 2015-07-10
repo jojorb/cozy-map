@@ -18,6 +18,17 @@ module.exports = SideBar = React.createFactory React.createClass
                 bookmarks: @props.bookmarks
 
 
+
+SearchPlaces = React.createFactory React.createClass
+
+    getInitialState: ->
+        return null
+
+    render: ->
+        return
+
+
+
 # Le composant liste de bookmark.
 BookmarkList = React.createFactory React.createClass
     # On définit l'état initial du composant bookmarks, cela est utile pour le

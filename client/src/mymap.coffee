@@ -7,12 +7,12 @@ L.Icon.Default.imagePath = '/styles/images'
 
 
 
-
 map = L.map 'map',
     center: [38, 0]
     zoom: 2
     doubleClickZoom: false
     # homegeojsonDir: '/geojsondata/home.geojson'
+
 
 
 # coffeelint: disable=max_line_length
@@ -39,6 +39,7 @@ Layers = OpenStreetMap_France
 .addTo map
 
 
+
 markerPosition = [42, 0]
 popupContent = 'Are you a Mapper?'
 
@@ -46,7 +47,6 @@ MarkerDefault = L.marker markerPosition
 .addTo map
 .bindPopup popupContent
 .openPopup map
-
 
 
 
@@ -59,37 +59,40 @@ redIcon = L.icon(
     shadowSize: [41, 41])
 
 
-onMapClick: (e) ->
-    marker = new L.marker(e.latlng, {
-        icon: redIcon, draggable:'true', opacity: '0.65'
-        })
-    marker.on dragend, (event) ->
-        marker = event.target
-        markerzoom = map.getZoom()
-        position = marker.getLatLng()
-        popupContent = L.popup()
-        # coffeelint: disable=max_line_length
-            .setContent('<form class="placemarker-form">' +
-            '<div class="input-group"><input type="text" name="bookmark-name" ' +
-            'placeholder="Bookmark name" class="placemarker-form-input" value="">' +
-            '<input type="hidden" class="placemarker-form-id" value="id">' +
-            '<button type="submit" class="placemarker-form-submit">' +
-            '+</button></div>' +
-            '<div class="placemarker-form-coords">
-            [Lat; Lng](zoom) = [' + position.lat.toFixed(4) + '; ' +
-            position.lng.toFixed(4) + '](' + markerzoom + ')</div></form>' +
-            '<form class="placemarker-form">' +
-            '<div class="input-group">
-            <input type="text" name="past-position" ' +
-            'placeholder="[Lat; Lng](zoom)" class="placemarker-form-input" value="">' +
-            '<input type="hidden" class="placemarker-form-id" value="goto">' +
-            '<button type="submit" class="placemarker-form-submit">' +
-            '@</button></div></form>')
-      marker.setLatLng(new L.LatLng(position.lat, position.lng), {draggable: 'true'})
-      # coffeelint: enable=max_line_length
-      marker.bindPopup(popupContent).openPopup()
-      map.panTo(new L.LatLng(position.lat, position.lng))
-    return
-    map.addLayer(marker)
-return
-map.on('dblclick', onMapClick)
+
+module.exports = MyMap = React.createFactory React.createClass
+
+    render: ->
+        div id: "map",
+
+
+
+PeaceMarker = React.createFactory React.createClass
+
+    onMapClick: (e) ->
+        marker = new L.marker(e.latlng, {
+            icon: redIcon, draggable:'true', opacity: '0.65'
+            })
+        marker.on dragend, (event) ->
+            marker = event.target
+            markerzoom = map.getZoom()
+            position = marker.getLatLng()
+            popupContent = L.popup()
+            # coffeelint: disable=max_line_length
+                .setContent('beau gosse!')
+          marker.setLatLng(new L.LatLng(position.lat, position.lng), {draggable: 'true'})
+          # coffeelint: enable=max_line_length
+          marker.bindPopup(popupContent).openPopup()
+          map.panTo(new L.LatLng(position.lat, position.lng))
+          return  map.addLayer(marker)
+
+        render: -> return map.on('dblclick', onMapClick)
+
+
+    onPeaceMarkerCreate: ->
+        #fonction pour "create/post" du coord + titre
+
+
+
+    onPeaceMarkerShow: ->
+        #fonction pour "panTo" directement par cp de coords

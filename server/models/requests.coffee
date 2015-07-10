@@ -5,3 +5,6 @@ module.exports =
     bookmark:
         all: cozydb.defaultRequests.all
 
+# module.exports =
+#     homedata:
+#         all: cozydb.defaultRequests.all

@@ -4,3 +4,6 @@
 module.exports =
     index: (req, res) ->
         res.send 'My Bookmarks API'
+
+    # indexhome: (req, res) ->
+    #     res.send 'My Home API'
