@@ -5,9 +5,9 @@ module.exports =
 
     # Ce contrôleur va requêter la base de données pour obtenir toutes les
     # bookmarks pour ensuite les envoyer dans la réponse.
-    all: (req, res) ->
+    all: (req, res, next) ->
         Homedata.all (err, homedata) ->
-            return next err if err
+            next err if err
 
             res.send homedata
 
@@ -17,7 +17,7 @@ module.exports =
     # créée, on la renvoie car elle contient maintenant son identifiant en base
     # de données. Ce qui sera utile au client pour faire d'autres opérations
     # sur la bookmark.
-    create: (req, res) ->
+    create: (req, res, next) ->
         homedata = req.body
 
         if not homedata.title? or not homedata.coordinates? or not homedata.zoom?
