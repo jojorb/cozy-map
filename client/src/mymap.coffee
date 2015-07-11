@@ -6,14 +6,10 @@ L.Icon.Default.imagePath = '/styles/images'
 # onMapClick = '/cozymap-leaflet/PeaceMarker.js'
 
 
-
 map = L.map 'map',
     center: [38, 0]
     zoom: 2
     doubleClickZoom: false
-    # homegeojsonDir: '/geojsondata/home.geojson'
-
-
 
 # coffeelint: disable=max_line_length
 Esri_WorldImagery =
@@ -34,11 +30,8 @@ OpenStreetMap_France =
 # coffeelint: enable=max_line_length
 
 
-
 Layers = OpenStreetMap_France
 .addTo map
-
-
 
 markerPosition = [42, 0]
 popupContent = 'Are you a Mapper?'
@@ -47,7 +40,6 @@ MarkerDefault = L.marker markerPosition
 .addTo map
 .bindPopup popupContent
 .openPopup map
-
 
 
 redIcon = L.icon(
@@ -59,40 +51,36 @@ redIcon = L.icon(
     shadowSize: [41, 41])
 
 
+map.on 'dblclick', (event) ->
 
-module.exports = MyMap = React.createFactory React.createClass
+    marker = new L.marker event.latlng,
+        icon: redIcon
+        draggable:'true'
+        opacity: '0.65'
+    marker.addTo map
 
-    render: ->
-        div id: "map",
+    marker.on 'dragend', (event) ->
+        marker = event.target
+        markerzoom = map.getZoom()
+        position = marker.getLatLng()
+        popupContent = L.popup()
+            .setContent('beau gosse!')
+        marker.setLatLng new L.LatLng(position.lat, position.lng),
+            draggable: 'true'
+        marker.bindPopup(popupContent).openPopup()
+        map.panTo(new L.LatLng(position.lat, position.lng))
+        map.addLayer(marker)
 
+# React wrapper for our leaflet widget.
+module.exports =
 
+    goToPoint: (lat, long) ->
 
-PeaceMarker = React.createFactory React.createClass
-
-    onMapClick: (e) ->
-        marker = new L.marker(e.latlng, {
-            icon: redIcon, draggable:'true', opacity: '0.65'
-            })
-        marker.on dragend, (event) ->
-            marker = event.target
-            markerzoom = map.getZoom()
-            position = marker.getLatLng()
-            popupContent = L.popup()
-            # coffeelint: disable=max_line_length
-                .setContent('beau gosse!')
-          marker.setLatLng(new L.LatLng(position.lat, position.lng), {draggable: 'true'})
-          # coffeelint: enable=max_line_length
-          marker.bindPopup(popupContent).openPopup()
-          map.panTo(new L.LatLng(position.lat, position.lng))
-          return  map.addLayer(marker)
-
-        render: -> return map.on('dblclick', onMapClick)
-
-
-    onPeaceMarkerCreate: ->
-        #fonction pour "create/post" du coord + titre
-
+    addMarker: (lat, long) ->
+        marker = new L.marker event.latlng,
+            icon: redIcon
+            draggable:'true'
+            opacity: '0.65'
+        marker.addTo map
 
 
-    onPeaceMarkerShow: ->
-        #fonction pour "panTo" directement par cp de coords

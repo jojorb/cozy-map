@@ -22,7 +22,7 @@ module.exports = SideBar = React.createFactory React.createClass
 SearchPlaces = React.createFactory React.createClass
 
     getInitialState: ->
-        return null
+        return {}
 
     render: ->
         return
@@ -41,8 +41,8 @@ BookmarkList = React.createFactory React.createClass
             placesdata: @props.placesdata
             bookmarks: @props.bookmarks
         }
-        @getHomeBookmarkComponents()
-        @getPlacesBookmarkComponents()
+        #@getHomeBookmarkComponents()
+        #@getPlacesBookmarkComponents()
 
     # Cette fonction renvoie à la liste home bookmark qu'on veut générer.
     getHomeBookmarkComponents: ->
@@ -124,6 +124,7 @@ BookmarkList = React.createFactory React.createClass
 
         div id: "bookmark-list", className: 'listings',
 
+            Homedata {}, 'text'
             div null,
                 label null, "title"
                 input
@@ -152,7 +153,7 @@ BookmarkList = React.createFactory React.createClass
 
 
 # Le composant qui va définir une ligne de homedata.
-homedata = React.createFactory React.createClass
+Homedata = React.createFactory React.createClass
 
     render: ->
         div id: 'sidebar-home',
@@ -164,7 +165,7 @@ homedata = React.createFactory React.createClass
                     "Lat: #{@state.hlat} Lng: #{@state.hlng}"
 
 # Le composant qui va définir une ligne de placesdata.
-placesdata = React.createFactory React.createClass
+Placesdata = React.createFactory React.createClass
 
     render: ->
         div id: 'sidebar-places',

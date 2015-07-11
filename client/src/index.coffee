@@ -9,9 +9,9 @@ MyMap = require './mymap.coffee'
 homedata =
 
     # Avec cette fonction, on récupère le home.geojson
-    getHomeBookmarks: (callback) ->
+    getHomeData: (callback) ->
         request
-            .get('/geojsondata/home.geojson')
+            .get('/api/homedata')
             .set('Accept', 'application/json')
             .end (err, res) ->
                 callback err, res.body
@@ -21,40 +21,14 @@ placesdata =
     # Avec cette fonction, on récupère le places.geojson
     getPlacesBookmarks: (callback) ->
         request
-            .get('/geojsondata/places.geojson')
+            .get('/api/placedata')
             .set('Accept', 'application/json')
             .end (err, res) ->
                 callback err, res.body
-
-originaldata =
-
-    # Avec cette fonction, on récupère les bookmarks depuis le serveur.
-    getBookmarks: (callback) ->
-        request
-            .get('/api/bookmarks')
-            .set('Accept', 'application/json')
-            .end (err, res) ->
-                callback err, res.body
-
-
-    # On demande au serveur de créer une bookmark.
-    createBookmark: (bookmark, callback) ->
-        request
-            .post('/api/bookmarks')
-            .send(bookmark)
-            .end (err, res) ->
-                callback err, res.body
-
-    # On demande au serveur de supprimer une bookmark.
-    deleteBookmark: (bookmark, callback) ->
-        request
-            .del('/api/bookmarks/' + bookmark.id)
-            .end callback
 
 data = {
     getHomeBookmarks: homedata
     getPlacesBookmarks: placesdata
-    getBookmarks: originaldata
     }
 
 
@@ -72,32 +46,17 @@ App = React.createClass
                 bookmarks: @props.bookmarks
         # div id: "map", className: 'map', (trying to avoid map in
         # index.html and in CSS)
-            MyMap
-
 
 
 # Ici on démarre !
 #
 # On récupère d'abord les bookmarks stockées sur le home.geoJson
-homedata.getHomeBookmarks (err, res) ->
-    console.log homedata
+homedata.getHomeData (err, homeData) ->
 
-# On récupère d'abord les bookmarks stockées sur le places.geoJson
-placesdata.getPlacesBookmarks (err, placesdata) ->
-    console.log placesdata
+    data =
+        homedata: homedata,
+        placesdata: placesdata,
+        bookmarks: []
+    React.render(React.createElement(App, data),
+        document.getElementById('app'))
 
-# On récupère d'abord les bookmarks stockées sur le serveur.
-originaldata.getBookmarks (err, bookmarks) ->
-    console.log bookmarks
-
-    if not bookmarks?
-        alert "Je n'ai pas réussi à récupérer les bookmarks"
-
-    else
-        # Attention le premier élément de react ne doit pas être attaché
-        # directement à l'élément body.
-        React.render(React.createElement(App ,
-            homedata: homedata,
-            placesdata: placesdata,
-            bookmarks: bookmarks),
-                     document.getElementById('app'))
