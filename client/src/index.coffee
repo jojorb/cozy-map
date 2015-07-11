@@ -5,10 +5,10 @@ request = require 'superagent'
 SideBar = require './sidebar.coffee'
 MyMap = require './mymap.coffee'
 
-# Utilitaires pour requêter notre serveur.
+
+
 homedata =
 
-    # Avec cette fonction, on récupère le home.geojson
     getHomeData: (callback) ->
         request
             .get('/api/homedata')
@@ -18,7 +18,6 @@ homedata =
 
 placesdata =
 
-    # Avec cette fonction, on récupère le places.geojson
     getPlacesBookmarks: (callback) ->
         request
             .get('/api/placedata')
@@ -32,6 +31,7 @@ data = {
     }
 
 
+
 # C'est le composant principal de l'application.
 App = React.createClass
 
@@ -43,20 +43,16 @@ App = React.createClass
             SideBar
                 homedata: @props.homedata
                 placesdata: @props.placesdata
-                bookmarks: @props.bookmarks
-        # div id: "map", className: 'map', (trying to avoid map in
-        # index.html and in CSS)
+
 
 
 # Ici on démarre !
 #
-# On récupère d'abord les bookmarks stockées sur le home.geoJson
+# On récupère d'abord la cfg stockées sur le homedata
 homedata.getHomeData (err, homeData) ->
 
     data =
         homedata: homedata,
         placesdata: placesdata,
-        bookmarks: []
     React.render(React.createElement(App, data),
         document.getElementById('app'))
-

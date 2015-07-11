@@ -3,6 +3,40 @@ L = global.L or require('leaflet')
 
 # WOP...
 
+    # Quand le bouton ajout est cliqué, on récupère les valeurs des
+    # différents champs.
+    # Puis on met à jour la liste des composants. Enfin on provoque un nouveau
+    # rendu en changeant l'état.
+    # Enfin, on envoie une requête de création au serveur.
+#     onAddClicked: ->
+#         bookmarks = @state.bookmarks
+#         title = @refs.titleInput.getDOMNode().value
+#         link = @refs.linkInput.getDOMNode().value
+#
+#         bookmark = title: title, link: link
+#         bookmarks.push bookmark
+#
+#         # Changement d'état.
+#         @setState bookmarks: bookmarks
+#         # Requête au server.
+#         data.createBookmark bookmark, ->
+
+# div null,
+#     label null, "title"
+#     input
+#         ref: "titleInput"
+#         type: "text"
+# div null,
+#     label null, "url"
+#     input
+#         ref: "linkInput"
+#         type: "text"
+# div null,
+#     button
+#         onClick: @onAddClicked
+#     , "+"
+# div null,
+
 
 popupContent = L.popup().setContent(
     '<form class="placemarker-form">' +

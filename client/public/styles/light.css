@@ -65,3 +65,37 @@ a:hover { color:#09da0f; }
   line-height:60px;
   padding:0 60px;
 }
+.listings {
+  color: #d20eab;
+  height:100%;
+  overflow:auto;
+  padding-bottom:60px;
+}
+.listings .item {
+  display:block;
+  border-bottom:1px solid #eee;
+  padding:1px 10px;
+  padding-bottom:10px;
+  text-decoration:none;
+}
+.listings .item:hover { background-color:#FFC47F; }
+.listings .item:active { background-color:lightblue;}
+
+.listings .item .title {
+  color:#fe8800;
+  font-size:18px;
+  font-weight:700;
+  line-height:18px;
+  margin-left: 10px;
+  margin-top: 6px;
+  margin-bottom: 0;
+}
+.listings .item .mygps {
+  color:#7d7d7d;
+  font-size:10px;
+  font-weight:600;
+  line-height:10px;
+  margin-left: 10px;
+  margin-top: 6px;
+  margin-bottom: 0;
+}
