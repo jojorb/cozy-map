@@ -1,0 +1,20 @@
+#!/usr/bin/env node
+
+// Dépendances.
+var path = require('path-extra');
+var fs = require('fs');
+
+// Répertoire où l'application stockera ses données.
+var defaultDir = path.join(path.homedir(), '.cozy-map');
+
+// Si le répertoire n'existe pas, on le crée.
+if(!fs.existsSync(defaultDir)) {
+  fs.mkdirSync(defaultDir);
+}
+
+// On se place dans le répertoire.
+process.chdir(defaultDir);
+
+// On démarre le serveur.
+// __dirname donne le chemin absolu du répertoir courant du fichier de code.
+require(path.join(__dirname, '..', 'build', 'server'));

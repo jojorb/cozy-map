@@ -5,10 +5,9 @@ homedata = require './homedata'
 module.exports =
 
     'api':
-         get: base.indexhome
+        get: base.indexhome
     'api/homedata':
-         get: homedata.all
-         post: homedata.create
+        get: homedata.all
+        post: homedata.create
     'api/homedata/:id':
-         delete: homedata.delete
-
+        delete: homedata.delete

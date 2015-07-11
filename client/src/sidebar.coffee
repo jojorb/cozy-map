@@ -28,7 +28,7 @@ SearchPlaces = React.createFactory React.createClass
 
 
 
-sidebarHeading = React.createFactory React.createClass
+SidebarHeading = React.createFactory React.createClass
 
     getInitialState: ->
         return {}

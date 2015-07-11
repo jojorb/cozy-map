@@ -7,8 +7,8 @@ americano = require 'americano'
 # Ici on donne les options du serveur.
 port = process.env.PORT or 3000
 options =
-    name: 'my-bookmarks'
-    dbName: 'my-bookmarks-db'
+    name: 'cozy-map'
+    dbName: 'cozy-map-db'
     # C'est le port que va occuper notre serveur pour communiquer.
     # On pourra aisin se connecter sur le serveur avec l'URL:
     # http://localhost:9104/
@@ -20,4 +20,3 @@ options =
 
 americano.start options, (err, app, server) ->
     console.log "server is listening on #{options.port}..."
-

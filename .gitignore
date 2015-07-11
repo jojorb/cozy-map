@@ -4,8 +4,6 @@ node_modules
 *~
 *.swp
 npm-debug.log
-my-bookmarks-db
-my-bookmarks-db-*
-my-places-db
-my-places-db-*
+cozy-map-db
+cozy-map-db-*
 build
