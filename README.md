@@ -1,6 +1,6 @@
 # Cozy-Map
 ![screenshot](https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/client/public/screenshot/m.png)  
-example on `gh-pages` not ready yet.
+
 ## Description
 Cozy-Map is a standalone interactive maps built with [LeafletJs](http://leafletjs.com/) API, design to working on [Cozy](https://cozy.io/en/).
 ## Development
@@ -20,7 +20,7 @@ Let's [contribute](#contributing) together!
 	- [x] organize / hack some leaflets on map
 	- [ ] rendering bookmarks on map from an imported .geojson
 	- [ ] REST API
-		- [ ] URIs
+		- [x] URIs
 		- [ ] SOPA-RCP
 		- [ ] Representation
 
@@ -63,7 +63,7 @@ note: `Ctrl+c` to stop the process (server and/or the debug)
 **i hope soon!!! not working yet**  
 But should be:  
 inside your Cozy instance go to `Platform` - `Store`  
-At the bottom of the page you are able to past the HTTPS clone URL of a CozyCloud friendly project ex:  
+At the bottom of the page you are able to past the HTTPS clone URL of a CozyCloud friendly project ex: `https://github.com/RobyRemzy/cozy-map.git`  
 ![screenshot](https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/client/public/screenshot/oncozy.png)  
 
 ## Contributing
@@ -77,7 +77,9 @@ please do the following:
 	- Make a pull request.
 	- Welcome to the Cozy community and thank you.
 - For issues [follow this link](https://github.com/RobyRemzy/cozy-map/issues).
-- IRC if you don't have IRC installed yet, [just follow this link](http://webchat.freenode.net/?channels=cozycloud)
+- IRC if you don't have IRC installed yet, [just follow this link](http://webchat.freenode.net/?channels=cozycloud)  
+
+**Thanks allready to [CozyTeam](https://cozy.io/en/#about) and [Contributors](https://github.com/RobyRemzy/cozy-map/graphs/contributors)**  
 
 ## links
 [https://switch2osm.org](https://switch2osm.org)  
