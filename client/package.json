@@ -1,6 +1,6 @@
 {
   "name": "cozy-map-client",
-  "version": "0.0.1",
+  "version": "0.1.5",
   "description": "Client for Cozy-Map.",
   "main": "src/index.coffee",
   "dependencies": {

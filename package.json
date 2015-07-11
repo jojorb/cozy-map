@@ -1,8 +1,8 @@
 {
   "name": "cozy-map",
   "displayName": "Map",
-  "version": "0.0.1",
-  "description": "simple tool for GeoBookmarks.",
+  "version": "0.1.5",
+  "description": "GeoBookmarks with interactive Map-Leaflet.",
   "author": "RobyRemzy <robyremzy@openmailbox.org>",
   "license": "MIT",
   "homepage": "https://github.com/RobyRemzy/cozy-map#readme",
@@ -11,7 +11,7 @@
   },
   "main": "server.js",
   "bin": {
-    "my-bookmarks": "bin/my-bookmarks"
+    "cozy-map": "bin/cozy-map"
   },
   "scripts": {
     "build": "coffee -cb -o build server* && cd client && npm run-script build && cd .. && mkdir -p build/client && cp -r client/public build/client",
@@ -23,8 +23,9 @@
     "url": "git+ssh://git@github.com/RobyRemzy/cozy-map.git"
   },
   "keywords": [
-    "Bookmarks",
-    "Cozy"
+    "GeoBookmarks",
+    "Cozy",
+    "Leaflet"
   ],
   "dependencies": {
     "path-extra": "^1.0.2",
