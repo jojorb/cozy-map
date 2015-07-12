@@ -43,6 +43,7 @@ App = React.createClass
             SideBar
                 homedata: @props.homedata
                 placesdata: @props.placesdata
+            MyMap
 
 
 

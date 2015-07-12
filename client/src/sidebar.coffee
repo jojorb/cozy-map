@@ -7,13 +7,13 @@ module.exports = SideBar = React.createFactory React.createClass
 
     render: ->
         div id: "sidebar", className: 'sidebar',
-            div id: "sidebar-search", className: 'search', 'search'
+            div id: "sidebar-search", className: 'search',
             input {
                 id: "sidebar-search-input", className: 'isearch',
                 type: 'text', placeholder: 'search for address on map...'}
-            div id: "sidebar-heading", className: 'heading', 'My Places'
-            BookmarkList
+            SidebarHeading
                 homedata: @props.homedata
+            BookmarkList
                 placesdata: @props.placesdata
 
 
@@ -31,10 +31,49 @@ SearchPlaces = React.createFactory React.createClass
 SidebarHeading = React.createFactory React.createClass
 
     getInitialState: ->
-        return {}
+        return homedata: @props.homedata
 
     render: ->
-        return
+
+        div id: "sidebar-heading", className: 'sidebar-heading',
+
+            Homedata {}, 'text'
+
+
+
+# Le composant qui va définir une ligne de homedata.
+Homedata = React.createFactory React.createClass
+
+    getInitialState: ->
+        return {
+            helloworld: "Hello!"
+            configPage: "#config"
+            hname: "Cozy User"
+            htitle: "view finder"
+            hcoordinates: [38, 0]
+            hlat: 39.4568257456
+            hlng: 0.500042567
+            hzoom: 3
+            hshow_pin_point: true
+            placesdata_db: false
+        }
+
+    render: ->
+        div id: 'sidebar-home', className: 'heading',
+            p {className: 'hello'},
+                "#{@state.helloworld} #{@state.hname}"
+                div id: 'sidebar-home-view', className: 'view-title',
+                    p {className: "title"},
+                        a href: @state.configPage, className: "config"
+                        "Preferences "
+                        br null, null
+                    p {className: 'view-coords'},
+                        "#{@state.htitle} : "
+                        "Lat: #{@state.hlat.toFixed(4)} "
+                        "Lng: #{@state.hlng.toFixed(4)} "
+                        "zoom: #{@state.hzoom}"
+                    p { className: 'panel'},
+                        a href: "#", className: "placesdata"
 
 
 
@@ -43,25 +82,25 @@ BookmarkList = React.createFactory React.createClass
 
     getInitialState: ->
         return {
-            homedata: @props.homedata
+            #homedata: @props.homedata
             placesdata: @props.placesdata
         }
         #@getHomeBookmarkComponents()
         #@getPlacesBookmarkComponents()
 
     # Cette fonction renvoie à la liste home bookmark qu'on veut générer.
-    getHomeBookmarkComponents: ->
-        homebookmarkComponents = []
-        for homedata in @state.homedata
-            homebookmarkComponents = HomeBookmarkComponent
-                hcoordinates: homedata.features[0].geometry.coordinates
-                hlng: homedata.features[0].geometry.coordinates[0]
-                hlat: homedata.features[0].geometry.coordinates[1]
-                hzoom: homedata.features[0].properties.zoom
-                htitle: homedata.features[0].properties.title
-                hname: homedata.features[0].properties.name
-            homebookmarkComponents.push homebookmarkComponent
-            return homebookmarkComponents
+    # getHomeBookmarkComponents: ->
+    #     homebookmarkComponents = []
+    #     for homedata in @state.homedata
+    #         homebookmarkComponents = HomeBookmarkComponent
+    #             hcoordinates: homedata.features[0].geometry.coordinates
+    #             hlng: homedata.features[0].geometry.coordinates[0]
+    #             hlat: homedata.features[0].geometry.coordinates[1]
+    #             hzoom: homedata.features[0].properties.zoom
+    #             htitle: homedata.features[0].properties.title
+    #             hname: homedata.features[0].properties.name
+    #         homebookmarkComponents.push homebookmarkComponent
+    #         return homebookmarkComponents
 
 
 
@@ -91,33 +130,8 @@ BookmarkList = React.createFactory React.createClass
 
         div id: "bookmark-list", className: 'listings',
 
-            Homedata {}, 'text'
-
-
-
-# Le composant qui va définir une ligne de homedata.
-Homedata = React.createFactory React.createClass
-
-    getInitialState: ->
-        return {
-            htitle: "My Home"
-            hzoom: "3"
-            hlat: "38"
-            hlng: "0"
-            hcoordinates: [38, 0]
-            hshow_pin_point: "true"
-        }
-
-    render: ->
-        div id: 'sidebar-home',
-            div id: 'sidebar-home-item', className: 'item',
-                p {className: "title"},
-                    "#{@state.htitle}"
-                    br null, null
-                span {className: "mygps"},
-                    "Lat: #{@state.hlat}"
-                    " Lng: #{@state.hlng}"
-                    " zoom: #{@state.hzoom}"
+            # Homedata {}, 'text'
+            # Placesdata {}, 'text'
 
 
 

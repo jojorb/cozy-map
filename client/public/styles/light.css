@@ -6,8 +6,6 @@ body {
   margin:0;
   padding:0;
   -webkit-font-smoothing:antialiased;
-}
-* {
   -webkit-box-sizing:border-box;
   -moz-box-sizing:border-box;
   box-sizing:border-box;
@@ -35,41 +33,68 @@ a:hover { color:#09da0f; }
   top:0;left:0;
   overflow:hidden;
   background: lightgrey;
-  border-right:1px solid lightgrey;
-  border-right: rgba(0,0,0,0.25);
 }
-.isearch {
-    border: 1px solid #34A6FF;
-    border-radius: 3px;
-    background-color: white;
-    display: inline;
-    line-height:20px;
-}
-.search {
-  background: lightgrey;
-  border: 0;
-  height: 45px;
-  padding: 10px 20px;
-  padding-right: 5px;
+.sidebar .search {
+  padding-top: 10px;
+  padding-left: 10px;
   font:600 18px 'Source Sans Pro';
-  color: #34A6FF;
-  display: inline-block;
+  height: auto;
 }
-.heading {
-  background:#fff;
-  font: 32px 'Source Sans Pro';
+.sidebar .search .isearch {
+  border: 1px solid #34A6FF;
+  border-radius: 3px;
+  background-color: white;
+  padding:3px 10px;
+}
+.sidebar .sidebar-heading {
+  color: #34A6FF;
+  border-bottom:1px solid white;
+  height: auto
+}
+.sidebar .sidebar-heading .heading {
+  height: auto;
+  padding-left: 10px;
+}
+.sidebar .sidebar-heading .heading .hello {
+  font: 18px 'Source Sans Pro';
   font-weight:700;
-  color: #34A6FF;
-  border-bottom:1px solid #eee;
-  height:60px;
-  line-height:60px;
-  padding:0 60px;
+  padding:0 10px;
 }
+.sidebar .sidebar-heading .heading .config {
+  background-image: url(./images/System-settings-icon.png);
+  background-repeat: no-repeat;
+  background-position: left;
+  padding: 2px 12px;
+}
+.sidebar .sidebar-heading .heading .view-title {
+  font: 13px 'Source Sans Pro';
+  font-weight:600;
+  padding: 0 1px;
+  line-height:5px;
+}
+.sidebar .sidebar-heading .heading .view-title .view-coords {
+  font: 11px 'Source Sans Pro';
+  color: #7d7d7d;
+  font-weight:600;
+  padding: 0 20px;
+  line-height:12px;
+}
+.sidebar .sidebar-heading .heading .view-title .panel {
+  line-height:24px;
+  padding: 9px 7px;
+}
+.sidebar .sidebar-heading .heading .view-title .panel .placesdata {
+  background-image: url(./images/iconMarker.png);
+  background-repeat: no-repeat;
+  background-position: left;
+  padding: 13px 20px;
+}
+
 .listings {
   color: #d20eab;
   height:100%;
   overflow:auto;
-  padding-bottom:60px;
+  /*padding-bottom:60px;*/
 }
 .listings .item {
   display:block;
