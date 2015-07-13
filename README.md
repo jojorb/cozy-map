@@ -18,7 +18,8 @@ Let's [contribute](#contributing) together!
 	- [x] remove CDN
 	- [x] dealing with technologies <del>(need improvement)</del>
 	- [x] organize / hack some leaflets on map
-	- [ ] rendering bookmarks on map from an imported .geojson
+	- [x] rendering points on map from an imported .geojson (depreciate for now)
+	- [x] JSON base
 	- [ ] REST API
 		- [x] URIs
 		- [ ] SOPA-RCP
