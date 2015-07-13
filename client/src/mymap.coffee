@@ -2,8 +2,7 @@ React = require 'react'
 {div, p, a, button, span, input, label, h1} = React.DOM
 L = global.L or require('leaflet')
 L.Icon.Default.imagePath = '/styles/images'
-# {homegeojsonDir} = '/cozymap-leaflet/leaflet.homegeojson.js'
-# onMapClick = '/cozymap-leaflet/PeaceMarker.js'
+
 
 
 map = L.map 'map',
@@ -51,6 +50,7 @@ redIcon = L.icon(
     shadowSize: [41, 41])
 
 
+# Module PeaceMarker start
 map.on 'dblclick', (event) ->
 
     marker = new L.marker event.latlng,
@@ -64,7 +64,11 @@ map.on 'dblclick', (event) ->
         markerzoom = map.getZoom()
         position = marker.getLatLng()
         popupContent = L.popup()
-            .setContent('beau gosse!')
+            .setContent(
+                'beau gosse!' + '<br>' +
+                '[Lat; Lng](zoom) = [' +
+                position.lat.toFixed(4) + '; ' + position.lng.toFixed(4) + ']
+                (' + markerzoom + ')')
         marker.setLatLng new L.LatLng(position.lat, position.lng),
             draggable: 'true'
         marker.bindPopup(popupContent).openPopup()
@@ -82,5 +86,4 @@ module.exports =
             draggable:'true'
             opacity: '0.65'
         marker.addTo map
-
-
+# Module PeaceMarker end
