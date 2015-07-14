@@ -1,5 +1,5 @@
 React = require 'react'
-{div, p, a, button, input, label, h1, h2, br, span, i} = React.DOM
+{div, p, a, button, input, form, checked, label, h1, h2, br,span, i} = React.DOM
 
 
 
@@ -46,16 +46,18 @@ Homedata = React.createFactory React.createClass
 
     getInitialState: ->
         return {
+          # No Mod here
             helloworld: "Hello!"
-            configPage: "#config"
-            hname: "Cozy User"
+            cfgPage: "#cfg_form"
+            hname: "Cozy User" #grab the name of the cozy user
             htitle: "view finder"
-            hcoordinates: [38, 0]
+            placesdata_db: false
+          # Mod OK here
+            hcoordinates: [39.4568257456, 0.500042567]
             hlat: 39.4568257456
             hlng: 0.500042567
             hzoom: 3
             hshow_pin_point: true
-            placesdata_db: false
         }
 
     render: ->
@@ -64,7 +66,7 @@ Homedata = React.createFactory React.createClass
                 "#{@state.helloworld} #{@state.hname}"
                 div id: 'sidebar-home-view', className: 'view-title',
                     p {className: "title"},
-                        a href: @state.configPage, className: "config"
+                        a href: @state.cfgPage, className: "config", id: "cfg"
                         "Preferences "
                         br null, null
                     p {className: 'view-coords'},
@@ -72,8 +74,103 @@ Homedata = React.createFactory React.createClass
                         "Lat: #{@state.hlat.toFixed(4)} "
                         "Lng: #{@state.hlng.toFixed(4)} "
                         "zoom: #{@state.hzoom}"
-                    p { className: 'panel'},
+                    p { className: 'dbpanel'},
                         a href: "#", className: "placesdata"
+
+                        # Modal config for homedata
+                a href: "#x", className: "overlay", id: "cfg_form"
+                div className: "popup",
+                    "Update your Preferences here"
+                    br null, null
+                    br null, null
+                    "view finder is:"
+                    br null, null
+                    "Lat, Lng: "
+
+                    input {
+                        id: "vflatlng"
+                        type: 'text',
+                        placeholder: "#{@state.hlat}, #{@state.hlng}"}
+
+                    br null, null
+                    "zomm: "
+
+                    input {
+                        id: "vfzoom",
+                        type: 'text',
+                        placeholder: "#{@state.hzoom}"}
+
+                    br null, null
+                    br null, null
+                    "Show 'view finder' marker: "
+
+                    input {
+                        id: "showmarker",
+                        type: 'checkbox',
+                        name: "true", value: "true"}
+
+                    br null, null
+                    br null, null
+                    input {type: "submit", value: "Submit"}
+                    br null, null
+                    br null, null
+                    "Units"
+                    br null, null
+                    "Distance"
+                    br form
+
+                    input {
+                        type: "radio",
+                        name: "distance",
+                        value: "Kilometres"}, "Kilometres"
+
+                    br null, null
+
+                    input {
+                        type: "radio",
+                        name: "distance", value: "Miles"}, "Miles"
+
+                    br null, null
+                    "Temperature"
+                    br form
+
+                    input {
+                        type: "radio",
+                        name: "temperature",
+                        value: "Celsius"}, "Celsius"
+
+                    br null, null
+
+                    input {
+                        type: "radio",
+                        name: "temperature", value: "Fahrenheit"}, "Fahrenheit"
+
+                    br null, null
+                    "Aera"
+                    br form
+
+                    input {
+                        type: "radio",
+                        name: "aera",
+                        value: "Hectare"}, "Hectare"
+
+                    br null, null
+
+                    input {
+                        type: "radio",
+                        name: "aera", value: "acre"}, "acres"
+
+                    br null, null
+                    br null, null
+                    input {type: "submit", value: "Submit"}
+                    a href: "#close", className: "close"
+
+
+
+
+
+
+
 
 
 

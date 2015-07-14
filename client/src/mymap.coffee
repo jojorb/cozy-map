@@ -1,27 +1,17 @@
 React = require 'react'
 {div, p, a, button, span, input, label, h1} = React.DOM
 L = global.L or require('leaflet')
+# require 'leaflet/dist/leaflet.css'
 L.Icon.Default.imagePath = '/styles/images'
 
 
 
 map = L.map 'map',
     center: [38, 0]
-    zoom: 2
+    zoom: 3
     doubleClickZoom: false
 
 # coffeelint: disable=max_line_length
-Esri_WorldImagery =
-    L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
-    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community')
-
-MapQuestOpen_Aerial =
-  L.tileLayer('http://otile{s}.mqcdn.com/tiles/1.0.0/{type}/{z}/{x}/{y}.{ext}',
-  type: 'sat'
-  ext: 'jpg'
-  attribution: 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency'
-  subdomains: '1234')
-
 OpenStreetMap_France =
   L.tileLayer('http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
   maxZoom: 19

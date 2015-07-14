@@ -79,11 +79,11 @@ a:hover { color:#09da0f; }
   padding: 0 20px;
   line-height:12px;
 }
-.sidebar .sidebar-heading .heading .view-title .panel {
+.sidebar .sidebar-heading .heading .view-title .dbpanel {
   line-height:24px;
   padding: 9px 7px;
 }
-.sidebar .sidebar-heading .heading .view-title .panel .placesdata {
+.sidebar .sidebar-heading .heading .view-title .dbpanel .placesdata {
   background-image: url(./images/iconMarker.png);
   background-repeat: no-repeat;
   background-position: left;
