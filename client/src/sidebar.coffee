@@ -48,16 +48,20 @@ Homedata = React.createFactory React.createClass
         return {
           # No Mod here
             helloworld: "Hello!"
-            cfgPage: "#cfg_form"
+            cfgPage: "#config"
             hname: "Cozy User" #grab the name of the cozy user
             htitle: "view finder"
-            placesdata_db: false
+            placesdata_db: true
           # Mod OK here
             hcoordinates: [39.4568257456, 0.500042567]
             hlat: 39.4568257456
             hlng: 0.500042567
             hzoom: 3
             hshow_pin_point: true
+            kilometres: true
+            miles: false
+            celsius: true
+            fahrenheit: false
         }
 
     render: ->
@@ -78,7 +82,7 @@ Homedata = React.createFactory React.createClass
                         a href: "#", className: "placesdata"
 
                         # Modal config for homedata
-                a href: "#x", className: "overlay", id: "cfg_form"
+                a href: "#close", className: "overlay", id: "config"
                 div className: "popup",
                     "Update your Preferences here"
                     br null, null
@@ -122,13 +126,13 @@ Homedata = React.createFactory React.createClass
                     input {
                         type: "radio",
                         name: "distance",
-                        value: "Kilometres"}, "Kilometres"
+                        value: "kilometres"}, "Kilometres"
 
                     br null, null
 
                     input {
                         type: "radio",
-                        name: "distance", value: "Miles"}, "Miles"
+                        name: "distance", value: "miles"}, "Miles"
 
                     br null, null
                     "Temperature"
@@ -137,13 +141,13 @@ Homedata = React.createFactory React.createClass
                     input {
                         type: "radio",
                         name: "temperature",
-                        value: "Celsius"}, "Celsius"
+                        value: "celsius"}, "Celsius"
 
                     br null, null
 
                     input {
                         type: "radio",
-                        name: "temperature", value: "Fahrenheit"}, "Fahrenheit"
+                        name: "temperature", value: "fahrenheit"}, "Fahrenheit"
 
                     br null, null
                     "Aera"
@@ -152,13 +156,13 @@ Homedata = React.createFactory React.createClass
                     input {
                         type: "radio",
                         name: "aera",
-                        value: "Hectare"}, "Hectare"
+                        value: "hectare"}, "Hectare"
 
                     br null, null
 
                     input {
                         type: "radio",
-                        name: "aera", value: "acre"}, "acres"
+                        name: "aera", value: "acre"}, "Acres"
 
                     br null, null
                     br null, null
@@ -261,25 +265,3 @@ Placesdata = React.createFactory React.createClass
                     # coffeelint: enable=max_line_length
                 span {className: 'tag'},
                     "TAG: #{@state.tag}"
-
-
-
-# Ici on génère un composant bookmark par bookmark présentes
-# dans la liste. La fonction map permet de constituer un
-# tableau de composant bookmark à partir d'une liste de
-# d'objet bookmark.
-# @state.bookmarks.map (bookmark) =>
-#     Bookmark
-#         title: bookmark.title
-#         link: bookmark.link
-#         removeLine: @removeLine
-
-
-
-# Bookmark = React.createFactory React.createClass
-    # Quand le bouton supprimé est cliqué, on demande au parent de supprimer la
-    # la ligne courante.
-    # onDeleteClicked: ->
-        # @props.removeLine @props
-
-    # Rendu de la bookmark, on
