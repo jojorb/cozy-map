@@ -13,10 +13,12 @@ module.exports = Homedata = cozydb.getModel 'Homedata',
     show_pin_point: Boolean
     hshow_pin_point: Boolean
     placesdata_db: Boolean
-    Kilometres: Boolean
-    Miles: Boolean
-    Celsius: Boolean
-    Fahrenheit: Boolean
+    kilometres: Boolean
+    miles: Boolean
+    celsius: Boolean
+    fahrenheit: Boolean
+    hectare: Boolean
+    acre: Boolean
     here: Boolean
     here_subdomains: Number
     here_mapID: String

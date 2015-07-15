@@ -171,13 +171,6 @@ Homedata = React.createFactory React.createClass
 
 
 
-
-
-
-
-
-
-
 # Le composant liste de bookmark.
 BookmarkList = React.createFactory React.createClass
 
@@ -188,20 +181,6 @@ BookmarkList = React.createFactory React.createClass
         }
         #@getHomeBookmarkComponents()
         #@getPlacesBookmarkComponents()
-
-    # Cette fonction renvoie à la liste home bookmark qu'on veut générer.
-    # getHomeBookmarkComponents: ->
-    #     homebookmarkComponents = []
-    #     for homedata in @state.homedata
-    #         homebookmarkComponents = HomeBookmarkComponent
-    #             hcoordinates: homedata.features[0].geometry.coordinates
-    #             hlng: homedata.features[0].geometry.coordinates[0]
-    #             hlat: homedata.features[0].geometry.coordinates[1]
-    #             hzoom: homedata.features[0].properties.zoom
-    #             htitle: homedata.features[0].properties.title
-    #             hname: homedata.features[0].properties.name
-    #         homebookmarkComponents.push homebookmarkComponent
-    #         return homebookmarkComponents
 
 
 
