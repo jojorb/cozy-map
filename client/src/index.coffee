@@ -16,6 +16,25 @@ homedata =
             .end (err, res) ->
                 callback err, res.body
 
+    createHomeData: (homedata, callback) ->
+        request
+            .post('/api/homedata')
+            .send(homedata)
+            .end (err, res) ->
+                callback err, res.body
+# to fix
+    updateHomeData: (homedata, callback) ->
+        request
+            .post('/api/homedata' + homedata.id)
+            .send(homedata)
+            .end (err, res) ->
+                callback err, res.body
+
+    deleteHomedata: (homedata, callback) ->
+        request
+            .del('/api/homedata/' + homedata.id)
+            .end callback
+
 placesdata =
 
     getPlacesBookmarks: (callback) ->
@@ -24,7 +43,7 @@ placesdata =
             .set('Accept', 'application/json')
             .end (err, res) ->
                 callback err, res.body
-
+# to fix
 data = {
     getHomeBookmarks: homedata
     getPlacesBookmarks: placesdata
