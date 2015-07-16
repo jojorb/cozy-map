@@ -34,6 +34,17 @@ module.exports =
                     res.send homedataModel
 
 
+
+    # Une version ou le client indique l'ID à metre à jour
+    # update: (req, res, next) ->
+    #     id = req.params.id
+    #     delete req.body.id
+    #
+    #     HomeData.update{'.id' : id}, (err, homedata) ->
+    #         res.send homedata
+
+
+
     # Ici le client indique via l'url sur laquelle il envoie une requête
     # l'identifiant du bookmark à supprimer.
     # Ensuite le contrôleur va supprimer le bookmark et indiquer dans la

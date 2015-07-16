@@ -9,5 +9,7 @@ module.exports =
     'api/homedata':
         get: homedata.all
         post: homedata.create
+        # put: homedata.update
     'api/homedata/:id':
+        # put: homedata.update
         delete: homedata.delete

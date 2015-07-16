@@ -1,5 +1,5 @@
 cozydb = require 'cozy-db-pouchdb'
-
+# String, Number, Boolean, Array, Date, !ObjectId, !Mixed, !Buffer
 
 
 module.exports = Homedata = cozydb.getModel 'Homedata',
