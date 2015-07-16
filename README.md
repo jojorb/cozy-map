@@ -38,9 +38,20 @@ with [OSM](http://osm.org).
 ##### install what you need first
 ```shell
 $ sudo apt-get install npm
-$ sudo apt-get install nodejs
 $ npm install -g coffee-script
 ```
+
+to install [Node](https://nodejs.org/) with [n](https://github.com/tj/n)  
+```shell
+$ sudo npm install -g n
+$ sudo n stable
+```
+
+or from deb package  
+```shell
+$ sudo apt-get install nodejs
+```
+
 ##### create a new folder and clone this repository
 ```shell
 $ touch Cozy-Map && cd Cozy-Map
