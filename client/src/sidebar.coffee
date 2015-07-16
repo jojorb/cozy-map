@@ -7,10 +7,8 @@ module.exports = SideBar = React.createFactory React.createClass
 
     render: ->
         div id: "sidebar", className: 'sidebar',
-            div id: "sidebar-search", className: 'search',
-            input {
-                id: "sidebar-search-input", className: 'isearch',
-                type: 'text', placeholder: 'search for address on map...'}
+            SearchPlaces
+                searchdata: @props.searchdata
             SidebarHeading
                 homedata: @props.homedata
             BookmarkList
@@ -21,10 +19,23 @@ module.exports = SideBar = React.createFactory React.createClass
 SearchPlaces = React.createFactory React.createClass
 
     getInitialState: ->
-        return {}
+        return searchdata: @props.searchdata
 
     render: ->
-        return
+
+        div id: "sidebar-searchdata", className: 'sidebar-searchdata',
+
+            Searchdata {}, 'text'
+
+
+
+Searchdata = React.createFactory React.createClass
+
+    render: ->
+        div id: "sidebar-search", className: 'search',
+        input {
+            id: "sidebar-search-input", className: 'isearch',
+            type: 'text', placeholder: 'search for address on map...'}
 
 
 
