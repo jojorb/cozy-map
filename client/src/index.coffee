@@ -22,22 +22,24 @@ homedata =
             .send(homedata)
             .end (err, res) ->
                 callback err, res.body
-# to fix
-    updateHomeData: (homedata, callback) ->
-        request
-            .post('/api/homedata' + homedata.id)
-            .send(homedata)
-            .end (err, res) ->
-                callback err, res.body
 
-    deleteHomedata: (homedata, callback) ->
+    deleteHomeData: (homedata, callback) ->
         request
             .del('/api/homedata/' + homedata.id)
             .end callback
 
+    updateHomeData: (homedata, callback) ->
+        request
+            .put('/api/homedata' + homedata.id)
+            .send(homedata) # to fix
+            .end (err, res) ->
+                callback err, res.body
+
+
+
 placesdata =
 
-    getPlacesBookmarks: (callback) ->
+    getPlacesData: (callback) ->
         request
             .get('/api/placedata')
             .set('Accept', 'application/json')

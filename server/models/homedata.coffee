@@ -6,12 +6,11 @@ cozydb = require 'cozy-db-pouchdb'
 # de la bookmark.
 module.exports = Homedata = cozydb.getModel 'Homedata',
     helloworld: String
-    hname: String
+    name: String
     title: String
     coordinates: [Number]
     zoom: Number
     show_pin_point: Boolean
-    hshow_pin_point: Boolean
     placesdata_db: Boolean
     kilometres: Boolean
     miles: Boolean

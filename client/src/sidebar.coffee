@@ -49,15 +49,15 @@ Homedata = React.createFactory React.createClass
           # No Mod here
             helloworld: "Hello!"
             cfgPage: "#config"
-            hname: "Cozy User" #grab the name of the cozy user
-            htitle: "view finder"
+            name: "Cozy User" #grab the name of the cozy user
+            title: "view finder"
             placesdata_db: true
           # Mod OK here
-            hcoordinates: [39.4568257456, 0.500042567]
-            hlat: 39.4568257456
-            hlng: 0.500042567
-            hzoom: 3
-            hshow_pin_point: true
+            coordinates: [39.4568257456, 0.500042567]
+            lat: 39.4568257456
+            lng: 0.500042567
+            zoom: 3
+            show_pin_point: true
             kilometres: true
             miles: false
             celsius: true
@@ -67,17 +67,17 @@ Homedata = React.createFactory React.createClass
     render: ->
         div id: 'sidebar-home', className: 'heading',
             p {className: 'hello'},
-                "#{@state.helloworld} #{@state.hname}"
+                "#{@state.helloworld} #{@state.name}"
                 div id: 'sidebar-home-view', className: 'view-title',
                     p {className: "title"},
                         a href: @state.cfgPage, className: "config", id: "cfg"
                         "Preferences "
                         br null, null
                     p {className: 'view-coords'},
-                        "#{@state.htitle} : "
-                        "Lat: #{@state.hlat.toFixed(4)} "
-                        "Lng: #{@state.hlng.toFixed(4)} "
-                        "zoom: #{@state.hzoom}"
+                        "#{@state.title} : "
+                        "Lat: #{@state.lat.toFixed(4)} "
+                        "Lng: #{@state.lng.toFixed(4)} "
+                        "zoom: #{@state.zoom}"
                     p { className: 'dbpanel'},
                         a href: "#", className: "placesdata"
 
