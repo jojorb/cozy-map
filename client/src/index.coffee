@@ -15,6 +15,12 @@ homedata =
             .set('Accept', 'application/json')
             .end (err, res) ->
                 callback err, res.body
+# if GET res = null
+# then create.homedata with
+      #homedata.coordinates: [42, 0]
+      #homedata.zoom: 3
+      #homzdata.name: Cozy User
+# .end (err, res)
 
 
 

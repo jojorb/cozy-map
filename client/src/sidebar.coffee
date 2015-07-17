@@ -54,7 +54,7 @@ SidebarHeading = React.createFactory React.createClass
 
 # Le composant qui va définir une ligne de homedata.
 Homedata = React.createFactory React.createClass
-
+    #to remove when get Homedata.id
     getInitialState: ->
         return {
           # No Mod here
@@ -65,8 +65,8 @@ Homedata = React.createFactory React.createClass
             placesdata_db: true
           # Mod OK here
             coordinates: [39.4568257456, 0.500042567]
-            lat: 39.4568257456
-            lng: 0.500042567
+            lat: 39.4568257456 #Homedata.coordinates.[0]
+            lng: 0.500042567  #Homedata.coordinates.[1]
             zoom: 3
             show_pin_point: true
             kilometres: true
