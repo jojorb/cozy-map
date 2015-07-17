@@ -7,14 +7,47 @@ MyMap = require './mymap.coffee'
 
 
 
-homedata =
+configuration =
 
-    getHomeData: (callback) ->
+    first: (callback) ->
         request
-            .get('/api/homedata')
+            .get('/api/configuration')
+            .set('Accept', 'application/json')
+            .end (err, res) ->
+                return callback err if err
+
+                if res.body.length is 0
+                    callback err, null
+                else
+                    callback err, res.body[0]
+
+
+    create: (data, callback) ->
+        request
+            .post('/api/configuration')
+            .send(data)
             .set('Accept', 'application/json')
             .end (err, res) ->
                 callback err, res.body
+
+    update: (data, callback) ->
+        request
+            .put("/api/configuration/#{data.id}")
+            .send(data)
+            .set('Accept', 'application/json')
+            .end (err, res) ->
+                callback err, res.body
+
+    delete: (callback) ->
+        request
+            .delete("/api/configuration/#{data.id}")
+            .set('Accept', 'application/json')
+            .end (err, res) ->
+                callback err, res.body
+
+
+
+
 # if GET res = null
 # then create.homedata with
       #homedata.coordinates: [42, 0]
@@ -57,10 +90,27 @@ App = React.createClass
 # Ici on démarre !
 #
 # On récupère d'abord la cfg stockées sur le homedata
-homedata.getHomeData (err, homeData) ->
+configuration.first (err, config) ->
 
-    data =
-        homedata: homedata,
-        placesdata: placesdata,
-    React.render(React.createElement(App, data),
-        document.getElementById('app'))
+    if not config?
+
+        config =
+            coordinates: [42, 0]
+            zoom: 3
+            name: "Cozy User"
+
+        configuration.post data, (config) ->
+            data =
+                homedata: config,
+                placesdata: placesdata,
+            React.render(React.createElement(App, config),
+                document.getElementById('app'))
+
+    else
+        data =
+            homedata: config,
+            placesdata: placesdata,
+        React.render(React.createElement(App, config),
+            document.getElementById('app'))
+
+

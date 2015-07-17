@@ -36,12 +36,16 @@ module.exports =
 
 
     # Une version ou le client indique l'ID à metre à jour
-    # update: (req, res, next) ->
-    #     id = req.params.id
-    #     delete req.body.id
-    #
-    #     HomeData.update{'.id' : id}, (err, homedata) ->
-    #         res.send homedata
+    update: (req, res, next) ->
+         id = req.params.id
+
+         HomeData.find id, (err, homedata) ->
+             return next err if err
+
+             homedata.updateAttributes req.body, (err, homedata) ->
+                 return next err if err
+
+                 res.send homedata
 
 
 
