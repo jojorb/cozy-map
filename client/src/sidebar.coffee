@@ -76,6 +76,12 @@ Homedata = React.createFactory React.createClass
         }
 
     render: ->
+        if @state.coordinates is [39.4568257456, 0.500042567]
+            true
+        else
+            false
+
+
         div id: 'sidebar-home', className: 'heading',
             p {className: 'hello'},
                 "#{@state.helloworld} #{@state.name}"
