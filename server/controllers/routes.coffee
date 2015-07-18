@@ -12,8 +12,8 @@ module.exports =
         post: homedata.create
         # put: homedata.update
     'api/configuration/:id':
-        # get: homedata.first
+        get: homedata.first
         # get: homedata.all
-        # post: homedata.create
+        post: homedata.create
         put: homedata.update
         delete: homedata.delete

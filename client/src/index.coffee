@@ -14,10 +14,11 @@ configuration =
             .get('/api/configuration')
             .set('Accept', 'application/json')
             .end (err, res) ->
-                return callback err if err
+                return callback err, res.body
 
                 if res.body.length is 0
-                    callback err, null
+                    configuration.create homedata (config)
+                    
                 else
                     callback err, res.body[0]
 
