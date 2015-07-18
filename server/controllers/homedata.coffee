@@ -3,13 +3,20 @@ Homedata = require '../models/homedata'
 
 module.exports =
 
-    # Ce contrôleur va requêter la base de données pour obtenir toutes les
-    # bookmarks pour ensuite les envoyer dans la réponse.
+    # Ce contrôleur va requêter la base de données pour obtenir la première ou
+    # toutes les bookmarks pour ensuite les envoyer dans la réponse.
+    first: (req, res, next) ->
+        Homedata.first (err, homedata) ->
+            next err if err
+
+            res.send homedata
+
     all: (req, res, next) ->
         Homedata.all (err, homedata) ->
             next err if err
 
             res.send homedata
+
 
 
     # Ce contrôleur va prendre les informations de la requête pour créer une
@@ -37,15 +44,15 @@ module.exports =
 
     # Une version ou le client indique l'ID à metre à jour
     update: (req, res, next) ->
-         id = req.params.id
+        id = req.params.id
 
-         HomeData.find id, (err, homedata) ->
-             return next err if err
+        HomeData.find id, (err, homedata) ->
+            return next err if err
 
-             homedata.updateAttributes req.body, (err, homedata) ->
-                 return next err if err
+            homedata.updateAttributes req.body, (err, homedata) ->
+                return next err if err
 
-                 res.send homedata
+                res.send homedata
 
 
 

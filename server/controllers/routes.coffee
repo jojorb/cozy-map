@@ -7,9 +7,13 @@ module.exports =
     'api':
         get: base.indexhome
     'api/configuration':
-        get: homedata.all
+        get: homedata.first
+        # get: homedata.all
         post: homedata.create
         # put: homedata.update
     'api/configuration/:id':
-        # put: homedata.update
+        # get: homedata.first
+        # get: homedata.all
+        # post: homedata.create
+        put: homedata.update
         delete: homedata.delete

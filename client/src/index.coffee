@@ -21,7 +21,6 @@ configuration =
                 else
                     callback err, res.body[0]
 
-
     create: (data, callback) ->
         request
             .post('/api/configuration')
@@ -47,16 +46,6 @@ configuration =
 
 
 
-
-# if GET res = null
-# then create.homedata with
-      #homedata.coordinates: [42, 0]
-      #homedata.zoom: 3
-      #homzdata.name: Cozy User
-# .end (err, res)
-
-
-
 placesdata =
 
     getPlacesData: (callback) ->
@@ -68,10 +57,10 @@ placesdata =
 
 
 
-data = {
-    getHomeBookmarks: homedata
-    getPlacesBookmarks: placesdata
-    }
+# data = {
+#     getHomeBookmarks: configuration
+#     getPlacesBookmarks: placesdata
+#     }
 
 
 
@@ -99,7 +88,7 @@ configuration.first (err, config) ->
             zoom: 3
             name: "Cozy User"
 
-        configuration.post data, (config) ->
+        configuration.create data, (config) ->
             data =
                 homedata: config,
                 placesdata: placesdata,
@@ -112,5 +101,3 @@ configuration.first (err, config) ->
             placesdata: placesdata,
         React.render(React.createElement(App, config),
             document.getElementById('app'))
-
-
