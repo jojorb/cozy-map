@@ -25,7 +25,8 @@ module.exports =
 
 
     create: (req, res, next) ->
-        HomedataModel.create (err, homedata) ->
+        HomedataModel.create req.body, (err, homedata) ->
+        #HomedataModel.create (err, homedata) ->
             if err
                 res.status(500).send msg: err
 

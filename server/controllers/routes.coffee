@@ -9,9 +9,9 @@ module.exports =
     'api/configuration':
         get:    homedata.first
         post:   homedata.create
-        put:    homedata.update
+#        put:    homedata.update #
     'api/configuration/:id':
-        get:    homedata.first
-        post:   homedata.create
+#        get:    homedata.first #
+#        post:   homedata.create #
         put:    homedata.update
         delete: homedata.delete

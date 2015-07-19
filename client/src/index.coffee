@@ -48,7 +48,7 @@ configuration =
 
 placesdata =
 
-    getPlacesData: (callback) ->
+    all: (callback) ->
         request
             .get('/api/placedata')
             .set('Accept', 'application/json')
@@ -76,12 +76,13 @@ App = React.createClass
 
 
 # Start the App !
-configuration.first (err, res) ->
+configuration.create data, (err, data) ->
+#HomedataModel.create req.body, (err, homedata) ->
 
-    configuration.create data, (err, data) ->
-        console.log err
+    configuration.first (err, res) ->
+        console.log "homedata config err: " + err
         data =
-            homedata: config,
+            homedata: data,
             placesdata: placesdata,
-        React.render(React.createElement(App, config),
+        React.render(React.createElement(App, data),
             document.getElementById('app'))
