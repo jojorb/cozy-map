@@ -1,19 +1,17 @@
 base = require './base'
-homedata = require './homedata'
+homedata = require './homedata_controler'
 
 
 module.exports =
 
     'api':
-        get: base.indexhome
+        get:    base.indexhome
     'api/configuration':
-        get: homedata.first
-        # get: homedata.all
-        post: homedata.create
-        # put: homedata.update
+        get:    homedata.first
+        post:   homedata.create
+        put:    homedata.update
     'api/configuration/:id':
-        get: homedata.first
-        # get: homedata.all
-        post: homedata.create
-        put: homedata.update
+        get:    homedata.first
+        post:   homedata.create
+        put:    homedata.update
         delete: homedata.delete

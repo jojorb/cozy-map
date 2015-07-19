@@ -3,5 +3,4 @@
 # the version of the API.
 module.exports =
     indexhome: (req, res) ->
-        res.send 'My geo data API'
-
+        res.send 'beta GeoBookmarks API'

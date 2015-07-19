@@ -14,11 +14,10 @@ configuration =
             .get('/api/configuration')
             .set('Accept', 'application/json')
             .end (err, res) ->
-                return callback err, res.body
+                return callback err if err
 
                 if res.body.length is 0
-                    configuration.create homedata (config)
-                    
+                    callback err, null
                 else
                     callback err, res.body[0]
 
@@ -28,7 +27,7 @@ configuration =
             .send(data)
             .set('Accept', 'application/json')
             .end (err, res) ->
-                callback err, res.body
+                callback err, res.body[0]
 
     update: (data, callback) ->
         request
@@ -58,10 +57,10 @@ placesdata =
 
 
 
-# data = {
-#     getHomeBookmarks: configuration
-#     getPlacesBookmarks: placesdata
-#     }
+data = {
+    homedata: configuration
+    # getPlacesBookmarks: placesdata
+    }
 
 
 
@@ -85,7 +84,8 @@ configuration.first (err, config) ->
     if not config?
 
         config =
-            coordinates: [42, 0]
+            lat: 42
+            lng: 0
             zoom: 3
             name: "Cozy User"
 
