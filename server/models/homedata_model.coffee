@@ -3,7 +3,7 @@ cozydb = require 'cozy-db-pouchdb'
 module.exports = HomedataModel = cozydb.getModel 'Homedata',
 
     helloworld:           type: String,     default: 'Hello!'
-    name:                 type: String,     default: 'CozyUser'
+    username:             type: String,     default: 'Cozy User'
     title:                type: String,     default: 'view finder'
     lat:                  type: Number,     default: 42
     lng:                  type: Number,     default: 0
