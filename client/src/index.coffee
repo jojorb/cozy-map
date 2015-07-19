@@ -64,7 +64,6 @@ data = {
 
 
 
-# C'est le composant principal de l'application.
 App = React.createClass
 
     render: ->
@@ -76,27 +75,11 @@ App = React.createClass
 
 
 
-# Ici on démarre !
-#
-# On récupère d'abord la cfg stockées sur le homedata
-configuration.first (err, config) ->
+# Start the App !
+configuration.first (err, res) ->
 
-    if not config?
-
-        config =
-            lat: 42
-            lng: 0
-            zoom: 3
-            name: "Cozy User"
-
-        configuration.create data, (config) ->
-            data =
-                homedata: config,
-                placesdata: placesdata,
-            React.render(React.createElement(App, config),
-                document.getElementById('app'))
-
-    else
+    configuration.create data, (err, data) ->
+        console.log err
         data =
             homedata: config,
             placesdata: placesdata,
