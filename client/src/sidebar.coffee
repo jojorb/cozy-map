@@ -58,13 +58,12 @@ Homedata = React.createFactory React.createClass
     getInitialState: ->
         return {
           # No Mod here
-            helloworld: "Hello!"
+            helloworld: "Bonjour!"
             cfgPage: "#config"
-            name: "Cozy User" #grab the name of the cozy user
+            username: "Cozy User" #grab the name of the cozy user
             title: "view finder"
             placesdata_db: true
           # Mod OK here
-            coordinates: [39.4568257456, 0.500042567]
             lat: 39.4568257456 #Homedata.coordinates.[0]
             lng: 0.500042567  #Homedata.coordinates.[1]
             zoom: 3
@@ -76,15 +75,10 @@ Homedata = React.createFactory React.createClass
         }
 
     render: ->
-        if @state.coordinates is [39.4568257456, 0.500042567]
-            true
-        else
-            false
-
 
         div id: 'sidebar-home', className: 'heading',
             p {className: 'hello'},
-                "#{@state.helloworld} #{@state.name}"
+                "#{@state.helloworld} #{@state.username}"
                 div id: 'sidebar-home-view', className: 'view-title',
                     p {className: "title"},
                         a href: @state.cfgPage, className: "config", id: "cfg"
