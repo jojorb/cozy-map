@@ -10,6 +10,7 @@ module.exports = SideBar = React.createFactory React.createClass
             SearchPlaces
                 searchdata: @props.searchdata
             SidebarHeading
+                # configuration: @props.configuration
                 homedata: @props.homedata
             BookmarkList
                 placesdata: @props.placesdata
@@ -57,15 +58,16 @@ Homedata = React.createFactory React.createClass
     #to remove when get Homedata.id
     getInitialState: ->
         return {
-          # No Mod here
             helloworld: "Bonjour!"
+            # helloworld: @props.homedata[0].helloworld
             cfgPage: "#config"
             username: "Cozy User" #grab the name of the cozy user
             title: "view finder"
             placesdata_db: true
           # Mod OK here
-            lat: 39.4568257456 #Homedata.coordinates.[0]
-            lng: 0.500042567  #Homedata.coordinates.[1]
+            lat: 39.4568257456
+            # lat: @props.homedata[0].lat
+            lng: 0.500042567
             zoom: 3
             show_pin_point: true
             kilometres: true
@@ -73,12 +75,14 @@ Homedata = React.createFactory React.createClass
             celsius: true
             fahrenheit: false
         }
+        # @getConfiguration()
 
     render: ->
 
         div id: 'sidebar-home', className: 'heading',
             p {className: 'hello'},
                 "#{@state.helloworld} #{@state.username}"
+                console.log @state.username
                 div id: 'sidebar-home-view', className: 'view-title',
                     p {className: "title"},
                         a href: @state.cfgPage, className: "config", id: "cfg"

@@ -26,7 +26,7 @@ module.exports =
 
     create: (req, res, next) ->
         HomedataModel.create req.body, (err, homedata) ->
-        #HomedataModel.create (err, homedata) ->
+        #HomedataModel.create "create need a JS obj here" (err, homedata) ->
             if err
                 res.status(500).send msg: err
 
