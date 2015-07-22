@@ -16,11 +16,11 @@ module.exports =
 
 
 
-    all: (req, res, next) ->
-        HomedataModel.all (err, homedata) ->
-            next err if err
-
-            res.send homedata
+    # all: (req, res, next) ->
+    #     HomedataModel.all (err, homedata) ->
+    #         next err if err
+    #
+    #         res.send homedata
 
 
 
