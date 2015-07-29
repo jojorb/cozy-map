@@ -16,6 +16,7 @@ userConfig =
             .get('/api/configuration')
             .set('Accept', 'application/json')
             .end (err, res) ->
+                console.log res.body.length
                 return callback err if err
 
                 if res.body.length is 0
@@ -23,28 +24,29 @@ userConfig =
                 else
                 callback err, res.body[0]
 
-    postConfig: (config, callback) ->
-      # routes = post: homedata.create "with config as data"
+
+    postConfig: (homedata, callback) ->
+      # routes = post: homedata.create "with homedata as data"
         request
             .post('/api/configuration')
-            .send(config)
+            .send(homedata)
             .set('Accept', 'application/json')
             .end (err, res) ->
                 callback err, res.body[0]
 
-    putConfigid: (config, callback) ->
-      # routes = put: homedata.update "for config.id as data"
+    putConfigid: (homedata, callback) ->
+      # routes = put: homedata.update "for homedata.id as data"
         request
-            .put("/api/configuration/#{config.id}")
-            .send(config)
+            .put("/api/configuration/#{homedata.id}")
+            .send(homedata)
             .set('Accept', 'application/json')
             .end (err, res) ->
                 callback err, res.body
 
     delConfigid: (callback) ->
-      # routes = delete: homedata.delete "for config.id as data"
+      # routes = delete: homedata.delete "for homedata.id as data"
         request
-            .delete("/api/configuration/#{config.id}")
+            .delete("/api/configuration/#{homedata.id}")
             .set('Accept', 'application/json')
             .end (err, res) ->
                 callback err, res.body
@@ -64,11 +66,10 @@ geoPlaces =
 
 
 # data to send to Couch db
-# no more:
-# warn - Cozy DB | Warning : cast ignored property 'var'
+# no more: warn - Cozy DB | Warning : cast ignored property 'var'
 data = {
-    getUserConfig: userConfig.getConfig
-    # getGeoPlaces: geoPlaces
+    homedata: userConfig
+    # placedata: geoPlaces
     }
 
 App = React.createClass
@@ -76,45 +77,45 @@ App = React.createClass
     render: ->
         div null,
             SideBar
-                homedata: @props.homedata
-                # placesdata: @props.placesdata
+                homedata: @props.userConfig
             MyMap
 
 
 
 # Start the App !
 
-userConfig.postConfig data, (err, config) ->
-                     #^why data   ^why config or data?
-userConfig.getConfig (err, res) ->
-    console.log "homedata config err: " + err
-# initApp = ->
-
-    data = {
-        homedata: data,#why data?
-        #placesdata: placesdata
-        }
-    React.render(React.createElement(App, data),
-        document.getElementById('app'))
+# userConfig.postConfig data, (err, config) ->
+#                      #^why data   ^why config or data?
+# userConfig.getConfig (err, res) ->
+#     console.log "homedata config err: " + err
+# # initApp = ->
+#
+#     data = {
+#         homedata: data,#why data?
+#         #placesdata: data
+#         }
+#     React.render(React.createElement(App, data),
+#         document.getElementById('app'))
 # initApp()
 
 
 
 # # not working well!!!
-# userConfig.getConfig (err, res) ->
-#
-#     # if res.body[0] is 0
-#     if err
-#         userConfig.postConfig data, (err, config) ->
-#             data =
-#                 homedata: data,
-#                 # placesdata: placesdata,
-#             React.render(React.createElement(App, data),
-#                 document.getElementById('app'))
-#
-#     else
-#         data =
-#             homedata: data,
-#             # placesdata: placesdata,
-#         React.render(React.createElement(App, data),
-#             document.getElementById('app'))
+userConfig.getConfig (err, res) ->
+    # if res.body.length == 0
+    # TypeError: res is undefined
+    if err
+    # else if res.body is undefined
+        userConfig.postConfig data, (err, config) ->
+            data =
+                homedata: data,
+                # placesdata: data,
+            React.render(React.createElement(App, data),
+                document.getElementById('app'))
+
+    else
+        data =
+            homedata: data,
+            # placesdata: data,
+        React.render(React.createElement(App, data),
+            document.getElementById('app'))

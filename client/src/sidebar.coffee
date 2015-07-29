@@ -10,10 +10,9 @@ module.exports = SideBar = React.createFactory React.createClass
             SearchPlaces
                 searchdata: @props.searchdata
             SidebarHeading
-                # configuration: @props.configuration
-                homedata: @props.homedata
-            BookmarkList
-                placesdata: @props.placesdata
+                homedata: @props.userConfig
+            # DbListing
+            #     placesdata: @props.placesdata
 
 
 
@@ -43,7 +42,23 @@ Searchdata = React.createFactory React.createClass
 SidebarHeading = React.createFactory React.createClass
 
     getInitialState: ->
-        return homedata: @props.homedata
+        return {
+            homedata: @props.userConfig
+            }
+        @getSidebarHeading()
+
+    getSidebarHeading: ->
+        sidebarHeading = []
+        for homedata in @state.userConfig
+            userConfig.getConfig = Homedata
+                helloworld: homedata[0].helloworld
+                username: homedata[0].username
+                title: homedata[0].title
+                lat: homedata[0].lat
+                lng: homedata[0].lng
+                zoom: homedata[0].zoom
+            sidebarHeading.push userConfig.getConfig
+        return sidebarHeading
 
     render: ->
 
@@ -53,39 +68,28 @@ SidebarHeading = React.createFactory React.createClass
 
 
 
-# Le composant qui va définir une ligne de homedata.
+# Le composant qui va définir une ligne de homedata
 Homedata = React.createFactory React.createClass
-    #to remove when get Homedata.id
+
+    #test
     getInitialState: ->
         return {
-            helloworld: "Bonjour!"
-            # helloworld: @props.homedata[0].helloworld
-            cfgPage: "#config"
-            username: "Cozy User" #grab the name of the cozy user
-            title: "view finder"
-            placesdata_db: true
-          # Mod OK here
+            helloworld: @props.helloworld
+            username: @props.username
+            title: @props.title
             lat: 39.4568257456
-            # lat: @props.homedata[0].lat
             lng: 0.500042567
             zoom: 3
-            show_pin_point: true
-            kilometres: true
-            miles: false
-            celsius: true
-            fahrenheit: false
         }
-        # @getConfiguration()
 
     render: ->
-
         div id: 'sidebar-home', className: 'heading',
             p {className: 'hello'},
                 "#{@state.helloworld} #{@state.username}"
                 console.log @state.username
                 div id: 'sidebar-home-view', className: 'view-title',
                     p {className: "title"},
-                        a href: @state.cfgPage, className: "config", id: "cfg"
+                        a href: "#config", className: "config", id: "cfg"
                         "Preferences "
                         br null, null
                     p {className: 'view-coords'},
@@ -186,76 +190,70 @@ Homedata = React.createFactory React.createClass
 
 
 
-# Le composant liste de bookmark.
-BookmarkList = React.createFactory React.createClass
-
-    getInitialState: ->
-        return {
-            #homedata: @props.homedata
-            placesdata: @props.placesdata
-        }
-        #@getHomeBookmarkComponents()
-        #@getPlacesBookmarkComponents()
-
-
-
-    # Cette fonction renvoie à la liste places bookmark qu'on veut générer.
-    getPlacesBookmarkComponents: ->
-        placesbookmarkComponents = []
-        for placesdata in @state.placesdata
-            placesbookmarkComponents = PlacesBookmarkComponent
-                pcoordinates: placesdata.features[0].geometry.coordinates
-                plng: placesdata.features[0].geometry.coordinates[0]
-                plat: placesdata.features[0].geometry.coordinates[1]
-                pzoom: placesdata.features[0].properties.zoom
-                ptitle: placesdata.features[0].properties.title
-                paddress: placesdata.features[0].properties.address
-                ppostalCode: placesdata.features[0].properties.postalCode
-                pcity: placesdata.features[0].properties.city
-                pstate: placesdata.features[0].properties.state
-                pcountry: placesdata.features[0].properties.country
-                pphone: placesdata.features[0].properties.phone
-                pemail: placesdata.features[0].properties.email
-                pwebsite: placesdata.features[0].properties.website
-                ptag: placesdata.features[0].properties.tag
-            placesdatabookmarkComponents.push placesdatabookmarkComponent
-            return placesdatabookmarkComponents
-
-    render: ->
-
-        div id: "bookmark-list", className: 'listings',
-
-            # Homedata {}, 'text'
-            # Placesdata {}, 'text'
-
-
-
-# Le composant qui va définir une ligne de placesdata.
-Placesdata = React.createFactory React.createClass
-
-    render: ->
-        div id: 'sidebar-places',
-            div id: 'sidebar-places-item', className: 'item',
-                p {className: "title"},
-                    "#{@state.title}"
-                    br null, null
-                span {className: "mygps"},
-                    "Lat: #{@state.ilat} Lng: #{@state.ilng}"
-                    br null, null
-                span className: 'irl',
-                    "#{@state.address} "
-                    "#{@state.postalCode} "
-                    "#{@state.city}, "
-                    "#{@state.state} "
-                    "#{@state.zip} "
-                    "#{@state.country}"
-
-                    div id: 'infow',
-                p {className: 'kontact'},
-                # coffeelint: disable=max_line_length
-                    a href: @state.website, target: '_blank', @state.website + ' '
-                    a href: "mailto:@state.email", target: '_top', @state.email + ' '
-                    a href: "callto:@state.phone", target: '_top', @state.phone
-                    # coffeelint: enable=max_line_length
-                span {className: 'tag'},
-                    "TAG: #{@state.tag}"
+# DbListing = React.createFactory React.createClass
+#
+#     getInitialState: ->
+#         return placesdata: @props.placesdata
+#         #@getPlacesBookmarkComponents()
+#
+#
+#
+#     # Cette fonction renvoie à la liste places bookmark qu'on veut générer.
+#     getPlacesBookmarkComponents: ->
+#         placesbookmarkComponents = []
+#         for placesdata in @state.placesdata
+#             placesbookmarkComponents = PlacesBookmarkComponent
+#                 pcoordinates: placesdata.features[0].geometry.coordinates
+#                 plng: placesdata.features[0].geometry.coordinates[0]
+#                 plat: placesdata.features[0].geometry.coordinates[1]
+#                 pzoom: placesdata.features[0].properties.zoom
+#                 ptitle: placesdata.features[0].properties.title
+#                 paddress: placesdata.features[0].properties.address
+#                 ppostalCode: placesdata.features[0].properties.postalCode
+#                 pcity: placesdata.features[0].properties.city
+#                 pstate: placesdata.features[0].properties.state
+#                 pcountry: placesdata.features[0].properties.country
+#                 pphone: placesdata.features[0].properties.phone
+#                 pemail: placesdata.features[0].properties.email
+#                 pwebsite: placesdata.features[0].properties.website
+#                 ptag: placesdata.features[0].properties.tag
+#             placesdatabookmarkComponents.push placesdatabookmarkComponent
+#             return placesdatabookmarkComponents
+#
+#     render: ->
+#
+#         div id: "bookmark-list", className: 'listings',
+#
+#             # Placesdata {}, 'text'
+#
+#
+#
+# # Le composant qui va définir une ligne de placesdata.
+# Placesdata = React.createFactory React.createClass
+#
+#     render: ->
+#         div id: 'sidebar-places',
+#             div id: 'sidebar-places-item', className: 'item',
+#                 p {className: "title"},
+#                     "#{@state.title}"
+#                     br null, null
+#                 span {className: "mygps"},
+#                     "Lat: #{@state.ilat} Lng: #{@state.ilng}"
+#                     br null, null
+#                 span className: 'irl',
+#                     "#{@state.address} "
+#                     "#{@state.postalCode} "
+#                     "#{@state.city}, "
+#                     "#{@state.state} "
+#                     "#{@state.zip} "
+#                     "#{@state.country}"
+#
+#                     div id: 'infow',
+#                 p {className: 'kontact'},
+#                 # coffeelint: disable=max_line_length
+#                     a href: @state.website, target: '_blank', @state.website + ' '
+#                     a href: "mailto:@state.email", target: '_top', @state.email + ' '
+#                     a href: "callto:@state.phone", target: '_top', @state.phone
+#                     # coffeelint: enable=max_line_length
+#                 span {className: 'tag'},
+#                     "TAG: #{@state.tag}"
