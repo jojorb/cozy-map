@@ -4,3 +4,4 @@
 module.exports =
     indexhome: (req, res) ->
         res.send 'beta GeoBookmarks API'
+

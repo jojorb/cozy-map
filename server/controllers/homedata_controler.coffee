@@ -3,6 +3,7 @@ HomedataModel = require '../models/homedata_model'
 
 module.exports =
 
+
     first: (req, res, next) ->
         HomedataModel.first (err, homedata) ->
             if err
@@ -15,24 +16,13 @@ module.exports =
                 res.send homedata
 
 
-
-    # all: (req, res, next) ->
-    #     HomedataModel.all (err, homedata) ->
-    #         next err if err
-    #
-    #         res.send homedata
-
-
-
     create: (req, res, next) ->
         HomedataModel.create req.body, (err, homedata) ->
-        #HomedataModel.create "create need a JS obj here" (err, homedata) ->
             if err
                 res.status(500).send msg: err
 
             else
                 res.send homedata
-
 
 
     update: (req, res, next) ->
@@ -45,7 +35,6 @@ module.exports =
                 return next err if err
 
                 res.send homedata
-
 
 
     delete: (req, res, next) ->
@@ -66,3 +55,4 @@ module.exports =
                         res.status(500).send msg: err
                     else
                         res.sendStatus 204
+

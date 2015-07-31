@@ -1,6 +1,8 @@
 React = require 'react'
 {div, p, a, button, input, form, checked, label, h1, h2, br,span, i} = React.DOM
 
+backend = require './backend.coffee'
+
 
 
 module.exports = SideBar = React.createFactory React.createClass
@@ -8,12 +10,9 @@ module.exports = SideBar = React.createFactory React.createClass
     render: ->
         div id: "sidebar", className: 'sidebar',
             SearchPlaces
-                searchdata: @props.searchdata
+                searchdata: null
             SidebarHeading
-                homedata: @props.userConfig
-            # DbListing
-            #     placesdata: @props.placesdata
-
+                homedata: @props.homedata
 
 
 SearchPlaces = React.createFactory React.createClass
@@ -41,30 +40,13 @@ Searchdata = React.createFactory React.createClass
 
 SidebarHeading = React.createFactory React.createClass
 
-    getInitialState: ->
-        return {
-            homedata: @props.userConfig
-            }
-        @getSidebarHeading()
-
-    getSidebarHeading: ->
-        sidebarHeading = []
-        for homedata in @state.userConfig
-            userConfig.getConfig = Homedata
-                helloworld: homedata[0].helloworld
-                username: homedata[0].username
-                title: homedata[0].title
-                lat: homedata[0].lat
-                lng: homedata[0].lng
-                zoom: homedata[0].zoom
-            sidebarHeading.push userConfig.getConfig
-        return sidebarHeading
-
     render: ->
+        console.log 'SidebarHeading'
+        console.log @props
 
         div id: "sidebar-heading", className: 'sidebar-heading',
 
-            Homedata {}, 'text'
+            Homedata homedata: @props.homedata, 'text'
 
 
 
@@ -73,33 +55,30 @@ Homedata = React.createFactory React.createClass
 
     #test
     getInitialState: ->
+        console.log @props.userConfig
         return {
-            helloworld: @props.helloworld
-            username: @props.username
-            title: @props.title
+            helloworld: @props.homedata.helloworld
+            username: @props.homedata.username
+            title: @props.homedata.title
             lat: 39.4568257456
             lng: 0.500042567
             zoom: 3
         }
 
     onOkClicked: ->
-        configuration = @state.homedata
         username = @refs.usernameInput.getDOMNode().value
+        homedata =
+            id: @props.homedata.id
+            username: username
 
-        homedata = username: username
-        sidebarHeading.push userConfig.getConfig
-
-        # Changement d'état.
-        @setState homedata: homedata
-        # Requête au server.
-        data.putConfigid homedata.username, ->
+        backend.putConfigid homedata, ->
+            alert 'data saved'
 
 
     render: ->
         div id: 'sidebar-home', className: 'heading',
             p {className: 'hello'},
                 "#{@state.helloworld} #{@state.username}"
-                console.log @state.username
                 div id: 'sidebar-home-view', className: 'view-title',
                     p {className: "title"},
                         a href: "#config", className: "config", id: "cfg"
@@ -114,9 +93,7 @@ Homedata = React.createFactory React.createClass
                         a href: "#", className: "placesdata"
 
 
-
-
-                        # Modal config for homedata
+                # Modal config for homedata
                 a href: "#close", className: "overlay", id: "config"
                 div className: "popup",
                     "Update your Preferences here"
@@ -126,9 +103,6 @@ Homedata = React.createFactory React.createClass
                         ref: "usernameInput"
                         type: "text"
                         placeholder: "#{@state.username}"}
-                    button
-                        onClick: @onOkClicked
-                    , "ok"
 
 
 
@@ -141,7 +115,7 @@ Homedata = React.createFactory React.createClass
                     input {
                         id: "vflatlng"
                         type: 'text',
-                        placeholder: "#{@state.lat}, #{@state.lng}"}
+                        value: "#{@state.lat}, #{@state.lng}"}
 
                     br null, null
                     "zomm: "
@@ -149,7 +123,7 @@ Homedata = React.createFactory React.createClass
                     input {
                         id: "vfzoom",
                         type: 'text',
-                        placeholder: "#{@state.zoom}"}
+                        value: "#{@state.zoom}"}
 
                     br null, null
                     br null, null
@@ -162,7 +136,10 @@ Homedata = React.createFactory React.createClass
 
                     br null, null
                     br null, null
-                    input {type: "submit", value: "Submit"}
+                    input
+                        type: "submit"
+                        value: "Save"
+                        onClick: @onOkClicked
                     # br null, null
                     # br null, null
                     # "Units"

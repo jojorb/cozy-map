@@ -27,6 +27,14 @@ config =
                 dumpExceptions: true
                 showStack: true
         ]
+        afterStart: ->
+            Homedata = require './models/homedata_model'
+            Homedata.first (err, homedata) ->
+                unless homedata?
+                    Homedata.create {}, ->
+                        console.log 'Default value for home data created.'
+                else
+                    console.log 'Default value already exists.'
 
     development: [
         americano.logger 'dev'
