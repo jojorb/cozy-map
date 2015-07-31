@@ -1,6 +1,8 @@
 React = require 'react'
 {div, p, a, button, input, form, checked, label, h1, h2, br,span, i} = React.DOM
 
+backend = require './backend.coffee'
+
 
 
 module.exports = SideBar = React.createFactory React.createClass
@@ -64,16 +66,13 @@ Homedata = React.createFactory React.createClass
         }
 
     onOkClicked: ->
-        configuration = @state.homedata
         username = @refs.usernameInput.getDOMNode().value
+        homedata =
+            id: @props.homedata.id
+            username: username
 
-        homedata = username: username
-        sidebarHeading.push userConfig.getConfig
-
-        # Changement d'état.
-        @setState homedata: homedata
-        # Requête au server.
-        data.putConfigid homedata.username, ->
+        backend.putConfigid homedata, ->
+            alert 'data saved'
 
 
     render: ->
@@ -103,10 +102,7 @@ Homedata = React.createFactory React.createClass
                     input {
                         ref: "usernameInput"
                         type: "text"
-                        value: "#{@state.username}"}
-                    button
-                        onClick: @onOkClicked
-                    , "ok"
+                        placeholder: "#{@state.username}"}
 
 
 
@@ -140,7 +136,10 @@ Homedata = React.createFactory React.createClass
 
                     br null, null
                     br null, null
-                    input {type: "submit", value: "Submit"}
+                    input
+                        type: "submit"
+                        value: "Save"
+                        onClick: @onOkClicked
                     # br null, null
                     # br null, null
                     # "Units"
