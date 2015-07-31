@@ -82,6 +82,19 @@ Homedata = React.createFactory React.createClass
             zoom: 3
         }
 
+    onOkClicked: ->
+        configuration = @state.homedata
+        username = @refs.usernameInput.getDOMNode().value
+
+        homedata = username: username
+        sidebarHeading.push userConfig.getConfig
+
+        # Changement d'état.
+        @setState homedata: homedata
+        # Requête au server.
+        data.putConfigid homedata.username, ->
+
+
     render: ->
         div id: 'sidebar-home', className: 'heading',
             p {className: 'hello'},
@@ -100,10 +113,25 @@ Homedata = React.createFactory React.createClass
                     p { className: 'dbpanel'},
                         a href: "#", className: "placesdata"
 
+
+
+
                         # Modal config for homedata
                 a href: "#close", className: "overlay", id: "config"
                 div className: "popup",
                     "Update your Preferences here"
+                    br null, null
+                    "change username: "
+                    input {
+                        ref: "usernameInput"
+                        type: "text"
+                        placeholder: "#{@state.username}"}
+                    button
+                        onClick: @onOkClicked
+                    , "ok"
+
+
+
                     br null, null
                     br null, null
                     "view finder is:"
@@ -135,57 +163,57 @@ Homedata = React.createFactory React.createClass
                     br null, null
                     br null, null
                     input {type: "submit", value: "Submit"}
-                    br null, null
-                    br null, null
-                    "Units"
-                    br null, null
-                    "Distance"
-                    br form
-
-                    input {
-                        type: "radio",
-                        name: "distance",
-                        value: "kilometres"}, "Kilometres"
-
-                    br null, null
-
-                    input {
-                        type: "radio",
-                        name: "distance", value: "miles"}, "Miles"
-
-                    br null, null
-                    "Temperature"
-                    br form
-
-                    input {
-                        type: "radio",
-                        name: "temperature",
-                        value: "celsius"}, "Celsius"
-
-                    br null, null
-
-                    input {
-                        type: "radio",
-                        name: "temperature", value: "fahrenheit"}, "Fahrenheit"
-
-                    br null, null
-                    "Aera"
-                    br form
-
-                    input {
-                        type: "radio",
-                        name: "aera",
-                        value: "hectare"}, "Hectare"
-
-                    br null, null
-
-                    input {
-                        type: "radio",
-                        name: "aera", value: "acre"}, "Acres"
-
-                    br null, null
-                    br null, null
-                    input {type: "submit", value: "Submit"}
+                    # br null, null
+                    # br null, null
+                    # "Units"
+                    # br null, null
+                    # "Distance"
+                    # br form
+                    #
+                    # input {
+                    #     type: "radio",
+                    #     name: "distance",
+                    #     value: "kilometres"}, "Kilometres"
+                    #
+                    # br null, null
+                    #
+                    # input {
+                    #     type: "radio",
+                    #     name: "distance", value: "miles"}, "Miles"
+                    #
+                    # br null, null
+                    # "Temperature"
+                    # br form
+                    #
+                    # input {
+                    #     type: "radio",
+                    #     name: "temperature",
+                    #     value: "celsius"}, "Celsius"
+                    #
+                    # br null, null
+                    #
+                    # input {
+                    #     type: "radio",
+                    #     name: "temperature", value: "fahrenheit"}, "Fahrenheit"
+                    #
+                    # br null, null
+                    # "Aera"
+                    # br form
+                    #
+                    # input {
+                    #     type: "radio",
+                    #     name: "aera",
+                    #     value: "hectare"}, "Hectare"
+                    #
+                    # br null, null
+                    #
+                    # input {
+                    #     type: "radio",
+                    #     name: "aera", value: "acre"}, "Acres"
+                    #
+                    # br null, null
+                    # br null, null
+                    # input {type: "submit", value: "Submit"}
                     a href: "#close", className: "close"
 
 
