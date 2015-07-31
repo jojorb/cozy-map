@@ -12,3 +12,4 @@ module.exports =
     'api/configuration/:id':
         put:    homedata.update
         delete: homedata.delete
+

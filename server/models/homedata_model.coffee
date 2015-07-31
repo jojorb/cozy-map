@@ -27,3 +27,4 @@ module.exports = HomedataModel = cozydb.getModel 'Homedata',
     mapbox_subdomains:    type: String,     default: 'abcd'
     mapbox_id:            type: String,     default: 'examples.map-i87786ca'
     mapbox_accessToken:   type: String,     default: '<your access token here>'
+

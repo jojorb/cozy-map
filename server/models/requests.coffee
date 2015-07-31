@@ -6,3 +6,4 @@ module.exports =
 
     homedata_model:
         all: cozydb.defaultRequests.all
+
