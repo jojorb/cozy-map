@@ -119,7 +119,7 @@ Homedata = React.createFactory React.createClass
                     input {
                         id: "vflatlng"
                         type: 'text',
-                        placeholder: "#{@state.lat}, #{@state.lng}"}
+                        value: "#{@state.lat}, #{@state.lng}"}
 
                     br null, null
                     "zomm: "
@@ -127,7 +127,7 @@ Homedata = React.createFactory React.createClass
                     input {
                         id: "vfzoom",
                         type: 'text',
-                        placeholder: "#{@state.zoom}"}
+                        value: "#{@state.zoom}"}
 
                     br null, null
                     br null, null
