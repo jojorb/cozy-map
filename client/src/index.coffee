@@ -3,13 +3,11 @@ React = require 'react'
 
 SideBar = require './sidebar.coffee'
 MyMap = require './mymap.coffee'
-
+# API CONFIGURATION -> backended -> homedata: @props.homedata
 backend = require './backend.coffee'
 
 
 
-# 'api/configuration'
-#
 # 'api/placesdata'
 geoPlaces =
 
@@ -21,6 +19,7 @@ geoPlaces =
                 callback err, res.body
 
 
+
 App = React.createClass
 
     render: ->
@@ -30,6 +29,7 @@ App = React.createClass
             MyMap
 
 
+
 backend.getConfig (err, config) ->
 
     data =
@@ -37,4 +37,3 @@ backend.getConfig (err, config) ->
 
     React.render(React.createElement(App, data),
                  document.getElementById('app'))
-
