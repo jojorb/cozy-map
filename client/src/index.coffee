@@ -8,18 +8,6 @@ backend = require './backend.coffee'
 
 
 
-# 'api/placesdata'
-geoPlaces =
-
-    all: (callback) ->
-        request
-            .get('/api/placesdata')
-            .set('Accept', 'application/json')
-            .end (err, res) ->
-                callback err, res.body
-
-
-
 App = React.createClass
 
     render: ->
@@ -31,9 +19,11 @@ App = React.createClass
 
 
 backend.getConfig (err, config) ->
+    # backend.getPlaces (err, bookmarker) ->
 
     data =
         homedata: config
+        # peacemarker: bookmarker
 
     React.render(React.createElement(App, data),
                  document.getElementById('app'))

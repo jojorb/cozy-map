@@ -46,3 +46,34 @@ module.exports =
             .end (err, res) ->
                 callback err, res.body
 
+
+
+
+
+
+    getPlaces: (callback) ->
+        request
+            .get('/api/peacemarker')
+            .set('Accept', 'application/json')
+            .end (err, res) ->
+                callback err, res.body
+
+    createPlaces: (peacemarker, callback) ->
+        request
+            .post('/api/peacemarker')
+            .send(peacemarker)
+            .end (err, res) ->
+                callback err, res.body
+
+    putPlacesid: (peacemarker, callback) ->
+        request
+            .put("/api/peacemarker/#{peacemarker.id}")
+            .send(peacemarker)
+            .set('Accept', 'application/json')
+            .end (err, res) ->
+                callback err, res.body
+
+    deletePlacesid: (peacemarker, callback) ->
+        request
+            .del('/api/peacemarker/' + peacemarker.id)
+            .end callback
