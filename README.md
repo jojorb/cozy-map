@@ -20,9 +20,9 @@ Let's [contribute](#contributing) together!
 	- [x] organize / hack some leaflets on map
 	- [x] rendering points on map from an imported .geojson (depreciate for now)
 	- [x] JSON base
-	- [ ] REST API
+	- [x] REST API
 		- [x] URIs
-		- [ ] SOPA-RCP
+		- [x] SOPA-RCP
 		- [ ] Representation
 
 ## Configuration & Programming style
