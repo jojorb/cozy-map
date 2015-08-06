@@ -13,6 +13,8 @@ module.exports = SideBar = React.createFactory React.createClass
                 searchdata: null
             SidebarHeading
                 homedata: @props.homedata
+            DbListing
+                peacemarker: @props.peacemarker
 
 
 
@@ -214,7 +216,15 @@ Homedata = React.createFactory React.createClass
 
 
 
-# DbListing = React.createFactory React.createClass
+DbListing = React.createFactory React.createClass
+
+    render: ->
+        console.log @props
+
+        div id: "bookmark-list", className: 'listings',
+
+            Peacemarker peacemarker: @props.peacemarker, 'text'
+
 #
 #     getInitialState: ->
 #         return placesdata: @props.placesdata
@@ -252,32 +262,29 @@ Homedata = React.createFactory React.createClass
 #
 #
 #
-# # Le composant qui va définir une ligne de placesdata.
-# Placesdata = React.createFactory React.createClass
-#
-#     render: ->
-#         div id: 'sidebar-places',
-#             div id: 'sidebar-places-item', className: 'item',
-#                 p {className: "title"},
-#                     "#{@state.title}"
-#                     br null, null
-#                 span {className: "mygps"},
-#                     "Lat: #{@state.ilat} Lng: #{@state.ilng}"
-#                     br null, null
-#                 span className: 'irl',
-#                     "#{@state.address} "
-#                     "#{@state.postalCode} "
-#                     "#{@state.city}, "
-#                     "#{@state.state} "
-#                     "#{@state.zip} "
-#                     "#{@state.country}"
-#
-#                     div id: 'infow',
-#                 p {className: 'kontact'},
-#                 # coffeelint: disable=max_line_length
-#                     a href: @state.website, target: '_blank', @state.website + ' '
-#                     a href: "mailto:@state.email", target: '_top', @state.email + ' '
-#                     a href: "callto:@state.phone", target: '_top', @state.phone
-#                     # coffeelint: enable=max_line_length
-#                 span {className: 'tag'},
-#                     "TAG: #{@state.tag}"
+Peacemarker = React.createFactory React.createClass
+
+    render: -> null
+        # div id: 'sidebar-places',
+        #     div id: 'sidebar-places-item', className: 'item',
+        #         p {className: "title"},
+        #             "#{@state.title}"
+        #             br null, null
+        #         span {className: "mygps"},
+        #             "Lat: #{@state.lat} Lng: #{@state.lng}"
+        #             br null, null
+        #         span className: 'irl',
+        #             "#{@state.address} "
+        #             "#{@state.postalCode} "
+        #             "#{@state.city}, "
+        #             "#{@state.state} "
+        #             "#{@state.zip} "
+        #             "#{@state.country}"
+        #
+        #             div id: 'infow',
+        #         p {className: 'kontact'},
+        #             # coffeelint: disable=max_line_length
+        #             a href: @state.website, target: '_blank', @state.website + ' '
+        #             a href: "mailto:@state.email", target: '_top', @state.email + ' '
+        #             a href: "callto:@state.phone", target: '_top', @state.phone
+        #             # coffeelint: enable=max_line_length
