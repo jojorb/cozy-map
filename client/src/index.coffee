@@ -16,17 +16,18 @@ App = React.createClass
         div null,
             SideBar
                 homedata: @props.homedata
-                # peacemarker: @props.peacemarker
+                peacemarker: @props.peacemarker
             MyMap
 
 
 
 backend.getConfig (err, config) ->
-    # backend.getPlaces (err, bookmarker) ->
+
+    # backend.getPlaces (err, places) ->
 
     data =
         homedata: config
-        # peacemarker: bookmarker
+        # peacemarker: places
 
     React.render(React.createElement(App, data),
                  document.getElementById('app'))
