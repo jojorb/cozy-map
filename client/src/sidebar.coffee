@@ -15,13 +15,13 @@ module.exports = SideBar = React.createFactory React.createClass
                 homedata: @props.homedata
 
 
+
 SearchPlaces = React.createFactory React.createClass
 
     getInitialState: ->
         return searchdata: @props.searchdata
 
     render: ->
-
         div id: "sidebar-searchdata", className: 'sidebar-searchdata',
 
             Searchdata {}, 'text'
@@ -41,7 +41,6 @@ Searchdata = React.createFactory React.createClass
 SidebarHeading = React.createFactory React.createClass
 
     render: ->
-        console.log 'SidebarHeading'
         console.log @props
 
         div id: "sidebar-heading", className: 'sidebar-heading',
@@ -53,26 +52,47 @@ SidebarHeading = React.createFactory React.createClass
 # Le composant qui va définir une ligne de homedata
 Homedata = React.createFactory React.createClass
 
-    #test
     getInitialState: ->
-        console.log @props.userConfig
         return {
+            # homedata: @props.homedata
+
             helloworld: @props.homedata.helloworld
             username: @props.homedata.username
             title: @props.homedata.title
-            lat: 39.4568257456
-            lng: 0.500042567
-            zoom: 3
+            lat: @props.homedata.lat
+            lng: @props.homedata.lng
+            zoom: @props.homedata.zoom
+            show_pin_point: @props.homedata.show_pin_point
         }
 
     onOkClicked: ->
+        # homedata: @state.homedata
+
         username = @refs.usernameInput.getDOMNode().value
+        lat = @refs.latInput.getDOMNode().value
+        lng = @refs.lngInput.getDOMNode().value
+        zoom = @refs.zoomInput.getDOMNode().value
+        # show_pin_point = @refs.show_pin_pointInput.getDOMNode().value
+
         homedata =
             id: @props.homedata.id
             username: username
+            lat: lat
+            lng: lng
+            zoom: zoom
+            # show_pin_point: show_pin_point
+
+        # homedata.push homedata
+        # @setState homedata: homedata
 
         backend.putConfigid homedata, ->
-            alert 'data saved'
+            console.log "data saved"
+
+            # http://facebook.github.io/react/docs/forms.html
+            # change state
+
+
+
 
 
     render: ->
@@ -80,16 +100,10 @@ Homedata = React.createFactory React.createClass
             p {className: 'hello'},
                 "#{@state.helloworld} #{@state.username}"
                 div id: 'sidebar-home-view', className: 'view-title',
-                    p {className: "title"},
-                        a href: "#config", className: "config", id: "cfg"
-                        "Preferences "
-                        br null, null
-                    p {className: 'view-coords'},
-                        "#{@state.title} : "
-                        "Lat: #{@state.lat.toFixed(4)} "
-                        "Lng: #{@state.lng.toFixed(4)} "
-                        "zoom: #{@state.zoom}"
+                    # icon Db
                     p { className: 'dbpanel'},
+                        a href: "#config", className: "userconfig"
+                        " "
                         a href: "#", className: "placesdata"
 
 
@@ -101,38 +115,43 @@ Homedata = React.createFactory React.createClass
                     "change username: "
                     input {
                         ref: "usernameInput"
-                        type: "text"
-                        placeholder: "#{@state.username}"}
-
-
+                        type: "String"
+                        defaultValue: "#{@state.username}"}
 
                     br null, null
                     br null, null
                     "view finder is:"
-                    br null, null
-                    "Lat, Lng: "
-
-                    input {
-                        id: "vflatlng"
-                        type: 'text',
-                        value: "#{@state.lat}, #{@state.lng}"}
 
                     br null, null
-                    "zomm: "
-
+                    "Lat: "
                     input {
-                        id: "vfzoom",
+                        ref: "latInput"
                         type: 'text',
-                        value: "#{@state.zoom}"}
+                        defaultValue: "#{@state.lat}"}
+
+                    br null, null
+                    "Lng: "
+                    input {
+                        ref: "lngInput"
+                        type: 'text',
+                        defaultValue: "#{@state.lng}"}
+
+                    br null, null
+                    "zoom: "
+                    input {
+                        ref: "zoomInput",
+                        type: 'number',
+                        defaultValue: "#{@state.zoom}"}
 
                     br null, null
                     br null, null
                     "Show 'view finder' marker: "
 
                     input {
-                        id: "showmarker",
+                        id: "show_pin_point",
                         type: 'checkbox',
-                        name: "true", value: "true"}
+                        defaultChecked: "#{@state.show_pin_point}",
+                        initialChecked: "#{@state.show_pin_point}"}
 
                     br null, null
                     br null, null
