@@ -83,8 +83,20 @@ a:hover { color:#09da0f; }
   line-height:24px;
   padding: 9px 7px;
 }
+.sidebar .sidebar-heading .heading .view-title .dbpanel .userconfig {
+  background-image: url(./images/userconfig.png);
+  background-repeat: no-repeat;
+  background-position: left;
+  padding: 13px 20px;
+}
 .sidebar .sidebar-heading .heading .view-title .dbpanel .placesdata {
   background-image: url(./images/iconMarker.png);
+  background-repeat: no-repeat;
+  background-position: left;
+  padding: 13px 20px;
+}
+.sidebar .sidebar-heading .heading .view-title .dbpanel .homedata {
+  background-image: url(./images/iconMarkerHome.png);
   background-repeat: no-repeat;
   background-position: left;
   padding: 13px 20px;
