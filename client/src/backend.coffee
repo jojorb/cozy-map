@@ -75,5 +75,5 @@ module.exports =
 
     deletePlacesid: (peacemarker, callback) ->
         request
-            .del('/api/peacemarker/' + peacemarker.id)
+            .del("/api/peacemarker/#{peacemarker.id}")
             .end callback
