@@ -3,5 +3,6 @@
 # the version of the API.
 module.exports =
     indexhome: (req, res) ->
-        res.send 'beta GeoBookmarks API'
-
+        res.send 'beta Config GeoBookmarks API'
+    indexpeace: (req, res) ->
+        res.send 'beta Feed GeoBookmarks API'

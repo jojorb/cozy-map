@@ -7,3 +7,5 @@ module.exports =
     homedata_model:
         all: cozydb.defaultRequests.all
 
+    peacemarker_model:
+        all: cozydb.defaultRequests.all

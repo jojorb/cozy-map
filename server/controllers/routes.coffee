@@ -1,6 +1,6 @@
 base = require './base'
 homedata = require './homedata_controler'
-
+peacemarker =require './peacemarker_controler'
 
 module.exports =
 
@@ -13,3 +13,11 @@ module.exports =
         put:    homedata.update
         delete: homedata.delete
 
+    'api':
+        get:    base.indexpeace
+    'api/peacemarkerapi':
+        get:    peacemarker.all
+        post:   peacemarker.create
+    'api/peacemarkerapi/:id':
+        put:    peacemarker.update
+        delete: peacemarker.delete
