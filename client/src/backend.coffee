@@ -53,21 +53,21 @@ module.exports =
 
     getPlaces: (callback) ->
         request
-            .get('/api/peacemarker')
+            .get('/api/peacemarkerapi')
             .set('Accept', 'application/json')
             .end (err, res) ->
                 callback err, res.body
 
     createPlaces: (peacemarker, callback) ->
         request
-            .post('/api/peacemarker')
+            .post('/api/peacemarkerapi')
             .send(peacemarker)
             .end (err, res) ->
                 callback err, res.body
 
     putPlacesid: (peacemarker, callback) ->
         request
-            .put("/api/peacemarker/#{peacemarker.id}")
+            .put("/api/peacemarkerapi/#{peacemarker.id}")
             .send(peacemarker)
             .set('Accept', 'application/json')
             .end (err, res) ->
@@ -75,5 +75,5 @@ module.exports =
 
     deletePlacesid: (peacemarker, callback) ->
         request
-            .del("/api/peacemarker/#{peacemarker.id}")
+            .del("/api/peacemarkerapi/#{peacemarker.id}")
             .end callback
