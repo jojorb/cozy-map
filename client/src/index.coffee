@@ -3,7 +3,9 @@ React = require 'react'
 
 SideBar = require './sidebar.coffee'
 MyMap = require './mymap.coffee'
-# API CONFIGURATION -> backended -> homedata: @props.homedata
+# API CONFIGURATION -> backended ->
+#homedata: @props.homedata
+#peacemarker: @props.peacemarker
 backend = require './backend.coffee'
 
 
@@ -14,6 +16,7 @@ App = React.createClass
         div null,
             SideBar
                 homedata: @props.homedata
+                # peacemarker: @props.peacemarker
             MyMap
 
 
