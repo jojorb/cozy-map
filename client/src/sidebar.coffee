@@ -56,44 +56,39 @@ Homedata = React.createFactory React.createClass
 
     getInitialState: ->
         return {
-            # homedata: @props.homedata
 
             helloworld: @props.homedata.helloworld
             username: @props.homedata.username
-            title: @props.homedata.title
-            lat: @props.homedata.lat
-            lng: @props.homedata.lng
-            zoom: @props.homedata.zoom
             show_pin_point: @props.homedata.show_pin_point
+            kilometres: @props.homedata.kilometres
+            miles: @props.homedata.miles
+            celsius: @props.homedata.celsius
+            fahrenheit: @props.homedata.fahrenheit
         }
 
     onOkClicked: ->
-        # homedata: @state.homedata
 
         username = @refs.usernameInput.getDOMNode().value
-        lat = @refs.latInput.getDOMNode().value
-        lng = @refs.lngInput.getDOMNode().value
-        zoom = @refs.zoomInput.getDOMNode().value
-        # show_pin_point = @refs.show_pin_pointInput.getDOMNode().value
+        show_pin_point = @refs.show_pin_pointInput.getDOMNode().value
+        kilometres = @refs.kilometresInput.getDOMNode().value
+        miles = @refs.milesInput.getDOMNode().value
+        celsius = @refs.celsiusInput.getDOMNode().value
+        fahrenheit = @refs.fahrenheit.getDOMNode().value
 
         homedata =
             id: @props.homedata.id
             username: username
-            lat: lat
-            lng: lng
-            zoom: zoom
-            # show_pin_point: show_pin_point
+            show_pin_point: show_pin_point
+            kilometres: kilometres
+            miles: miles
+            celsius: celsius
+            fahrenheit: fahrenheit
 
-        # homedata.push homedata
-        # @setState homedata: homedata
+
 
         backend.putConfigid homedata, ->
             console.log "data saved"
-
             # http://facebook.github.io/react/docs/forms.html
-            # change state
-
-
 
 
 
@@ -122,96 +117,79 @@ Homedata = React.createFactory React.createClass
 
                     br null, null
                     br null, null
-                    "view finder is:"
 
-                    br null, null
-                    "Lat: "
-                    input {
-                        ref: "latInput"
-                        type: 'text',
-                        defaultValue: "#{@state.lat}"}
-
-                    br null, null
-                    "Lng: "
-                    input {
-                        ref: "lngInput"
-                        type: 'text',
-                        defaultValue: "#{@state.lng}"}
-
-                    br null, null
-                    "zoom: "
-                    input {
-                        ref: "zoomInput",
-                        type: 'number',
-                        defaultValue: "#{@state.zoom}"}
-
-                    br null, null
-                    br null, null
-                    "Show 'view finder' marker: "
+                    "Show 'Home View' marker: "
+                    "(drag the marker to edit)"
 
                     input {
-                        id: "show_pin_point",
-                        type: 'checkbox',
-                        defaultChecked: "#{@state.show_pin_point}",
+                        ref: "show_pin_pointInput"
+                        type: 'checkbox'
+                        defaultChecked: "#{@state.show_pin_point}"
                         initialChecked: "#{@state.show_pin_point}"}
 
                     br null, null
                     br null, null
+
+                    "Units: "
+                    "Distance "
+                    form
+
+                    input {
+                        ref: "kilometresInput"
+                        type: "radio"
+                        name: "distance"
+                        value: "kilometres"}, "Kilometres"
+
+                    input {
+                        ref: "milesInput"
+                        type: "radio"
+                        name: "distance"
+                        value: "miles"}, "Miles"
+
+                    br null, null
+
+                    "Units: "
+                    "Temperature "
+                    form
+
+                    input {
+                        ref: "celsiusInput"
+                        type: "radio"
+                        name: "temperature"
+                        value: "celsius"}, "Celsius"
+
+                    input {
+                        ref: "fahrenheitInput"
+                        type: "radio"
+                        name: "temperature"
+                        value: "fahrenheit"}, "Fahrenheit"
+
+                    br null, null
+
+                    "Units: "
+                    "Aera "
+                    form
+
+                    input {
+                        ref: "hectareInput"
+                        type: "radio"
+                        name: "aera"
+                        value: "hectare"}, "Hectare"
+
+                    input {
+                        ref: "acreInput"
+                        type: "radio"
+                        name: "aera"
+                        value: "acre"}, "Acres"
+
+                    br null, null
+                    br null, null
+
                     input
                         type: "submit"
                         value: "Save"
                         onClick: @onOkClicked
-                    # br null, null
-                    # br null, null
-                    # "Units"
-                    # br null, null
-                    # "Distance"
-                    # br form
-                    #
-                    # input {
-                    #     type: "radio",
-                    #     name: "distance",
-                    #     value: "kilometres"}, "Kilometres"
-                    #
-                    # br null, null
-                    #
-                    # input {
-                    #     type: "radio",
-                    #     name: "distance", value: "miles"}, "Miles"
-                    #
-                    # br null, null
-                    # "Temperature"
-                    # br form
-                    #
-                    # input {
-                    #     type: "radio",
-                    #     name: "temperature",
-                    #     value: "celsius"}, "Celsius"
-                    #
-                    # br null, null
-                    #
-                    # input {
-                    #     type: "radio",
-                    #     name: "temperature", value: "fahrenheit"}, "Fahrenheit"
-                    #
-                    # br null, null
-                    # "Aera"
-                    # br form
-                    #
-                    # input {
-                    #     type: "radio",
-                    #     name: "aera",
-                    #     value: "hectare"}, "Hectare"
-                    #
-                    # br null, null
-                    #
-                    # input {
-                    #     type: "radio",
-                    #     name: "aera", value: "acre"}, "Acres"
-                    #
-                    # br null, null
-                    # br null, null
-                    # input {type: "submit", value: "Submit"}
+
                     a href: "#close", className: "close"
 
 
