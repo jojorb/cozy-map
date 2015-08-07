@@ -2,7 +2,6 @@ React = require 'react'
 {div, p, a, button, span, input, label, h1} = React.DOM
 L = global.L or require('leaflet')
 backend = require './backend.coffee'
-# require 'leaflet/dist/leaflet.css'
 L.Icon.Default.imagePath = '/styles/images'
 
 
@@ -52,44 +51,70 @@ configmarker = L.marker markerPosition,
     opacity: '0.98'
 configmarker.addTo map
 
-onSvClicked: ->
-    lat = @refs.latInput.getDOMNode().value
-    lng = @refs.lngInput.getDOMNode().value
-    zoom = @refs.zoomInput.getDOMNode().value
 
-    homedata =
-        id: @props.homedata.id
-        lat: lat
-        lng: lng
-        zoom: zoom
 
-    backend.putConfigid homedata, ->
-        console.log "data saved"
+# Definition du contenu de la popup.
+popupContent = """
+Set this place as the "Home" view!<br>
+Or... drag me where you want to!<br>
+Check your preferences to show me or not!<br>
+<br>
 
-configmarker.on 'dragend', (event) ->
-    configmarker = event.target
+[Lat; Lng](zoom) = [
+<span id="home-popup-lat"></span>;
+<span id="home-popup-lng"></span>]
+(<span id="home-popup-zoom"></span>) <br>
+<input type="hidden" ref="latInput" value="configposition.lat">
+<input type="hidden" ref="lngInput" value="configposition.lng">
+<input type="hidden" ref="zoomInput" value="configmarkerzoom">
+<input type="submit" value="save it!" id="save-home-button">
+"""
+# On lie la popup au contenu
+popup = configmarker.bindPopup(popupContent)
+
+
+
+showPopup = ->
+
+    # On montre la popup pour qu'elle soit dans le DOM et rendre ses éléments
+    # accessibles.
+    popup.openPopup()
+
+    # Récupération des parametres courants.
     configmarkerzoom = map.getZoom()
     configposition = configmarker.getLatLng()
+    lat = configposition.lat.toFixed(4)
+    lng = configposition.lng.toFixed(4)
+    zoom = configmarkerzoom
 
-    popupContent = (
-        'Set this place as the "Home" view!' + '<br>' +
-        'Or... drag me where you want to!' + '<br>' +
-        'Check your preferences to show me or not!' + '<br>' +
-        '<br>' +
+    # Récupération des éléments à modifier.
+    latLabel = document.getElementById('home-popup-lat')
+    lngLabel = document.getElementById('home-popup-lng')
+    zoomLabel = document.getElementById('home-popup-zoom')
 
-        '[Lat; Lng](zoom) = [' +
-        configposition.lat.toFixed(4) + '; ' +
-        configposition.lng.toFixed(4) + '](' +
-        configmarkerzoom + ')' + '<br>' +
+    # Modification des éléments.
+    latLabel.innerHTML = lat
+    lngLabel.innerHTML = lng
+    zoomLabel.innerHTML = zoom
 
-        '<input type="hidden" ref="latInput" value="configposition.lat">' +
-        '<input type="hidden" ref="lngInput" value="configposition.lng">' +
-        '<input type="hidden" ref="zoomInput" value="configmarkerzoom">' +
-        '<input type="submit" value="save it!" onClick="onSvClicked">'
-    )
-    configmarker.setLatLng new L.LatLng(configposition.lat, configposition.lng),
-        draggable: 'true'
-    configmarker.bindPopup(popupContent)
+    # Sauvegarde des données sur le click du bouton save it.
+    document.getElementById('save-home-button').onclick = ->
+
+        homedata =
+            lat: lat
+            lng: lng
+            zoom: zoom
+
+        backend.putConfigid homedata, ->
+            console.log "data saved"
+
+
+# On attache notre fonction de génération de popup aux evenements de drag and
+# drop et de click.
+configmarker.on 'dragend', showPopup
+configmarker.on 'click', showPopup
+
+
 # End Module HomeConfig
 
 
@@ -148,14 +173,23 @@ map.on 'dblclick', (event) ->
 # React wrapper for our leaflet widget.
 module.exports =
 
-    goToPoint: (lat, long) ->
+    # Deplace la carte aux coordonnées données avec le niveaux de zoom donné.
+    goToPoint: (lat, lng, zoom) ->
+        map.setView L.latLng(lat, lng), zoom
+        map.setZoom zoom
 
+    # Déplace le marker de la home aux coordonnées données.
+    moveHomeMarker: (lat, lng) ->
+        configmarker.setLatLng L.latLng(lat, lng)
+
+    # Ajoute un marker sur la carte aux coordonnées données.
     addMarker: (lat, long) ->
         marker = new L.marker event.latlng,
             icon: redIcon
             draggable:'true'
             opacity: '0.65'
         marker.addTo map
+
 # Module PeaceMarker end
 
 
