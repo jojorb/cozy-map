@@ -264,6 +264,22 @@ DbListing = React.createFactory React.createClass
 #
 Peacemarker = React.createFactory React.createClass
 
+    # getInitialState: ->
+    #     return {
+    #         title: @props.peacemarker.title
+    #         lat: @props.peacemarker.lat
+    #         lng: @props.peacemarker.lng
+    #         zoom: @props.peacemarker.zoom
+    #         address: @props.peacemarker.address
+    #         postalcode: @props.peacemarker.postalcode
+    #         city: @props.peacemarker.city
+    #         state: @props.peacemarker.state
+    #         country: @props.peacemarker.country
+    #         phone: @props.peacemarker.phone
+    #         email: @props.peacemarker.email
+    #         website: @props.peacemarker.website
+    #     }
+
     render: -> null
         # div id: 'sidebar-places',
         #     div id: 'sidebar-places-item', className: 'item',
