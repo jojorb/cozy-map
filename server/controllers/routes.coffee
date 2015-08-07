@@ -9,7 +9,6 @@ module.exports =
     'api/configuration':
         get:    homedata.first
         post:   homedata.create
-    'api/configuration/:id':
         put:    homedata.update
         delete: homedata.delete
 

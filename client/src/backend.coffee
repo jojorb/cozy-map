@@ -31,7 +31,7 @@ module.exports =
     putConfigid: (homedata, callback) ->
         # routes = put: homedata.update "for homedata.id as data"
         request
-            .put("/api/configuration/#{homedata.id}")
+            .put("/api/configuration")
             .send(homedata)
             .set('Accept', 'application/json')
             .end (err, res) ->
@@ -41,7 +41,7 @@ module.exports =
     delConfigid: (callback) ->
         # routes = delete: homedata.delete "for homedata.id as data"
         request
-            .delete("/api/configuration/#{homedata.id}")
+            .delete("/api/configuration")
             .set('Accept', 'application/json')
             .end (err, res) ->
                 callback err, res.body

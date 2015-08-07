@@ -26,20 +26,26 @@ module.exports =
 
 
     update: (req, res, next) ->
-        id = req.params.id
 
-        HomedataModel.find id, (err, homedata) ->
-            return next err if err
+        HomedataModel.first (err, homedata) ->
 
-            homedata.updateAttributes req.body, (err, homedata) ->
-                return next err if err
+            if err
+                console.log err
+                res.status(500).send msg: err
 
-                res.send homedata
+            else if not homedata?
+                res.status(404).send msg: 'Home does not exist.'
+
+            else
+                homedata.updateAttributes req.body, (err, homedata) ->
+                    return next err if err
+
+                    res.send homedata
 
 
     delete: (req, res, next) ->
 
-        HomedataModel.find req.params.id, (err, homedata) ->
+        HomedataModel.first (err, homedata) ->
 
             if err
                 console.log err

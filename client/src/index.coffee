@@ -2,7 +2,7 @@ React = require 'react'
 {div, p, a, button, input, label} = React.DOM
 
 SideBar = require './sidebar.coffee'
-MyMap = require './mymap.coffee'
+map = require './mymap.coffee'
 # API CONFIGURATION -> backended ->
 #homedata: @props.homedata
 #peacemarker: @props.peacemarker
@@ -17,7 +17,6 @@ App = React.createClass
             SideBar
                 homedata: @props.homedata
                 peacemarker: @props.peacemarker
-            MyMap
 
 
 
@@ -28,6 +27,9 @@ backend.getConfig (err, config) ->
     data =
         homedata: config
         # peacemarker: places
+
+    map.goToPoint config.lat, config.lng, config.zoom
+    map.moveHomeMarker config.lat, config.lng
 
     React.render(React.createElement(App, data),
                  document.getElementById('app'))
