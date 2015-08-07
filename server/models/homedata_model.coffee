@@ -6,9 +6,9 @@ module.exports = HomedataModel = cozydb.getModel 'Homedata',
     helloworld:           type: String,     default: 'Hello!'
     username:             type: String,     default: 'Cozy User'
     title:                type: String,     default: 'view finder'
-    lat:                  type: Number,     default: 42
-    lng:                  type: Number,     default: 0
-    zoom:                 type: Number,     default: 3
+    lat:                  type: Number,     default: 13
+    lng:                  type: Number,     default: -37
+    zoom:                 type: Number,     default: 2
     show_pin_point:       type: Boolean,    default: true
     placesdata_db:        type: Boolean,    default: true
     kilometres:           type: Boolean,    default: true
@@ -27,4 +27,3 @@ module.exports = HomedataModel = cozydb.getModel 'Homedata',
     mapbox_subdomains:    type: String,     default: 'abcd'
     mapbox_id:            type: String,     default: 'examples.map-i87786ca'
     mapbox_accessToken:   type: String,     default: '<your access token here>'
-
