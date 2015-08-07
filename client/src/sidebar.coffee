@@ -64,6 +64,8 @@ Homedata = React.createFactory React.createClass
             miles: @props.homedata.miles
             celsius: @props.homedata.celsius
             fahrenheit: @props.homedata.fahrenheit
+            hectare: @props.homedata.hectare
+            acre: @props.homedata.acre
         }
 
     onOkClicked: ->
@@ -74,6 +76,8 @@ Homedata = React.createFactory React.createClass
         miles = @refs.milesInput.getDOMNode().value
         celsius = @refs.celsiusInput.getDOMNode().value
         fahrenheit = @refs.fahrenheit.getDOMNode().value
+        hectare = @refs.hectare.getDOMNode().value
+        acre = @refs.acre.getDOMNode().value
 
         homedata =
             id: @props.homedata.id
@@ -83,6 +87,8 @@ Homedata = React.createFactory React.createClass
             miles: miles
             celsius: celsius
             fahrenheit: fahrenheit
+            hectare: hectare
+            acre: acre
 
 
 
