@@ -11,6 +11,8 @@ map = L.map 'map',
     zoom: 2
     doubleClickZoom: false
 
+
+
 OpenStreetMap_France =
   L.tileLayer('http://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
   maxZoom: 19
@@ -18,6 +20,16 @@ OpenStreetMap_France =
       '&copy;
       Openstreetmap France | &copy;
       <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>')
+
+OpenStreetMap_HOT =
+    L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png',
+        maxZoom: 19
+        attribution:
+            '&copy; <a href="http://www.openstreetmap.org/copyright">
+            OpenStreetMap</a>,
+            Tiles courtesy of
+            <a href="http://hot.openstreetmap.org/"
+            target="_blank">Humanitarian OpenStreetMap Team</a>')
 
 Layers = OpenStreetMap_France
 .addTo map
@@ -51,6 +63,18 @@ configmarker = L.marker markerPosition,
     opacity: '0.98'
 configmarker.addTo map
 
+
+# http://leafletjs.com/examples/layers-control.html
+HomeView = L.layerGroup(configmarker)
+
+baseMaps =
+    'OSM France': OpenStreetMap_France
+    'OSM HOT': OpenStreetMap_HOT
+
+overlayMaps =
+    'Home View': HomeView
+
+L.control.layers(baseMaps, overlayMaps).addTo(map)
 
 
 # Definition du contenu de la popup.
@@ -113,8 +137,6 @@ showPopup = ->
 # drop et de click.
 configmarker.on 'dragend', showPopup
 configmarker.on 'click', showPopup
-
-
 # End Module HomeConfig
 
 
@@ -135,7 +157,7 @@ map.on 'dblclick', (event) ->
         popupContent = L.popup()
             .setContent(
                 '<form class="placemarker-form">' +
-                '<div class="input-group">
+                '<img class="input-group">
                 <input type="text" name="bookmark-name" ' +
                 'placeholder="Bookmark name"
                 class="placemarker-form-input" value="">' +
@@ -189,13 +211,3 @@ module.exports =
             draggable:'true'
             opacity: '0.65'
         marker.addTo map
-
-# Module PeaceMarker end
-
-
-
-# module.exports = MyMap = React.createFactory React.createClass
-#
-#     render: ->
-#         homedata: @props.homedata
-#         console.log @props
