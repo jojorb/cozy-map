@@ -1,9 +1,6 @@
-client/public/browser-bundle.js
-client/public/.browser-bundle.js
 node_modules
 *~
 *.swp
 npm-debug.log
-cozy-map-db
-cozy-map-db-*
 build
+tmp

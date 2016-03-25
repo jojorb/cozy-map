@@ -1,8 +1,6 @@
 node_modules
 *~
 *.swp
-db
 npm-debug.log
-*.coffee
-cozy-map-db
-cozy-map-db-*
+build
+tmp
