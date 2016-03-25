@@ -1,0 +1,189 @@
+@import url("styles/leaflet.css");
+/*@import url("../node_modules/leaflet/dist/leaflet.css");*/
+@import url("styles/leaflet.MiniMap.css");
+@import url("styles/leaflet.Easybutton.css");
+@import url("styles/leaflet.Geocoder.css");
+/*
+Cozy Color
+primary        = #33A6FF
+darker         = #3D3D3D
+base           = #86888B
+light          = #F8F9F9
+lighter        = #fff
+*/
+* {
+    box-sizing: border-box;
+}
+html, body {
+    margin: 0;
+    padding: 0;
+    background: #F8F9F9;
+}
+body {
+  -webkit-overflow-scrolling: touch;
+  overflow: hidden;
+  color:#3D3D3D;
+  font: 16px "Source Sans Pro", sans-serif;
+  background-color: #F8F9F9;
+}
+h1{
+  font-weight: 600;
+  color: #33A6FF;
+}
+h2, h3 {
+  font-weight: 300;
+}
+hr {
+  height: 1px;
+  background: #86888B;
+  border: 0;
+}
+#map {
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+}
+/*Overiding leaflet.css : zoom attribution*/
+.leaflet-container .leaflet-control-attribution {
+  background: rgba(#FFFFFF, 0);
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0;
+}
+.leaflet-control-attribution,
+.leaflet-control-scale-line {
+  padding: 0 27px;
+  color: #3D3D3D;
+}
+/*Overiding leaflet.css : zoom*/
+/*nice shadow for the zoom box and bar*/
+.leaflet-bar {
+	box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.65);
+	border-radius: 1px;
+	}
+/*size of the zoom box and bar*/
+.leaflet-bar a,
+.leaflet-bar a:hover {
+	background-color: rgba(240, 240, 240, 0.5);
+	border-bottom: 0 solid #86888B;
+	width: 40px;
+	height: 40px;
+	line-height: 38px;
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
+	color: #3D3D3D;
+	}
+/* zoom box control */
+.leaflet-bottom .leaflet-control {
+	margin-bottom: 8px;
+	}
+.leaflet-right .leaflet-control {
+	margin-right: 12px;
+	}
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+	font: bold 32px 'Lucida Sans Unicode', 'Lucida Grande', sans-serif;
+	text-indent: 1px;
+	}
+.leaflet-control-zoom-out {
+	font-size: 30px;
+	}
+.leaflet-touch .leaflet-control-zoom-in {
+	font-size: 32px;
+	}
+.leaflet-touch .leaflet-control-zoom-out {
+	font-size: 34px;
+	}
+
+/*Leaflet custom overiding*/
+.uiconPopupcss .leaflet-popup-tip,
+.uiconPopupcss .leaflet-popup-content-wrapper {
+    background: #3D3D3D;
+    color: #F8F9F9;
+    text-align: center;
+}
+/* locate Leaflet 0.7 */
+.leaflet-control-locate a {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.leaflet-control-locate a,
+.leaflet-control-locate a:hover {
+  font-size: 1.9em;
+  color: #3D3D3D;
+	width: 26px;
+	height: 26px;
+	line-height: 26px;
+}
+.leaflet-control-locate a:hover {
+  background-color: #F8F9F9;
+}
+.leaflet-control-locate.active a {
+  color: #48DB4A;
+}
+.leaflet-control-locate.active.following a {
+  color: #FC3483;
+}
+/*imporved pulsing*/
+@-moz-keyframes locatemarker-pulsate {
+    from {
+        -moz-transform: scale(0.5);
+        opacity: 1.0;
+    }
+    95% {
+        -moz-transform: scale(1.3);
+        opacity: 0;
+    }
+    to {
+        -moz-transform: scale(0.7);
+        opacity: 0;
+    }
+}
+@-webkit-keyframes locatemarker-pulsate {
+    from {
+        -webkit-transform: scale(0.5);
+        opacity: 1.0;
+    }
+    95% {
+        -webkit-transform: scale(1.3);
+        opacity: 0;
+    }
+    to {
+        -webkit-transform: scale(0.7);
+        opacity: 0;
+    }
+}
+@keyframes locatemarker-pulsate {
+    from {
+        transform: scale(0.5);
+        opacity: 1.0;
+    }
+    95% {
+        transform: scale(1.3);
+        opacity: 0;
+    }
+    to {
+        transform: scale(0.7);
+        opacity: 0;
+    }
+}
+.locatemarker {
+    /*display: block;*/
+    -moz-animation: locatemarker-pulsate 1.5s ease-in-out infinite;
+    -webkit-animation: locatemarker-pulsate 1.5s ease-in-out infinite;
+    animation: locatemarker-pulsate 1.5s ease-in-out infinite;
+    border:1pt solid #fff;
+    /* make a circle */
+    -moz-border-radius:51px;
+    -webkit-border-radius:51px;
+    border-radius:51px;
+    /* multiply the shadows, inside and outside the circle */
+    -moz-box-shadow:inset 0 0 5px #06f, inset 0 0 5px #06f, inset 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f;
+    -webkit-box-shadow:inset 0 0 5px #06f, inset 0 0 5px #06f, inset 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f;
+    box-shadow:inset 0 0 5px #06f, inset 0 0 5px #06f, inset 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f, 0 0 5px #06f;
+    /* set the ring's new dimension and re-center it */
+    height: 31px !important;
+    width: 31px !important;
+    margin: -7px 0 0 -7px;
+}

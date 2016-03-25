@@ -1,0 +1,27 @@
+{
+  "name": "cozy-map-dev-client",
+  "version": "0.0.1-beta-2",
+  "description": "Client cozy-map-dev",
+  "main": "src/app.js",
+  "dependencies": {
+    "leaflet": "1.0.0-beta.2"
+  },
+  "devDependencies": {
+    "browserify": "^9.0.3",
+    "uglify-js": "^2.4.17",
+    "watchify": "^2.5.0"
+  },
+  "scripts": {
+    "start": "node_modules/.bin/watchify src/app.js -o ./public/browser-bundle.js -v -d .",
+    "build": "./node_modules/.bin/browserify . | uglifyjs -cm > ./public/browser-bundle.js",
+    "build-min": "NODE_ENV=production browserify . | uglifyjs -cm > ./public/browser-bundle.min.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "MIT",
+  "browserify": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/RobyRemzy/cozy-map.git@mapsdk-client-dev"
+  }
+}
