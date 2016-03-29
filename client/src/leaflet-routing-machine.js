@@ -1100,7 +1100,7 @@ if (typeof module !== undefined) module.exports = polyline;
 			itineraryClassName: '',
 			totalDistanceRoundingSensitivity: -1,
 			show: true,
-			collapsible: undefined,
+			collapsible: false,
 			collapseBtn: function(itinerary) {
 				var collapseBtn = L.DomUtil.create('span', itinerary.options.collapseBtnClass);
 				L.DomEvent.on(collapseBtn, 'click', itinerary._toggle, itinerary);

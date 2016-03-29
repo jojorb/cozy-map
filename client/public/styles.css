@@ -217,14 +217,14 @@
 .leaflet-routing-collapse-btn {
     position: absolute;
     top: 0;
-    right: 6px;
-    font-size: 24px;
-    color: #ccc;
+    right: 0;
+    font-size: 0;
+    color: rgba(255, 255, 255, 0);
     font-weight: bold;
 }
 
 .leaflet-routing-collapse-btn:after {
-    content: '\00d7';
+    content: '';
 }
 
 .leaflet-routing-container-hide .leaflet-routing-collapse-btn {
