@@ -12,22 +12,22 @@ map tiles are provided by Open Street and ESRI Map in https.
 
 ### Geocoder
 search are https request from [OSM/Nominatim](http://wiki.openstreetmap.org/wiki/Nominatim) and include also reverse geocoding `latitude longitude`.  
-why there is no auto-completion [?](http://wiki.openstreetmap.org/wiki/Nominatim_usage_policy#Unacceptable_Use)  
+why is there no auto-completion [?](http://wiki.openstreetmap.org/wiki/Nominatim_usage_policy#Unacceptable_Use)  
 For auto-completion there is a possibility to set up your own [OSRM server](https://github.com/Project-OSRM/osrm-backend/wiki/Running-OSRM)  
 or use API such as [Mapzen](https://mapzen.com/projects/valhalla/) or [Mapbox's](https://www.mapbox.com/developers/api/directions/) geocoding services. Both of them are doing great things for Open street Map. Here for more informations about the Leaflet Routing Machine [LRM](http://www.liedman.net/leaflet-routing-machine/api/).
 
 ### Location
-can be switch on/off.
+Location can be switch on/off and is based on informations from your web browser [W3C Geolocation API](https://en.wikipedia.org/wiki/W3C_Geolocation_API).
 
 ### Hash address bar
-update your position with the `#zomm/latitude/longitude` of the center of the map.  
+Expose the center of the map inside the address bar `#zomm/latitude/longitude`.  
 
 ex: `http://localhost:9505/#3/46.86/3.87`  
 ***should be able to update your position by enter a new position directly inside the address bar.***
 
 
 
-## Fork & Mod
+## Mod
 check `client/src/app.js` and `client/public/styles.css`  
 Discussion on the [Cozy.io/Forum](https://forum.cozy.io/t/app-leaflet-map-here-i-am-there-you-go/2114)
 
