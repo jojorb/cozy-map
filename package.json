@@ -8,7 +8,7 @@
       "description": "0.0.1 A New Beginning"
     },
     "leaflet-locate": {
-      "description": "ask permission to share your location with your browser"
+      "description": "ask permission to retrieve your location"
     }
   },
   "icon-path": "main_icon.png",
