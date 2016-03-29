@@ -5,7 +5,7 @@
   "cozy-displayName": "Map",
   "cozy-permissions": {
     "App-Version": {
-      "description": "0.0.1 'a new beginig!'"
+      "description": "0.0.1 A New Beginning"
     },
     "leaflet-locate": {
       "description": "ask permission to share your location with your browser"
