@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Map with Leaflet JavaScript library.",
   "cozy-displayName": "Map",
+  "cozy-type": "static",
   "cozy-permissions": {
     "App-Version": {
       "description": "0.0.1 A New Beginning"
@@ -12,21 +13,14 @@
     }
   },
   "icon-path": "main_icon.png",
-  "main": "server.js",
+  "main": "src/app.js",
   "dependencies": {
-    "body-parser": "1.14.2",
-    "cozydb": "0.1.7",
-    "express": "4.13.3",
-    "morgan": "1.6.1"
+    "corslite": "0.0.7",
+    "leaflet": "0.7.7",
+    "polyline": "0.2.0"
   },
-  "devDependencies": {
-    "nodemon": "1.8.1"
-  },
-  "scripts": {
-    "start": "node server.js",
-    "dev": "node_modules/.bin/nodemon server.js --ignore client/",
-    "postinstall": "cd client && npm i"
-  },
+  "devDependencies": {},
+  "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/RobyRemzy/cozy-map.git"
