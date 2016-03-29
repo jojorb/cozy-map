@@ -3,6 +3,7 @@
 @import url("styles/leaflet.MiniMap.css");
 @import url("styles/leaflet.Easybutton.css");
 @import url("styles/leaflet.Geocoder.css");
+@import url("styles/leaflet.Sidebar.v2.css");
 /*
 Cozy Color
 primary        = #33A6FF
@@ -187,3 +188,47 @@ hr {
     width: 31px !important;
     margin: -7px 0 0 -7px;
 }
+/*overiding leaflet.sidebar*/
+.sidebar {
+  top: 0;
+  bottom: 0;
+  left: 0;
+}
+  .sidebar.collapsed {
+    width: 0;
+  }
+.sidebar-content {
+  color: #F8F9F9;
+}
+  .sidebar-left .sidebar-content {
+    left: 0;
+    /*left: 40px;*/
+    background-color: rgba(50, 54, 62, 0.90);
+}
+.sidebar-header {
+  margin: -10px -20px 0;
+  height: 40px;
+  padding: 0 20px;
+  line-height: 40px;
+  font-size: 14.4pt;
+  color: #fff;
+  /*background-color: #0074d9; }*/
+  background-color: #32363f;
+}
+.sidebar-left ~ .sidebar-map {
+  /*margin-left: 40px; }*/
+  margin-left: 0;
+}
+.sidebar {
+}
+  .sidebar.leaflet-touch {
+}
+  @media (min-width: 768px) {
+    .sidebar {
+      /*border-radius: 4px; }*/
+      border-radius: 1px; }
+ }
+@media (min-width: 768px) {
+  .sidebar-left.collapsed ~ .sidebar-map .leaflet-left {
+    /*left: 50px; } }*/
+    left: 0; } }

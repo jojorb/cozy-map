@@ -6,6 +6,7 @@ require('./leaflet.Bouncemarker.js');
 require('./leaflet.Easybutton.js');
 require('./leaflet.MiniMap.js');
 require('./leaflet.Locate.js');
+require('./leaflet.Sidebar-v2.js');
 var Hash = require('./leaflet.Hash.js');
 
 // specify the path to the leaflet images folder
@@ -241,6 +242,16 @@ var pushMarkers = L.easyButton('fa fa-thumb-tack', function (btn, map){
   },
   "save marker"
 ).addTo(map);
+
+
+
+var sidebar = L.control.sidebar('sidebar', {position: 'left'}).addTo(map);
+
+// open sidebar EasyButton (not EasyBar)
+var openThesidebar = L.easyButton('fa fa-bookmark',
+     function(btn, map) {
+       sidebar.open('home');
+   }).addTo(map);
 
 
 
