@@ -1,6 +1,9 @@
 {
   "name": "cozy-map",
   "version": "0.0.1",
+  "engines": [
+    "node >= 0.10.0"
+  ],
   "description": "Map with Leaflet JavaScript library.",
   "cozy-displayName": "Map",
   "cozy-type": "static",
