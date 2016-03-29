@@ -1,0 +1,44 @@
+{
+  "name": "cozy-map",
+  "version": "0.0.1",
+  "description": "Map with Leaflet JavaScript library.",
+  "cozy-displayName": "Map",
+  "cozy-permissions": {
+    "App-Version": {
+      "description": "0.0.1 'a new beginig!'"
+    },
+    "leaflet-locate": {
+      "description": "ask permission to share your location with your browser"
+    }
+  },
+  "icon-path": "main_icon.png",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "1.14.2",
+    "cozydb": "0.1.7",
+    "express": "4.13.3",
+    "morgan": "1.6.1"
+  },
+  "devDependencies": {
+    "nodemon": "1.8.1"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node_modules/.bin/nodemon server.js --ignore client/",
+    "postinstall": "cd client && npm i"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/RobyRemzy/cozy-map.git"
+  },
+  "keywords": [
+    "cozy",
+    "leaflet",
+    "map"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/robyremzy/cozy-map/issues"
+  },
+  "homepage": "https://github.com/robyremzy/cozy-map"
+}
