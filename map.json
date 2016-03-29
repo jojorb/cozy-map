@@ -1,0 +1,15 @@
+{
+  "icon": "img/apps/map.svg",
+  "name": "map",
+  "displayName": "Map",
+  "slug": "map",
+  "git": "https://github.com/RobyRemzy/cozy-map.git",
+  "branch": "master",
+  "comment": "community contribution",
+  "description": "Map with Leaflet JavaScript library.",
+  "package": "cozy-map",
+  "author": {
+    "name": "Remi",
+    "url": "https://github.com/RobyRemzy/"
+  }
+}

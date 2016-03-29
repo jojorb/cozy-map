@@ -50,10 +50,10 @@
 }
 
 .leaflet-routing-alt-minimized {
-    color: #888;
-    max-height: 64px;
+    color: rgba(255, 255, 255, 0);
+    max-height: 0;
     overflow: hidden;
-    cursor: pointer;
+    /*cursor: pointer;*/
 }
 
 .leaflet-routing-alt table {
