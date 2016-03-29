@@ -73,6 +73,7 @@ var sidebarlrm = L.Routing.control({
       draggable: true
     }),
     position: 'topleft',
+    collapsible: false,
     routeWhileDragging: true,
     routeDragTimeout: 250,
     draggableWaypoints:true
