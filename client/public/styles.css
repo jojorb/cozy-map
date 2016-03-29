@@ -603,12 +603,12 @@
 	width: 246px;
 }
 .leaflet-control-geocoder-icon {
-	background-image: url(../images/geocoder.png);
+	background-image: url(images/geocoder.png);
 	background-repeat: no-repeat;
 	background-position: center;
 }
 .leaflet-control-geocoder-throbber .leaflet-control-geocoder-icon {
-	background-image: url(../images/throbber.gif);
+	background-image: url(images/throbber.gif);
 }
 
 .leaflet-control-geocoder-form-no-error {
