@@ -23,6 +23,6 @@
   "browserify": {},
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/RobyRemzy/cozy-map.git"
+    "url": "git+ssh://git@github.com/RobyRemzy/cozy-map.git@master-pre-prod"
   }
 }
