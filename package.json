@@ -39,6 +39,7 @@
   "keywords": [
     "cozy",
     "leaflet",
+    "geocoder",
     "map"
   ],
   "license": "MIT",

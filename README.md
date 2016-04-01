@@ -22,13 +22,22 @@ Location can be switch on/off and is based on informations from your web browser
 ### Hash address bar
 Expose the center of the map inside the address bar `#zomm/latitude/longitude`.  
 
-ex: `http://localhost:9505/#3/46.86/3.87`  
+ex: `http://localhost:9099/#3/46.86/3.87`  
 ***should be able to update your position by enter a new position directly inside the address bar.***
 
 
 
 ## Mod
-check `client/src/app.js` and `client/public/styles.css`  
+Fork this repository  
+`cd` to the Cozy-Map folder  
+load your server or get one with [http-server](https://www.npmjs.com/package/http-server)  
+
+> inside the index.html you may need to put [Font Awesome CDN](http://fortawesome.github.io/Font-Awesome/get-started/)
+
+```shell
+$ http-server -p9099 -o --cors
+```
+check/mod `src/app.js` & `build/styles.css`  
 Discussion on the [Cozy.io/Forum](https://forum.cozy.io/t/app-leaflet-map-here-i-am-there-you-go/2114)
 
 
@@ -50,3 +59,10 @@ You can reach the Cozy Community by:
 * Posting on our [Forum](https://forum.cozy.io/)
 * Posting issues on the [Github repos](https://github.com/cozy/)
 * Mentioning us on [Twitter](http://twitter.com/mycozycloud)
+
+## Thanks
+This app relies on a variety of plugins, but most importantly on the work of
+[Vladimir Agafonkin](https://github.com/mourner),
+[Per Liedman](https://github.com/perliedman),
+[Tobias Bieniek](https://github.com/Turbo87),
+[Stefano Cudini](https://github.com/stefanocudini)
