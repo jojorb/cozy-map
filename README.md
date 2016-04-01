@@ -50,3 +50,10 @@ You can reach the Cozy Community by:
 * Posting on our [Forum](https://forum.cozy.io/)
 * Posting issues on the [Github repos](https://github.com/cozy/)
 * Mentioning us on [Twitter](http://twitter.com/mycozycloud)
+
+## Thanks
+This app relies on a variety of plugins, but most importantly on the work of
+[Vladimir Agafonkin](https://github.com/mourner),
+[Per Liedman](https://github.com/perliedman),
+[Tobias Bieniek](https://github.com/Turbo87),
+[Stefano Cudini](https://github.com/stefanocudini)
