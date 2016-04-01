@@ -42,15 +42,15 @@ map.setView(new L.LatLng(46.8, 3.8),3);
 
 // icon for the routing machine
 var startRicon = L.icon({
-    iconUrl: 'public/images/pinstart.png',
-    iconRetinaUrl: 'public/images/pinstart.png',
+    iconUrl: 'build/images/pinstart.png',
+    iconRetinaUrl: 'build/images/pinstart.png',
     iconSize: [36, 47],
     iconAnchor: [18, 47],
     popupAnchor: [0, -48],
 });
 var endRicon = L.icon({
-    iconUrl: 'public/images/pinend.png',
-    iconRetinaUrl: 'public/images/pinend.png',
+    iconUrl: 'build/images/pinend.png',
+    iconRetinaUrl: 'build/images/pinend.png',
     iconSize: [36, 47],
     iconAnchor: [18, 47],
     popupAnchor: [0, -48],
@@ -128,7 +128,7 @@ L.control.zoom({
 
 // icon for locate
 var markerLicon = {
-    iconUrl: 'public/images/bluedot.png',
+    iconUrl: 'build/images/bluedot.png',
     iconSize: [17, 17],
     iconAnchor: [9, 9],
     popupAnchor: [0, -10],
