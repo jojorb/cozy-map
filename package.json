@@ -16,7 +16,7 @@
     }
   },
   "icon-path": "main_icon.png",
-  "main": "",
+  "main": "src/app.js",
   "dependencies": {
     "corslite": "0.0.7",
     "leaflet": "0.7.7",
