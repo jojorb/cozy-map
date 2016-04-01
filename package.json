@@ -22,11 +22,19 @@
     "leaflet": "0.7.7",
     "polyline": "0.2.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "browserify": "^9.0.3",
+    "uglify-js": "^2.4.17",
+    "watchify": "^2.5.0"
+  },
   "scripts": {},
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/RobyRemzy/cozy-map.git"
+  },
+  "scripts": {
+    "build": "./node_modules/.bin/browserify . | uglifyjs -cm > ./public/browser-bundle.js",
+    "build-min": "NODE_ENV=production browserify . | uglifyjs -cm > ./public/browser-bundle.min.js"
   },
   "keywords": [
     "cozy",
