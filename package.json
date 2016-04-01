@@ -28,6 +28,7 @@
     "watchify": "^2.5.0"
   },
   "scripts": {
+    "start": "node_modules/.bin/watchify src/app.js -o ./public/browser-bundle.js -v -d .",
     "build": "./node_modules/.bin/browserify . | uglifyjs -cm > ./public/browser-bundle.js",
     "build-min": "NODE_ENV=production browserify . | uglifyjs -cm > ./public/browser-bundle.min.js"
   },
