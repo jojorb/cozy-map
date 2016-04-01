@@ -42,15 +42,15 @@ map.setView(new L.LatLng(46.8, 3.8),3);
 
 // icon for the routing machine
 var startRicon = L.icon({
-    iconUrl: 'build/images/pinstart.png',
-    iconRetinaUrl: 'build/images/pinstart.png',
+    iconUrl: 'styles/images/pinstart.png',
+    iconRetinaUrl: 'styles/images/pinstart.png',
     iconSize: [36, 47],
     iconAnchor: [18, 47],
     popupAnchor: [0, -48],
 });
 var endRicon = L.icon({
-    iconUrl: 'build/images/pinend.png',
-    iconRetinaUrl: 'build/images/pinend.png',
+    iconUrl: 'styles/images/pinend.png',
+    iconRetinaUrl: 'styles/images/pinend.png',
     iconSize: [36, 47],
     iconAnchor: [18, 47],
     popupAnchor: [0, -48],
@@ -88,7 +88,7 @@ document.getElementById('sidebarlrm').appendChild(lrmBlock);
 var geocoder = L.Control.geocoder({
   position: 'topleft',
   collapsed: false,
-  placeholder: 'Drop a marker',
+  placeholder: 'search',
   errorMessage: '‘X’ never, ever marks the spot.'
 });
 // include the geocoder into the sidebar
@@ -128,7 +128,7 @@ L.control.zoom({
 
 // icon for locate
 var markerLicon = {
-    iconUrl: 'build/images/bluedot.png',
+    iconUrl: 'styles/images/bluedot.png',
     iconSize: [17, 17],
     iconAnchor: [9, 9],
     popupAnchor: [0, -10],
@@ -143,7 +143,7 @@ L.control.locate(
   iconLoading: 'fa fa-refresh fa-spin',
   drawCircle: true,
   circlePadding: [20, 20],
-  circleStyle: {
+  circlestyles: {
     color: "#FFF",
     fillColor: "#000",
     fillOpacity: "0.1",

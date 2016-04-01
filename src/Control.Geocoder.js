@@ -99,8 +99,8 @@ module.exports = {
 		            this._map.fitBounds(result.bbox);
 								// Add Custom Icon result
 										var addSicon = new L.icon({
-										    iconUrl: 'public/images/pinpfs.png',
-										    iconRetinaUrl: 'public/images/pinpfs.png',
+										    iconUrl: 'styles/images/pinpfs.png',
+										    iconRetinaUrl: 'styles/images/pinpfs.png',
 										    iconSize: [36, 47],
 										    iconAnchor: [18, 47],
 										    popupAnchor: [0, -48],

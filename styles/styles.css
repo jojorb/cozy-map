@@ -1,4 +1,4 @@
-@import url("styles/leaflet.css");
+@import url("css/leaflet.css");
 /*@import url("../node_modules/leaflet/dist/leaflet.css");*/
 
 
@@ -306,14 +306,14 @@
 }
 
 .leaflet-control-minimap-toggle-display{
-	background-image: url("../images/toggle.svg");
+	background-image: url("images/toggle.svg");
 	background-size: cover;
 	position: absolute;
 	border-radius: 3px 0px 0px 0px;
 }
 
 .leaflet-oldie .leaflet-control-minimap-toggle-display{
-	background-image: url("../images/toggle.png");
+	background-image: url("images/toggle.png");
 }
 
 .leaflet-control-minimap-toggle-display-bottomright {
