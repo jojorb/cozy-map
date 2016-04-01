@@ -27,14 +27,13 @@
     "uglify-js": "^2.4.17",
     "watchify": "^2.5.0"
   },
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "git+ssh://git@github.com/RobyRemzy/cozy-map.git"
-  },
   "scripts": {
     "build": "./node_modules/.bin/browserify . | uglifyjs -cm > ./public/browser-bundle.js",
     "build-min": "NODE_ENV=production browserify . | uglifyjs -cm > ./public/browser-bundle.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/RobyRemzy/cozy-map.git"
   },
   "keywords": [
     "cozy",
