@@ -15,7 +15,7 @@
       "description": "ask permission to retrieve your location"
     }
   },
-  "icon-path": "main_icon.png",
+  "icon-path": "main_icon.svg",
   "main": "src/app.js",
   "dependencies": {},
   "devDependencies": {
