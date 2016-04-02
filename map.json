@@ -6,10 +6,10 @@
   "git": "https://github.com/RobyRemzy/cozy-map.git",
   "branch": "master",
   "comment": "community contribution",
-  "description": "Map with Leaflet JavaScript library.",
+  "description": "Leaflet map suited for a Cozy Platform.",
   "package": "cozy-map",
   "author": {
-    "name": "Remi",
+    "name": "Remi Roubin",
     "url": "https://github.com/RobyRemzy/"
   }
 }
