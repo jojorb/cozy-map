@@ -1,3 +1,16 @@
 language: node_js
+
 node_js:
-    - "0.10"
+    - 0.10
+    - 0.12
+    - 4
+
+deploy:
+  provider: npm
+  email: robyremzy@openmailbox.org
+  api_key:
+    secure: oKM3MoV4GNiUZ1ZFBD1u+jJ/0Xw40rLSda+qS/q5HKDBChe4Xw9/7nIiSF3EzX5w2eD+2/yGUqDdB4AFOP3XQ7k82vF9DRf2G3uSOOzd5dxK5YdPcE8jb+ljQ0cdUx7vN0rPaF+wUo2vET1enJ7Lo/Dc8c0jiLEPyz1RZD4uIVgA2shqdr5i/cClpV1JDnL/jAra8U540LmLBvxfbIT/JsdRPRocJwH3w1YnSVzzDsHq0DuUPYq+TwQtNimhbwG8+Bx3N9Mkqjy8uGDnDVBsD+GZC34lH1W5z/H+QOt702vW4EuR4LIYhew0uwKsSjnoYnNbg69DfuU8nOpJBSDy9p7/7PjIJBY0ot1aTzTs4HcmBpW33ahloM4UaicH7BU58XH/+u6oQsAMff7Q3P2XaGK/eT6GRQloUgBtPe+GGOMar9hvQPHDbCpdkZ3CgQzxHVXURDuAbJg9GGbYATYiQr3LZBNW4IhwxjGF+aO7mtx2N/uj3K0Is43XcOtt1qbpd4sonRMNxveJet+WpVp1/fsISBtlSJE6tYueFRXS3Bttwd3McYSvzNZxe8EavJAUw18vOpw1zGenOJKW6rZXp4cMYJBIsYzlTt20KRjzvqmY4iTJA3jCCs61wygHu4B5AqcA0qE7VuL1IWJGwtChevVc/fLB78k0gfDKFVSShqQ=
+  on:
+    tags: true
+    repo: RobyRemzy/cozy-map
+    branch: master
