@@ -17,20 +17,22 @@
   },
   "icon-path": "main_icon.png",
   "main": "src/app.js",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "browserify": "^9.0.3",
-    "uglify-js": "^2.4.17",
-    "watchify": "^2.5.0",
     "corslite": "0.0.7",
+    "eslint": "^2.6.0",
+    "eslint-config-mourner": "^2.0.0",
     "leaflet": "0.7.7",
-    "polyline": "0.2.0"
+    "polyline": "0.2.0",
+    "uglify-js": "^2.4.17",
+    "watchify": "^2.5.0"
   },
   "scripts": {
-    "start": "node_modules/.bin/watchify src/app.js -o ./build/browser-bundle.js -v -d .",
-    "build": "./node_modules/.bin/browserify . | uglifyjs -cm > ./build/browser-bundle.js",
-    "build-min": "NODE_ENV=production browserify . | uglifyjs -cm > ./build/browser-bundle.min.js"
+    "start": "node_modules/.bin/watchify src/app.js -o ./build/map-bundle.js -v -d .",
+    "build": "./node_modules/.bin/browserify . | uglifyjs -cm > ./build/map-bundle.js",
+    "build-min": "NODE_ENV=production browserify . | uglifyjs -cm > ./build/map.min.js",
+    "lint": "eslint src/app.js"
   },
   "repository": {
     "type": "git",
@@ -40,7 +42,8 @@
     "cozy",
     "leaflet",
     "geocoder",
-    "map"
+    "map",
+    "gis"
   ],
   "license": "MIT",
   "bugs": {

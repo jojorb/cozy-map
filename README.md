@@ -1,6 +1,8 @@
 # Cozy-Map
+[![Build Status](https://travis-ci.org/RobyRemzy/cozy-map.svg?branch=master)](https://travis-ci.org/RobyRemzy/cozy-map)
 
-Simple package of Cozy-sdk combined with Leaflet JavaScript library.
+Simple package of Cozy-sdk combined with Leaflet JavaScript library.  
+And still... in [Vanilla JS](http://vanilla-js.com/)
 
 - NPM leaflet package version: "0.7.7"
 - [Leaflet doc](http://leafletjs.com)
@@ -61,7 +63,7 @@ You can reach the Cozy Community by:
 * Mentioning us on [Twitter](http://twitter.com/mycozycloud)
 
 ## Thanks
-This app relies on a variety of plugins, but most importantly on the work of
+To the [contributors](https://github.com/RobyRemzy/cozy-map/graphs/contributors), and this app relies also on a variety of plugins, but most importantly on the work of
 [Vladimir Agafonkin](https://github.com/mourner),
 [Per Liedman](https://github.com/perliedman),
 [Tobias Bieniek](https://github.com/Turbo87),
