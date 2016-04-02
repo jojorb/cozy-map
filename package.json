@@ -21,8 +21,6 @@
   "devDependencies": {
     "browserify": "^9.0.3",
     "corslite": "0.0.7",
-    "eslint": "^2.6.0",
-    "eslint-config-mourner": "^2.0.0",
     "leaflet": "0.7.7",
     "polyline": "0.2.0",
     "uglify-js": "^2.4.17",
