@@ -10,7 +10,7 @@ And still... in [Vanilla JS](http://vanilla-js.com/)
 
 
 ### Map
-map tiles are provided by Open Street and ESRI Map in https.
+map tiles are provided by Open Street Map and ESRI in https.
 
 ### Geocoder
 search are https request from [OSM/Nominatim](http://wiki.openstreetmap.org/wiki/Nominatim) and include also reverse geocoding `latitude longitude`.  
@@ -25,16 +25,17 @@ Location can be switch on/off and is based on informations from your web browser
 Expose the center of the map inside the address bar `#zomm/latitude/longitude`.  
 
 ex: `http://localhost:9099/#3/46.86/3.87`  
-***should be able to update your position by enter a new position directly inside the address bar.***
+*should be able to update your position by enter a new position directly inside the address bar.*
 
 
 
 ## Mod
-Fork this repository  
+Fork the [developer](https://github.com/RobyRemzy/cozy-map/tree/developer) repository  
+lint is done with `npm install -g eslint eslint-config-mourner`  
 `cd` to the Cozy-Map folder  
-load your server or get one with [http-server](https://www.npmjs.com/package/http-server)  
+`eslint --fix src/app.js`  
 
-> inside the index.html you may need to put [Font Awesome CDN](http://fortawesome.github.io/Font-Awesome/get-started/)
+load your server or get one with [http-server](https://www.npmjs.com/package/http-server)  
 
 ```shell
 $ http-server -p9099 -o --cors
