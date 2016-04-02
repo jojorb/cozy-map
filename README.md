@@ -1,5 +1,6 @@
 # Cozy-Map
-[![Build Status](https://travis-ci.org/RobyRemzy/cozy-map.svg?branch=master)](https://travis-ci.org/RobyRemzy/cozy-map)
+[![Build Status](https://travis-ci.org/RobyRemzy/cozy-map.svg?branch=master)](https://travis-ci.org/RobyRemzy/cozy-map)  
+![screeshot](https://raw.githubusercontent.com/RobyRemzy/cozy-map/tree/master/screeshot.png)  
 
 Simple package of Cozy-sdk combined with Leaflet JavaScript library.  
 And still... in [Vanilla JS](http://vanilla-js.com/)
