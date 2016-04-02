@@ -23,7 +23,7 @@ var map = new L.Map('map', {
 var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 
 // set OpenStreetMap attribution
-var osmAttrib = '';
+// var osmAttrib = '';
 
 // set Map tiles layer and Options
 var osm = new L.TileLayer(osmUrl, {
@@ -48,13 +48,13 @@ var startRicon = L.icon({
 	iconAnchor: [18, 47],
 	popupAnchor: [0, -48]
 });
-var endRicon = L.icon({
-	iconUrl: 'styles/images/pinend.png',
-	iconRetinaUrl: 'styles/images/pinend.png',
-	iconSize: [36, 47],
-	iconAnchor: [18, 47],
-	popupAnchor: [0, -48]
-});
+// var endRicon = L.icon({
+// 	iconUrl: 'styles/images/pinend.png',
+// 	iconRetinaUrl: 'styles/images/pinend.png',
+// 	iconSize: [36, 47],
+// 	iconAnchor: [18, 47],
+// 	popupAnchor: [0, -48]
+// });
 
 
 
@@ -115,7 +115,8 @@ var miniMap = new L.Control.MiniMap(esri, {
 	position: 'bottomright',
 	width: 80,
 	height: 80
-}).addTo(map);
+});
+miniMap.addTo(map);
 
 
 
@@ -174,9 +175,9 @@ L.control.locate(
 
 
 // spawn the sidebar on map
-var sidebar = L.control.sidebar('sidebar').addTo(map);
+L.control.sidebar('sidebar').addTo(map);
 
 
 
 // hash the address bar with the {./#ZOOM/LAT/LNG} center of the map
-var addresshash = new L.Hash(map);
+L.hash(map);
