@@ -1,6 +1,6 @@
 {
   "name": "cozy-map",
-  "version": "0.0.1",
+  "version": "0.1",
   "engines": [
     "node >= 0.10.0"
   ],
@@ -9,7 +9,7 @@
   "cozy-type": "static",
   "cozy-permissions": {
     "App-Version": {
-      "description": "0.0.1"
+      "description": "0.1"
     },
     "leaflet-locate": {
       "description": "ask permission to retrieve your location"
