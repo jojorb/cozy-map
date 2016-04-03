@@ -10,7 +10,11 @@ node_js:
 before_script:
   - npm install -g eslint eslint-config-mourner
 
-script: eslint --fix src/app.js
+script:
+  - eslint --fix src/app.js && echo 'fix lint :)'
+  - npm run lint && echo 'run lint :)'
+  - npm run build && echo 'run build :)'
+  - npm run build-min && echo 'run build min :)'
 
 deploy:
   provider: npm
