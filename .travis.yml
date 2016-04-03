@@ -7,6 +7,15 @@ node_js:
     - 0.12
     - 4
 
+before_script:
+  - npm install -g eslint eslint-config-mourner
+
+script:
+  - lint
+
+before_deploy:
+  - eslint --fix src/app.js
+
 deploy:
   provider: npm
   email: robyremzy@openmailbox.org
@@ -16,3 +25,9 @@ deploy:
     tags: true
     repo: RobyRemzy/cozy-map
     branch: master
+
+after_deploy: "echo 'deployed :)'"
+
+notifications:
+  email: false
+  irc: "chat.freenode.net#robydev"
