@@ -7,13 +7,10 @@ node_js:
     - 0.12
     - 4
 
-before_scripts:
+before_script:
   - npm install -g eslint eslint-config-mourner
 
-scripts:
-  - lint
-
-before_deploy: eslint --fix src/app.js
+script: eslint --fix src/app.js
 
 deploy:
   provider: npm
