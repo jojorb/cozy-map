@@ -1,28 +1,26 @@
 {
   "name": "cozy-map",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "engines": [
     "node >= 0.10.0"
   ],
-  "description": "Map with Leaflet JavaScript library.",
+  "description": "Leaflet map suited for a Cozy Platform.",
   "cozy-displayName": "Map",
   "cozy-type": "static",
   "cozy-permissions": {
     "App-Version": {
-      "description": "0.0.1 A New Beginning"
+      "description": "0.1.0"
     },
     "leaflet-locate": {
       "description": "ask permission to retrieve your location"
     }
   },
-  "icon-path": "main_icon.png",
+  "icon-path": "main_icon.svg",
   "main": "src/app.js",
   "dependencies": {},
   "devDependencies": {
     "browserify": "^9.0.3",
     "corslite": "0.0.7",
-    "eslint": "^2.6.0",
-    "eslint-config-mourner": "^2.0.0",
     "leaflet": "0.7.7",
     "polyline": "0.2.0",
     "uglify-js": "^2.4.17",
@@ -45,9 +43,16 @@
     "map",
     "gis"
   ],
-  "license": "MIT",
+  "author": {
+    "name": "Remi Roubin",
+    "url": "https://github.com/RobyRemzy/"
+  },
+  "homepage": "https://github.com/robyremzy/cozy-map",
   "bugs": {
     "url": "https://github.com/robyremzy/cozy-map/issues"
   },
-  "homepage": "https://github.com/robyremzy/cozy-map"
+  "licenses": {
+    "type": "Apache License 2.0",
+    "url": "https://github.com/RobyRemzy/cozy-map/blob/master/LICENSE"
+  }
 }
