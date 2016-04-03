@@ -4,3 +4,7 @@ node_modules
 npm-debug.log
 tmp
 log.md
+.travis.yml
+.eslintrc
+map.json
+screenshot.png
