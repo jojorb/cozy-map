@@ -43,7 +43,13 @@ load your server or get one with [http-server](https://www.npmjs.com/package/htt
 ```shell
 $ http-server -p9099 -o --cors
 ```
-check/mod `src/app.js` & `build/styles.css`  
+check/mod `src/app.js` & `styles/styles.css`  
+to build the map-bundle.js or map.min.js to `/build` run:
+```shell
+npm run build
+npm run build-min
+```
+
 Discussion on the [Cozy.io/Forum](https://forum.cozy.io/t/app-leaflet-map-here-i-am-there-you-go/2114)
 
 
