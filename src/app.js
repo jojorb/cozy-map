@@ -190,10 +190,13 @@ L.hash(map);
 		// <input class="sendad" 	placeholder="Address"><br>
 		// <input class="sendll" 	placeholder="Lat; Lng">
 
-// render only contacts with a Tag "map" [name], [address], [new LatLng]
+// render only contacts with a Tag "map" doc.tags
+// [name] doc.n
+// [address] doc.datapoints
+// [new LatLng] doc.
 function updateContactList() {
 	cozysdk.defineRequest(
-		'Contact', 'all', 'function(doc) { emit(doc.n), emit(doc.datapoints); }', function (err, res) {
+		'Contact', 'all', 'function(doc) { emit(doc.datapoints); }', function (err, res) {
 			if (err != null) {
 				return alert(err);
 			} else {
