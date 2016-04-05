@@ -206,7 +206,7 @@ function updateContactList() {
 					} else {
 						var contacts = JSON.parse('' + res);
 						contacts.forEach(function (contactName) {
-							contactName.key = contactName.key.replace('\u002C', '\u00a0');
+							contactName.key = contactName.key.replace('\u003B', '\u00a0');
 						});
 						render(contacts);
 					}
