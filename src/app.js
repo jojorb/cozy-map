@@ -184,46 +184,45 @@ L.hash(map);
 
 
 
-// render Cozy-Files
+// render Cozy-contact
 function initialize() {
 	document.querySelector('.send').addEventListener('change', onSendChanged);
 	attachEventHandler('table .edit', 'blur', onUpdatePressed);
 	attachEventHandler('table .edit', 'keypress', onUpdateKeyPressed);
 	attachEventHandler('.destroy', 'click', onButtonDestroyClicked);
-	updateFileList();
+	updateContactList();
 }
 
-
 function onSendChanged() {
-	var fileName = document.querySelector('.send').value;
+	var contactName = document.querySelector('.send').value;
 
-	if (fileName.trim() === '') {
+	if (contactName.trim() === '') {
 		return;
 	}
 
-	var file = {
-		n: fileName.trim()
+	var contact = {
+		n: contactName.trim()
 	};
-	cozysdk.create('File', file, function (err, res) {
-		if (err !== null) {
+	cozysdk.create('Contact', contact, function(err, res) {
+		if (err != null) {
 			return alert(err);
 		} else {
 			document.querySelector('.send').value = '';
-			updateFileList();
+			updateContactList();
 		}
 	});
 }
 
 function onUpdatePressed(event) {
-	var file = {
+	var contact = {
 		n: event.target.value.trim()
 	};
 
-	cozysdk.updateAttributes('File', getIDFromElement(event.target), file, function (err, res) {
+	cozysdk.updateAttributes('Contact', getIDFromElement(event.target), contact, function(err, res) {
 		if (err) {
 			return alert(err);
 		} else {
-			updateFileList();
+			updateContactList();
 		}
 	});
 }
@@ -235,18 +234,18 @@ function onUpdateKeyPressed(event) {
 }
 
 function onButtonDestroyClicked(event) {
-	cozysdk.destroy('File', getIDFromElement(event.target), function (err, res) {
+	cozysdk.destroy('Contact', getIDFromElement(event.target), function(err, res) {
 		if (err) {
 			return alert(err);
 		} else {
-			updateFileList();
+			updateContactList();
 		}
 	});
 }
 
 function attachEventHandler(klass, action, listener) {
 	var useCapture = action === 'blur';
-	document.querySelector('.file-list').addEventListener(action, function (event) {
+	document.querySelector('.contact-list').addEventListener(action, function(event) {
 		if (event.target.matches(klass)) {
 			listener.call(event.target, event);
 		}
@@ -260,38 +259,38 @@ function getIDFromElement(element) {
 	return getIDFromElement(element.parentNode);
 }
 
-function updateFileList() {
-	cozysdk.defineRequest('File', 'all', 'function(doc) { emit(doc.n); }', function (err, res) {
-		if (err !== null) {
+function updateContactList() {
+	cozysdk.defineRequest('Contact', 'all', 'function(doc) { emit(doc.n); }', function(err, res) {
+		if (err != null) {
 			return alert(err);
 		} else {
-			cozysdk.run('File', 'all', {}, function (err, res) {
-				if (err !== null) {
+			cozysdk.run('Contact', 'all', {}, function(err, res) {
+				if (err != null) {
 					return alert(err);
 				} else {
-					var files = JSON.parse('' + res);
-					files.forEach(function (fileName) {
-						fileName.key = fileName.key.replace(/ /g, '\u00a0');
+					var contacts = JSON.parse("" + res);
+					contacts.forEach(function(contactName) {
+						contactName.key = contactName.key.replace(/ /g, '\u00a0');
 					});
-					render(files);
+					render(contacts);
 				}
 			});
 		}
 	});
 }
 
-function render(files) {
+function render(contacts) {
 	var i;
 	var HTML = '';
-	for (i = 0; i < files.length; i++) {
-		var template = '<tr data-id="' + files[i].id + '">' +
-		'<td><input value="' + files[i].key + '"" class="edit"></td>' +
-		'<td><input type="button" class="update" value="Update"></td>' +
-		'<td><input type="button" class="destroy" value="Destroy"></td>' +
-		'</tr>';
+	for (i = 0; i < contacts.length; i++) {
+		var template = '<tr data-id="' + contacts[i].id + '">'
+		+ '<td><input value="' + contacts[i].key + '"" class="edit"></td>'
+		+ '<td><input type="button" class="update" value="Update"></td>'
+		+ '<td><input type="button" class="destroy" value="Destroy"></td>'
+		+ '</tr>';
 		HTML = HTML + template;
 	}
-	document.querySelector('.file-list').innerHTML = HTML;
+	document.querySelector('.contact-list').innerHTML = HTML;
 }
 
-document.addEventListener('DOMContentLoaded', initialize);
+document.addEventListener("DOMContentLoaded", initialize);
