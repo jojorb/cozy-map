@@ -213,51 +213,7 @@ function onSendChanged() {
 	});
 }
 
-function onUpdatePressed(event) {
-	var contact = {
-		n: event.target.value.trim()
-	};
 
-	cozysdk.updateAttributes('Contact', getIDFromElement(event.target), contact, function (err, res) {
-		if (err) {
-			return alert(err);
-		} else {
-			updateContactList();
-		}
-	});
-}
-
-function onUpdateKeyPressed(event) {
-	if (event.keyCode === 13) {
-		event.target.blur();
-	}
-}
-
-function onButtonDestroyClicked(event) {
-	cozysdk.destroy('Contact', getIDFromElement(event.target), function (err, res) {
-		if (err) {
-			return alert(err);
-		} else {
-			updateContactList();
-		}
-	});
-}
-
-function attachEventHandler(klass, action, listener) {
-	var useCapture = action === 'blur';
-	document.querySelector('.contact-list').addEventListener(action, function (event) {
-		if (event.target.matches(klass)) {
-			listener.call(event.target, event);
-		}
-	}, !!useCapture);
-}
-
-function getIDFromElement(element) {
-	if (element.parentNode.dataset.id) {
-		return element.parentNode.dataset.id;
-	}
-	return getIDFromElement(element.parentNode);
-}
 
 function updateContactList() {
 	cozysdk.defineRequest('Contact', 'all', 'function(doc) { emit(doc.n); }', function (err, res) {
@@ -292,5 +248,3 @@ function render(contacts) {
 	}
 	document.querySelector('.contact-list').innerHTML = HTML;
 }
-
-document.addEventListener('DOMContentLoaded', initialize);
