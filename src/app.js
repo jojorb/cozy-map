@@ -204,7 +204,7 @@ function onSendChanged() {
 		n: contactName.trim()
 	};
 	cozysdk.create('Contact', contact, function (err, res) {
-		if (err === null) {
+		if (err != null) {
 			return alert(err);
 		} else {
 			document.querySelector('.send').value = '';
@@ -261,11 +261,11 @@ function getIDFromElement(element) {
 
 function updateContactList() {
 	cozysdk.defineRequest('Contact', 'all', 'function(doc) { emit(doc.n); }', function (err, res) {
-		if (err === null) {
+		if (err != null) {
 			return alert(err);
 		} else {
 			cozysdk.run('Contact', 'all', {}, function (err, res) {
-				if (err === null) {
+				if (err != null) {
 					return alert(err);
 				} else {
 					var contacts = JSON.parse('' + res);
