@@ -185,66 +185,44 @@ L.hash(map);
 
 
 // render Cozy-contact
-function initialize() {
-	document.querySelector('.send').addEventListener('change', onSendChanged);
-	attachEventHandler('table .edit', 'blur', onUpdatePressed);
-	attachEventHandler('table .edit', 'keypress', onUpdateKeyPressed);
-	attachEventHandler('.destroy', 'click', onButtonDestroyClicked);
-	updateContactList();
-}
+		// <h3>My Contacts</h3>
+		// <input class="send" 		placeholder="Add as a new contact"><br>
+		// <input class="sendad" 	placeholder="Address"><br>
+		// <input class="sendll" 	placeholder="Lat; Lng">
 
-function onSendChanged() {
-	var contactName = document.querySelector('.send').value;
-
-	if (contactName.trim() === '') {
-		return;
-	}
-
-	var contact = {
-		n: contactName.trim()
-	};
-	cozysdk.create('Contact', contact, function (err, res) {
-		if (err != null) {
-			return alert(err);
-		} else {
-			document.querySelector('.send').value = '';
-			updateContactList();
-		}
-	});
-}
-
-
-
+// render only contacts with a Tag "map" [name], [address], [new LatLng]
 function updateContactList() {
-	cozysdk.defineRequest('Contact', 'all', 'function(doc) { emit(doc.n); }', function (err, res) {
-		if (err != null) {
-			return alert(err);
-		} else {
-			cozysdk.run('Contact', 'all', {}, function (err, res) {
-				if (err != null) {
-					return alert(err);
-				} else {
-					var contacts = JSON.parse('' + res);
-					contacts.forEach(function (contactName) {
-						contactName.key = contactName.key.replace(/ /g, '\u00a0');
-					});
-					render(contacts);
-				}
-			});
-		}
-	});
+	cozysdk.defineRequest(
+		'Contact', 'all', 'function(doc) { emit(doc.n); }', function (err, res) {
+			if (err != null) {
+				return alert(err);
+			} else {
+				cozysdk.run('Contact', 'all', {}, function (err, res) {
+					if (err != null) {
+						return alert(err);
+					} else {
+						var contacts = JSON.parse('' + res);
+						contacts.forEach(function (contactName) {
+							contactName.key = contactName.key.replace(/ /g, '\u00a0');
+						});
+						render(contacts);
+					}
+				});
+			}
+		});
 }
 
 function render(contacts) {
 	var i;
 	var HTML = '';
 	for (i = 0; i < contacts.length; i++) {
-		var template = '<tr data-id="' + contacts[i].id + '">' +
-		'<td><input value="' + contacts[i].key + '"" class="edit"></td>' +
-		'<td><input type="button" class="update" value="Update"></td>' +
-		'<td><input type="button" class="destroy" value="Destroy"></td>' +
+		var template =
+		'<tr data-id="' + contacts[i].id + '">' +
+		'<td><label>' + contacts[i].key + '</label></td>' +
 		'</tr>';
 		HTML = HTML + template;
 	}
 	document.querySelector('.contact-list').innerHTML = HTML;
 }
+
+document.addEventListener('DOMContentLoaded', updateContactList);
