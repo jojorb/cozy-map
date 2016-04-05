@@ -193,7 +193,7 @@ L.hash(map);
 // render only contacts with a Tag "map" [name], [address], [new LatLng]
 function updateContactList() {
 	cozysdk.defineRequest(
-		'Contact', 'all', 'function(doc) { emit(doc.n); }', function (err, res) {
+		'Contact', 'all', 'function(doc) { emit(doc.tags); }', function (err, res) {
 			if (err != null) {
 				return alert(err);
 			} else {
