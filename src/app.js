@@ -203,7 +203,7 @@ function onSendChanged() {
 	var contact = {
 		n: contactName.trim()
 	};
-	cozysdk.create('Contact', contact, function(err, res) {
+	cozysdk.create('Contact', contact, function (err, res) {
 		if (err != null) {
 			return alert(err);
 		} else {
@@ -218,7 +218,7 @@ function onUpdatePressed(event) {
 		n: event.target.value.trim()
 	};
 
-	cozysdk.updateAttributes('Contact', getIDFromElement(event.target), contact, function(err, res) {
+	cozysdk.updateAttributes('Contact', getIDFromElement(event.target), contact, function (err, res) {
 		if (err) {
 			return alert(err);
 		} else {
@@ -234,7 +234,7 @@ function onUpdateKeyPressed(event) {
 }
 
 function onButtonDestroyClicked(event) {
-	cozysdk.destroy('Contact', getIDFromElement(event.target), function(err, res) {
+	cozysdk.destroy('Contact', getIDFromElement(event.target), function (err, res) {
 		if (err) {
 			return alert(err);
 		} else {
@@ -245,7 +245,7 @@ function onButtonDestroyClicked(event) {
 
 function attachEventHandler(klass, action, listener) {
 	var useCapture = action === 'blur';
-	document.querySelector('.contact-list').addEventListener(action, function(event) {
+	document.querySelector('.contact-list').addEventListener(action, function (event) {
 		if (event.target.matches(klass)) {
 			listener.call(event.target, event);
 		}
@@ -260,16 +260,16 @@ function getIDFromElement(element) {
 }
 
 function updateContactList() {
-	cozysdk.defineRequest('Contact', 'all', 'function(doc) { emit(doc.n); }', function(err, res) {
+	cozysdk.defineRequest('Contact', 'all', 'function(doc) { emit(doc.n); }', function (err, res) {
 		if (err != null) {
 			return alert(err);
 		} else {
-			cozysdk.run('Contact', 'all', {}, function(err, res) {
+			cozysdk.run('Contact', 'all', {}, function (err, res) {
 				if (err != null) {
 					return alert(err);
 				} else {
-					var contacts = JSON.parse("" + res);
-					contacts.forEach(function(contactName) {
+					var contacts = JSON.parse('' + res);
+					contacts.forEach(function (contactName) {
 						contactName.key = contactName.key.replace(/ /g, '\u00a0');
 					});
 					render(contacts);
@@ -283,14 +283,14 @@ function render(contacts) {
 	var i;
 	var HTML = '';
 	for (i = 0; i < contacts.length; i++) {
-		var template = '<tr data-id="' + contacts[i].id + '">'
-		+ '<td><input value="' + contacts[i].key + '"" class="edit"></td>'
-		+ '<td><input type="button" class="update" value="Update"></td>'
-		+ '<td><input type="button" class="destroy" value="Destroy"></td>'
-		+ '</tr>';
+		var template = '<tr data-id="' + contacts[i].id + '">' +
+		'<td><input value="' + contacts[i].key + '"" class="edit"></td>' +
+		'<td><input type="button" class="update" value="Update"></td>' +
+		'<td><input type="button" class="destroy" value="Destroy"></td>' +
+		'</tr>';
 		HTML = HTML + template;
 	}
 	document.querySelector('.contact-list').innerHTML = HTML;
 }
 
-document.addEventListener("DOMContentLoaded", initialize);
+document.addEventListener('DOMContentLoaded', initialize);
