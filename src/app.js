@@ -88,7 +88,7 @@ document.getElementById('sidebarlrm').appendChild(lrmBlock);
 var geocoder = L.Control.geocoder({
 	position: 'topleft',
 	collapsed: false,
-	placeholder: 'search',
+	placeholder: 'search...',
 	errorMessage: '‘X’ never, ever marks the spot.'
 });
 // include the geocoder into the sidebar
