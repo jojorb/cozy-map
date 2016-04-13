@@ -6,6 +6,7 @@
   ],
   "description": "Leaflet map suited for a Cozy Platform.",
   "cozy-displayName": "Map",
+	"cozy-color": "#BE53F7",
   "cozy-type": "static",
   "cozy-permissions": {
   },
