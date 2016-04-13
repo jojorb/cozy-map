@@ -6,6 +6,7 @@ require('./leaflet.MiniMap.js');
 require('./leaflet.Locate.js');
 require('./leaflet-sidebar.js');
 require('./leaflet.Hash.js');
+require('./leaflet.Easybutton.js');
 // specify the path to the leaflet images folder
 L.Icon.Default.imagePath = 'node_modules/leaflet/dist/images/';
 
@@ -39,6 +40,15 @@ map.addLayer(osm);
 map.setView(new L.LatLng(46.8, 3.8), 3);
 
 
+
+// icon with popup to drag 'n drop by users
+// var addUicon = L.icon({
+// 	iconUrl: 'styles/images/pinpoi.png',
+// 	iconRetinaUrl: 'styles/images/pinpoi.png',
+// 	iconSize: [36, 47],
+// 	iconAnchor: [18, 47],
+// 	popupAnchor: [0, -48]
+// });
 
 // icon for the routing machine
 var startRicon = L.icon({
@@ -94,6 +104,7 @@ var geocoder = L.Control.geocoder({
 // include the geocoder into the sidebar
 var gecBlock = geocoder.onAdd(map);
 document.getElementById('sidebarex').appendChild(gecBlock);
+
 
 
 
