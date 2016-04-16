@@ -14,7 +14,7 @@
               <ul role="tablist">
                   <li><a href="#explore"	role="tab"><i class="fa fa-map-marker"></i></a></li>
                   <li><a href="#mypath"		role="tab"><i class="fa fa-map"></i></a></li>
-									<li><a href="#book"	role="tab"><i class="fa fa-bookmark"></i></a></li>
+									<li><a href="#book"			role="tab"><i class="fa fa-bookmark"></i></a></li>
                   <li><a href="#contacts"	role="tab"><i class="fa fa-user"></i></a></li>
                   <li><a href="#files"		role="tab"><i class="fa fa-folder"></i></a></li>
               </ul>
@@ -27,21 +27,55 @@
           <div class="sidebar-content">
               <div class="sidebar-pane" id="explore">
                   <h1 class="sidebar-header">Explore<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-                    <span id="sidebarex"></span>
+                    <!-- <span id="sidebarex"></span> -->
 										<p><center><i>
 											After a search: Double click on the droped marker to remove it from the map.
 										</i></center></p>
               </div>
 
-              <div class="sidebar-pane" id="mypath">
-                  <h1 class="sidebar-header">Route<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-                    <span id="sidebarlrm"></span>
-              </div>
+							<div class="sidebar-pane" id="mypath">
+								<h1 class="sidebar-header">Route<span class="sidebar-close">
+									<i class="fa fa-caret-left"></i></span></h1>
+							</div>
 
-              <div class="sidebar-pane" id="book">
-                  <h1 class="sidebar-header">GeoJson<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
-                    <span id="sidebargeojson"></span>
-              </div>
+							<script language="JavaScript">
+							var toggle = function toggle(sidebarlrm) {
+								var state = document.getElementById(sidebarlrm).style.display;
+								if (state == 'block') {
+									document.getElementById(sidebarlrm).style.display = 'none';
+								} else {
+									document.getElementById(sidebarlrm).style.display = 'block';
+								}
+							};
+							</script>
+
+							<div class="sidebar-pane" id="book">
+								<h1 class="sidebar-header">GeoJson<span class="sidebar-close">
+									<i class="fa fa-caret-left"></i></span></h1>
+									<div id="searchiconbar" class="searchbar">
+									 <table style="width:100%">
+										 <tr>
+											<th id="qsearchplace">
+												<a href="#"
+												title="Double click on the droped marker to remove it from the map"
+												onclick="toggle('sidebarex');">
+													<i class="fa fa-map-marker fa-2x"></i>
+												</a>
+											</th>
+											<th id="qsearchroute">
+												<a href="#"
+												title="Markers are draggable at anytimes"
+												onclick="toggle('sidebarlrm');">
+													<i class="fa fa-car fa-2x"></i>
+												</a>
+											</th>
+										</tr>
+									</table>
+									</div>
+									<div id="sidebarex"></div>
+									<div id="sidebarlrm" class="searchhidden"></div>
+							</div>
+
 
               <div class="sidebar-pane" id="contacts">
                   <h1 class="sidebar-header">Contacts<span class="sidebar-close"><i class="fa fa-caret-left"></i></span></h1>
@@ -73,8 +107,8 @@
       </div>
       <div id='map' class='sidebar-map'></div>
 
-
+			<script src='build/map-bundle.js'></script>
       <script src='vendor/cozysdk-client.js'></script>
-      <script src='build/map-bundle.js'></script>
+
     </body>
 </html>

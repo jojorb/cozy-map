@@ -107,6 +107,31 @@ document.getElementById('sidebarex').appendChild(gecBlock);
 
 
 
+// function createDiv() {
+// 	var divSearch = document.createElement('div');
+// 	divSearch.id = 'divsearch';
+// 	divSearch.setAttribute('align', 'center');
+// 	// divTag.className = 'dynamicDiv';
+// 	divSearch.innerHTML = '<i class=fa fa-car fa-3x aria-hidden=true></i>';
+//
+// 	document.body.appendChild(divSearch);
+// }
+
+
+
+
+// function createDiv(div, container) {
+// 	var btn = L.DomUtil.create('button', '', container);
+// 	btn.setAttribute('type', 'button');
+// 	btn.innerHTML = div;
+// 	return btn;
+// }
+
+
+
+
+
+
 
 // MiniMap layer Options
 var esriUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
