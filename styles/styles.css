@@ -717,6 +717,24 @@ hr {
   right: 0;
   top: 0;
 }
+.searchbar {
+	text-align: center;
+}
+.searchbar a {
+	color: #C122F9;
+}
+.searchbar a:hover {
+	color: #8218A7;
+}
+.searchhidden {
+    width:100%;
+    display: none;
+}
+.searchhelper {
+	color: #3D3D3D;
+	font-size: 10px;
+}
+
 /*Overiding leaflet-routine-machine.css : images attribution*/
 .leaflet-routing-icon {
     background-image: url('images/leaflet.routing.icons.png');
@@ -866,6 +884,18 @@ hr {
     /*left: 50px; } }*/
     left: 0; } }
 /*leaflet routing machine css overide*/
+.leaflet-routing-geocoders button {
+		font-size: 120%;
+		border: 0 solid #ccc;
+		border-radius: 0;
+
+    background-color: white;
+    margin: 0;
+    margin-right: 3px;
+    float: right;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
 .leaflet-routing-container, .leaflet-routing-error {
     width: inherit;
     background-color: rgba(255, 255, 255, 0);
@@ -887,13 +917,14 @@ hr {
     cursor: pointer;
 }
 .leaflet-routing-geocoders div {
-    padding: 7px 0px 4px 0px;
+    padding: 0 0 0 0;
+		background-color: #CCCCCC;
 }
 .leaflet-routing-geocoders input {
     width: inherit;
-    width: calc(100% - 4px);
-    line-height: 1.67;
-    border: 1px solid #ccc;
+    width: calc(100%);
+    line-height: 2.11;
+    border: 0 solid #ccc;
 }
 .leaflet-routing-geocoders input,.leaflet-routing-remove-waypoint,.leaflet-routing-geocoder {
     position: relative;
@@ -921,4 +952,19 @@ hr {
 .leaflet-routing-geocoder-no-results {
     font-style: italic;
     color: #970CE2;
+}
+
+/*overiding leaflet-control-geocoder*/
+.leaflet-control-geocoder a, .leaflet-control-geocoder .leaflet-control-geocoder-icon {
+	display: none;;
+}
+.leaflet-control-geocoder-form input {
+	font-size: 100%;
+	border: 0;
+}
+.leaflet-control-geocoder-error {
+	margin-top: 2px;
+	margin-left: 45px;
+	display: block;
+	color: #C122F9;
 }
