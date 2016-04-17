@@ -6,6 +6,8 @@ require('./leaflet.MiniMap.js');
 require('./leaflet.Locate.js');
 require('./leaflet-sidebar.js');
 require('./leaflet.Hash.js');
+require('./leaflet-layerjson.js');
+
 // specify the path to the leaflet images folder
 L.Icon.Default.imagePath = 'node_modules/leaflet/dist/images/';
 
@@ -181,3 +183,52 @@ L.control.sidebar('sidebar').addTo(map);
 
 // hash the address bar with the {./#ZOOM/LAT/LNG} center of the map
 L.hash(map);
+
+
+
+// Fect Pi Weather Stations database
+var url = 'src/data/WeeWxStation.json';
+
+// define Popup for Pi Stations
+var popupPiw =
+'<center>{description}<br>' +
+'<a href={url} target="_blank">{url}</a></center> {data}';
+
+// Setup the rendering of the Pi Weather Db (.json)
+var weeStations = new L.LayerJSON({
+	url: url,
+	propertyLoc: ['latitude', 'longitude'],
+	propertyTitle: 'station',
+	buildIcon: function () {
+		return new L.Icon({
+			iconUrl: 'styles/images/datamarker.png',
+			iconRetinaUrl: 'styles/images/datamarker.png',
+			iconSize: [13, 23],
+			iconAnchor: [6.5, 23],
+			popupAnchor: [0, -24]
+		});
+	},
+	buildPopup: function (data) {
+		return L.Util.template(
+			'<center>{description}<br>' +
+			'<a href={url} target="_blank">{url}</a></center> {data}', {
+				description: data.description,
+				url: data.url,
+				data: (function () {
+					var out = '';
+					for (var i = 0; i < data.last_seen.length; i++) {
+						out += L.Util.template(popupPiw, data.last_seen[i]);
+					}
+					return out;
+				})
+			}
+		);
+	}
+});
+// map.addLayer(weeStations);	//not selected by default
+
+// add a quick way to select the layer
+map.addControl(new L.Control.Layers({}, {
+	'Pi Weather Stations': weeStations},
+	{collapsed:false}
+));
