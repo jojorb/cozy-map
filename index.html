@@ -18,6 +18,8 @@
 				</i></a></li>
 			</ul>
 			<ul role="tablist">
+				<li><a href="#info" role="tab"><i class="fa fa-info">
+				</i></a></li>
 				<li><a href="#settings" role="tab"><i class="fa fa-gear">
 				</i></a></li>
 			</ul>
@@ -66,11 +68,50 @@
 				<h1 class="sidebar-header">Map Layer<span class="sidebar-close">
 					<i class="fa fa-angle-double-left"></i></span>
 				</h1>
-				<div id="maplayerselect"></div>
+				<div id="maplayerselect">
+					<span><i class="fa fa-globe"></i><b> Basemap</b></span><br>
+					<label><input
+						type="radio" name="basemap" value="losm" checked> Map OSM</label>
+						<br>
+					<label><input
+						type="radio" name="basemap" value="lesri"> Sat Imagery</label>
+						<br>
+					<label><input
+						type="radio" name="basemap" value="ldcarto"> Simple Dark</label>
+						<br>
+					<hr>
+					<span><i class="fa fa-object-group"></i><b> Overlay</b></span><br>
+						<label><input
+							type="checkbox" id="weeStations"> Weather Stations</label>
+							<br>
+				</div>
+			</div>
+			<div class="sidebar-pane" id="info">
+				<h1 class="sidebar-header">Info<span class="sidebar-close">
+					<i class="fa fa-angle-double-left"></i></span></h1>
+					<h2>Documentation</h2>
+					<p class="sidebar-topics"><span>
+						<i class="fa fa-github"></i>
+						<a target='_blank'
+						href='https://github.com/RobyRemzy/cozy-map/wiki'>Map Wiki</a></span></p>
+					<h2>Beta Projects in progress</h2>
+					<p class="sidebar-topics"><span>
+						<i class="fa fa-location-arrow fa-rotate-90 fa-1x"></i> <i>Beta</i>
+						 Mapillary</span></p>
+						 Mapillary's WebGL JavaScript library for displaying street level imagery anywhere!<p></p>
+					<p class="sidebar-topics"><span>
+						<i class="fa fa-subway"></i> <i>Beta</i>
+						Tangrams TransitLand</span></p>
+						An open source project sponsored by Mapzen.<p></p>
 			</div>
 			<div class="sidebar-pane" id="settings">
 				<h1 class="sidebar-header">Settings<span class="sidebar-close">
-					<i class="fa fa-caret-left"></i></span></h1>
+					<i class="fa fa-angle-double-left"></i></span></h1>
+					<h2 class="sidebar-topics"><span><i class="fa fa-map-o">
+					</i> OpenStreetMap</span></h2><p></p>
+					<i class="urlzxy"></i>
+					<a href="#" id="authenticate"><i class="fa fa-user"></i> Log in</a><br>
+					<a href="#" id="logout"><i class="fa fa-user"></i> Log out</a><br>
 				<hr>
 				<span><center><a target='_blank'
 					href='http://osmlab.github.io/attribution-mark/copyright?name=Cozy-Map'
@@ -80,6 +121,7 @@
 		</div>
 	</div>
 	<div id='map' class='sidebar-map'></div>
+	<script src="vendor/jquery.slim.min.js"></script>
 	<script src='vendor/cozysdk-client.js'></script>
 	<script src='build/map.min.js'></script>
 </body>
