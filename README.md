@@ -4,52 +4,21 @@
 
 ![screeshot](https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/screenshot.png)  
 
-Simple package of Cozy-sdk combined with Leaflet JavaScript library.  
-And still... in [Vanilla JS](http://vanilla-js.com/)
+This is Simple "Carto-Map" project to get your own tool to get an access or contribute to open sourced projects like Open Street Map with ease.  
+
 
 - NPM leaflet package version: "0.7.7"
 - [Leaflet doc](http://leafletjs.com)
 - [Leaflet on GutHub](https://github.com/Leaflet/Leaflet)
 
+--
 
-### Map
-map tiles are provided by Open Street Map and ESRI in https.
+- Get an access to Amenity from OSM and contribute/update nodes.
+- Weather Stations are provided by "WeeWxStation" mostly served from a personal Raspberry Pi.
+- Earthquake data are provided by usgs.gov.
 
-### Geocoder
-search are https request from [OSM/Nominatim](http://wiki.openstreetmap.org/wiki/Nominatim) and include also reverse geocoding `latitude longitude`.  
-why is there no auto-completion [?](http://wiki.openstreetmap.org/wiki/Nominatim_usage_policy#Unacceptable_Use)  
-For auto-completion there is a possibility to set up your own [OSRM server](https://github.com/Project-OSRM/osrm-backend/wiki/Running-OSRM)  
-or use API such as [Mapzen](https://mapzen.com/projects/valhalla/) or [Mapbox's](https://www.mapbox.com/developers/api/directions/) geocoding services. Both of them are doing great things for Open street Map. Here for more informations about the Leaflet Routing Machine [LRM](http://www.liedman.net/leaflet-routing-machine/api/).
-
-### Location
-Location can be switch on/off and is based on informations from your web browser [W3C Geolocation API](https://en.wikipedia.org/wiki/W3C_Geolocation_API).
-
-### Hash address bar
-Expose the center of the map inside the address bar `#zomm/latitude/longitude`.  
-
-ex: `http://localhost:9099/#3/46.86/3.87`  
-*should be able to update your position by enter a new position directly inside the address bar.*
-
-
-
-## Mod
-Fork the [developer](https://github.com/RobyRemzy/cozy-map/tree/developer) repository  
-lint is done with `npm install -g eslint eslint-config-mourner`  
-`cd` to the Cozy-Map folder  
-`eslint --fix src/app.js`  
-
-load your server or get one with [http-server](https://www.npmjs.com/package/http-server)  
-
-```shell
-$ http-server -p9099 -o --cors
-```
-check/mod `src/app.js` & `styles/styles.css`  
-to build the map-bundle.js or map.min.js to `/build` run:
-```shell
-npm run build
-npm run build-min
-```
-
+>Because sometimes contribute is the only thing we can do.  
+Load a Map and update or create Open Source data.  
 Discussion on the [Cozy.io/Forum](https://forum.cozy.io/t/app-leaflet-map-here-i-am-there-you-go/2114)
 
 
