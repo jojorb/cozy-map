@@ -955,9 +955,14 @@ hr {
 }
 
 /*overiding leaflet-control-geocoder*/
+/*todo remove the icon*/
 .leaflet-control-geocoder a, .leaflet-control-geocoder .leaflet-control-geocoder-icon {
-	display: none;;
-}
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom: none;
+	display: inline-block;
+	}
+
 .leaflet-control-geocoder-form input {
 	font-size: 100%;
 	border: 0;
