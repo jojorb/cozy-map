@@ -7,35 +7,73 @@ require('./leaflet.Locate.js');
 require('./leaflet-sidebar.js');
 require('./leaflet.Hash.js');
 require('./leaflet-layerjson.js');
+var osmAuth = require('osm-auth');
 
 // specify the path to the leaflet images folder
 L.Icon.Default.imagePath = 'node_modules/leaflet/dist/images/';
 
 
 
+// Basemap Tiles Layers for the map // 	detectRetina: true // 	minZoom: 1,
+var losm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	attribution: '',
+	maxZoom: '20',
+	opacity: '1',
+	scene: ''
+});
+var ldcarto = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+	attribution: '',
+	maxZoom: '18',
+	opacity: '1',
+	scene: ''
+});
+var lesri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: '',
+	maxZoom: '18',
+	opacity: '1',
+	scene: ''
+});
+
+
+
 // disable zoomControl (which is topleft by default) when initializing map&options
 var map = new L.Map('map', {
+	layers: [losm],
 	attributionControl: false,
 	zoomControl: false
 });
 
+var baseMaps = {
+	'Map OSM': losm,
+	'Sat Imagery': lesri,
+	'Simple Dark': ldcarto
+};
+L.control.layers(baseMaps);
 
-
-// set map url tiles layer
-var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-
-// set OpenStreetMap attribution
-// var osmAttrib = '';
-
-// set Map tiles layer and Options
-var osm = new L.TileLayer(osmUrl, {
-	minZoom: 1,
-	maxZoom: 19,
-	detectRetina: true
+// switch baselayer for the map
+function switchBasemap(type) {
+	if (type === 'lesri') {
+		map.removeLayer(losm);
+		map.removeLayer(ldcarto);
+		map.addLayer(lesri);
+	}
+	if (type === 'losm') {
+		map.removeLayer(lesri);
+		map.removeLayer(ldcarto);
+		map.addLayer(losm);
+	}
+	if (type === 'ldcarto') {
+		map.removeLayer(lesri);
+		map.removeLayer(losm);
+		map.addLayer(ldcarto);
+	}
+}
+// change the value of the basemap
+$('[name=basemap]').change(function () {
+	switchBasemap(this.value);
 });
 
-// add the tile layer to the map
-map.addLayer(osm);
+
 
 // set the position and zoom level of the map
 map.setView(new L.LatLng(46.8, 3.8), 3);
@@ -164,8 +202,8 @@ L.control.locate(
 			metersUnit: 'meters',
 			feetUnit: 'feet',
 			popup: '<center>You are around ' +
-              '{distance} {unit} ' +
-              'from this point</center>',
+							'{distance} {unit} ' +
+							'from this point</center>',
 			outsideMapBoundsMsg: 'You seem located outside the boundaries of the map'
 		},
 		locateOptions: {
@@ -186,7 +224,76 @@ L.hash(map);
 
 
 
-// Fect Pi Weather Stations database
+map.on('moveend', function () {
+	var mapCenterlat  = map.getCenter().wrap().lat;
+	var mapCenterlng  = map.getCenter().wrap().lng;
+	// var mapBounds     = map.getBounds();
+	// var mapBoundleft  = mapBounds.getNorthWest().lng;
+	// var mapBoundright = mapBounds.getSouthEast().lng;
+	// var mapBoundtop   = mapBounds.getNorthWest().lat;
+	// var mapBoundbottom= mapBounds.getSouthEast().lat;
+	var mapCenter     = mapCenterlat + '/' + mapCenterlng;
+	var tarBlk       = ' target=_blank>';
+	var iDeditor      = 'https://www.openstreetmap.org/edit?editor=id#map=18/' + mapCenter;
+	var openiDeditor  = '<a href=' + iDeditor + tarBlk;
+
+	// Side bar links
+	document.querySelector('i.urlzxy').innerHTML = openiDeditor +
+	'<i class="fa fa-share"></i> Edit with iDeditor in a new tab</a><br>';
+});
+
+/* eslint-disable */
+// OSM OAuth_secret
+var osmkeysec = 'FvTtE9DuFiRjMCOp9g2chQAMf9ikQualSEh1SRX1';
+// OSM OAuth_consumer_key
+var osmkeycon =  'xrtIUDNLPsEqGKGAOWeW8Jzm8F8LZJeFLvLLynlM';
+// OAuth ON OSM
+var auth = osmAuth({
+	oauth_secret: osmkeysec,
+	oauth_consumer_key: osmkeycon,
+	auto: true
+});
+
+/* eslint-enable */
+$('#authenticate,#authorize-btn').click(function () {
+	auth.authenticate(function () {
+		getUser();
+	});
+	return false;
+});
+
+$('#logout').click(function () {
+	auth.logout();
+	getUser();
+	return false;
+});
+
+$('#auth-cancel-btn').click(function () {
+	return false;
+});
+
+/* eslint-disable */
+function getUser() {
+	if (auth.authenticated()) {
+		auth.xhr({
+			method: 'GET',
+			path: '/api/0.6/user/details'
+		}, function (err, details) {
+			var user = details.getElementsByTagName('user')[0].getAttribute('display_name');
+			$('#logout').html('<i class="fa fa-user"></i> Log out <span class="uk-text-bold">' + user + '</span>').show();
+			$('#user').html('<a href="http://www.openstreetmap.org/user/" +user+">"+user+"</a>"');
+			$('#authenticate').hide();
+		});
+	} else {
+		$('#logout').hide();
+		$('#authenticate').show();
+	}
+}
+/* eslint-enable */
+
+
+
+// Fetch Pi Weather Stations database
 var url = 'src/data/WeeWxStation.json';
 
 // define Popup for Pi Stations
@@ -226,9 +333,17 @@ var weeStations = new L.LayerJSON({
 	}
 });
 // map.addLayer(weeStations);	//not selected by default
-
 // add a quick way to select the layer
-map.addControl(new L.Control.Layers({}, {
-	'Pi Weather Stations': weeStations},
-	{collapsed:false}
-));
+var overlayMaps = {
+	'Weather Stations': weeStations
+};
+L.control.layers(baseMaps, overlayMaps);
+
+// switch overlay weeStations
+$('#weeStations').change(function () {
+	if ($(this).prop('checked')) {
+		map.addLayer(weeStations);
+	} else {
+		map.removeLayer(weeStations);
+	}
+});
