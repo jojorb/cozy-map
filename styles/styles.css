@@ -6,7 +6,7 @@
 /*@import url("styles/leaflet-routing-machine.css");*/
 .leaflet-routing-container, .leaflet-routing-error {
     width: 320px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(196, 196, 196, 0.5);
     padding-top: 4px;
     transition: all 0.2s ease;
     box-sizing: border-box;
@@ -113,7 +113,8 @@
     width: 303px;
     width: calc(100% - 4px);
     line-height: 1.67;
-    border: 1px solid #ccc;
+    border: 1px solid rgba(196, 196, 196, 0.5);
+		background-color: rgba(196, 196, 196, 0.5);
 }
 
 .leaflet-routing-geocoders button {
@@ -734,6 +735,15 @@ hr {
 	color: #3D3D3D;
 	font-size: 10px;
 }
+.overinput[type=text] {
+	background: rgba(196, 196, 196, 0.5);
+	color: #86888B;
+	width: 100%;
+	height: 34px;
+	font-size: 100%;
+	margin: 3px 0 0 0;
+	border: none;
+}
 
 /*Overiding leaflet-routine-machine.css : images attribution*/
 .leaflet-routing-icon {
@@ -889,7 +899,7 @@ hr {
 		border: 0 solid #ccc;
 		border-radius: 0;
 
-    background-color: white;
+    background-color: rgba(196, 196, 196, 0.5);
     margin: 0;
     margin-right: 3px;
     float: right;
@@ -913,12 +923,12 @@ hr {
     transition: all 0.2s ease;
 }
 .leaflet-routing-alt tr:hover {
-    background-color: rgba(136, 137, 139, 0.64);
+    background-color: rgba(196, 196, 196, 0.5);
     cursor: pointer;
 }
 .leaflet-routing-geocoders div {
     padding: 0 0 0 0;
-		background-color: #CCCCCC;
+		background-color: rgba(196, 196, 196, 0.5);
 }
 .leaflet-routing-geocoders input {
     width: inherit;
@@ -943,7 +953,7 @@ hr {
     height: 100%
     border: 0px solid #ccc;
     border-radius: 0 0 0px 0px;
-    background-color: white;
+    background-color: rgba(196, 196, 196, 0.5);
     cursor: pointer;
 }
 .leaflet-routing-geocoder-result-open {
@@ -956,6 +966,9 @@ hr {
 
 /*overiding leaflet-control-geocoder*/
 /*todo remove the icon*/
+.leaflet-control-geocoder {
+	background-color: rgba(196, 196, 196, 0.5);
+}
 .leaflet-control-geocoder a, .leaflet-control-geocoder .leaflet-control-geocoder-icon {
 	border-bottom-left-radius: 4px;
 	border-bottom-right-radius: 4px;
