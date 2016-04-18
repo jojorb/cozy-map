@@ -842,10 +842,10 @@ hr {
       transition: all 80ms; }
       .sidebar-tabs > li:hover, .sidebar-tabs > ul > li:hover {
         color: #33A6FF;
-        background-color: rgba(255, 255, 255, 0.7); }
+        background-color: rgba(255, 255, 255, 0.0); }
       .sidebar-tabs > li.active, .sidebar-tabs > ul > li.active {
         color: #33A6FF;
-        background-color: rgba(255, 255, 255, 0.7);
+        background-color: rgba(255, 255, 255, 0.0);
       }
 .sidebar-content {
   color: #3D3D3D;
