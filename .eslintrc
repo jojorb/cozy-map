@@ -5,7 +5,8 @@
   "env": {
     "commonjs": true,
     "amd": true,
-    "node": false
+    "node": false,
+    "jquery": true
   },
   "extends": "mourner",
   "rules": {
