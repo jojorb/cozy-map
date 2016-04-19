@@ -6,49 +6,79 @@ require('./leaflet.MiniMap.js');
 require('./leaflet.Locate.js');
 require('./leaflet-sidebar.js');
 require('./leaflet.Hash.js');
-require('./leaflet.Easybutton.js');
+require('./leaflet-layerjson.js');
+var osmAuth = require('osm-auth');
+
 // specify the path to the leaflet images folder
 L.Icon.Default.imagePath = 'node_modules/leaflet/dist/images/';
 
 
 
+// Basemap Tiles Layers for the map // 	detectRetina: true // 	minZoom: 1,
+var losm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+	attribution: '',
+	maxZoom: '19',
+	opacity: '1',
+	scene: ''
+});
+var ldcarto = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+	attribution: '',
+	maxZoom: '18',
+	opacity: '1',
+	scene: ''
+});
+var lesri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: '',
+	maxZoom: '18',
+	opacity: '1',
+	scene: ''
+});
+
+
+
 // disable zoomControl (which is topleft by default) when initializing map&options
 var map = new L.Map('map', {
+	layers: [losm],
 	attributionControl: false,
 	zoomControl: false
 });
 
+var baseMaps = {
+	'Map OSM': losm,
+	'Sat Imagery': lesri,
+	'Simple Dark': ldcarto
+};
+L.control.layers(baseMaps);
 
-
-// set map url tiles layer
-var osmUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-
-// set OpenStreetMap attribution
-// var osmAttrib = '';
-
-// set Map tiles layer and Options
-var osm = new L.TileLayer(osmUrl, {
-	minZoom: 1,
-	maxZoom: 19,
-	detectRetina: true
+// switch baselayer for the map
+function switchBasemap(type) {
+	if (type === 'lesri') {
+		map.removeLayer(losm);
+		map.removeLayer(ldcarto);
+		map.addLayer(lesri);
+	}
+	if (type === 'losm') {
+		map.removeLayer(lesri);
+		map.removeLayer(ldcarto);
+		map.addLayer(losm);
+	}
+	if (type === 'ldcarto') {
+		map.removeLayer(lesri);
+		map.removeLayer(losm);
+		map.addLayer(ldcarto);
+	}
+}
+// change the value of the basemap
+$('[name=basemap]').change(function () {
+	switchBasemap(this.value);
 });
 
-// add the tile layer to the map
-map.addLayer(osm);
+
 
 // set the position and zoom level of the map
 map.setView(new L.LatLng(46.8, 3.8), 3);
 
 
-
-// icon with popup to drag 'n drop by users
-// var addUicon = L.icon({
-// 	iconUrl: 'styles/images/pinpoi.png',
-// 	iconRetinaUrl: 'styles/images/pinpoi.png',
-// 	iconSize: [36, 47],
-// 	iconAnchor: [18, 47],
-// 	popupAnchor: [0, -48]
-// });
 
 // icon for the routing machine
 var startRicon = L.icon({
@@ -98,38 +128,12 @@ document.getElementById('sidebarlrm').appendChild(lrmBlock);
 var geocoder = L.Control.geocoder({
 	position: 'topleft',
 	collapsed: false,
-	placeholder: 'search',
+	placeholder: 'search...',
 	errorMessage: '‘X’ never, ever marks the spot.'
 });
 // include the geocoder into the sidebar
 var gecBlock = geocoder.onAdd(map);
 document.getElementById('sidebarex').appendChild(gecBlock);
-
-
-
-// function createDiv() {
-// 	var divSearch = document.createElement('div');
-// 	divSearch.id = 'divsearch';
-// 	divSearch.setAttribute('align', 'center');
-// 	// divTag.className = 'dynamicDiv';
-// 	divSearch.innerHTML = '<i class=fa fa-car fa-3x aria-hidden=true></i>';
-//
-// 	document.body.appendChild(divSearch);
-// }
-
-
-
-
-// function createDiv(div, container) {
-// 	var btn = L.DomUtil.create('button', '', container);
-// 	btn.setAttribute('type', 'button');
-// 	btn.innerHTML = div;
-// 	return btn;
-// }
-
-
-
-
 
 
 
@@ -156,7 +160,7 @@ miniMap.addTo(map);
 
 
 
-// add zoom control with your options
+// add zoom control with options
 L.control.zoom({
 	position:'bottomright'
 }).addTo(map);
@@ -198,8 +202,8 @@ L.control.locate(
 			metersUnit: 'meters',
 			feetUnit: 'feet',
 			popup: '<center>You are around ' +
-              '{distance} {unit} ' +
-              'from this point</center>',
+							'{distance} {unit} ' +
+							'from this point</center>',
 			outsideMapBoundsMsg: 'You seem located outside the boundaries of the map'
 		},
 		locateOptions: {
@@ -220,50 +224,224 @@ L.hash(map);
 
 
 
-// render Cozy-contact
-		// <h3>My Contacts</h3>
-		// <input class="send" 		placeholder="Add as a new contact"><br>
-		// <input class="sendad" 	placeholder="Address"><br>
-		// <input class="sendll" 	placeholder="Lat; Lng">
+map.on('moveend', function () {
+	var mapCenterlat  = map.getCenter().wrap().lat;
+	var mapCenterlng  = map.getCenter().wrap().lng;
+	// var mapBounds     = map.getBounds();
+	// var mapBoundleft  = mapBounds.getNorthWest().lng;
+	// var mapBoundright = mapBounds.getSouthEast().lng;
+	// var mapBoundtop   = mapBounds.getNorthWest().lat;
+	// var mapBoundtop   = mapBounds.getNorthEast().lat;
+	// var mapBoundbottom= mapBounds.getSouthEast().lat;
+	var mapCenter     = mapCenterlat + '/' + mapCenterlng;
+	var tarBlk       = ' target=_blank>';
+	var iDeditor      = 'https://www.openstreetmap.org/edit?editor=id#map=18/' + mapCenter;
+	var openiDeditor  = '<a href=' + iDeditor + tarBlk;
 
-// render only contacts with a Tag "map" doc.tags
-// [name] doc.n
-// [address] doc.datapoints
-// [new LatLng] doc.
-function updateContactList() {
-	cozysdk.defineRequest(
-		'Contact', 'all', 'function(doc) { emit(doc.n); }', function (err, res) {
-			if (err != null) {
-				return alert(err);
-			} else {
-				cozysdk.run('Contact', 'all', {}, function (err, res) {
-					if (err != null) {
-						return alert(err);
-					} else {
-						var contacts = JSON.parse('' + res);
-						contacts.forEach(function (contactName) {
-							contactName.key = contactName.key.replace('\u003B', '\u00a0');
-						});
-						render(contacts);
-					}
-				});
-			}
+	// Side bar links
+	document.querySelector('i.urlzxy').innerHTML = openiDeditor +
+	'<i class="fa fa-share"></i> Edit with iDeditor in a new tab</a><br>';
+});
+
+/* eslint-disable */
+// OSM OAuth_secret
+var osmkeysec = 'FvTtE9DuFiRjMCOp9g2chQAMf9ikQualSEh1SRX1';
+// OSM OAuth_consumer_key
+var osmkeycon =  'xrtIUDNLPsEqGKGAOWeW8Jzm8F8LZJeFLvLLynlM';
+// OAuth ON OSM
+var auth = osmAuth({
+	oauth_secret: osmkeysec,
+	oauth_consumer_key: osmkeycon,
+	auto: true
+});
+
+/* eslint-enable */
+$('#authenticate,#authorize-btn').click(function () {
+	auth.authenticate(function () {
+		getUser();
+	});
+	return false;
+});
+
+$('#logout').click(function () {
+	auth.logout();
+	getUser();
+	return false;
+});
+
+$('#auth-cancel-btn').click(function () {
+	return false;
+});
+
+/* eslint-disable */
+function getUser() {
+	if (auth.authenticated()) {
+		auth.xhr({
+			method: 'GET',
+			path: '/api/0.6/user/details'
+		}, function (err, details) {
+			var user = details.getElementsByTagName('user')[0].getAttribute('display_name');
+			$('#logout').html('<i class="fa fa-user"></i> Log out <span class="uk-text-bold">' + user + '</span>').show();
+			$('#user').html('<a href="http://www.openstreetmap.org/user/" +user+">"+user+"</a>"');
+			$('#authenticate').hide();
 		});
-}
-
-function render(contacts) {
-	var i;
-	var HTML = '';
-	for (i = 0; i < contacts.length; i++) {
-		var template =
-		'<tr data-id="' + contacts[i].id + '">' +
-		'<td><label>' + contacts[i].key + '</label></td>' +
-		'<td><input type="button" class="update" value="Update"></td>' +
-		'<td><input type="button" class="showonmap" value="On Map"></td>' +
-		'</tr>';
-		HTML = HTML + template;
+	} else {
+		$('#logout').hide();
+		$('#authenticate').show();
 	}
-	document.querySelector('.contact-list').innerHTML = HTML;
 }
+/* eslint-enable */
 
-document.addEventListener('DOMContentLoaded', updateContactList);
+
+
+// Fetch Pi Weather Stations database
+var urlwwxs = 'src/data/WeeWxStation.json';
+
+// define Popup for Pi Stations
+var popupPiw =
+'<center>{description}<br>' +
+'<a href={url} target="_blank">{url}</a></center> {data}';
+
+// Setup the rendering of the Pi Weather Db (.json)
+var weeStations = new L.LayerJSON({
+	url: urlwwxs,
+	propertyLoc: ['latitude', 'longitude'],
+	propertyTitle: 'station',
+	minZoom: 12,
+	buildIcon: function () {
+		return new L.Icon({
+			iconUrl: 'styles/images/datamarker.png',
+			iconRetinaUrl: 'styles/images/datamarker.png',
+			iconSize: [13, 23],
+			iconAnchor: [6.5, 23],
+			popupAnchor: [0, -24]
+		});
+	},
+	buildPopup: function (data) {
+		return L.Util.template(
+			'<center>{description}<br>' +
+			'<a href={url} target="_blank">{url}</a></center> {data}', {
+				description: data.description,
+				url: data.url,
+				data: (function () {
+					var out = '';
+					for (var i = 0; i < data.last_seen.length; i++) {
+						out += L.Util.template(popupPiw, data.last_seen[i]);
+					}
+					return out;
+				})
+			}
+		);
+	}
+});
+// map.addLayer(weeStations);	//not selected by default
+// add a quick way to select the layer
+var overlayMaps = {
+	'Weather Stations': weeStations
+};
+L.control.layers(baseMaps, overlayMaps);
+
+// switch overlay weeStations
+$('#weeStations').change(function () {
+	if ($(this).prop('checked')) {
+		map.addLayer(weeStations);
+	} else {
+		map.removeLayer(weeStations);
+	}
+});
+
+
+
+// Fetch earthQuake database
+var urlusgs = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson';
+
+// define Popup for earthQuake
+var popupUsgs =
+'<center>{type }{title}<br>' +
+'{coordinates}<br>' +
+'<a href={url} target="_blank">{url}</a></center> {data}';
+
+// Setup the rendering of the earthQuake Db (.geojson)
+var earthQuake = new L.LayerJSON({
+	url: urlusgs,
+	locAsGeoJSON: true,
+	propertyLoc: ['coordinates'],
+	propertyTitle: 'title',
+	buildIcon: function () {
+		return new L.Icon({
+			iconUrl: 'styles/images/datamarker.png',
+			iconRetinaUrl: 'styles/images/datamarker.png',
+			iconSize: [13, 23],
+			iconAnchor: [6.5, 23],
+			popupAnchor: [0, -24]
+		});
+	},
+	buildPopup: function (data) {
+		return L.Util.template(
+			'<center>{type }{title}<br>' +
+			'{coordinates}<br>' +
+			'<a href={url} target="_blank">{url}</a></center> {data}', {
+				type: data.type,
+				title: data.title,
+				coordinates: data.coordinates,
+				url: data.url,
+				data: (function () {
+					var out = '';
+					for (var i = 0; i < data.id.length; i++) {
+						out += L.Util.template(popupUsgs, data.id[i]);
+					}
+					return out;
+				})
+			}
+		);
+	}
+});
+// map.addLayer(earthQuake);	//not selected by default
+// add a quick way to select the layer
+var overlayQuake = {
+	'Earthquake > M5': earthQuake
+};
+L.control.layers(baseMaps, overlayQuake);
+
+// switch overlay weeStations
+$('#earthQuake').change(function () {
+	if ($(this).prop('checked')) {
+		map.addLayer(earthQuake);
+	} else {
+		map.removeLayer(earthQuake);
+	}
+});
+
+
+
+// search from OpenStreetMap with OverPass
+// $('#opAmenity').val(input.text());
+// $('#opName').text()
+L.layerJSON({
+	url: 'http://overpass-api.de/api/interpreter?data=' +
+	'[out:json];node({lat1},{lon1},{lat2},{lon2})' +
+	'[amenity=' +
+	'cafe' +
+	']' +
+	'[name=' +
+	'Starbucks' +
+	']' +
+	';out;',
+	propertyItems: 'elements',
+	propertyTitle: 'tags.name',
+	propertyLoc:   ['lat', 'lon'],
+	minZoom: 14,
+	minShift: 500,
+	buildIcon: function () {
+		return new L.Icon({
+			iconUrl: 'styles/images/datamarker.png',
+			iconRetinaUrl: 'styles/images/datamarker.png',
+			iconSize: [13, 23],
+			iconAnchor: [6.5, 23],
+			popupAnchor: [0, -24]
+		});
+	},
+	buildPopup: function (data) {
+		return data.tags.name || null;
+	}
+}).addTo(map);

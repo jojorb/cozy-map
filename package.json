@@ -1,19 +1,14 @@
 {
   "name": "cozy-map",
-  "version": "0.1.0",
+  "version": "0.1.13",
   "engines": [
-    "node >= 0.10.0"
+    "*"
   ],
-  "description": "Leaflet map suited for a Cozy Platform.",
+  "description": "Leaflet map suited for Cozy Platform.",
   "cozy-displayName": "Map",
+	"cozy-color": "#C122F9",
   "cozy-type": "static",
   "cozy-permissions": {
-    "App-Version": {
-      "description": "0.1.0"
-    },
-    "leaflet-locate": {
-      "description": "ask permission to retrieve your location"
-    }
   },
   "icon-path": "main_icon.svg",
   "main": "src/app.js",
@@ -21,15 +16,14 @@
   "devDependencies": {
     "browserify": "^9.0.3",
     "corslite": "0.0.7",
-    "eslint": "^2.6.0",
-    "eslint-config-mourner": "^2.0.0",
     "leaflet": "0.7.7",
+		"osm-auth": "0.2.8",
     "polyline": "0.2.0",
     "uglify-js": "^2.4.17",
     "watchify": "^2.5.0"
   },
   "scripts": {
-    "start": "node_modules/.bin/watchify src/app.js -o ./build/map-bundle.js -v -d .",
+    "start": "node_modules/.bin/watchify src/app.js -o ./build/map.min.js -v -d .",
     "build": "./node_modules/.bin/browserify . | uglifyjs -cm > ./build/map-bundle.js",
     "build-min": "NODE_ENV=production browserify . | uglifyjs -cm > ./build/map.min.js",
     "lint": "eslint src/app.js"

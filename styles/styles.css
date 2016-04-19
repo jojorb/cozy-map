@@ -1,12 +1,12 @@
 @import url("css/leaflet.css");
 /*@import url("../node_modules/leaflet/dist/leaflet.css");*/
-@import url("css/leafleat.Easybutton.css");
+
 
 
 /*@import url("styles/leaflet-routing-machine.css");*/
 .leaflet-routing-container, .leaflet-routing-error {
     width: 320px;
-    background-color: rgba(255, 255, 255, 0.8);
+    background-color: rgba(196, 196, 196, 0.5);
     padding-top: 4px;
     transition: all 0.2s ease;
     box-sizing: border-box;
@@ -113,7 +113,8 @@
     width: 303px;
     width: calc(100% - 4px);
     line-height: 1.67;
-    border: 1px solid #ccc;
+    border: 1px solid rgba(196, 196, 196, 0.5);
+		background-color: rgba(196, 196, 196, 0.5);
 }
 
 .leaflet-routing-geocoders button {
@@ -576,7 +577,7 @@
 	border-bottom-left-radius: 4px;
 	border-bottom-right-radius: 4px;
 	border-bottom: none;
-	display: none;
+	display: inline-block;
 }
 
 .leaflet-control-geocoder .leaflet-control-geocoder-alternatives a {
@@ -598,7 +599,7 @@
 	display: inline-block;
 }
 .leaflet-control-geocoder-form input {
-	font-size: 100%;
+	font-size: 120%;
 	border: 0;
 	background-color: transparent;
 	width: 246px;
@@ -624,10 +625,10 @@
 	display: none;
 }
 .leaflet-control-geocoder-error {
-	margin-top: 2px;
+	margin-top: 8px;
 	margin-left: 45px;
 	display: block;
-	color: #C122F9;
+	color: #444;
 }
 .leaflet-control-geocoder-alternatives {
 	display: block;
@@ -717,7 +718,6 @@ hr {
   right: 0;
   top: 0;
 }
-
 .searchbar {
 	text-align: center;
 }
@@ -735,8 +735,15 @@ hr {
 	color: #3D3D3D;
 	font-size: 10px;
 }
-
-
+.overinput[type=text] {
+	background: rgba(196, 196, 196, 0.5);
+	color: #86888B;
+	width: 100%;
+	height: 34px;
+	font-size: 100%;
+	margin: 3px 0 0 0;
+	border: none;
+}
 
 /*Overiding leaflet-routine-machine.css : images attribution*/
 .leaflet-routing-icon {
@@ -845,10 +852,10 @@ hr {
       transition: all 80ms; }
       .sidebar-tabs > li:hover, .sidebar-tabs > ul > li:hover {
         color: #33A6FF;
-        background-color: rgba(255, 255, 255, 0.7); }
+        background-color: rgba(255, 255, 255, 0.0); }
       .sidebar-tabs > li.active, .sidebar-tabs > ul > li.active {
         color: #33A6FF;
-        background-color: rgba(255, 255, 255, 0.7);
+        background-color: rgba(255, 255, 255, 0.0);
       }
 .sidebar-content {
   color: #3D3D3D;
@@ -865,6 +872,7 @@ hr {
   line-height: 40px;
   font-size: 14.4pt;
   color: #fff;
+  /*background-color: #0074d9; }*/
   background-color: #32363f;
 }
 .sidebar-left ~ .sidebar-map {
@@ -887,19 +895,17 @@ hr {
     left: 0; } }
 /*leaflet routing machine css overide*/
 .leaflet-routing-geocoders button {
-    /*font: bold 18px 'Lucida Console', Monaco, monospace;*/
 		font-size: 120%;
-    border: 0px solid #ccc;
-    border-radius: 0px;
-    background-color: white;
+		border: 0 solid #ccc;
+		border-radius: 0;
+
+    background-color: rgba(196, 196, 196, 0.5);
     margin: 0;
     margin-right: 3px;
     float: right;
     cursor: pointer;
     transition: background-color 0.2s ease;
 }
-
-
 .leaflet-routing-container, .leaflet-routing-error {
     width: inherit;
     background-color: rgba(255, 255, 255, 0);
@@ -917,20 +923,18 @@ hr {
     transition: all 0.2s ease;
 }
 .leaflet-routing-alt tr:hover {
-    background-color: rgba(136, 137, 139, 0.64);
+    background-color: rgba(196, 196, 196, 0.5);
     cursor: pointer;
 }
 .leaflet-routing-geocoders div {
-    /*padding: 7px 0px 4px 0px;*/
-		padding: 0px 0px 0px 0px;
-		background-color: #CCCCCC;
+    padding: 0 0 0 0;
+		background-color: rgba(196, 196, 196, 0.5);
 }
 .leaflet-routing-geocoders input {
     width: inherit;
     width: calc(100%);
     line-height: 2.11;
-    /*border: 1px solid #ccc;*/
-		border: 0;
+    border: 0 solid #ccc;
 }
 .leaflet-routing-geocoders input,.leaflet-routing-remove-waypoint,.leaflet-routing-geocoder {
     position: relative;
@@ -949,7 +953,7 @@ hr {
     height: 100%
     border: 0px solid #ccc;
     border-radius: 0 0 0px 0px;
-    background-color: white;
+    background-color: rgba(196, 196, 196, 0.5);
     cursor: pointer;
 }
 .leaflet-routing-geocoder-result-open {
@@ -958,4 +962,27 @@ hr {
 .leaflet-routing-geocoder-no-results {
     font-style: italic;
     color: #970CE2;
+}
+
+/*overiding leaflet-control-geocoder*/
+/*todo remove the icon*/
+.leaflet-control-geocoder {
+	background-color: rgba(196, 196, 196, 0.5);
+}
+.leaflet-control-geocoder a, .leaflet-control-geocoder .leaflet-control-geocoder-icon {
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	border-bottom: none;
+	display: inline-block;
+	}
+
+.leaflet-control-geocoder-form input {
+	font-size: 100%;
+	border: 0;
+}
+.leaflet-control-geocoder-error {
+	margin-top: 2px;
+	margin-left: 45px;
+	display: block;
+	color: #C122F9;
 }
