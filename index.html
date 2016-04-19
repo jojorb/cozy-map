@@ -12,9 +12,9 @@
 		<!-- Nav tabs -->
 		<div class="sidebar-tabs">
 			<ul role="tablist">
-				<li><a href="#explore"		role="tab"><i class="fa fa-search">
+				<li><a href="#explore" role="tab"><i class="fa fa-search">
 				</i></a></li>
-			<li><a href="#maplayers"	role="tab"><i class="fa fa-map">
+			<li><a href="#maplayers" role="tab"><i class="fa fa-map">
 				</i></a></li>
 			</ul>
 			<ul role="tablist">
@@ -58,11 +58,23 @@
 									<i class="fa fa-car fa-2x"></i>
 								</a>
 							</th>
+							<th id="qsearchop">
+								<a href="#"
+									title="search data on OSM"
+									onclick="toggle('sidebaroverpass');">
+									<i class="fa fa-thumb-tack fa-2x"></i>
+								</a>
+							</th>
 						</tr>
 					</table>
 				</div>
 				<div id="sidebarex"></div>
 				<div id="sidebarlrm" class="searchhidden"></div>
+				<div id="sidebaroverpass" class="searchhidden">
+					<input type="text" class="overinput"
+					id="opAmenity" placeholder="OSM Amenity" text="cafe"><br>
+					<input type="text" class="overinput"
+					id="opName" placeholder="Node name" text="Starbucks"></div>
 			</div>
 			<div class="sidebar-pane" id="maplayers">
 				<h1 class="sidebar-header">Map Layer<span class="sidebar-close">
@@ -83,6 +95,9 @@
 					<span><i class="fa fa-object-group"></i><b> Overlay</b></span><br>
 						<label><input
 							type="checkbox" id="weeStations"> Weather Stations</label>
+							<br>
+						<label><input
+							type="checkbox" id="earthQuake"> Earthquake USGS</label>
 							<br>
 				</div>
 			</div>
