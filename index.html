@@ -5,7 +5,6 @@
 	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
 	<link rel='stylesheet' href='styles/styles.css' />
 	<link rel='stylesheet' href='/fonts/fonts.css'>
-	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
 	<div id="sidebar" class="sidebar collapsed">
@@ -58,23 +57,11 @@
 									<i class="fa fa-car fa-2x"></i>
 								</a>
 							</th>
-							<th id="qsearchop">
-								<a href="#"
-									title="search data on OSM"
-									onclick="toggle('sidebaroverpass');">
-									<i class="fa fa-thumb-tack fa-2x"></i>
-								</a>
-							</th>
 						</tr>
 					</table>
 				</div>
 				<div id="sidebarex"></div>
 				<div id="sidebarlrm" class="searchhidden"></div>
-				<div id="sidebaroverpass" class="searchhidden">
-					<input type="text" class="overinput"
-					id="opAmenity" placeholder="OSM Amenity" text="cafe"><br>
-					<input type="text" class="overinput"
-					id="opName" placeholder="Node name" text="Starbucks"></div>
 			</div>
 			<div class="sidebar-pane" id="maplayers">
 				<h1 class="sidebar-header">Map Layer<span class="sidebar-close">
@@ -95,10 +82,6 @@
 					<span><i class="fa fa-object-group"></i><b> Overlay</b></span><br>
 						<label><input
 							type="checkbox" id="weeStations"> Weather Stations</label>
-							<br>
-						<label><input
-							type="checkbox" id="earthQuake"> Earthquake USGS</label>
-							<br>
 				</div>
 			</div>
 			<div class="sidebar-pane" id="info">
@@ -109,6 +92,15 @@
 						<i class="fa fa-github"></i>
 						<a target='_blank'
 						href='https://github.com/RobyRemzy/cozy-map/wiki'>Map Wiki</a></span></p>
+						Tips:<br>
+						you can remove from the map some marker by double clik on them or by click on the cross button.
+						some markers are draggable at any time, like during a search path (start to end).<br>
+						You are also able to Auth to OpenStreetMap from the App, this is a beta test to explor the Auth protocol,
+						but it will help you later to be able to contribute to osm in App.<br>
+						Please enjoy your search or check on the weather stations near you maybe! If not why not try to find/build one
+						we will merge it inside the database.<br>
+						You may also want to try to build your first Konnector to fetch the weather station near you!<br>
+
 					<h2>Beta Projects in progress</h2>
 					<p class="sidebar-topics"><span>
 						<i class="fa fa-location-arrow fa-rotate-90 fa-1x"></i> <i>Beta</i>
