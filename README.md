@@ -4,7 +4,7 @@
 
 ![screeshot](https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/screenshot.png)  
 
-This is Simple "Carto-Map" project to get your own tool to get an access or contribute to open sourced projects like Open Street Map with ease.  
+This is a simple "carto-map" project to get your own mapping tool and will allow you to contribute to open sourced projects like Open Street Map with ease.  
 
 
 - NPM leaflet package version: "0.7.7"
@@ -13,14 +13,31 @@ This is Simple "Carto-Map" project to get your own tool to get an access or cont
 
 --
 
+ACTUAL STATES : STEP 1 "ease the search and retrieve data to render"
+
+"Done" features:  
+- fetch https tiles from OSM/Esri/CartoDb provide OSM data, satellite and simple black view.
+- find places or path in https query.
+- Weather Stations are provided by "WeeWxStation" mostly served from personal Raspberry Pi.
+
+NEXT STEPS:
+- ease contribution and fetch more data in a more persistent and personalize way.
+- working on konnectors.
+- organize manage mapping tool and data
+
+Working on (see developer branch):  
 - Get an access to Amenity from OSM and contribute/update nodes.
-- Weather Stations are provided by "WeeWxStation" mostly served from a personal Raspberry Pi.
-- Earthquake data are provided by usgs.gov.
+- Fetch earthquake data provided by usgs.gov (updated every 15 minutes).
+- Wiki and user guide.
 
 >Because sometimes contribute is the only thing we can do.  
-Load a Map and update or create Open Source data.  
+Load a Map to update or create Open Source data.  
 Discussion on the [Cozy.io/Forum](https://forum.cozy.io/t/app-leaflet-map-here-i-am-there-you-go/2114)
 
+
+## Want to help?
+
+More informations on the [wiki](https://github.com/RobyRemzy/cozy-map/wiki)
 
 ## What is Cozy?
 
