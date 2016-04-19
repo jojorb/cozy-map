@@ -17,7 +17,7 @@ L.Icon.Default.imagePath = 'node_modules/leaflet/dist/images/';
 // Basemap Tiles Layers for the map // 	detectRetina: true // 	minZoom: 1,
 var losm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	attribution: '',
-	maxZoom: '20',
+	maxZoom: '19',
 	opacity: '1',
 	scene: ''
 });
@@ -160,7 +160,7 @@ miniMap.addTo(map);
 
 
 
-// add zoom control with your options
+// add zoom control with options
 L.control.zoom({
 	position:'bottomright'
 }).addTo(map);
@@ -231,6 +231,7 @@ map.on('moveend', function () {
 	// var mapBoundleft  = mapBounds.getNorthWest().lng;
 	// var mapBoundright = mapBounds.getSouthEast().lng;
 	// var mapBoundtop   = mapBounds.getNorthWest().lat;
+	// var mapBoundtop   = mapBounds.getNorthEast().lat;
 	// var mapBoundbottom= mapBounds.getSouthEast().lat;
 	var mapCenter     = mapCenterlat + '/' + mapCenterlng;
 	var tarBlk       = ' target=_blank>';
@@ -294,7 +295,7 @@ function getUser() {
 
 
 // Fetch Pi Weather Stations database
-var url = 'src/data/WeeWxStation.json';
+var urlwwxs = 'src/data/WeeWxStation.json';
 
 // define Popup for Pi Stations
 var popupPiw =
@@ -303,9 +304,10 @@ var popupPiw =
 
 // Setup the rendering of the Pi Weather Db (.json)
 var weeStations = new L.LayerJSON({
-	url: url,
+	url: urlwwxs,
 	propertyLoc: ['latitude', 'longitude'],
 	propertyTitle: 'station',
+	minZoom: 12,
 	buildIcon: function () {
 		return new L.Icon({
 			iconUrl: 'styles/images/datamarker.png',
@@ -347,3 +349,99 @@ $('#weeStations').change(function () {
 		map.removeLayer(weeStations);
 	}
 });
+
+
+
+// Fetch earthQuake database
+var urlusgs = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson';
+
+// define Popup for earthQuake
+var popupUsgs =
+'<center>{type }{title}<br>' +
+'{coordinates}<br>' +
+'<a href={url} target="_blank">{url}</a></center> {data}';
+
+// Setup the rendering of the earthQuake Db (.geojson)
+var earthQuake = new L.LayerJSON({
+	url: urlusgs,
+	locAsGeoJSON: true,
+	propertyLoc: ['coordinates'],
+	propertyTitle: 'title',
+	buildIcon: function () {
+		return new L.Icon({
+			iconUrl: 'styles/images/datamarker.png',
+			iconRetinaUrl: 'styles/images/datamarker.png',
+			iconSize: [13, 23],
+			iconAnchor: [6.5, 23],
+			popupAnchor: [0, -24]
+		});
+	},
+	buildPopup: function (data) {
+		return L.Util.template(
+			'<center>{type }{title}<br>' +
+			'{coordinates}<br>' +
+			'<a href={url} target="_blank">{url}</a></center> {data}', {
+				type: data.type,
+				title: data.title,
+				coordinates: data.coordinates,
+				url: data.url,
+				data: (function () {
+					var out = '';
+					for (var i = 0; i < data.id.length; i++) {
+						out += L.Util.template(popupUsgs, data.id[i]);
+					}
+					return out;
+				})
+			}
+		);
+	}
+});
+// map.addLayer(earthQuake);	//not selected by default
+// add a quick way to select the layer
+var overlayQuake = {
+	'Earthquake > M5': earthQuake
+};
+L.control.layers(baseMaps, overlayQuake);
+
+// switch overlay weeStations
+$('#earthQuake').change(function () {
+	if ($(this).prop('checked')) {
+		map.addLayer(earthQuake);
+	} else {
+		map.removeLayer(earthQuake);
+	}
+});
+
+
+
+// search from OpenStreetMap with OverPass
+// $('#opAmenity').val(input.text());
+// $('#opName').text()
+L.layerJSON({
+	url: 'http://overpass-api.de/api/interpreter?data=' +
+	'[out:json];node({lat1},{lon1},{lat2},{lon2})' +
+	'[amenity=' +
+	'cafe' +
+	']' +
+	'[name=' +
+	'Starbucks' +
+	']' +
+	';out;',
+	propertyItems: 'elements',
+	propertyTitle: 'tags.name',
+	propertyLoc:   ['lat', 'lon'],
+	minZoom: 14,
+	minShift: 500,
+	buildIcon: function () {
+		return new L.Icon({
+			iconUrl: 'styles/images/datamarker.png',
+			iconRetinaUrl: 'styles/images/datamarker.png',
+			iconSize: [13, 23],
+			iconAnchor: [6.5, 23],
+			popupAnchor: [0, -24]
+		});
+	},
+	buildPopup: function (data) {
+		return data.tags.name || null;
+	}
+}).addTo(map);
