@@ -14,15 +14,15 @@
   "dependencies": {
   },
   "devDependencies": {
-    "browserify": "^9.0.3",
+    "browserify": "9.0.3",
     "corslite": "0.0.7",
-		"eslint": "^2.8.0",
-    "eslint-config-mourner": "^2.0.1",
+		"eslint": "2.8.0",
+    "eslint-config-mourner": "2.0.1",
     "leaflet": "0.7.7",
-    "osm-auth": "0.2.8",
+    "osm-auth": "^0.2.8",
     "polyline": "0.2.0",
-    "uglify-js": "^2.4.17",
-    "watchify": "^2.5.0"
+    "uglify-js": "2.4.17",
+    "watchify": "2.5.0"
   },
   "scripts": {
     "start": "node_modules/.bin/watchify src/app.js -o ./build/map.min.js -v -d .",
