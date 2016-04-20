@@ -21,7 +21,7 @@ var losm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	opacity: '1',
 	scene: ''
 });
-var ldcarto = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+var ldcarto = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
 	attribution: '',
 	maxZoom: '18',
 	opacity: '1',
