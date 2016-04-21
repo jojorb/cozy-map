@@ -435,6 +435,7 @@ $('#weeStations').change(function () {
 // Fetch earthQuake database
 var urlusgs = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson';
 
+
 // define Popup for earthQuake
 var popupUsgs =
 '<center>{type }{title}<br>' +
