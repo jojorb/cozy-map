@@ -718,32 +718,46 @@ hr {
   right: 0;
   top: 0;
 }
-.searchbar {
+.searchquery {
 	text-align: center;
 }
-.searchbar a {
-	color: #C122F9;
+	.searchqueryion {
+		cursor: pointer;
+		color: #000;
 }
-.searchbar a:hover {
-	color: #8218A7;
+	.searchqueryioff {
+		cursor: default;
+		color: #33A6FF;
 }
-.searchhidden {
+.search-divhidden {
     width:100%;
     display: none;
 }
-.searchhelper {
-	color: #3D3D3D;
-	font-size: 10px;
+.search-divshow {
+    width:100%;
+    display:block;
 }
 .overinput[type=text] {
 	background: rgba(196, 196, 196, 0.5);
-	color: #86888B;
-	width: 100%;
+	color: #3D3D3D;
+	width: 88%;
 	height: 34px;
 	font-size: 100%;
 	margin: 3px 0 0 0;
 	border: none;
 }
+.overinputval[type=submit] {
+	background: #86888B;
+	color: #33A6FF;
+	width: 12%;
+	height: 34px;
+	font-size: 100%;
+	margin: 0 0 0 0;
+	border: none;
+}
+
+
+
 
 /*Overiding leaflet-routine-machine.css : images attribution*/
 .leaflet-routing-icon {
