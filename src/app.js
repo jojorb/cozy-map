@@ -137,6 +137,86 @@ document.getElementById('sidebarex').appendChild(gecBlock);
 
 
 
+// search from OpenStreetMap with OverPass
+$(document).ready(function () {
+	$('#opsdAmenity').click(function () {
+		L.layerJSON({
+			url: 'http://overpass-api.de/api/interpreter?data=' +
+			'[out:json];node({lat1},{lon1},{lat2},{lon2})' +
+			$('#opAmenity').val() +
+			';out;',
+			propertyItems: 'elements',
+			propertyTitle: 'tags.name',
+			propertyLoc:   ['lat', 'lon'],
+			minZoom: 14,
+			minShift: 500,
+			buildIcon: function () {
+				return new L.Icon({
+					iconUrl: 'styles/images/datamarker.png',
+					iconRetinaUrl: 'styles/images/datamarker.png',
+					iconSize: [13, 23],
+					iconAnchor: [6.5, 23],
+					popupAnchor: [0, -24]
+				});
+			},
+			buildPopup: function (data) {
+				return data.tags.name || null;
+			}
+		})
+		.addTo(map);
+	});
+});
+
+var overinAmenity = document.createElement('input');
+overinAmenity.id = 'opAmenity';
+overinAmenity.type = 'text';
+overinAmenity.className = 'overinput';
+overinAmenity.value = '';
+overinAmenity.placeholder = 'ex: [amenity=cafe][name="Starbucks"]';
+var placeHolder = document.getElementById('optinput');
+placeHolder.appendChild(overinAmenity);
+
+var oversdAmenity = document.createElement('input');
+oversdAmenity.id = 'opsdAmenity';
+oversdAmenity.type = 'submit';
+oversdAmenity.className = 'overinputval';
+oversdAmenity.value = 'ok';
+var placeHolder2 = document.getElementById('optinput');
+placeHolder2.appendChild(oversdAmenity);
+
+
+
+// switch search mod
+$(document).ready(function () {
+	$('.sbs').click(function () {
+		var id = $(this).attr('id');
+		if (id === 'qsearchplace') {
+			$('#qsearchplace').removeClass('searchqueryion').addClass('searchqueryioff');
+			$('#sidebarex').addClass('search-divshow').removeClass('search-divhidden');
+			$('#qsearchroute').addClass('searchqueryion').removeClass('searchqueryioff');
+			$('#sidebarlrm').addClass('search-divhidden').removeClass('search-divshow');
+			$('#qsearchop').addClass('searchqueryion').removeClass('searchqueryioff');
+			$('#sidebaroverpass').addClass('search-divhidden').removeClass('search-divshow');
+		} else if (id === 'qsearchroute') {
+			$('#qsearchroute').removeClass('searchqueryion').addClass('searchqueryioff');
+			$('#sidebarlrm').addClass('search-divshow').removeClass('search-divhidden');
+			$('#qsearchplace').addClass('searchqueryion').removeClass('searchqueryioff');
+			$('#sidebarex').addClass('search-divhidden').removeClass('search-divshow');
+			$('#qsearchop').addClass('searchqueryion').removeClass('searchqueryioff');
+			$('#sidebaroverpass').addClass('search-divhidden').removeClass('search-divshow');
+		} else if (id === 'qsearchop') {
+			$('#qsearchop').removeClass('searchqueryion').addClass('searchqueryioff');
+			$('#sidebaroverpass').addClass('search-divshow').removeClass('search-divhidden');
+			$('#qsearchplace').addClass('searchqueryion').removeClass('searchqueryioff');
+			$('#sidebarex').addClass('search-divhidden').removeClass('search-divshow');
+			$('#qsearchroute').addClass('searchqueryion').removeClass('searchqueryioff');
+			$('#sidebarlrm').addClass('search-divhidden').removeClass('search-divshow');
+		}
+	});
+});
+
+
+
 // MiniMap layer Options
 var esriUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
 
@@ -411,37 +491,3 @@ $('#earthQuake').change(function () {
 		map.removeLayer(earthQuake);
 	}
 });
-
-
-
-// search from OpenStreetMap with OverPass
-// $('#opAmenity').val(input.text());
-// $('#opName').text()
-L.layerJSON({
-	url: 'http://overpass-api.de/api/interpreter?data=' +
-	'[out:json];node({lat1},{lon1},{lat2},{lon2})' +
-	'[amenity=' +
-	'cafe' +
-	']' +
-	'[name=' +
-	'Starbucks' +
-	']' +
-	';out;',
-	propertyItems: 'elements',
-	propertyTitle: 'tags.name',
-	propertyLoc:   ['lat', 'lon'],
-	minZoom: 14,
-	minShift: 500,
-	buildIcon: function () {
-		return new L.Icon({
-			iconUrl: 'styles/images/datamarker.png',
-			iconRetinaUrl: 'styles/images/datamarker.png',
-			iconSize: [13, 23],
-			iconAnchor: [6.5, 23],
-			popupAnchor: [0, -24]
-		});
-	},
-	buildPopup: function (data) {
-		return data.tags.name || null;
-	}
-}).addTo(map);
