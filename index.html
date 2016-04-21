@@ -5,6 +5,7 @@
 	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
 	<link rel='stylesheet' href='styles/styles.css' />
 	<link rel='stylesheet' href='/fonts/fonts.css'>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
 	<div id="sidebar" class="sidebar collapsed">
@@ -23,18 +24,6 @@
 				</i></a></li>
 			</ul>
 		</div>
-		<!-- Toggle search mod Script -->
-		<script language="JavaScript">
-		var toggle = function toggle(sidebarlrm) {
-			var state = document.getElementById(sidebarlrm).style.display;
-			if (state === 'block') {
-				document.getElementById(sidebarlrm).style.display = 'none';
-			} else {
-				document.getElementById(sidebarlrm).style.display = 'block';
-			}
-		};
-		</script>
-		<!-- Tab panes -->
 		<div class="sidebar-content">
 			<div class="sidebar-pane" id="explore">
 				<h1 class="sidebar-header">Explore<span class="sidebar-close">
@@ -43,25 +32,38 @@
 				<div id="searchiconbar" class="searchbar">
 					<table style="width:100%">
 						<tr>
-							<th id="qsearchplace">
-								<a href="#"
-									title="Double click on the droped marker to remove it from the map"
-									onclick="toggle('sidebarex');">
-									<i class="fa fa-map-marker fa-2x"></i>
-								</a>
+							<th id="qsearchplace" class="searchqueryioff sbs">
+								<i class="fa fa-map-marker fa-2x"></i>
 							</th>
-							<th id="qsearchroute">
-								<a href="#"
-									title="Markers are draggable at anytimes"
-									onclick="toggle('sidebarlrm');">
-									<i class="fa fa-car fa-2x"></i>
-								</a>
+							<th id="qsearchroute" class="searchqueryion sbs">
+								<i class="fa fa-car fa-2x"></i>
+							</th>
+							<th id="qsearchop" class="searchqueryion sbs">
+								<i class="fa fa-thumb-tack fa-2x"></i>
 							</th>
 						</tr>
 					</table>
 				</div>
-				<div id="sidebarex"></div>
-				<div id="sidebarlrm" class="searchhidden"></div>
+				<div id="sidebarex" class="search-divshow"></div>
+				<div id="sidebarlrm" class="search-divhidden"></div>
+				<div id="sidebaroverpass" class="search-divhidden">
+					<div id="optinput"></div>
+					<br>
+					<h2><center>Easy data mining on OpenStreetMap</h2>
+						<span>This search is design to aggregate some Point Of Interst inside
+						the map view (bbox). To help you to create a query you can check the
+						documentation from <a target='_blank'
+						href='http://wiki.openstreetmap.org/wiki/Overpass_turbo'>Overpass</a>.<br>
+						<br><b><u>Example: </u></b><br>
+						<i class="fa fa-tint"></i> [amenity=drinking_water]<br>
+						<i class="fa fa-fire-extinguisher"></i>[emergency=fire_hydrant]<br>
+						<i class="fa fa-envelope-o"></i>[amenity=post_box]<br>
+						<i class="fa fa-beer"></i>[amenity=pub][microbrewery=yes]<br>
+						<i class="fa fa-cutlery"></i> [cuisine=japanese]<br>
+						<i class="fa fa-cutlery"></i> [amenity=fast_food][name="Big Fernand"]<br>
+						<i class="fa fa-subway"></i> [railway=station]
+					</span>
+				</div>
 			</div>
 			<div class="sidebar-pane" id="maplayers">
 				<h1 class="sidebar-header">Map Layer<span class="sidebar-close">
@@ -92,14 +94,17 @@
 						<i class="fa fa-github"></i>
 						<a target='_blank'
 						href='https://github.com/RobyRemzy/cozy-map/wiki'>Map Wiki</a></span></p>
-						Tips:<br>
-						you can remove from the map some marker by double clik on them or by click on the cross button.
+						<b>Search Tips:</b><br>
+						you can remove from the map some markers by double clik on them or simly by clicking on the cross button inside the search slug.
 						some markers are draggable at any time, like during a search path (start to end).<br>
-						You are also able to Auth to OpenStreetMap from the App, this is a beta test to explor the Auth protocol,
-						but it will help you later to be able to contribute to osm in App.<br>
-						Please enjoy your search or check on the weather stations near you maybe! If not why not try to find/build one
-						we will merge it inside the database.<br>
+
+						<b>Layer Tips:</b><br>
+						About the the weather stations, we will be happy to merge your info inside the database if you have a setup.<br>
 						You may also want to try to build your first Konnector to fetch the weather station near you!<br>
+
+						<b>Beta Tips:</b><br>
+						You are able to Auth to OpenStreetMap from the App, this is a test to explor the Auth protocol,
+						but it will help you later to be able to contribute to osm in App.<br>
 
 					<h2>Beta Projects in progress</h2>
 					<p class="sidebar-topics"><span>
