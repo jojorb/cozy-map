@@ -8,6 +8,7 @@ require('./leaflet-sidebar.js');
 require('./leaflet.Hash.js');
 require('./leaflet-layerjson.js');
 var osmAuth = require('osm-auth');
+var osmtogeojson = require('osmtogeojson');
 
 // specify the path to the leaflet images folder
 L.Icon.Default.imagePath = 'node_modules/leaflet/dist/images/';
@@ -96,6 +97,14 @@ var startRicon = L.icon({
 // 	popupAnchor: [0, -48]
 // });
 
+// icon drop by user
+var dropUicon = L.icon({
+	iconUrl: 'styles/images/pinpoi.png',
+	iconRetinaUrl: 'styles/images/pinpoi.png',
+	iconSize: [36, 47],
+	iconAnchor: [18, 47],
+	popupAnchor: [0, -48]
+});
 
 
 // Routing machine features
@@ -186,6 +195,89 @@ placeHolder2.appendChild(oversdAmenity);
 
 
 
+// drop a marker to Edit on osm
+var pinThis = document.createElement('div');
+pinThis.id = 'dropMarker';
+pinThis.className = 'dropMarker';
+document.getElementById('pineditor').appendChild(pinThis);
+
+
+$('#pineditor').click(function () {
+	// first get the point where to drop the marker
+	var mCenterlat  = map.getCenter().lat;
+	var mCenterlng  = map.getCenter().lng;
+
+	// define the marker
+	var dropmaRk = new L.Marker([mCenterlat, mCenterlng], {
+		draggable: true,
+		icon: dropUicon
+	});
+
+	// define the first popup
+	var dropmaRkpop =
+	'Move the marker to a new place';
+
+	// drop the marker and open the popup
+	dropmaRk.addTo(map)
+	.bindPopup(dropmaRkpop, {
+		className: 'uiconPopupcss'
+	}).openPopup();
+
+
+	// get the LatLng after dragging the marker
+	dropmaRk.on('dragend', function (e) {
+		var dmRk = e.target.getLatLng();
+		var dmrkLat = dmRk.lat;
+		var dmrkLng = dmRk.lng;
+
+		// define the second popup
+		var dropmaRkpop =
+		'Lat: ' + dmrkLat + '<br>' +
+		'Lng: ' + dmrkLng + '<br>';
+
+		// define the OverPass Query
+		// [bbox:{{bbox}}];node[~"."~"."];out meta;
+		var ovquery = 'http://overpass-api.de/api/interpreter?data=' +
+		'[out:json];' +
+		'way(around:25,' + dmrkLat + ',' + dmrkLng + ')[highway];>->.a; ' +
+		'(node(around:25,' + dmrkLat + ',' + dmrkLng + ') - .a);' +
+		'out;';
+
+		// render the Query on map
+		$.get(ovquery, function (resp) {
+			var helpovgeojson = osmtogeojson(resp);
+			var layerresov = new L.GeoJSON(helpovgeojson, {
+				pointToLayer: function (feature, latlng) {
+					return new L.CircleMarker(latlng, {
+						color: '#0E3C96',
+						fillcolor: '#0E3C96'
+					});
+				}
+			}).addTo(map);
+			// zomm to the render features
+			map.fitBounds(layerresov.getBounds());
+		}).done(function () {
+			console.log('success');
+		}).fail(function (err) {
+			console.log(err);
+		});
+
+		// update data after moveend
+		dropmaRk.update(map)
+		.bindPopup(dropmaRkpop, {
+			className: 'uiconPopupcss'
+		})
+		.openPopup();
+
+		// remove the marker from map
+		dropmaRk.on('dblclick', function () {
+			map.removeLayer(dropmaRk);
+		});
+	});
+});
+
+
+
 // switch search mod
 $(document).ready(function () {
 	$('.sbs').click(function () {
@@ -241,6 +333,7 @@ miniMap.addTo(map);
 
 
 // add zoom control with options
+// http://stackoverflow.com/questions/33614912/how-to-locate-leaflet-zoom-control-in-a-desired-position/33617036#33617036
 L.control.zoom({
 	position:'bottomright'
 }).addTo(map);
@@ -375,6 +468,10 @@ function getUser() {
 
 
 // Fetch Pi Weather Stations database
+// http://stackoverflow.com/questions/32575243/auto-refresh-javascript-without-loading-whole-page/32576037#32576037
+// http://stackoverflow.com/questions/29098178/javascript-leaflet-adding-a-bunch-of-markers/29099364#29099364
+// http://plnkr.co/edit/fNf9CDTBCCsj3cavVjJY?p=preview
+// http://plnkr.co/edit/cHPSLKDbltxr9jFZotOD?p=preview
 var urlwwxs = 'src/data/WeeWxStation.json';
 
 // define Popup for Pi Stations
@@ -492,3 +589,8 @@ $('#earthQuake').change(function () {
 		map.removeLayer(earthQuake);
 	}
 });
+
+
+
+// save all marker on mapQuest
+// http://stackoverflow.com/questions/35125036/export-leaflet-map-to-geojson/35128471#35128471

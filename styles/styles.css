@@ -755,7 +755,18 @@ hr {
 	margin: 0 0 0 0;
 	border: none;
 }
-
+.dropMarker {
+	background-image: url('images/pinpoi.png');
+	background-position: center;
+	background-size: 26px 35px;
+	background-repeat: no-repeat;
+	margin: 0;
+	display: inline-block;
+	align-items: center;
+	width: 36px;
+	height: 35px;
+	cursor: pointer;
+}
 
 
 
