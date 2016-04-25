@@ -5,6 +5,7 @@
 	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
 	<link rel='stylesheet' href='styles/styles.css' />
 	<link rel='stylesheet' href='/fonts/fonts.css'>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
 	<div id="sidebar" class="sidebar collapsed">
@@ -52,7 +53,11 @@
 						<span>This search is design to aggregate some Point Of Interest inside
 						the map view (bbox). For better knowledge in query construction you
 						can check the documentation of <a target='_blank'
-						href='http://wiki.openstreetmap.org/wiki/Overpass_turbo'>Overpass</a>.<br>
+						href='http://wiki.openstreetmap.org/wiki/Overpass_turbo'>Overpass</a>
+						or click on the marker to drop it on the map and let you select
+						where you want to query all nodes into a 25 meters radius.
+						<div id="pineditor" align="center"></div>
+						<div id="respineditor" align="right"></div>
 						<br><b><u>Example: </u></b><br>
 						<i class="fa fa-tint"></i> [amenity=drinking_water]<br>
 						<i class="fa fa-fire-extinguisher"></i>[emergency=fire_hydrant]<br>
@@ -94,7 +99,7 @@
 						<a target='_blank'
 						href='https://github.com/RobyRemzy/cozy-map/wiki'>Map Wiki</a></span></p>
 						<b>General Tips:</b><br>
-						There are probably some bunch of Konnectors ideas of around that App,
+						There are probably some bunch of Konnectors ideas around that App,
 						let us know which one you would like.<br>
 
 						<b>Search Tips:</b><br>
@@ -106,7 +111,6 @@
 						<b>Layer Tips:</b><br>
 						About the the weather stations, we will be happy to merge your
 						personal weather station inside the database if you have an online one.<br>
-						<br>
 
 						<b>Beta Tips:</b><br>
 						You are able to Auth on OpenStreetMap from the App inside "Settings".
@@ -140,7 +144,7 @@
 		</div>
 	</div>
 	<div id='map' class='sidebar-map'></div>
-	<script src="vendor/jquery.slim.min.js"></script>
+	<script src="vendor/jquery-1.12.3.min.js"></script>
 	<script src='vendor/cozysdk-client.js'></script>
 	<script src='build/map.min.js'></script>
 </body>
