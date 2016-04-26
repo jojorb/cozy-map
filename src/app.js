@@ -215,7 +215,7 @@ $('#pineditor').click(function () {
 	.bindPopup(dropmaRkpop, {
 		className: 'uiconPopupcss'
 	}).openPopup();
-	map.setView(new L.LatLng(mCenterlat, mCenterlng), 15);
+	// map.setView(new L.LatLng(mCenterlat, mCenterlng), 15);
 
 	// get the LatLng after dragging the marker
 	dropmaRk.on('dragend', function (e) {
@@ -230,7 +230,7 @@ $('#pineditor').click(function () {
 
 		// define the OverPass Query
 		// [bbox:{{bbox}}];node[~"."~"."];out meta;
-		var ovquery = 'http://overpass-api.de/api/interpreter?data=' +
+		var ovquery = 'https://overpass-api.de/api/interpreter?data=' +
 		'[out:json];' +
 		'way(around:25,' + dmrkLat + ',' + dmrkLng + ')[highway];>->.a; ' +
 		'(node(around:25,' + dmrkLat + ',' + dmrkLng + ') - .a);' +
