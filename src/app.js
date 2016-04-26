@@ -262,7 +262,7 @@ $('#pineditor').click(function () {
 					var featLng = feature.geometry.coordinates[0];
 
 					var deepovquery = 'http://overpass-api.de/api/interpreter?data=' +
-					'[out:popup];' +
+					'[out:json];' +
 					'way(around:25,' + featLat + ',' + featLng + ')[highway];>->.a; ' +
 					'(node(around:5,' + featLat + ',' + featLng + ') - .a);' +
 					'out;';
