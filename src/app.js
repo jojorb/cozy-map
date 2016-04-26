@@ -142,7 +142,7 @@ document.getElementById('sidebarex').appendChild(gecBlock);
 $(document).ready(function () {
 	$('#opsdAmenity').click(function () {
 		L.layerJSON({
-			url: 'http://overpass-api.de/api/interpreter?data=' +
+			url: 'https://overpass-api.de/api/interpreter?data=' +
 			'[out:json];node({lat1},{lon1},{lat2},{lon2})' +
 			$('#opAmenity').val() +
 			';out;',
@@ -261,7 +261,7 @@ $('#pineditor').click(function () {
 					var featLat = feature.geometry.coordinates[1];
 					var featLng = feature.geometry.coordinates[0];
 
-					var deepovquery = 'http://overpass-api.de/api/interpreter?data=' +
+					var deepovquery = 'https://overpass-api.de/api/interpreter?data=' +
 					'[out:json];' +
 					'way(around:25,' + featLat + ',' + featLng + ')[highway];>->.a; ' +
 					'(node(around:5,' + featLat + ',' + featLng + ') - .a);' +
