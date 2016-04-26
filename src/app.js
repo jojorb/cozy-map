@@ -215,11 +215,7 @@ $('#pineditor').click(function () {
 	.bindPopup(dropmaRkpop, {
 		className: 'uiconPopupcss'
 	}).openPopup();
-
-	// remove the marker from map
-	dropmaRk.on('dblclick', function () {
-		map.removeLayer(dropmaRk);
-	});
+	map.setView(new L.LatLng(mCenterlat, mCenterlng), 15);
 
 	// get the LatLng after dragging the marker
 	dropmaRk.on('dragend', function (e) {
@@ -240,23 +236,66 @@ $('#pineditor').click(function () {
 		'(node(around:25,' + dmrkLat + ',' + dmrkLng + ') - .a);' +
 		'out;';
 
+		// create an empty layer for the features
+		var layerresov = L.geoJson().addTo(map);
+
 		// render the Query on map
 		$.get(ovquery, function (resp) {
+			// console.log(resp);
+			// grab the elements from the .json
+			// loop inside to get resp.elements[i].id
+
+			// osm resp .JSON to .GeoJson
 			var helpovgeojson = osmtogeojson(resp);
-			var layerresov = new L.GeoJSON(helpovgeojson, {
+
+			// move GeoJson into the layer created
+			layerresov = new L.GeoJSON(helpovgeojson, {
 				pointToLayer: function (feature, latlng) {
+					// console.log(feature);
+					// console.log(latlng);
+
+					// define the features popup
+					var editosm = 'https://www.openstreetmap.org/edit?';
+					var typWN = feature.properties.type;
+					var featId = feature.properties.id;
+					var featLat = feature.geometry.coordinates[1];
+					var featLng = feature.geometry.coordinates[0];
+
+					var deepovquery = 'http://overpass-api.de/api/interpreter?data=' +
+					'[out:popup];' +
+					'way(around:25,' + featLat + ',' + featLng + ')[highway];>->.a; ' +
+					'(node(around:5,' + featLat + ',' + featLng + ') - .a);' +
+					'out;';
+
+					var popGeojson =
+					'<b>' + feature.properties.tags.name + '</b><br>' +
+					typWN + '(' + featId + ')<br>' +
+					featLat + ', ' + featLng + '<br>' +
+					'&#9654 ' +
+					'<a href="' + editosm + typWN + featId + '#map=19/' + featLat + '/' +
+					featLng + '" target=_blank>' +
+					'Edit with iD' +
+					'</a><br>' +
+					'&#9660 ' +
+					'<a href="' + deepovquery + '" target=_blank>' +
+					'More features ...' +
+					'</a><br>';
+
 					return new L.CircleMarker(latlng, {
 						color: '#0E3C96',
 						fillcolor: '#0E3C96'
+					}).bindPopup(popGeojson, {
+						className: 'uiconPopupcss'
 					});
 				}
 			}).addTo(map);
 			// zomm to the render features
 			map.fitBounds(layerresov.getBounds());
-		}).done(function () {
-			console.log('success');
-		}).fail(function (err) {
-			console.log(err);
+		}).done(function (layerresov, feature) {
+			console.log('Data Loaded: ' + feature);
+		}).fail(function (layerresov, feature, err) {
+			console.log('Data Fail: ' + feature + err);
+			// cannot get "TypeError: this._northEast is undefined"
 		});
 
 		// update data after moveend
@@ -265,6 +304,12 @@ $('#pineditor').click(function () {
 			className: 'uiconPopupcss'
 		})
 		.openPopup();
+
+		// remove the marker from map
+		dropmaRk.on('dblclick', function () {
+			map.removeLayer(dropmaRk);
+			layerresov.clearLayers();
+		});
 	});
 });
 
