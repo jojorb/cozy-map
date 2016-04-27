@@ -5,6 +5,7 @@
 	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
 	<link rel='stylesheet' href='styles/styles.css' />
 	<link rel='stylesheet' href='/fonts/fonts.css'>
+	<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
 	<div id="sidebar" class="sidebar collapsed">
@@ -74,19 +75,46 @@
 				</h1>
 				<div id="maplayerselect">
 					<span><i class="fa fa-globe"></i><b> Basemap</b></span><br>
-					<label><input
-						type="radio" name="basemap" value="losm" checked> Map OSM</label>
-						<br>
-					<label><input
-						type="radio" name="basemap" value="lesri"> Sat Imagery</label>
-						<br>
-					<label><input
-						type="radio" name="basemap" value="ldcarto"> Simple Dark</label>
+					<table style="width:100%">
+						<tr>
+							<th id="osmbasemap" class="">
+								<div id="" class="viewmap viewmap_wosm"></div><br>
+								<label><input
+									type="radio" name="basemap" value="losm" checked></label>
+							</th>
+							<th id="hotbasemap" class="">
+								<div id="" class="viewmap viewmap_whot"></div><br>
+								<label><input
+									type="radio" name="basemap" value="lhot"></label>
+							</th>
+							<th id="satbasemap" class="">
+								<div id="" class="viewmap viewmap_wsat"></div><br>
+								<label><input
+									type="radio" name="basemap" value="lesri"></label>
+							</th>
+						</tr>
+						<tr>
+							<th id="bcartobasemap" class="">
+								<div id="" class="viewmap viewmap_wbcro"></div><br>
+								<label><input
+									type="radio" name="basemap" value="ldcarto"></label>
+							</th>
+							<th id="bcartobasemap" class="">
+								<div id="" class="viewmap viewmap_wwcro"></div><br>
+								<label><input
+									type="radio" name="basemap" value="ldcartow"></label>
+							</th>
+							<!-- add more... -->
+						</tr>
+					</table>
 						<br>
 					<hr>
 					<span><i class="fa fa-object-group"></i><b> Overlay</b></span><br>
 						<label><input
-							type="checkbox" id="weeStations"> Weather Stations</label>
+							type="checkbox" id="weeStations"> Weather Stations</label><br>
+						<label><input
+							type="checkbox" id="earthQuake"> Earthquake USGS</label><br>
+							<span>fill colors are based on the level of the alert with a blue stroke for tsunami risk</span>
 				</div>
 			</div>
 			<div class="sidebar-pane" id="info">
