@@ -767,6 +767,47 @@ hr {
 	height: 35px;
 	cursor: pointer;
 }
+.viewmap {
+	background-image: url();
+	background-position: center;
+	background-size: 85px 85px;
+	background-repeat: no-repeat;
+	margin: 0;
+	display: inline-block;
+	align-items: center;
+	height: 85px;
+	width: 85px;
+}
+.viewmap_wosm {
+	background-image: url('images/view/osm_w.png');
+}
+.viewmap_wosm:hover {
+	background-image: url('images/view/osm_s.png');
+}
+.viewmap_whot {
+	background-image: url('images/view/hot_w.png');
+}
+.viewmap_whot:hover {
+	background-image: url('images/view/hot_s.png');
+}
+.viewmap_wsat {
+	background-image: url('images/view/sat_w.png');
+}
+.viewmap_wsat:hover {
+	background-image: url('images/view/sat_s.png');
+}
+.viewmap_wbcro {
+	background-image: url('images/view/bcro_w.png');
+}
+.viewmap_wbcro:hover {
+	background-image: url('images/view/bcro_s.png');
+}
+.viewmap_wwcro {
+	background-image: url('images/view/wcro_w.png');
+}
+.viewmap_wwcro:hover {
+	background-image: url('images/view/wcro_s.png');
+}
 /*Overiding leaflet-routine-machine.css : images attribution*/
 .leaflet-routing-icon {
     background-image: url('images/leaflet.routing.icons.png');
