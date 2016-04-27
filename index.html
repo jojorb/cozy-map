@@ -86,14 +86,38 @@
 				</h1>
 				<div id="maplayerselect">
 					<span><i class="fa fa-globe"></i><b> Basemap</b></span><br>
-					<label><input
-						type="radio" name="basemap" value="losm" checked> Map OSM</label>
-						<br>
-					<label><input
-						type="radio" name="basemap" value="lesri"> Sat Imagery</label>
-						<br>
-					<label><input
-						type="radio" name="basemap" value="ldcarto"> Simple Dark</label>
+					<table style="width:100%">
+						<tr>
+							<th id="osmbasemap" class="">
+								<div id="" class="viewmap_wosm"></div><br>
+								<label><input
+									type="radio" name="basemap" value="losm" checked></label>
+							</th>
+							<th id="hotbasemap" class="">
+								<div id="" class="viewmap_whot"></div><br>
+								<label><input
+									type="radio" name="basemap" value="lhot"></label>
+							</th>
+							<th id="satbasemap" class="">
+								<div id="" class="viewmap_wsat"></div><br>
+								<label><input
+									type="radio" name="basemap" value="lesri"></label>
+							</th>
+						</tr>
+						<tr>
+							<th id="bcartobasemap" class="">
+								<div id="" class="viewmap_wbcro"></div><br>
+								<label><input
+									type="radio" name="basemap" value="ldcarto"></label>
+							</th>
+							<th id="bcartobasemap" class="">
+								<div id="" class="viewmap_wwcro"></div><br>
+								<label><input
+									type="radio" name="basemap" value="ldcartow"></label>
+							</th>
+							<!-- add more... -->
+						</tr>
+					</table>
 						<br>
 					<hr>
 					<span><i class="fa fa-object-group"></i><b> Overlay</b></span><br>

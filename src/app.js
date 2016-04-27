@@ -17,19 +17,31 @@ L.Icon.Default.imagePath = 'node_modules/leaflet/dist/images/';
 
 // Basemap Tiles Layers for the map // 	detectRetina: true // 	minZoom: 1,
 var losm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-	attribution: '',
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 	maxZoom: '19',
 	opacity: '1',
 	scene: ''
 });
-var ldcarto = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
-	attribution: '',
-	maxZoom: '18',
+var lhot = L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>',
+	maxZoom: '19',
 	opacity: '1',
 	scene: ''
 });
 var lesri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-	attribution: '',
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+	maxZoom: '18',
+	opacity: '1',
+	scene: ''
+});
+var ldcarto = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	maxZoom: '18',
+	opacity: '1',
+	scene: ''
+});
+var ldcartow = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
 	maxZoom: '18',
 	opacity: '1',
 	scene: ''
@@ -47,7 +59,8 @@ var map = new L.Map('map', {
 var baseMaps = {
 	'Map OSM': losm,
 	'Sat Imagery': lesri,
-	'Simple Dark': ldcarto
+	'Simple Dark': ldcarto,
+	'Simple Clear': ldcartow
 };
 L.control.layers(baseMaps);
 
@@ -56,17 +69,37 @@ function switchBasemap(type) {
 	if (type === 'lesri') {
 		map.removeLayer(losm);
 		map.removeLayer(ldcarto);
+		map.removeLayer(ldcartow);
+		map.removeLayer(lhot);
 		map.addLayer(lesri);
 	}
 	if (type === 'losm') {
 		map.removeLayer(lesri);
 		map.removeLayer(ldcarto);
+		map.removeLayer(lhot);
+		map.removeLayer(ldcartow);
 		map.addLayer(losm);
+	}
+	if (type === 'lhot') {
+		map.removeLayer(lesri);
+		map.removeLayer(losm);
+		map.removeLayer(ldcarto);
+		map.removeLayer(ldcartow);
+		map.addLayer(lhot);
 	}
 	if (type === 'ldcarto') {
 		map.removeLayer(lesri);
 		map.removeLayer(losm);
+		map.removeLayer(lhot);
+		map.removeLayer(ldcartow);
 		map.addLayer(ldcarto);
+	}
+	if (type === 'ldcartow') {
+		map.removeLayer(lesri);
+		map.removeLayer(losm);
+		map.removeLayer(lhot);
+		map.removeLayer(ldcarto);
+		map.addLayer(ldcartow);
 	}
 }
 // change the value of the basemap
@@ -273,7 +306,7 @@ $('#pineditor').click(function () {
 					'way(around:25,' + featLat + ',' + featLng + ')[highway];>->.a; ' +
 					'(node(around:5,' + featLat + ',' + featLng + ') - .a);' +
 					'out;';
-
+					// To show GeoJSON on div http://stackoverflow.com/a/36465630
 					var popGeojson =
 					'<b>' + feature.properties.tags.name + '</b><br>' +
 					typWN + '(' + featId + ')<br>' +
@@ -573,68 +606,60 @@ $('#weeStations').change(function () {
 
 
 
-// Fetch earthQuake database
-var urlusgs = 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson';
-
-
-// define Popup for earthQuake
-var popupUsgs =
-'<center>{type }{title}<br>' +
-'{coordinates}<br>' +
-'<a href={url} target="_blank">{url}</a></center> {data}';
-
-// Setup the rendering of the earthQuake Db (.geojson)
-var earthQuake = new L.LayerJSON({
-	url: urlusgs,
-	locAsGeoJSON: true,
-	propertyLoc: ['coordinates'],
-	propertyTitle: 'title',
-	buildIcon: function () {
-		return new L.Icon({
-			iconUrl: 'styles/images/datamarker.png',
-			iconRetinaUrl: 'styles/images/datamarker.png',
-			iconSize: [13, 23],
-			iconAnchor: [6.5, 23],
-			popupAnchor: [0, -24]
+// Define EarthQuake Marker
+function earthqMarker(feature, latlng) {
+	return new L.CircleMarker(latlng, {
+		radius: feature.properties.mag * 3,
+		color: '#0429ED',
+		fillColor: feature.properties.alert,
+		weight: feature.properties.tsunami,
+		opacity: 0.45,
+		fillOpacity: 0.35
+	});
+}
+// Define EarthQuake Popup
+function earthqPopup(feature, earthquakeLayer) {
+	if (feature.properties) {
+		var earthqPopup =
+		'<b>Magnitude ' + feature.properties.mag + '</b><br>' +
+		new Date(Number(feature.properties.time)).toLocaleString() +
+		'<br>' + feature.properties.place +
+		'<br><a href=' + feature.properties.url + ' target=_blank>More info</a>';
+		earthquakeLayer.bindPopup(earthqPopup, {
+			className: 'uiconPopupcss'
 		});
-	},
-	buildPopup: function (data) {
-		return L.Util.template(
-			'<center>{type }{title}<br>' +
-			'{coordinates}<br>' +
-			'<a href={url} target="_blank">{url}</a></center> {data}', {
-				type: data.type,
-				title: data.title,
-				coordinates: data.coordinates,
-				url: data.url,
-				data: (function () {
-					var out = '';
-					for (var i = 0; i < data.id.length; i++) {
-						out += L.Util.template(popupUsgs, data.id[i]);
-					}
-					return out;
-				})
-			}
-		);
 	}
+}
+// create an empty layer for the features
+var earthQuake = L.geoJson(false, {
+	pointToLayer: earthqMarker,
+	onEachFeature: earthqPopup
 });
-// map.addLayer(earthQuake);	//not selected by default
-// add a quick way to select the layer
+
+// keep it inside the controle Layer
 var overlayQuake = {
-	'Earthquake > M5': earthQuake
+	'Earthquake': earthQuake
 };
 L.control.layers(baseMaps, overlayQuake);
 
-// switch overlay weeStations
+// switch overlay earthQuake
+// make them dynamique view-source:http://tiles.kupaia.fr/article10.html
 $('#earthQuake').change(function () {
 	if ($(this).prop('checked')) {
+
+		// render the Query on map
+		var eqUsgs =
+		'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson';
+		$.getJSON(eqUsgs, function (resp) {
+			earthQuake.addData(resp);
+			console.log(resp);
+		});
 		map.addLayer(earthQuake);
 	} else {
 		map.removeLayer(earthQuake);
+		earthQuake.clearLayers();
 	}
 });
-
-
 
 // save all marker on mapQuest
 // http://stackoverflow.com/questions/35125036/export-leaflet-map-to-geojson/35128471#35128471
