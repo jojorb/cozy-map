@@ -249,7 +249,6 @@ $('#pineditor').click(function () {
 	.bindPopup(dropmaRkpop, {
 		className: 'uiconPopupcss'
 	}).openPopup();
-	// map.setView(new L.LatLng(mCenterlat, mCenterlng), 15);
 
 	// get the LatLng after dragging the marker
 	dropmaRk.on('dragend', function (e) {
