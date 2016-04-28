@@ -13,22 +13,22 @@ This is a simple "carto-map" project to get your own mapping tool and will allow
 
 --
 
-ACTUAL STATES : STEP 1 "ease the search and retrieve data to render"
 
-"Done" features:  
+
+**"Done" features:**  
 - fetch https tiles from OSM/Esri/CartoDb provide OSM data, satellite and simple black view.
 - find places or path in https query.
 - Weather Stations are provided by "WeeWxStation" mostly served from personal Raspberry Pi.
-
-NEXT STEPS:
-- ease contribution and fetch more data in a more persistent and personalize way.
-- working on konnectors.
-- organize manage mapping tool and data
-
-Working on (see developer branch):  
-- Get an access to Amenity from OSM and contribute/update nodes.
 - Fetch earthquake data provided by usgs.gov (updated every 15 minutes).
-- Wiki and user guide.
+- Get an access to Amenity from OSM and contribute/update nodes ways.
+
+**Working on (developer branch):**  
+- contribute/update osm nodes in app.
+- ease contribution and fetch more data in a more persistent and personalize way
+- working on konnectors.
+
+**Next stuff:**  
+- organize manage mapping tool and data
 
 >Because sometimes contribute is the only thing we can do.  
 Load a Map to update or create Open Source data.  
