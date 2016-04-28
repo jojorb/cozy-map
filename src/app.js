@@ -636,8 +636,7 @@ $('#earthQuake').change(function () {
 		// render the Query on map
 		var eqUsgs =
 		// 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson';
-		// 'https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/src/data/significant_month.geojson';
-		'https://remi.cozycloud.cc/public/files/files/bdbb3c5f555ef5a2ceb0a985ad87f5e6/attach/significant_month.geojson';
+		'https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/src/data/significant_month.geojson';
 		$.getJSON(eqUsgs, function (resp) {
 			earthQuake.addData(resp);
 			console.log(resp);
