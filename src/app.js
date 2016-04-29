@@ -114,7 +114,7 @@ map.setView(new L.LatLng(46.8, 3.8), 3);
 
 
 
-// icon for the routing machine
+// icons
 var startRicon = L.icon({
 	iconUrl: 'styles/images/pinstart.png',
 	iconRetinaUrl: 'styles/images/pinstart.png',
@@ -129,7 +129,13 @@ var dropUicon = L.icon({
 	iconAnchor: [18, 47],
 	popupAnchor: [0, -48]
 });
-
+var dataUicon = L.icon({
+	iconUrl: 'styles/images/datamarker.png',
+	iconRetinaUrl: 'styles/images/datamarker.png',
+	iconSize: [13, 23],
+	iconAnchor: [6.5, 23],
+	popupAnchor: [0, -24]
+});
 
 
 // Routing machine features
@@ -174,30 +180,73 @@ document.getElementById('sidebarex').appendChild(gecBlock);
 // search from OpenStreetMap with OverPass
 $(document).ready(function () {
 	$('#opsdAmenity').click(function () {
-		L.layerJSON({
-			url: 'https://overpass-api.de/api/interpreter?data=' +
-			'[out:json];node({lat1},{lon1},{lat2},{lon2})' +
-			$('#opAmenity').val() +
-			';out;',
-			propertyItems: 'elements',
-			propertyTitle: 'tags.name',
-			propertyLoc:   ['lat', 'lon'],
-			minZoom: 14,
-			minShift: 500,
-			buildIcon: function () {
-				return new L.Icon({
-					iconUrl: 'styles/images/datamarker.png',
-					iconRetinaUrl: 'styles/images/datamarker.png',
-					iconSize: [13, 23],
-					iconAnchor: [6.5, 23],
-					popupAnchor: [0, -24]
-				});
-			},
-			buildPopup: function (data) {
-				return data.tags.name || null;
-			}
-		})
-		.addTo(map);
+
+		var bounds = map.getBounds();
+		// console.log(bounds);
+		var swlat = bounds.getSouthWest().lat;
+		// console.log(swlat);
+		var swlng = bounds.getSouthWest().lng;
+		var nelat = bounds.getNorthEast().lat;
+		var nelng = bounds.getNorthEast().lng;
+
+		// overpass query for searched amenity in bbox
+		var qsOverpass =
+		'http://overpass-api.de/api/interpreter?data=' +
+		'[out:json];node(' +
+		swlat + ',' + swlng + ',' + nelat + ',' + nelng +
+		')' +
+		$('#opAmenity').val() +
+		';out;';
+
+		// create an empty layer for the features
+		var qsoLayer = L.geoJson().addTo(map);
+
+		// render the Query on map
+		$.get(qsOverpass, function (resp) {
+			// console.log(resp);
+
+			// osm resp .JSON to .GeoJson
+			var qsOntogeo = osmtogeojson(resp);
+			// move GeoJson into the layer created
+			qsoLayer = new L.GeoJSON(qsOntogeo, {
+				pointToLayer: function (feature, latlng) {
+					console.log(feature);
+					console.log(latlng);
+
+					// define the features popup
+					var popAmenity =
+					'<b>' + feature.properties.tags.name + '</b><br>' +
+					feature.properties.type + ' (' + feature.properties.id + ')<br>' +
+					'&#9660 ' +
+					'<a href="' +
+					'http://overpass-api.de/api/interpreter?data=[out:popup];node(' +
+					feature.geometry.coordinates[1] + ',' + feature.geometry.coordinates[0] + ',' +
+					feature.geometry.coordinates[1] + ',' + feature.geometry.coordinates[0] +
+					');out;' +
+					'" target=_blank>' +
+					'More info...' +
+					'</a><br>' +
+					'&#9654 ' +
+					'<a href="' +
+					'https://www.openstreetmap.org/edit?' +
+					feature.properties.type + feature.properties.id + '#map=19/' +
+					feature.geometry.coordinates[1] + '/' + feature.geometry.coordinates[0] +
+					'" target=_blank>' +
+					'Edit with iD' +
+					'</a>';
+
+					return new L.Marker(latlng, {
+						icon: dataUicon
+					}).bindPopup(popAmenity, {
+						className: 'uiconPopupcss'
+					});
+				}
+			}).addTo(map);
+			// zomm to the render features
+			map.fitBounds(qsoLayer.getBounds());
+		}).done(function (qsoLayer, feature) {
+			console.log('Data Loaded: ' + feature);
+		});
 	});
 });
 
@@ -468,12 +517,6 @@ L.hash(map);
 map.on('moveend', function () {
 	var mapCenterlat  = map.getCenter().wrap().lat;
 	var mapCenterlng  = map.getCenter().wrap().lng;
-	// var mapBounds     = map.getBounds();
-	// var mapBoundleft  = mapBounds.getNorthWest().lng;
-	// var mapBoundright = mapBounds.getSouthEast().lng;
-	// var mapBoundtop   = mapBounds.getNorthWest().lat;
-	// var mapBoundtop   = mapBounds.getNorthEast().lat;
-	// var mapBoundbottom= mapBounds.getSouthEast().lat;
 	var mapCenter     = mapCenterlat + '/' + mapCenterlng;
 	var tarBlk       = ' target=_blank>';
 	var iDeditor      = 'https://www.openstreetmap.org/edit?editor=id#map=18/' + mapCenter;
@@ -537,14 +580,7 @@ function getUser() {
 
 // Fetch Pi Weather Stations database
 // Define WeatherStations Marker
-var dataUicon = L.icon({
-	iconUrl: 'styles/images/datamarker.png',
-	iconRetinaUrl: 'styles/images/datamarker.png',
-	iconSize: [13, 23],
-	iconAnchor: [6.5, 23],
-	popupAnchor: [0, -24]
-});
-
+// var dataUicon;
 // create an empty layer for the data
 var weeStations = new L.LayerGroup().addTo(map);
 
