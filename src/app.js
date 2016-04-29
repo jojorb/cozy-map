@@ -6,7 +6,6 @@ require('./leaflet.MiniMap.js');
 require('./leaflet.Locate.js');
 require('./leaflet-sidebar.js');
 require('./leaflet.Hash.js');
-require('./leaflet-layerjson.js');
 var osmAuth = require('osm-auth');
 var osmtogeojson = require('osmtogeojson');
 
@@ -537,58 +536,57 @@ function getUser() {
 
 
 // Fetch Pi Weather Stations database
-var urlwwxs = 'src/data/WeeWxStation.json';
-
-// define Popup for Pi Stations
-var popupPiw =
-'<center>{description}<br>' +
-'<a href={url} target="_blank">{url}</a></center> {data}';
-
-// Setup the rendering of the Pi Weather Db (.json)
-var weeStations = new L.LayerJSON({
-	url: urlwwxs,
-	propertyLoc: ['latitude', 'longitude'],
-	propertyTitle: 'station',
-	minZoom: 12,
-	buildIcon: function () {
-		return new L.Icon({
-			iconUrl: 'styles/images/datamarker.png',
-			iconRetinaUrl: 'styles/images/datamarker.png',
-			iconSize: [13, 23],
-			iconAnchor: [6.5, 23],
-			popupAnchor: [0, -24]
-		});
-	},
-	buildPopup: function (data) {
-		return L.Util.template(
-			'<center>{description}<br>' +
-			'<a href={url} target="_blank">{url}</a></center> {data}', {
-				description: data.description,
-				url: data.url,
-				data: (function () {
-					var out = '';
-					for (var i = 0; i < data.last_seen.length; i++) {
-						out += L.Util.template(popupPiw, data.last_seen[i]);
-					}
-					return out;
-				})
-			}
-		);
-	}
+// Define WeatherStations Marker
+var dataUicon = L.icon({
+	iconUrl: 'styles/images/datamarker.png',
+	iconRetinaUrl: 'styles/images/datamarker.png',
+	iconSize: [13, 23],
+	iconAnchor: [6.5, 23],
+	popupAnchor: [0, -24]
 });
-// map.addLayer(weeStations);	//not selected by default
-// add a quick way to select the layer
-var overlayMaps = {
+
+// create an empty layer for the data
+var weeStations = new L.LayerGroup().addTo(map);
+
+// handel the data
+function handle(response) {
+	console.log('Handle');
+	// Empty the current layergroup for clean update or refresh
+	weeStations.clearLayers();
+	// Loop over the newly retreived array
+	response.forEach(function (reps) {
+		// Define WeatherStations Popup
+		var popupPiw =
+		'<center>' + reps.description + '<br>' +
+		'<a href=' + reps.url + 'target="_blank">link</a></center>' +
+		new Date(Number(reps.last_seen)).toLocaleString();
+		L.marker([reps.latitude, reps.longitude], {
+			icon: dataUicon
+		})
+		.bindPopup(popupPiw, {
+			className: 'uiconPopupcss'
+		})
+		.addTo(weeStations);
+	});
+}
+// keep it inside the controle Layer
+var overlayWstations = {
 	'Weather Stations': weeStations
 };
-L.control.layers(baseMaps, overlayMaps);
+L.control.layers(baseMaps, overlayWstations);
 
 // switch overlay weeStations
+// make them udpated every x times
 $('#weeStations').change(function () {
 	if ($(this).prop('checked')) {
+		var urlwwxs = 'src/data/WeeWxStation.json';
+		$.getJSON(urlwwxs, handle);
+
+		// render the Query on map
 		map.addLayer(weeStations);
 	} else {
 		map.removeLayer(weeStations);
+		weeStations.clearLayers();
 	}
 });
 
