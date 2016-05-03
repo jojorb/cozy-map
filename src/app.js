@@ -247,6 +247,10 @@ $(document).ready(function () {
 		}).done(function (qsoLayer, feature) {
 			console.log('Data Loaded: ' + feature);
 		});
+		$('#opunAmenity').click(function () {
+			qsoLayer.clearLayers();
+			console.log('Data removed');
+		});
 	});
 });
 
@@ -264,8 +268,17 @@ oversdAmenity.id = 'opsdAmenity';
 oversdAmenity.type = 'submit';
 oversdAmenity.className = 'overinputval';
 oversdAmenity.value = 'ok';
+oversdAmenity.title = 'submit your query';
 var placeHolder2 = document.getElementById('optinput');
 placeHolder2.appendChild(oversdAmenity);
+
+var overunAmenity = document.createElement('span');
+overunAmenity.id = 'opunAmenity';
+overunAmenity.title = 'remove all mini markers';
+overunAmenity.className = 'overinputref';
+overunAmenity.value = 're';
+var placeHolder3 = document.getElementById('optinput');
+placeHolder3.appendChild(overunAmenity);
 
 
 
@@ -273,6 +286,7 @@ placeHolder2.appendChild(oversdAmenity);
 var pinThis = document.createElement('div');
 pinThis.id = 'dropMarker';
 pinThis.className = 'dropMarker';
+pinThis.title = 'click to drop on map center';
 document.getElementById('pineditor').appendChild(pinThis);
 
 
