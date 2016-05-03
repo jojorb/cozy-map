@@ -64,6 +64,7 @@ var baseMaps = {
 L.control.layers(baseMaps);
 
 // switch baselayer for the map
+// http://stackoverflow.com/a/36878723
 function switchBasemap(type) {
 	if (type === 'lesri') {
 		map.removeLayer(losm);
@@ -256,6 +257,10 @@ $(document).ready(function () {
 		}).done(function (qsoLayer, feature) {
 			console.log('Data Loaded: ' + feature);
 		});
+		$('#opunAmenity').click(function () {
+			qsoLayer.clearLayers();
+			console.log('Data removed');
+		});
 	});
 });
 
@@ -273,15 +278,24 @@ oversdAmenity.id = 'opsdAmenity';
 oversdAmenity.type = 'submit';
 oversdAmenity.className = 'overinputval';
 oversdAmenity.value = 'ok';
+oversdAmenity.title = 'submit your query';
 var placeHolder2 = document.getElementById('optinput');
 placeHolder2.appendChild(oversdAmenity);
 
+var overunAmenity = document.createElement('span');
+overunAmenity.id = 'opunAmenity';
+overunAmenity.title = 'remove all mini markers';
+overunAmenity.className = 'overinputref';
+overunAmenity.value = 're';
+var placeHolder3 = document.getElementById('optinput');
+placeHolder3.appendChild(overunAmenity);
 
 
 // drop a marker to Edit on osm
 var pinThis = document.createElement('div');
 pinThis.id = 'dropMarker';
 pinThis.className = 'dropMarker';
+pinThis.title = 'click to drop on map center';
 document.getElementById('pineditor').appendChild(pinThis);
 
 
@@ -595,7 +609,11 @@ function getUser() {
 
 
 // Fetch Pi Weather Stations database
+// http://stackoverflow.com/q/35734899
+// http://stackoverflow.com/q/29098178
 // Define WeatherStations Marker
+// differents icon based on feats http://plnkr.co/edit/cHPSLKDbltxr9jFZotOD?p=preview
+// https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup
 // var dataUicon;
 // create an empty layer for the data
 var weeStations = new L.LayerGroup().addTo(map);
@@ -629,6 +647,7 @@ L.control.layers(baseMaps, overlayWstations);
 
 // switch overlay weeStations
 // make them udpated every x times
+// http://stackoverflow.com/q/32575243
 $('#weeStations').change(function () {
 	if ($(this).prop('checked')) {
 		var urlwwxs = 'src/data/WeeWxStation.json';
