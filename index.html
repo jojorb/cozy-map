@@ -44,19 +44,38 @@
 						</tr>
 					</table>
 				</div>
-				<div id="sidebarex" class="search-divshow"></div>
-				<div id="sidebarlrm" class="search-divhidden"></div>
+				<div id="sidebarex" class="search-divshow">
+					<h3><center><b>
+						Find a place</b><br>
+						need some help?
+						<a target='_blank'
+					href='https://github.com/RobyRemzy/cozy-map/wiki/apphelp#find-a-place'> Wiki</a>
+				</center></h3>
+				</div>
+				<div id="sidebarlrm" class="search-divhidden">
+					<h3><center><b>
+						Find a way</b><br>
+						need some help?
+						<a target='_blank'
+					href='https://github.com/RobyRemzy/cozy-map/wiki/apphelp#find-your-way'> Wiki</a>
+				</center></h3>
+				</div>
 				<div id="sidebaroverpass" class="search-divhidden">
+					<h3><center><b>
+						Easy data mining on OpenStreetMap<br>
+						with custom query
+					</b></center></h3>
 					<div id="optinput"></div>
-					<br>
-					<h2><center>Easy data mining on OpenStreetMap</h2>
-						<span>This search is design to aggregate some Point Of Interest inside
-						the map view (bbox). For better knowledge in query construction you
-						can check the documentation of <a target='_blank'
-						href='http://wiki.openstreetmap.org/wiki/Overpass_turbo'>Overpass</a>
-						or click on the marker to drop it on the map and let you select
-						where you want to query all nodes into a 25 meters radius.
-						<div id="pineditor" align="center"></div>
+					<h3><center><b>
+						OR<br>Search with this marker to query all kind of nodes around
+						 a 25 meters radius.
+					</b></center></h3>
+					<div id="pineditor" align="center"></div>
+						<h3><center>
+							need some help?
+							<a target='_blank'
+						href='https://github.com/RobyRemzy/cozy-map/wiki/apphelp#easy-data-mining-on-openstreetmap'> Wiki</a>
+					</center></h3>
 						<!-- <span>Search response:<br><span> -->
 						<!-- <div id="respineditor" align="left"> -->
 							<!-- here the loading, success, fail, popup pois -->
@@ -69,15 +88,7 @@
 							<!-- <i class="fa fa-exclamation-triangle margin-bottom"></i> -->
 							<!-- <span class="sr-only">Fail...</span> -->
 						<!-- </div> -->
-						<br><b><u>Example: </u></b><br>
-						<i class="fa fa-tint"></i> [amenity=drinking_water]<br>
-						<i class="fa fa-fire-extinguisher"></i>[emergency=fire_hydrant]<br>
-						<i class="fa fa-envelope-o"></i>[amenity=post_box]<br>
-						<i class="fa fa-beer"></i>[amenity=pub][microbrewery=yes]<br>
-						<i class="fa fa-cutlery"></i> [cuisine=japanese]<br>
-						<i class="fa fa-cutlery"></i> [amenity=fast_food][name="Big Fernand"]<br>
-						<i class="fa fa-subway"></i> [railway=station]
-					</span>
+					<!-- </span> -->
 				</div>
 			</div>
 			<div class="sidebar-pane" id="maplayers">
@@ -85,88 +96,61 @@
 					<i class="fa fa-angle-double-left"></i></span>
 				</h1>
 				<div id="maplayerselect">
-					<span><i class="fa fa-globe"></i><b> Basemap</b></span><br>
-					<table style="width:100%">
-						<tr>
-							<th id="osmbasemap" class="">
-								<div id="" class="viewmap_wosm"></div><br>
-								<label><input
-									type="radio" name="basemap" value="losm" checked></label>
-							</th>
-							<th id="hotbasemap" class="">
-								<div id="" class="viewmap_whot"></div><br>
-								<label><input
-									type="radio" name="basemap" value="lhot"></label>
-							</th>
-							<th id="satbasemap" class="">
-								<div id="" class="viewmap_wsat"></div><br>
-								<label><input
-									type="radio" name="basemap" value="lesri"></label>
-							</th>
-						</tr>
-						<tr>
-							<th id="bcartobasemap" class="">
-								<div id="" class="viewmap_wbcro"></div><br>
-								<label><input
-									type="radio" name="basemap" value="ldcarto"></label>
-							</th>
-							<th id="bcartobasemap" class="">
-								<div id="" class="viewmap_wwcro"></div><br>
-								<label><input
-									type="radio" name="basemap" value="ldcartow"></label>
-							</th>
-							<!-- add more... -->
-						</tr>
-					</table>
-						<br>
-					<hr>
-					<span><i class="fa fa-object-group"></i><b> Overlay</b></span><br>
-						<label><input
-							type="checkbox" id="weeStations"> Weather Stations</label>
-							<br>
-						<label><input
-							type="checkbox" id="earthQuake"> Earthquake USGS</label>
-							<br>
+					<h3><center>
+						<b>Map Base Layers</b>
+					</center></h3>
+					<div id="switch_lesri" class="viewmap_sat" ></div>
+					<div id="switch_losm" class="viewmap_carto" ></div>
+
+					<h3><center>
+						<b>Map Database Overlay</b>
+					</center></h3>
+					<label><input
+						type="checkbox" id="weeStations"> Weather Stations
+					</label><br>
+					<label><input
+						type="checkbox" id="earthQuake"> Earthquake USGS
+					</label>
+
+					<h3><center>
+						&#43; New Raster Map Address
+					</center></h3>
+					<div id='myrtiles' align="center" ></div>
+					<h3><center>
+						&#43; New Vector Map Address
+					</center></h3>
+					<div id='myvtiles' align="center" ></div>
 				</div>
 			</div>
 			<div class="sidebar-pane" id="info">
 				<h1 class="sidebar-header">Info<span class="sidebar-close">
-					<i class="fa fa-angle-double-left"></i></span></h1>
-					<h2>Documentation</h2>
-					<p class="sidebar-topics"><span>
-						<i class="fa fa-github"></i>
-						<a target='_blank'
-						href='https://github.com/RobyRemzy/cozy-map/wiki'>Map Wiki</a>
-					</span></p>
-
-						<b>General Tips:</b><br>
-						There are probably some bunch of Konnectors ideas around that App,
-						let us know which one you would like.<br>
-
-						<br><b>Search Tips:</b><br>
-						You can remove from the map some markers by double click on them or
-						simply by clicking on the cross button inside the search slug.
-						Some markers are draggable at any times. This feature is available
-						during a route search.<br>
-
-						<br><b>Layer Tips:</b><br>
-						About the the weather stations, we will be happy to merge your
-						personal weather station inside the database if you have an online one.<br>
-
-						<br><b>Beta Tips:</b><br>
-						You are able to Auth on OpenStreetMap from the App inside "Settings".
-						This is a test to explore the Auth protocol, it would ease the way
-						to contribute to OpenStreetMap or any other OSM projects.<br>
-
-					<h2>Beta Projects in progress</h2>
-					<p class="sidebar-topics"><span>
-						<i class="fa fa-location-arrow fa-rotate-90 fa-1x"></i> <i>Beta</i>
-						 Mapillary</span></p>
-						 Mapillary's WebGL JavaScript library for displaying street level imagery anywhere!<p></p>
-					<p class="sidebar-topics"><span>
-						<i class="fa fa-subway"></i> <i>Beta</i>
-						Tangrams TransitLand</span></p>
-						An open source project sponsored by Mapzen.<p></p>
+					<i class="fa fa-angle-double-left"></i></span>
+				</h1>
+				<h3><center><b>Documentation
+					<a target='_blank'
+					href='https://github.com/RobyRemzy/cozy-map/wiki'>Map Wiki</a>
+				</b></center></h3>
+				<p><center>
+					<a target='_blank'
+					href='https://github.com/RobyRemzy/cozy-map/wiki/improvement'>
+					<i class="fa fa-github"></i> GitHub wiki new ideas</a><br>
+					<a target='_blank'
+					href='https://github.com/RobyRemzy/cozy-map/issues'>
+					<i class="fa fa-github"></i> GitHub issues</a>
+				</center></p>
+				<h3><center><b>Beta Projects in progress</b></center></h3>
+				<p><b>Auth on OpenStreetMap in App</b><br>
+					Go to "Settings", is a test to explore the Auth protocol and should
+					ease any contributions.
+				</p>
+				<p><b><i class="fa fa-location-arrow fa-rotate-90 fa-1x"></i>
+					Mapillary</b><br>
+					Mapillary's WebGL JavaScript library for displaying street level imagery anywhere!
+				</p>
+				<p><b><i class="fa fa-subway"></i>
+					Tangrams TransitLand</b><br>
+					An open source project sponsored by Mapzen.
+				</p>
 			</div>
 			<div class="sidebar-pane" id="settings">
 				<h1 class="sidebar-header">Settings<span class="sidebar-close">

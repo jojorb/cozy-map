@@ -14,39 +14,20 @@ L.Icon.Default.imagePath = 'node_modules/leaflet/dist/images/';
 
 
 
-// Basemap Tiles Layers for the map // 	detectRetina: true // 	minZoom: 1,
+// BaseLayer
 var losm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 	maxZoom: '19',
-	opacity: '1',
-	scene: ''
+	opacity: '1'
 });
-var lhot = L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>',
-	maxZoom: '19',
-	opacity: '1',
-	scene: ''
-});
+
 var lesri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
 	maxZoom: '18',
-	opacity: '1',
-	scene: ''
-});
-var ldcarto = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
-	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-	maxZoom: '18',
-	opacity: '1',
-	scene: ''
-});
-var ldcartow = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-	maxZoom: '18',
-	opacity: '1',
-	scene: ''
+	opacity: '1'
 });
 
-
+var myRastertile = L.tileLayer(null, {});
 
 // disable zoomControl (which is topleft by default) when initializing map&options
 var map = new L.Map('map', {
@@ -55,63 +36,72 @@ var map = new L.Map('map', {
 	zoomControl: false
 });
 
-var baseMaps = {
-	'Map OSM': losm,
-	'Sat Imagery': lesri,
-	'Simple Dark': ldcarto,
-	'Simple Clear': ldcartow
+var baseLayers = {
+	'OSM': losm,
+	'ESRI': lesri
 };
-L.control.layers(baseMaps);
 
-// switch baselayer for the map
-// http://stackoverflow.com/a/36878723
-function switchBasemap(type) {
-	if (type === 'lesri') {
-		map.removeLayer(losm);
-		map.removeLayer(ldcarto);
-		map.removeLayer(ldcartow);
-		map.removeLayer(lhot);
-		map.addLayer(lesri);
-	}
-	if (type === 'losm') {
-		map.removeLayer(lesri);
-		map.removeLayer(ldcarto);
-		map.removeLayer(lhot);
-		map.removeLayer(ldcartow);
-		map.addLayer(losm);
-	}
-	if (type === 'lhot') {
-		map.removeLayer(lesri);
-		map.removeLayer(losm);
-		map.removeLayer(ldcarto);
-		map.removeLayer(ldcartow);
-		map.addLayer(lhot);
-	}
-	if (type === 'ldcarto') {
-		map.removeLayer(lesri);
-		map.removeLayer(losm);
-		map.removeLayer(lhot);
-		map.removeLayer(ldcartow);
-		map.addLayer(ldcarto);
-	}
-	if (type === 'ldcartow') {
-		map.removeLayer(lesri);
-		map.removeLayer(losm);
-		map.removeLayer(lhot);
-		map.removeLayer(ldcarto);
-		map.addLayer(ldcartow);
-	}
-}
-// change the value of the basemap
-$('[name=basemap]').change(function () {
-	switchBasemap(this.value);
+$('#switch_losm').click(function () {
+	switchLayer(baseLayers, 'OSM');
+});
+$('#switch_lesri').click(function () {
+	switchLayer(baseLayers, 'ESRI');
 });
 
+function switchLayer(collection, layerKey) {
+	if (layerKey in collection) {
+		$.each(collection, function (key, layer) {
+			if (key === layerKey) {
+				if (!map.hasLayer(layer)) {
+					map.addLayer(layer);
+				}
+			} else if (map.hasLayer(layer)) {
+				map.removeLayer(layer);
+			}
+		});
+	} else {
+		console.log('There is no layer key by the name "' + layerKey + '" in the specified object.');
+	}
+}
+
+// Raster Layers submitions with L.TileLayer
+$(document).ready(function () {
+	$('#mytileSubm').click(function () {
+
+		map.removeLayer(losm);
+		map.removeLayer(lesri);
+		map.removeLayer(myRastertile);
+
+		var myTile = $('#mytileInput').val();
+		myRastertile.setUrl(myTile, {});
+		map.addLayer(myRastertile);
+		myRastertile.redraw(map);
+		console.log('TileLayer New url:', myTile);
+	});
+});
+
+// Input for personal Raster Layers
+var mytileInput = document.createElement('input');
+mytileInput.id = 'mytileInput';
+mytileInput.type = 'text';
+mytileInput.className = 'overinput';
+mytileInput.value = '';
+mytileInput.placeholder = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+var pHtileinp = document.getElementById('myrtiles');
+pHtileinp.appendChild(mytileInput);
+
+var mytileSubm = document.createElement('input');
+mytileSubm.id = 'mytileSubm';
+mytileSubm.type = 'submit';
+mytileSubm.className = 'overinputval';
+mytileSubm.value = 'ok';
+mytileSubm.title = 'submit your query';
+var pHtilesub = document.getElementById('myrtiles');
+pHtilesub.appendChild(mytileSubm);
 
 
 // set the position and zoom level of the map
 map.setView(new L.LatLng(46.8, 3.8), 3);
-
 
 
 // icon for the routing machine
@@ -269,7 +259,7 @@ overinAmenity.id = 'opAmenity';
 overinAmenity.type = 'text';
 overinAmenity.className = 'overinput';
 overinAmenity.value = '';
-overinAmenity.placeholder = 'ex: [amenity=cafe][name="Starbucks"]';
+overinAmenity.placeholder = 'ex: [cuisine=japanese]';
 var placeHolder = document.getElementById('optinput');
 placeHolder.appendChild(overinAmenity);
 
@@ -643,7 +633,7 @@ function handle(response) {
 var overlayWstations = {
 	'Weather Stations': weeStations
 };
-L.control.layers(baseMaps, overlayWstations);
+L.control.layers(baseLayers, overlayWstations);
 
 // switch overlay weeStations
 // make them udpated every x times
@@ -697,7 +687,7 @@ var earthQuake = L.geoJson(false, {
 var overlayQuake = {
 	'Earthquake': earthQuake
 };
-L.control.layers(baseMaps, overlayQuake);
+L.control.layers(baseLayers, overlayQuake);
 
 // switch overlay earthQuake
 // make them dynamique view-source:http://tiles.kupaia.fr/article10.html

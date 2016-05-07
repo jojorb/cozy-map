@@ -783,88 +783,34 @@ hr {
 	height: 35px;
 	cursor: pointer;
 }
+.viewmap_carto {
+background-image: url('images/view/carto.png');
+background-position: center;
+background-size: 180px 100px;
+background-repeat: no-repeat;
+margin: 0;
+display: inline-block;
+align-items: center;
+height: 100px;
+width: 180px;
+}
+.viewmap_carto:hover {
+cursor: pointer;
+}
 
-.viewmap {
-	/*background-image: url('images/view/x.png');*/
-	/*background-color: grey;*/
-	background-position: center;
-	background-size: 85px 85px;
-	background-repeat: no-repeat;
-	margin: 0;
-	display: inline-block;
-	align-items: center;
-	height: 85px;
-	width: 85px;
-}
-.viewmap_wosm {
-	background-image: url('images/view/osm_w.png');
-	background-position: center;
-	background-size: 85px 85px;
-	background-repeat: no-repeat;
-	margin: 0;
-	display: inline-block;
-	align-items: center;
-	height: 85px;
-	width: 85px;
-	}
-.viewmap_wosm:hover {
-	background-image: url('images/view/osm_s.png');
-}
-	.viewmap_whot {
-	background-image: url('images/view/hot_w.png');
-	background-position: center;
-	background-size: 85px 85px;
-	background-repeat: no-repeat;
-	margin: 0;
-	display: inline-block;
-	align-items: center;
-	height: 85px;
-	width: 85px;
-}
-.viewmap_whot:hover {
-	background-image: url('images/view/hot_s.png');
-}
-.viewmap_wsat {
-background-image: url('images/view/sat_w.png');
+.viewmap_sat {
+background-image: url('images/view/sat.png');
 background-position: center;
-background-size: 85px 85px;
+background-size: 180px 100px;
 background-repeat: no-repeat;
 margin: 0;
 display: inline-block;
 align-items: center;
-height: 85px;
-width: 85px;
+height: 100px;
+width: 180px;
 }
-.viewmap_wsat:hover {
-background-image: url('images/view/sat_s.png');
-}
-.viewmap_wbcro {
-background-image: url('images/view/bcro_w.png');
-background-position: center;
-background-size: 85px 85px;
-background-repeat: no-repeat;
-margin: 0;
-display: inline-block;
-align-items: center;
-height: 85px;
-width: 85px;
-}
-.viewmap_wbcro:hover {
-background-image: url('images/view/bcro_s.png');
-}
-.viewmap_wwcro {
-background-image: url('images/view/wcro_w.png');
-background-position: center;
-background-size: 85px 85px;
-background-repeat: no-repeat;
-margin: 0;
-display: inline-block;
-align-items: center;
-height: 85px;
-width: 85px;
-}
-.viewmap_wwcro:hover {
-background-image: url('images/view/wcro_s.png');
+.viewmap_sat:hover {
+cursor: pointer;
 }
 
 /*Overiding leaflet-routine-machine.css : images attribution*/
