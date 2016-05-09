@@ -718,6 +718,10 @@ hr {
   right: 0;
   top: 0;
 }
+.osmlogin {
+	text-align: right;
+	font-size: 0.9em;
+}
 .searchquery {
 	text-align: center;
 }
@@ -782,46 +786,38 @@ hr {
 	height: 35px;
 	cursor: pointer;
 }
-.viewmap {
-	background-image: url();
-	background-position: center;
-	background-size: 85px 85px;
-	background-repeat: no-repeat;
-	margin: 0;
-	display: inline-block;
+.viewmap_karto {
+align-items: center;
+width: 100%;
+background-color: rgba(196, 196, 196, 0.5);
+color: #3D3D3D;
+}
+.viewmap_karto:hover {
+cursor: pointer;
+background-color: #33A6FF;
+}
+.newmapadd {
 	align-items: center;
-	height: 85px;
-	width: 85px;
+	width: 100%;
 }
-.viewmap_wosm {
-	background-image: url('images/view/osm_w.png');
+.nrminput[type=text] {
+	background: rgba(196, 196, 196, 0.5);
+	color: #3D3D3D;
+	width: 90%;
+	height: 34px;
+	font-size: 100%;
+	margin: 3px 0 0 0;
+	border: none;
 }
-.viewmap_wosm:hover {
-	background-image: url('images/view/osm_s.png');
-}
-.viewmap_whot {
-	background-image: url('images/view/hot_w.png');
-}
-.viewmap_whot:hover {
-	background-image: url('images/view/hot_s.png');
-}
-.viewmap_wsat {
-	background-image: url('images/view/sat_w.png');
-}
-.viewmap_wsat:hover {
-	background-image: url('images/view/sat_s.png');
-}
-.viewmap_wbcro {
-	background-image: url('images/view/bcro_w.png');
-}
-.viewmap_wbcro:hover {
-	background-image: url('images/view/bcro_s.png');
-}
-.viewmap_wwcro {
-	background-image: url('images/view/wcro_w.png');
-}
-.viewmap_wwcro:hover {
-	background-image: url('images/view/wcro_s.png');
+.nrminputval[type=submit] {
+	background: #86888B;
+	color: #33A6FF;
+	width: 10%;
+	height: 34px;
+	font-size: 100%;
+	margin: 0 0 0 0;
+	border: none;
+	cursor: pointer;
 }
 /*Overiding leaflet-routine-machine.css : images attribution*/
 .leaflet-routing-icon {
