@@ -1,0 +1,24 @@
+[
+  {
+    "latitude":48.847693629905116,
+    "longitude":2.4358695745468135,
+    "altitude":"",
+    "geometry":"Point",
+    "description":"Synaltic, Vincennes",
+    "url":"http://ratzillas.com/synaltic/wxdata.txt",
+    "station":"WOSPi",
+    "weewx_info":null,
+    "last_seen":1460449285
+  },
+  {
+    "latitude":48.89654788122562,
+    "longitude":2.381096184253692,
+    "altitude":"",
+    "geometry":"Point",
+    "description":"La Fonderie Ile de France",
+    "url":"http://ratzillas.com/fonderie/wxdata.txt",
+    "station":"WOSPi",
+    "weewx_info":null,
+    "last_seen":1460449285
+  }
+]
