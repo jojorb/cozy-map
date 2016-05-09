@@ -1,0 +1,3306 @@
+[
+  {
+    "url": "http://www.pwsweather.com/obs/283002842.html",
+    "latitude": 48.4504566,
+    "longitude": 1.4527078,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CAGNY14FR.html",
+    "latitude": 49.1438613,
+    "longitude": -0.2549974999999449,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CHALAUTRE.html",
+    "latitude": 48.541825,
+    "longitude": 3.4594529999999395,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CHASERUK.html",
+    "latitude": 49.193147,
+    "longitude": -2.110485,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IHAUTSDE2.html",
+    "latitude": 48.812,
+    "longitude": 2.277,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CH291129.html",
+    "latitude": 47.45537,
+    "longitude": 0.450844,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/DEUZA1.html",
+    "latitude": 47.2804,
+    "longitude": 1.111586,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/FRED56680.html",
+    "latitude": 47.6774893,
+    "longitude": -3.2047092999999904,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ICENTREF4.html",
+    "latitude": 48.151103,
+    "longitude": 1.3644180000000006,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/GUERNSEY.html",
+    "latitude": 49.4537236,
+    "longitude": -2.5491526000000704,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/GUISSENY29.html",
+    "latitude": 48.636685,
+    "longitude": -4.443430000000035,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/KERCHASTEL.html",
+    "latitude": 48.742569,
+    "longitude": -4.23456,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/KERGA56.html",
+    "latitude": 47.8383413,
+    "longitude": -3.3858377000000246,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/LECLOSEAU.html",
+    "latitude": 48.43213,
+    "longitude": 3.25088,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/FRLNBG01.html",
+    "latitude": 49.1488,
+    "longitude": 0.912865,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/FFRDINAN1.html",
+    "latitude": 48.46,
+    "longitude": -2.06,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/3PIGNONS.html",
+    "latitude": 48.363,
+    "longitude": 2.523,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/MACHECOUL.html",
+    "latitude": 46.9888314,
+    "longitude": -1.8026174999999967,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SNOOPY.html",
+    "latitude": 48.5808,
+    "longitude": 1.5922,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IPAYSDEL38.html",
+    "latitude": 47.23571,
+    "longitude": -2.15937,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/FRNOGENT1.html",
+    "latitude": 47.83,
+    "longitude": 2.73,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IPICARDI25.html",
+    "latitude": 49.316711,
+    "longitude": 2.31922,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IBBRETAGN.html",
+    "latitude": 48.5466458,
+    "longitude": -2.777094199999965,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/THENIOUX2.html",
+    "latitude": 47.2574221,
+    "longitude": 1.928950900000018,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/METEOSULLY.html",
+    "latitude": 47.7607,
+    "longitude": 2.36196,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/NETATMIG.html",
+    "latitude": 48.5559887,
+    "longitude": 2.3657491,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IBOBIGNY2.html",
+    "latitude": 48.856667,
+    "longitude": 2.520556,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/NOISY1.html",
+    "latitude": 48.8491607,
+    "longitude": 2.560582199999999,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/101134.html",
+    "latitude": 49.483475,
+    "longitude": -2.515646,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/PALIS.html",
+    "latitude": 48.2901567,
+    "longitude": 3.7063680999999633,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/PLEDRAN.html",
+    "latitude": 48.446014,
+    "longitude": -2.745903,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IPOMMEUS2.html",
+    "latitude": 48.805,
+    "longitude": 3.015,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/WD02334.html",
+    "latitude": 48.875661,
+    "longitude": 2.485932,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ROUENFR.html",
+    "latitude": 49.4725596,
+    "longitude": 1.1074788999999328,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SAINTARME1.html",
+    "latitude": 47.5784572,
+    "longitude": -2.7124624,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IBRITTAN2.html",
+    "latitude": 48.14277777777778,
+    "longitude": -2.2516666666666665,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/FFRQUIBE2.html",
+    "latitude": 47.4875,
+    "longitude": -3.1143,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SSDP41F.html",
+    "latitude": 47.610758,
+    "longitude": 1.274423,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/MONDR14.html",
+    "latitude": 49.1391522,
+    "longitude": -0.516413899999975,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/STEFBZH56.html",
+    "latitude": 47.831518,
+    "longitude": -3.4222200000000385,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IILEDEFR47.html",
+    "latitude": 48.875214,
+    "longitude": 2.718896,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/TYARGLAZ1.html",
+    "latitude": 48.36707737948759,
+    "longitude": -4.264081909248375,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/DAMGAN56.html",
+    "latitude": 47.5172354,
+    "longitude": -2.5751568,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ILIMOUSI28.html",
+    "latitude": 45.8117482,
+    "longitude": 1.2155044999999518,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IBOURGOG9.html",
+    "latitude": 47.0169322,
+    "longitude": 4.853189,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CAL69300.html",
+    "latitude": 45.7841839,
+    "longitude": 4.834033099999942,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CH291129.html",
+    "latitude": 47.45537,
+    "longitude": 0.450844,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/DEUZA1.html",
+    "latitude": 47.2804,
+    "longitude": 1.111586,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/FRED56680.html",
+    "latitude": 47.6774893,
+    "longitude": -3.2047092999999904,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IBOURGOG6.html",
+    "latitude": 47.521958,
+    "longitude": 5.112544000000071,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/PUITSNEUF.html",
+    "latitude": 45.454358,
+    "longitude": -0.434106,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/TREN01.html",
+    "latitude": 47.3222198,
+    "longitude": 5.1057593,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/LISTAL33.html",
+    "latitude": 45.098517,
+    "longitude": -0.78182,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/STSORNIN.html",
+    "latitude": 46.413437,
+    "longitude": 3.004766,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CHEVALR.html",
+    "latitude": 46.02966,
+    "longitude": 3.61771,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/METEOBOISS.html",
+    "latitude": 45.58,
+    "longitude": -0.99,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SWHWX01.html",
+    "latitude": 45.191,
+    "longitude": 5.268,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/LAMALA.html",
+    "latitude": 45.54567,
+    "longitude": 0.66571,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ARCES17.html",
+    "latitude": 45.557013,
+    "longitude": -0.860281,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CW7218.html",
+    "latitude": 42.09917,
+    "longitude": 1.84583,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/JR06160.html",
+    "latitude": 43.56768901007715,
+    "longitude": 7.1372294425964355,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CRNINF.html",
+    "latitude": 44.1474858,
+    "longitude": 7.7359028,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/EA1AIW.html",
+    "latitude": 43.3113,
+    "longitude": 5.4026,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/INAVARRA16.html",
+    "latitude": 42.8126593,
+    "longitude": -1.66112279999993,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/831701.html",
+    "latitude": 43.219634,
+    "longitude": 6.851115999999985,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/INAVARRA18.html",
+    "latitude": 42.8719658,
+    "longitude": -1.6443458,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/F4UCR.html",
+    "latitude": 43.2125193,
+    "longitude": 1.1713072,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SPAWNX.html",
+    "latitude": 43.6531,
+    "longitude": 3.5519,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/BANARIES.html",
+    "latitude": 42.1313,
+    "longitude": -0.4666,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IBEAUSOL1.html",
+    "latitude": 43.7403156,
+    "longitude": 7.4152676999999585,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/INFORADIO.html",
+    "latitude": 43.8153762,
+    "longitude": 7.730152800000042,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ASCAIN.html",
+    "latitude": 43.339816,
+    "longitude": -1.644377,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/METEO34.html",
+    "latitude": 43.7447,
+    "longitude": 3.3261,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/WLARUES22.html",
+    "latitude": 42.5,
+    "longitude": -0.85,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ROUVE.html",
+    "latitude": 43.1838425,
+    "longitude": 5.799056699999937,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/12230.html",
+    "latitude": 43.9890923,
+    "longitude": 3.1814554,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/LESMARTYS.html",
+    "latitude": 43.41692,
+    "longitude": 2.30697,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/EA3CH.html",
+    "latitude": 41.8099481,
+    "longitude": 2.0971693000000187,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ICATALUA54.html",
+    "latitude": 41.8950081,
+    "longitude": 1.047474,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/S10265449.html",
+    "latitude": 42.079,
+    "longitude": 3.1,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/DIADELAVIN.html",
+    "latitude": 43.2880555555556,
+    "longitude": -0.348888888888889,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/HUESCA.html",
+    "latitude": 42.1398281,
+    "longitude": -0.41022029999999177,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ICATALUN17.html",
+    "latitude": 42.421484,
+    "longitude": 2.872348,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/VBMETEO1.html",
+    "latitude": 43.7876897,
+    "longitude": -1.3915742,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/METEONAR11.html",
+    "latitude": 43.196389,
+    "longitude": 2.978889,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/DINOSAURE.html",
+    "latitude": 43.4237517,
+    "longitude": 3.6088652,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/MIANEGUES.html",
+    "latitude": 42.0968551,
+    "longitude": 2.7661598,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/DAVELAR.html",
+    "latitude": 43.6062008,
+    "longitude": -1.0111698,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/FERRIWR88.html",
+    "latitude": 42.81530559999999,
+    "longitude": -1.6157917000000452,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IGIRONAS3.html",
+    "latitude": 41.789444,
+    "longitude": 3.028889,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SARDINERO.html",
+    "latitude": 43.5,
+    "longitude": 3.45,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/LERAN09600.html",
+    "latitude": 42.9868431,
+    "longitude": 1.915324700000042,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ROMBONE.html",
+    "latitude": 44.699,
+    "longitude": 8.069,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/VALLFOGONA.html",
+    "latitude": 42.19596,
+    "longitude": 2.3037400000000616,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/MANRESA.html",
+    "latitude": 41.731,
+    "longitude": 1.834,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/JR06160.html",
+    "latitude": 43.56768901007715,
+    "longitude": 7.1372294425964355,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CRNINF.html",
+    "latitude": 44.1474858,
+    "longitude": 7.7359028,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/EA1AIW.html",
+    "latitude": 43.3113,
+    "longitude": 5.4026,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/831701.html",
+    "latitude": 43.219634,
+    "longitude": 6.851115999999985,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SPAWNX.html",
+    "latitude": 43.6531,
+    "longitude": 3.5519,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IBEAUSOL1.html",
+    "latitude": 43.7403156,
+    "longitude": 7.4152676999999585,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/INFORADIO.html",
+    "latitude": 43.8153762,
+    "longitude": 7.730152800000042,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/METEO34.html",
+    "latitude": 43.7447,
+    "longitude": 3.3261,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ROUVE.html",
+    "latitude": 43.1838425,
+    "longitude": 5.799056699999937,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/12230.html",
+    "latitude": 43.9890923,
+    "longitude": 3.1814554,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/DINOSAURE.html",
+    "latitude": 43.4237517,
+    "longitude": 3.6088652,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SARDINERO.html",
+    "latitude": 43.5,
+    "longitude": 3.45,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/FORNOAG1.html",
+    "latitude": 45.3644668,
+    "longitude": 7.2233467,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ADC1224.html",
+    "latitude": 46.203533,
+    "longitude": 6.1848308,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CAL69300.html",
+    "latitude": 45.7841839,
+    "longitude": 4.834033099999942,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/948974.html",
+    "latitude": 45.877222,
+    "longitude": 7.625556,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CHXDAV1.html",
+    "latitude": 45.914,
+    "longitude": 6.851,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ITOTORIN8.html",
+    "latitude": 45.074517,
+    "longitude": 7.662959,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/BUBACIP.html",
+    "latitude": 45.67894,
+    "longitude": 8.827523,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IISEREFA2.html",
+    "latitude": 45.3959226,
+    "longitude": 5.165441299999998,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ILOMBARD57.html",
+    "latitude": 45.312,
+    "longitude": 8.96884,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/HRIGOLI.html",
+    "latitude": 45.912241,
+    "longitude": 8.506373,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IW2MVS.html",
+    "latitude": 45.761677,
+    "longitude": 9.002098,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IZ1DSJ.html",
+    "latitude": 45.424,
+    "longitude": 7.596,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IZ1ZPJ.html",
+    "latitude": 46.0567,
+    "longitude": 8.2624,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/WMR88CXROU.html",
+    "latitude": 45.78535,
+    "longitude": 4.821694,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IMARIANO6.html",
+    "latitude": 45.70902,
+    "longitude": 9.196730000000002,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/BASSEX13.html",
+    "latitude": 46.211003,
+    "longitude": 6.989807,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/I1GXVMETEO.html",
+    "latitude": 45.72599,
+    "longitude": 8.58095,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/PREGNANA.html",
+    "latitude": 45.5134443,
+    "longitude": 9.0056301,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/YORKY.html",
+    "latitude": 44.9591717,
+    "longitude": 7.60054,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/METEOCP01.html",
+    "latitude": 45.553581,
+    "longitude": 9.226487,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/DW5457.html",
+    "latitude": 45.838056,
+    "longitude": 8.775278,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ITAMIPRIM1.html",
+    "latitude": 45.4532421,
+    "longitude": 9.1337547,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ITMONS57.html",
+    "latitude": 45.23621,
+    "longitude": 7.50671,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ORBASSANO.html",
+    "latitude": 44.99950027,
+    "longitude": 7.54551458,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CARLINA.html",
+    "latitude": 46.135,
+    "longitude": 8.32,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/PROMIOD.html",
+    "latitude": 45.786,
+    "longitude": 7.603,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/RONAGO.html",
+    "latitude": 45.83349991,
+    "longitude": 8.98565865,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SAINBELNET.html",
+    "latitude": 45.8173792,
+    "longitude": 4.595836299999974,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/VARESE01.html",
+    "latitude": 45.726826,
+    "longitude": 8.802269,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/WMR8800001.html",
+    "latitude": 45.95207,
+    "longitude": 6.39798,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/BULGA.html",
+    "latitude": 45.54495,
+    "longitude": 9.002765,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/STEFHF.html",
+    "latitude": 45.666597,
+    "longitude": 9.160347,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/TOMETEO01.html",
+    "latitude": 45.04402,
+    "longitude": 7.67105,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/TORINOVEST.html",
+    "latitude": 45.074600275086,
+    "longitude": 7.63808906078339,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/WMR200VILL.html",
+    "latitude": 46.0530634,
+    "longitude": 8.9959361,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/VILLANIGRA.html",
+    "latitude": 45.801965,
+    "longitude": 8.430749999999989,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/F1JXQ.html",
+    "latitude": 45.6887488,
+    "longitude": 5.9095903,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/WEBMETEO01.html",
+    "latitude": 45.5446204,
+    "longitude": 8.0025764,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/WEBMETEO02.html",
+    "latitude": 45.5362767,
+    "longitude": 8.0523926,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/BARESIA1.html",
+    "latitude": 46.549602,
+    "longitude": 5.711016100000052,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IBOURGOG9.html",
+    "latitude": 47.0169322,
+    "longitude": 4.853189,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/DEUZA1.html",
+    "latitude": 47.2804,
+    "longitude": 1.111586,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/TREN01.html",
+    "latitude": 47.3222198,
+    "longitude": 5.1057593,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/STSORNIN.html",
+    "latitude": 46.413437,
+    "longitude": 3.004766,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CHEVALR.html",
+    "latitude": 46.02966,
+    "longitude": 3.61771,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/THENIOUX2.html",
+    "latitude": 47.2574221,
+    "longitude": 1.928950900000018,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/14SW59.html",
+    "latitude": 50.6369146,
+    "longitude": 3.0634367999999768,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/PCPR2000.html",
+    "latitude": 50.835187,
+    "longitude": 4.330366000000026,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ASHFORD.html",
+    "latitude": 51.1428131,
+    "longitude": 0.8931848,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/BAUDOURMET.html",
+    "latitude": 50.4783643,
+    "longitude": 3.8370044,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IRWAL55.html",
+    "latitude": 50.7128616,
+    "longitude": 5.030580299999997,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/BMGB5962.html",
+    "latitude": 50.968,
+    "longitude": 2.440469,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/NONO62.html",
+    "latitude": 50.3101206,
+    "longitude": 2.9483556,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/INORDPAS37.html",
+    "latitude": 50.7,
+    "longitude": 3.09,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/METEOBOVEL.html",
+    "latitude": 49.8848399,
+    "longitude": 2.141629,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IVLAAMSB8.html",
+    "latitude": 50.75,
+    "longitude": 4.36,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CAPELWX.html",
+    "latitude": 51.1032753,
+    "longitude": 1.2137735,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CHERITON.html",
+    "latitude": 51.088,
+    "longitude": 1.135,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/COURTIL1.html",
+    "latitude": 50.353088,
+    "longitude": 2.259121,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/DOVERUK.html",
+    "latitude": 51.1542282,
+    "longitude": 1.2737781,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/FORTMAHON.html",
+    "latitude": 50.338699,
+    "longitude": 1.549491,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CHASTRE.html",
+    "latitude": 50.616,
+    "longitude": 4.645,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/HAMSTREET1.html",
+    "latitude": 51.0650728,
+    "longitude": 0.856158100000016,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/EGKHWX.html",
+    "latitude": 51.15408,
+    "longitude": 0.64608,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IWS1080W2.html",
+    "latitude": 50.8760956,
+    "longitude": 3.4547565,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/KURINGENVW.html",
+    "latitude": 50.948219,
+    "longitude": 5.308338,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IRGIONWA47.html",
+    "latitude": 50.663503,
+    "longitude": 4.495766,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/LEGHEER.html",
+    "latitude": 50.7280417,
+    "longitude": 2.9135495,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/UKHEADC1.html",
+    "latitude": 51.17,
+    "longitude": 0.62,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/LOBBES.html",
+    "latitude": 50.351,
+    "longitude": 4.266,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/VLAAMSG170.html",
+    "latitude": 50.7111014,
+    "longitude": 4.2494821999999886,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/WSOVERIJSE.html",
+    "latitude": 50.749482,
+    "longitude": 4.516735,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/METEOKAIN.html",
+    "latitude": 50.640018,
+    "longitude": 3.372412,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/MOUVAUX.html",
+    "latitude": 50.7045115,
+    "longitude": 3.1358716,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/NIEUWRODE.html",
+    "latitude": 50.9425,
+    "longitude": 4.810833,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IBRABANT12.html",
+    "latitude": 50.8252218,
+    "longitude": 4.709682799999996,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/BONHEIWX.html",
+    "latitude": 51.02221000000001,
+    "longitude": 4.54803000000004,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/WSMECHELEN.html",
+    "latitude": 51.0595,
+    "longitude": 4.5786,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ZONNEBEKE.html",
+    "latitude": 50.8738261,
+    "longitude": 3.0022460999999794,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/WILLOWTN37.html",
+    "latitude": 50.885,
+    "longitude": 0.55,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/WILS01.html",
+    "latitude": 50.89518,
+    "longitude": 4.69741,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+	{
+    "url": "http://www.pwsweather.com/obs/ABMETEO.html",
+    "latitude": 42.5143145,
+    "longitude": 14.1637641,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ACQUAVIVAM.html",
+    "latitude": 43.11604,
+    "longitude": 11.86169,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ALTOTEVERE.html",
+    "latitude": 43.542211,
+    "longitude": 12.165453,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ILAZIOCO10.html",
+    "latitude": 41.5602383,
+    "longitude": 12.6092428,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/PREGGIO.html",
+    "latitude": 43.229459,
+    "longitude": 12.2127675,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/BACALIFDM.html",
+    "latitude": 43.57395,
+    "longitude": 10.09466,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IBELLARIA2.html",
+    "latitude": 44.1481151,
+    "longitude": 12.4594771,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CAMPIGIANO.html",
+    "latitude": 43.8175012,
+    "longitude": 11.1391085,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/PAIARIPE.html",
+    "latitude": 42.32806,
+    "longitude": 12.236940000000004,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/PITCARMI1.html",
+    "latitude": 43.804429,
+    "longitude": 11.027222,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CDSMETEO.html",
+    "latitude": 41.7738101,
+    "longitude": 14.1233667,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IABRUZZO83.html",
+    "latitude": 42.3485,
+    "longitude": 14.164,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CING01.html",
+    "latitude": 43.3742222,
+    "longitude": 13.2034444,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/DEMETRA.html",
+    "latitude": 43.883,
+    "longitude": 10.686,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/16MONWXINT.html",
+    "latitude": 42.1258,
+    "longitude": 8.4501,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SARZANAFB.html",
+    "latitude": 44.1089491,
+    "longitude": 9.952940600000034,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/FLYNETTECH.html",
+    "latitude": 43.17300236,
+    "longitude": 11.11305781,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IZ0PMP.html",
+    "latitude": 41.441333,
+    "longitude": 12.791333,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ILAZIOGR5.html",
+    "latitude": 42.6737,
+    "longitude": 11.8713,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/GUALDOTADI.html",
+    "latitude": 43.226106,
+    "longitude": 12.785618,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IK5PWS.html",
+    "latitude": 43.885743,
+    "longitude": 10.519805,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ILAZIOPO7.html",
+    "latitude": 42.168694,
+    "longitude": 12.786056,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ILCONTEMAX.html",
+    "latitude": 41.8440421,
+    "longitude": 12.611240500000008,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/TEOWRC.html",
+    "latitude": 44.039426,
+    "longitude": 10.870519999999942,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IZ5MOQ.html",
+    "latitude": 44.0893234,
+    "longitude": 10.0946277,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/JESISUD.html",
+    "latitude": 43.5074674,
+    "longitude": 13.279129199999943,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/LASCALA.html",
+    "latitude": 43.691772,
+    "longitude": 10.869748999999956,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ILIGURIA77.html",
+    "latitude": 44.107778,
+    "longitude": 9.828611,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/MACERATA.html",
+    "latitude": 43.304295,
+    "longitude": 13.437257,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/BELLARIA.html",
+    "latitude": 44.1450048,
+    "longitude": 12.4647733,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ILAZIOLA14.html",
+    "latitude": 41.786771,
+    "longitude": 12.890077,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/PIOMBINO.html",
+    "latitude": 42.9392485,
+    "longitude": 10.5360226,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/TOSCANA282.html",
+    "latitude": 43.571,
+    "longitude": 11.53,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/VITERBO32.html",
+    "latitude": 42.6862831,
+    "longitude": 11.9059684,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/MASISOFT.html",
+    "latitude": 42.577914,
+    "longitude": 12.414322,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IARDEA01.html",
+    "latitude": 41.599,
+    "longitude": 12.513,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/FUCECCHIO1.html",
+    "latitude": 43.733958,
+    "longitude": 10.795413000000053,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/METEOGM.html",
+    "latitude": 43.525017,
+    "longitude": 13.20302,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IPISA4.html",
+    "latitude": 43.7387,
+    "longitude": 10.3992,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/latINASUD.html",
+    "latitude": 41.41709,
+    "longitude": 12.9612,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/METEOLIRI.html",
+    "latitude": 41.6785525,
+    "longitude": 13.5740713,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ITA225.html",
+    "latitude": 43.731337,
+    "longitude": 11.814389,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SBTRONTO.html",
+    "latitude": 42.959717,
+    "longitude": 13.876627999999982,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ILAZIOCA2.html",
+    "latitude": 41.9764946,
+    "longitude": 12.8712075,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IPUMONTE2.html",
+    "latitude": 43.848,
+    "longitude": 12.7895,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/FIORENTINA.html",
+    "latitude": 43.925668,
+    "longitude": 11.040384,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IABRUZZO59.html",
+    "latitude": 42.5,
+    "longitude": 14.14,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/TOSCANA255.html",
+    "latitude": 43.6454582,
+    "longitude": 11.0691319,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/EMILIAR233.html",
+    "latitude": 44.281,
+    "longitude": 11.253,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/OFENA.html",
+    "latitude": 42.328,
+    "longitude": 13.761,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/TEODORIP.html",
+    "latitude": 43.5195,
+    "longitude": 13.5011,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IFROSIN3.html",
+    "latitude": 41.4663325,
+    "longitude": 13.561765599999944,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/PIOMBINO2.html",
+    "latitude": 42.9358,
+    "longitude": 10.5231,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/POGGIOIMP.html",
+    "latitude": 41.821792,
+    "longitude": 15.367137,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ILAZIOPO4.html",
+    "latitude": 41.6674809,
+    "longitude": 12.5080234,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/AR3V1CSN.html",
+    "latitude": 43.736,
+    "longitude": 11.695,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IDALMACI22.html",
+    "latitude": 43.72542191,
+    "longitude": 15.7968483,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SINALUNGA.html",
+    "latitude": 43.205,
+    "longitude": 11.727,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ITQUASE.html",
+    "latitude": 43.844819,
+    "longitude": 10.985507,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/RIPAOLMO.html",
+    "latitude": 43.42833,
+    "longitude": 11.83583,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ROMEBOB0.html",
+    "latitude": 41.93547821,
+    "longitude": 12.51123619,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SANMARINO.html",
+    "latitude": 43.938443,
+    "longitude": 12.441456,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SNCSTNZMTO.html",
+    "latitude": 43.783361,
+    "longitude": 13.081353,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/150182.html",
+    "latitude": 43.7955844,
+    "longitude": 10.5740914,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SANMARIANO.html",
+    "latitude": 43.0947977,
+    "longitude": 12.313532699999996,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IER47822.html",
+    "latitude": 44.05528,
+    "longitude": 12.4525,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SAPPANICO.html",
+    "latitude": 43.572346,
+    "longitude": 13.455967,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SEANO.html",
+    "latitude": 43.829667,
+    "longitude": 11.02622,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/31071969.html",
+    "latitude": 43.724598,
+    "longitude": 15.905767,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SKYTEL.html",
+    "latitude": 43.471571,
+    "longitude": 11.859996,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SOGLIANOFC.html",
+    "latitude": 44.0108,
+    "longitude": 12.3138,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/1SPOLTWX.html",
+    "latitude": 42.452,
+    "longitude": 14.111,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ITERAMOT8.html",
+    "latitude": 42.80351687324202,
+    "longitude": 13.906538305225368,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/LUKAS.html",
+    "latitude": 42.5370989,
+    "longitude": 11.9204865,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ILAZIO19.html",
+    "latitude": 41.727,
+    "longitude": 13.121,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/TVPWS.html",
+    "latitude": 43.561444,
+    "longitude": 11.172856,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IZ0DPP.html",
+    "latitude": 42.597458,
+    "longitude": 12.564956,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/METEOTORRE.html",
+    "latitude": 42.394,
+    "longitude": 14.215,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ILAZIOMA7.html",
+    "latitude": 41.572,
+    "longitude": 12.542,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ITTER307.html",
+    "latitude": 42.797,
+    "longitude": 13.946,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/MASSACE1.html",
+    "latitude": 42.078333333333,
+    "longitude": 14.744166666667,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/VIESTE.html",
+    "latitude": 41.8835,
+    "longitude": 16.169,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/97653.html",
+    "latitude": 43.724848,
+    "longitude": 15.910335,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+	{
+    "url": "http://www.pwsweather.com/obs/PALIDDU.html",
+    "latitude": 38.0771377,
+    "longitude": 13.5044022,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CEO6O666.html",
+    "latitude": 38.0324,
+    "longitude": 14.02837,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/DANYX2003.html",
+    "latitude": 38.01628,
+    "longitude": 13.9674,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ALFONSO.html",
+    "latitude": 39.63,
+    "longitude": 16.51,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IRAGUSAD2.html",
+    "latitude": 36.7650513,
+    "longitude": 14.6398656,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/GIRIFALCO.html",
+    "latitude": 38.8279,
+    "longitude": 16.4337,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IW9GTR.html",
+    "latitude": 37.5729501,
+    "longitude": 15.039592699999957,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IW8RPQ.html",
+    "latitude": 39.4486111,
+    "longitude": 16.2618888,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ICAL65.html",
+    "latitude": 38.2158466,
+    "longitude": 16.24485949999996,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SICILIA173.html",
+    "latitude": 38.171,
+    "longitude": 15.308,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/RANDA95.html",
+    "latitude": 37.8712616,
+    "longitude": 14.95468903,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/METEOGIAM.html",
+    "latitude": 38.201745,
+    "longitude": 15.320932999999968,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/MONTETEJA.html",
+    "latitude": 37.65668,
+    "longitude": 14.518902,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ME1989.html",
+    "latitude": 38.1487398,
+    "longitude": 15.2113962,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SICILY37.html",
+    "latitude": 38.0773501,
+    "longitude": 13.3324496,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/WEATHERGB1.html",
+    "latitude": 38.1237551,
+    "longitude": 13.348204900000042,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/PARTANNATP.html",
+    "latitude": 37.7289,
+    "longitude": 12.8892,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CATANIA46.html",
+    "latitude": 37.597,
+    "longitude": 15.128,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ICALABRI32.html",
+    "latitude": 38.736993,
+    "longitude": 16.173228,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SICILIA.html",
+    "latitude": 38.0159228,
+    "longitude": 14.0870575,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/BARC54.html",
+    "latitude": 38.13,
+    "longitude": 15.21,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/13021981.html",
+    "latitude": 39.5,
+    "longitude": 16.2744,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CASTUERA.html",
+    "latitude": 38.4331,
+    "longitude": 5.3212,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/EA6DTWX.html",
+    "latitude": 39.645833,
+    "longitude": 2.895833,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/LOADMASTER.html",
+    "latitude": 39.7181932,
+    "longitude": 2.9160804000000553,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ISARDEGN48.html",
+    "latitude": 40.4805,
+    "longitude": 9.3887,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/VIPAPI.html",
+    "latitude": 39.611991,
+    "longitude": 2.675093,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ISARDEGN8.html",
+    "latitude": 39.2353026,
+    "longitude": 9.1862691,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SATORRE.html",
+    "latitude": 39.4417688,
+    "longitude": 2.75235,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IBALEARI2.html",
+    "latitude": 39.036389,
+    "longitude": 1.415278,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ISARDEGN58.html",
+    "latitude": 40.7506149,
+    "longitude": 8.543162299999949,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/EA6GP.html",
+    "latitude": 39.602,
+    "longitude": 2.694,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ABMETEO.html",
+    "latitude": 42.5143145,
+    "longitude": 14.1637641,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ILAZIOCO10.html",
+    "latitude": 41.5602383,
+    "longitude": 12.6092428,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CAIAZZO001.html",
+    "latitude": 41.1784,
+    "longitude": 14.3646,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/PAIARIPE.html",
+    "latitude": 42.32806,
+    "longitude": 12.236940000000004,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IW8CAP1.html",
+    "latitude": 41.1061258,
+    "longitude": 14.21304859999998,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CDSMETEO.html",
+    "latitude": 41.7738101,
+    "longitude": 14.1233667,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IABRUZZO83.html",
+    "latitude": 42.3485,
+    "longitude": 14.164,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IZ0PMP.html",
+    "latitude": 41.441333,
+    "longitude": 12.791333,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ILAZIOPO7.html",
+    "latitude": 42.168694,
+    "longitude": 12.786056,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ILCONTEMAX.html",
+    "latitude": 41.8440421,
+    "longitude": 12.611240500000008,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/MAT1NO.html",
+    "latitude": 40.023,
+    "longitude": 18.144,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/WEARIANO1.html",
+    "latitude": 41.2,
+    "longitude": 15.1,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ILAZIOLA14.html",
+    "latitude": 41.786771,
+    "longitude": 12.890077,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/MASISOFT.html",
+    "latitude": 42.577914,
+    "longitude": 12.414322,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IPUGLIAA10.html",
+    "latitude": 40.8906215,
+    "longitude": 16.8456484,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IARDEA01.html",
+    "latitude": 41.599,
+    "longitude": 12.513,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/GIOVINAZZO.html",
+    "latitude": 41.18337,
+    "longitude": 16.66595,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/latINASUD.html",
+    "latitude": 41.41709,
+    "longitude": 12.9612,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/METEOLIRI.html",
+    "latitude": 41.6785525,
+    "longitude": 13.5740713,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/METEOMON.html",
+    "latitude": 40.953333,
+    "longitude": 17.296389,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/AT335.html",
+    "latitude": 40.8299847,
+    "longitude": 14.1268428,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ILAZIOCA2.html",
+    "latitude": 41.9764946,
+    "longitude": 12.8712075,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IPROF.html",
+    "latitude": 41.109253,
+    "longitude": 13.905797,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IABRUZZO59.html",
+    "latitude": 42.5,
+    "longitude": 14.14,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/DJOMAA09.html",
+    "latitude": 42.43746,
+    "longitude": 18.822765,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/OFENA.html",
+    "latitude": 42.328,
+    "longitude": 13.761,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/LC2357PALM.html",
+    "latitude": 40.8707193,
+    "longitude": 14.5578401,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/REBOX73.html",
+    "latitude": 39.747915,
+    "longitude": 19.841466,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/KOKPAPAS.html",
+    "latitude": 39.772222,
+    "longitude": 21.028056,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IFROSIN3.html",
+    "latitude": 41.4663325,
+    "longitude": 13.561765599999944,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/POGGIOIMP.html",
+    "latitude": 41.821792,
+    "longitude": 15.367137,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ILAZIOPO4.html",
+    "latitude": 41.6674809,
+    "longitude": 12.5080234,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/PRIORA.html",
+    "latitude": 40.6187167434778,
+    "longitude": 14.3575322628021,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/PROCIDA.html",
+    "latitude": 40.758373,
+    "longitude": 14.009631,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ROMEBOB0.html",
+    "latitude": 41.93547821,
+    "longitude": 12.51123619,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/TIRANA3.html",
+    "latitude": 41.315332,
+    "longitude": 19.815618,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/1SPOLTWX.html",
+    "latitude": 42.452,
+    "longitude": 14.111,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ITERAMOT8.html",
+    "latitude": 42.80351687324202,
+    "longitude": 13.906538305225368,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ILAZIO19.html",
+    "latitude": 41.727,
+    "longitude": 13.121,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/DOMYS84.html",
+    "latitude": 40.5268672,
+    "longitude": 16.045647,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/MM71NOVOLI.html",
+    "latitude": 40.374,
+    "longitude": 18.051,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/6250EU.html",
+    "latitude": 39.8462553873548,
+    "longitude": 18.3084905147552,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/TM001.html",
+    "latitude": 40.476111,
+    "longitude": 17.229722,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IZ0DPP.html",
+    "latitude": 42.597458,
+    "longitude": 12.564956,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/METEOTORRE.html",
+    "latitude": 42.394,
+    "longitude": 14.215,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ILAZIOMA7.html",
+    "latitude": 41.572,
+    "longitude": 12.542,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ITTER307.html",
+    "latitude": 42.797,
+    "longitude": 13.946,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/TUGLIE.html",
+    "latitude": 40.0726,
+    "longitude": 18.1016,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/MASSACE1.html",
+    "latitude": 42.078333333333,
+    "longitude": 14.744166666667,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/VIESTE.html",
+    "latitude": 41.8835,
+    "longitude": 16.169,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/DESIMONE.html",
+    "latitude": 40.3017561,
+    "longitude": 14.955738999999994,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ZING10.html",
+    "latitude": 40.386904,
+    "longitude": 17.626675,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+	{
+    "url": "http://www.pwsweather.com/obs/LUGURIA197.html",
+    "latitude": 44.405973,
+    "longitude": 9.243248,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/GEQUINTO.html",
+    "latitude": 44.3842147,
+    "longitude": 9.020158700000025,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IW4ALK.html",
+    "latitude": 44.691349,
+    "longitude": 10.102582,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/METEOF.html",
+    "latitude": 44.54002,
+    "longitude": 10.745531,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/LIG043.html",
+    "latitude": 44.400355,
+    "longitude": 8.961391,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IPIEMONT48.html",
+    "latitude": 44.8001979,
+    "longitude": 8.790195499999982,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SOLARE.html",
+    "latitude": 44.33229,
+    "longitude": 9.32495,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/RECCOWX160.html",
+    "latitude": 44.3672002,
+    "longitude": 9.14736240000002,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/TULIPS001.html",
+    "latitude": 44.55,
+    "longitude": 8.98,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/APPSTMT1.html",
+    "latitude": 44.40547,
+    "longitude": 8.99802,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/BUSALLETTA.html",
+    "latitude": 44.497577,
+    "longitude": 8.987846,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/MDMEZZO.html",
+    "latitude": 44.4734,
+    "longitude": 12.0897,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IW4ALK.html",
+    "latitude": 44.691349,
+    "longitude": 10.102582,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/METEOF.html",
+    "latitude": 44.54002,
+    "longitude": 10.745531,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/MIGLIARINO.html",
+    "latitude": 44.769682,
+    "longitude": 11.93112700000006,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/EMILIAR233.html",
+    "latitude": 44.281,
+    "longitude": 11.253,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/NETATMOBEP.html",
+    "latitude": 44.586304,
+    "longitude": 11.607229,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IZ3NWP.html",
+    "latitude": 45.4780653,
+    "longitude": 11.4479535,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/BRESCIA.html",
+    "latitude": 45.554044,
+    "longitude": 10.244521,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CASTEL1.html",
+    "latitude": 45.111,
+    "longitude": 9.869,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/GRADISCA1.html",
+    "latitude": 45.94362479999999,
+    "longitude": 13.517241300000023,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IK3CSU.html",
+    "latitude": 45.6466666666667,
+    "longitude": 12.2669444444444,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/10801.html",
+    "latitude": 45.9776,
+    "longitude": 13.4088,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IVENETOP21.html",
+    "latitude": 45.4455976,
+    "longitude": 11.875318900000025,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/LAVALLE001.html",
+    "latitude": 45.5129,
+    "longitude": 11.4,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/CORLOVEN1.html",
+    "latitude": 45.93443799290722,
+    "longitude": 11.746970415115356,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IW2EJH.html",
+    "latitude": 45.81,
+    "longitude": 10.07,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/MARGHERA.html",
+    "latitude": 45.472055,
+    "longitude": 12.235221,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IZ3GAK.html",
+    "latitude": 45.601352,
+    "longitude": 12.873707,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ESINE.html",
+    "latitude": 45.926,
+    "longitude": 10.247,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/METEOGO.html",
+    "latitude": 45.938505,
+    "longitude": 13.628967,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/METMASVI.html",
+    "latitude": 45.712863,
+    "longitude": 11.6391993,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SMCARTA.html",
+    "latitude": 45.5350922,
+    "longitude": 11.527190099999984,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IVENETOL9.html",
+    "latitude": 45.2975,
+    "longitude": 11.9962777,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IUDUDINE1.html",
+    "latitude": 46.038,
+    "longitude": 13.2512,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/MONTEBELLO.html",
+    "latitude": 45.4575185,
+    "longitude": 11.384537,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/PN33087.html",
+    "latitude": 45.8323073,
+    "longitude": 12.6285126,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IVERONAP4.html",
+    "latitude": 45.493834,
+    "longitude": 10.79696,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/MIGLIARINO.html",
+    "latitude": 44.769682,
+    "longitude": 11.93112700000006,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ITVENETO1.html",
+    "latitude": 45.5,
+    "longitude": 11.44,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/WEATHERMOR.html",
+    "latitude": 46.075894,
+    "longitude": 13.634103,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/NIARDO.html",
+    "latitude": 45.977,
+    "longitude": 10.333,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/NOVMET.html",
+    "latitude": 45.7292138539946,
+    "longitude": 11.6832178491593,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IEMILIAR31.html",
+    "latitude": 45.041,
+    "longitude": 9.721,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SDWH3080.html",
+    "latitude": 45.7238223,
+    "longitude": 11.3292613,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ITPOLV1.html",
+    "latitude": 45.31045532,
+    "longitude": 11.95486736,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/PRATA1.html",
+    "latitude": 45.883792,
+    "longitude": 12.593662,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/PWSDESKLE.html",
+    "latitude": 46.0525,
+    "longitude": 13.6103,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/IMANTOVA5.html",
+    "latitude": 45.173056,
+    "longitude": 10.676667,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/S52ZO.html",
+    "latitude": 45.47032,
+    "longitude": 13.51416,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/ATLSISEO.html",
+    "latitude": 45.659737,
+    "longitude": 10.03512,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/SEDEMETEO.html",
+    "latitude": 46.0137159,
+    "longitude": 12.97597559999997,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/TELVEHOFER.html",
+    "latitude": 46.0683746,
+    "longitude": 11.480662800000005,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/PRITTY.html",
+    "latitude": 45.5230869,
+    "longitude": 10.885833000000048,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/VPOKROGLO.html",
+    "latitude": 46.072,
+    "longitude": 13.734,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/PATRIK10.html",
+    "latitude": 45.543683,
+    "longitude": 13.762032,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/LOGATEC1.html",
+    "latitude": 45.9084282,
+    "longitude": 14.2029696,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  },
+  {
+    "url": "http://www.pwsweather.com/obs/METEOAVIO1.html",
+    "latitude": 45.737027,
+    "longitude": 10.94092539999997,
+    "last_seen": 1462782052,
+    "description": "PWS",
+    "station": "pwsweather"
+  }
+]
