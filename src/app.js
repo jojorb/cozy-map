@@ -1,4 +1,3 @@
-// require modules
 var L = require('leaflet');
 require('./leaflet-routing-machine.js');
 require('./Control.Geocoder.js');
@@ -9,112 +8,110 @@ require('./leaflet.Hash.js');
 var osmAuth = require('osm-auth');
 var osmtogeojson = require('osmtogeojson');
 
-// specify the path to the leaflet images folder
 L.Icon.Default.imagePath = 'node_modules/leaflet/dist/images/';
 
 
-
-// Basemap Tiles Layers for the map // 	detectRetina: true // 	minZoom: 1,
 var losm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 	maxZoom: '19',
-	opacity: '1',
-	scene: ''
+	opacity: '1'
 });
-var lhot = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
-	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>',
-	maxZoom: '19',
-	opacity: '1',
-	scene: ''
-});
+
 var lesri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
 	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
 	maxZoom: '18',
-	opacity: '1',
-	scene: ''
-});
-var ldcarto = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
-	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-	maxZoom: '18',
-	opacity: '1',
-	scene: ''
-});
-var ldcartow = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
-	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-	maxZoom: '18',
-	opacity: '1',
-	scene: ''
+	opacity: '1'
 });
 
+var myRastertile = L.tileLayer(null, {});
 
+var date = new Date();
+var jmoinszin = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + (date.getDate() - 1)).slice(-2);
+// var edjj = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+var viirs = 'VIIRS_SNPP_CorrectedReflectance_TrueColor';
 
-// disable zoomControl (which is topleft by default) when initializing map&options
+var lgibs = L.tileLayer('https://map1.vis.earthdata.nasa.gov/wmts-webmerc/' + viirs + '/default/' + jmoinszin + '/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg', {
+	minZoom: '3',
+	maxZoom: '9',
+	opacity: '1'
+});
+
 var map = new L.Map('map', {
 	layers: [losm],
 	attributionControl: false,
 	zoomControl: false
 });
 
-var baseMaps = {
-	'Map OSM': losm,
-	'Humanitarian': lhot,
-	'Sat Imagery': lesri,
-	'Simple Dark': ldcarto,
-	'Simple Clear': ldcartow
+var baseLayers = {
+	'OSM': losm,
+	'ESRI': lesri,
+	'GIBS': lgibs
 };
-L.control.layers(baseMaps);
 
-// switch baselayer for the map
-function switchBasemap(type) {
-	if (type === 'lesri') {
-		map.removeLayer(losm);
-		map.removeLayer(ldcarto);
-		map.removeLayer(ldcartow);
-		map.removeLayer(lhot);
-		map.addLayer(lesri);
-	}
-	if (type === 'losm') {
-		map.removeLayer(lesri);
-		map.removeLayer(ldcarto);
-		map.removeLayer(lhot);
-		map.removeLayer(ldcartow);
-		map.addLayer(losm);
-	}
-	if (type === 'lhot') {
-		map.removeLayer(lesri);
-		map.removeLayer(losm);
-		map.removeLayer(ldcarto);
-		map.removeLayer(ldcartow);
-		map.addLayer(lhot);
-	}
-	if (type === 'ldcarto') {
-		map.removeLayer(lesri);
-		map.removeLayer(losm);
-		map.removeLayer(lhot);
-		map.removeLayer(ldcartow);
-		map.addLayer(ldcarto);
-	}
-	if (type === 'ldcartow') {
-		map.removeLayer(lesri);
-		map.removeLayer(losm);
-		map.removeLayer(lhot);
-		map.removeLayer(ldcarto);
-		map.addLayer(ldcartow);
+$('#switch_losm').click(function () {
+	switchLayer(baseLayers, 'OSM');
+});
+$('#switch_lesri').click(function () {
+	switchLayer(baseLayers, 'ESRI');
+});
+$('#switch_lgibs').click(function () {
+	switchLayer(baseLayers, 'GIBS');
+});
+
+function switchLayer(collection, layerKey) {
+	if (layerKey in collection) {
+		$.each(collection, function (key, layer) {
+			if (key === layerKey) {
+				if (!map.hasLayer(layer)) {
+					map.addLayer(layer);
+				}
+			} else if (map.hasLayer(layer)) {
+				map.removeLayer(layer);
+			}
+		});
+	} else {
+		console.log('There is no layer key by the name "' + layerKey + '" in the specified object.');
 	}
 }
-// change the value of the basemap
-$('[name=basemap]').change(function () {
-	switchBasemap(this.value);
+
+
+$(document).ready(function () {
+	$('#mytileSubm').click(function () {
+
+		map.removeLayer(losm);
+		map.removeLayer(lesri);
+		map.removeLayer(myRastertile);
+
+		var myTile = $('#mytileInput').val();
+		myRastertile.setUrl(myTile, {});
+		map.addLayer(myRastertile);
+		myRastertile.redraw(map);
+		console.log('TileLayer New url:', myTile);
+	});
 });
 
 
+var mytileInput = document.createElement('input');
+mytileInput.id = 'mytileInput';
+mytileInput.type = 'text';
+mytileInput.className = 'nrminput';
+mytileInput.value = '';
+mytileInput.placeholder = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+var pHtileinp = document.getElementById('myrtiles');
+pHtileinp.appendChild(mytileInput);
 
-// set the position and zoom level of the map
+var mytileSubm = document.createElement('input');
+mytileSubm.id = 'mytileSubm';
+mytileSubm.type = 'submit';
+mytileSubm.className = 'nrminputval';
+mytileSubm.value = 'ok';
+mytileSubm.title = 'submit your query';
+var pHtilesub = document.getElementById('myrtiles');
+pHtilesub.appendChild(mytileSubm);
+
+
 map.setView(new L.LatLng(46.8, 3.8), 3);
 
-
-
-// icons
 var startRicon = L.icon({
 	iconUrl: 'styles/images/pinstart.png',
 	iconRetinaUrl: 'styles/images/pinstart.png',
@@ -138,7 +135,6 @@ var dataUicon = L.icon({
 });
 
 
-// Routing machine features
 var sidebarlrm = L.Routing.control({
 	plan: L.Routing.plan(null, {
 		createMarker: function (i, startwp) {
@@ -158,38 +154,29 @@ var sidebarlrm = L.Routing.control({
 	routeDragTimeout: 250,
 	draggableWaypoints:true
 });
-// include the routing machine into the sidebar
 var lrmBlock = sidebarlrm.onAdd(map);
 document.getElementById('sidebarlrm').appendChild(lrmBlock);
 
 
-
-// Stand alone Geocoder features
 var geocoder = L.Control.geocoder({
 	position: 'topleft',
 	collapsed: false,
 	placeholder: 'search...',
 	errorMessage: '‘X’ never, ever marks the spot.'
 });
-// include the geocoder into the sidebar
 var gecBlock = geocoder.onAdd(map);
 document.getElementById('sidebarex').appendChild(gecBlock);
 
 
-
-// search from OpenStreetMap with OverPass
 $(document).ready(function () {
 	$('#opsdAmenity').click(function () {
 
 		var bounds = map.getBounds();
-		// console.log(bounds);
 		var swlat = bounds.getSouthWest().lat;
-		// console.log(swlat);
 		var swlng = bounds.getSouthWest().lng;
 		var nelat = bounds.getNorthEast().lat;
 		var nelng = bounds.getNorthEast().lng;
 
-		// overpass query for searched amenity in bbox
 		var qsOverpass =
 		'http://overpass-api.de/api/interpreter?data=' +
 		'[out:json];node(' +
@@ -198,22 +185,16 @@ $(document).ready(function () {
 		$('#opAmenity').val() +
 		';out;';
 
-		// create an empty layer for the features
 		var qsoLayer = L.geoJson().addTo(map);
 
-		// render the Query on map
 		$.get(qsOverpass, function (resp) {
-			// console.log(resp);
 
-			// osm resp .JSON to .GeoJson
 			var qsOntogeo = osmtogeojson(resp);
-			// move GeoJson into the layer created
 			qsoLayer = new L.GeoJSON(qsOntogeo, {
 				pointToLayer: function (feature, latlng) {
 					console.log(feature);
 					console.log(latlng);
 
-					// define the features popup
 					var popAmenity =
 					'<b>' + feature.properties.tags.name + '</b><br>' +
 					feature.properties.type + ' (' + feature.properties.id + ')<br>' +
@@ -242,7 +223,6 @@ $(document).ready(function () {
 					});
 				}
 			}).addTo(map);
-			// zomm to the render features
 			map.fitBounds(qsoLayer.getBounds());
 		}).done(function (qsoLayer, feature) {
 			console.log('Data Loaded: ' + feature);
@@ -259,7 +239,7 @@ overinAmenity.id = 'opAmenity';
 overinAmenity.type = 'text';
 overinAmenity.className = 'overinput';
 overinAmenity.value = '';
-overinAmenity.placeholder = 'ex: [amenity=cafe][name="Starbucks"]';
+overinAmenity.placeholder = 'ex: [cuisine=japanese]';
 var placeHolder = document.getElementById('optinput');
 placeHolder.appendChild(overinAmenity);
 
@@ -281,8 +261,6 @@ var placeHolder3 = document.getElementById('optinput');
 placeHolder3.appendChild(overunAmenity);
 
 
-
-// drop a marker to Edit on osm
 var pinThis = document.createElement('div');
 pinThis.id = 'dropMarker';
 pinThis.className = 'dropMarker';
@@ -291,39 +269,32 @@ document.getElementById('pineditor').appendChild(pinThis);
 
 
 $('#pineditor').click(function () {
-	// first get the point where to drop the marker
 	var mCenterlat  = map.getCenter().lat;
 	var mCenterlng  = map.getCenter().lng;
-
-	// define the marker
+	var zfocus = map.getZoom();
 	var dropmaRk = new L.Marker([mCenterlat, mCenterlng], {
 		draggable: true,
 		icon: dropUicon
 	});
 
-	// define the first popup
 	var dropmaRkpop =
 	'<center>Drag marker to adjust location.<br>' +
 	'(double click on the marker to remove)</center>';
 
-	// drop the marker and open the popup
 	dropmaRk.addTo(map)
 	.bindPopup(dropmaRkpop, {
 		className: 'uiconPopupcss'
 	}).openPopup();
+	map.setView(new L.LatLng(mCenterlat, mCenterlng), (zfocus + 7));
 
-	// get the LatLng after dragging the marker
 	dropmaRk.on('dragend', function (e) {
 		var dmRk = e.target.getLatLng();
 		var dmrkLat = dmRk.lat;
 		var dmrkLng = dmRk.lng;
 
-		// define the second popup
 		var dropmaRkpop =
 		'Lat: ' + dmrkLat + '<br>' +
 		'Lng: ' + dmrkLng + '<br>';
-
-		// define the OverPass Query
 		// [bbox:{{bbox}}];node[~"."~"."];out meta;
 		var ovquery = 'https://overpass-api.de/api/interpreter?data=' +
 		'[out:json];' +
@@ -331,25 +302,14 @@ $('#pineditor').click(function () {
 		'(node(around:25,' + dmrkLat + ',' + dmrkLng + ') - .a);' +
 		'out;';
 
-		// create an empty layer for the features
 		var layerresov = L.geoJson().addTo(map);
 
-		// render the Query on map
 		$.get(ovquery, function (resp) {
-			// console.log(resp);
-			// grab the elements from the .json
-			// loop inside to get resp.elements[i].id
-
-			// osm resp .JSON to .GeoJson
 			var helpovgeojson = osmtogeojson(resp);
 
-			// move GeoJson into the layer created
 			layerresov = new L.GeoJSON(helpovgeojson, {
 				pointToLayer: function (feature, latlng) {
-					// console.log(feature);
-					// console.log(latlng);
 
-					// define the features popup
 					var editosm = 'https://www.openstreetmap.org/edit?';
 					var typWN = feature.properties.type;
 					var featId = feature.properties.id;
@@ -384,7 +344,6 @@ $('#pineditor').click(function () {
 					});
 				}
 			}).addTo(map);
-			// zomm to the render features
 			map.fitBounds(layerresov.getBounds());
 		}).done(function (layerresov, feature) {
 			console.log('Data Loaded: ' + feature);
@@ -392,15 +351,11 @@ $('#pineditor').click(function () {
 			console.log('Data Fail: ' + feature + err);
 			// cannot get "TypeError: this._northEast is undefined"
 		});
-
-		// update data after moveend
 		dropmaRk.update(map)
 		.bindPopup(dropmaRkpop, {
 			className: 'uiconPopupcss'
 		})
 		.openPopup();
-
-		// remove the marker from map
 		dropmaRk.on('dblclick', function () {
 			map.removeLayer(dropmaRk);
 			layerresov.clearLayers();
@@ -408,9 +363,6 @@ $('#pineditor').click(function () {
 	});
 });
 
-
-
-// switch search mod
 $(document).ready(function () {
 	$('.sbs').click(function () {
 		var id = $(this).attr('id');
@@ -419,42 +371,23 @@ $(document).ready(function () {
 			$('#sidebarex').addClass('search-divshow').removeClass('search-divhidden');
 			$('#qsearchroute').addClass('searchqueryion').removeClass('searchqueryioff');
 			$('#sidebarlrm').addClass('search-divhidden').removeClass('search-divshow');
-			$('#qsearchop').addClass('searchqueryion').removeClass('searchqueryioff');
-			$('#sidebaroverpass').addClass('search-divhidden').removeClass('search-divshow');
 		} else if (id === 'qsearchroute') {
 			$('#qsearchroute').removeClass('searchqueryion').addClass('searchqueryioff');
 			$('#sidebarlrm').addClass('search-divshow').removeClass('search-divhidden');
 			$('#qsearchplace').addClass('searchqueryion').removeClass('searchqueryioff');
 			$('#sidebarex').addClass('search-divhidden').removeClass('search-divshow');
-			$('#qsearchop').addClass('searchqueryion').removeClass('searchqueryioff');
-			$('#sidebaroverpass').addClass('search-divhidden').removeClass('search-divshow');
-		} else if (id === 'qsearchop') {
-			$('#qsearchop').removeClass('searchqueryion').addClass('searchqueryioff');
-			$('#sidebaroverpass').addClass('search-divshow').removeClass('search-divhidden');
-			$('#qsearchplace').addClass('searchqueryion').removeClass('searchqueryioff');
-			$('#sidebarex').addClass('search-divhidden').removeClass('search-divshow');
-			$('#qsearchroute').addClass('searchqueryion').removeClass('searchqueryioff');
-			$('#sidebarlrm').addClass('search-divhidden').removeClass('search-divshow');
 		}
 	});
 });
 
 
-
-// MiniMap layer Options
 var esriUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
-
-// set MiniMap attribution
 var esriAttrib = 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community';
-
-// set MiniMap features
 var esri = new L.TileLayer(esriUrl, {
 	minZoom: 0,
 	maxZoom: 11,
 	attribution: esriAttrib
 });
-
-// set MiniMap on map
 var miniMap = new L.Control.MiniMap(esri, {
 	position: 'bottomright',
 	width: 80,
@@ -462,16 +395,10 @@ var miniMap = new L.Control.MiniMap(esri, {
 });
 miniMap.addTo(map);
 
-
-
-// add zoom control with options
 L.control.zoom({
 	position:'bottomright'
 }).addTo(map);
 
-
-
-// icon for locate
 var markerLicon = {
 	iconUrl: 'styles/images/bluedot.png',
 	iconSize: [17, 17],
@@ -480,7 +407,6 @@ var markerLicon = {
 	labelAnchor: [3, -4]
 };
 
-// locate controle on the top right side
 L.control.locate(
 	{
 		position: 'topright',
@@ -517,15 +443,9 @@ L.control.locate(
 	}).addTo(map);
 
 
-
-// spawn the sidebar on map
 L.control.sidebar('sidebar').addTo(map);
 
-
-
-// hash the address bar with the {./#ZOOM/LAT/LNG} center of the map
 L.hash(map);
-
 
 
 map.on('moveend', function () {
@@ -536,23 +456,18 @@ map.on('moveend', function () {
 	var iDeditor      = 'https://www.openstreetmap.org/edit?editor=id#map=18/' + mapCenter;
 	var openiDeditor  = '<a href=' + iDeditor + tarBlk;
 
-	// Side bar links
-	document.querySelector('i.urlzxy').innerHTML = openiDeditor +
-	'<i class="fa fa-share"></i> Edit with iDeditor in a new tab</a><br>';
+	document.querySelector('.urlzxy').innerHTML = openiDeditor +
+	'<img src="./styles/images/view/ideditor.png" alt="iD" style="width:25px;height:25px;"></a><br>';
 });
 
 /* eslint-disable */
-// OSM OAuth_secret
 var osmkeysec = 'FvTtE9DuFiRjMCOp9g2chQAMf9ikQualSEh1SRX1';
-// OSM OAuth_consumer_key
 var osmkeycon =  'xrtIUDNLPsEqGKGAOWeW8Jzm8F8LZJeFLvLLynlM';
-// OAuth ON OSM
 var auth = osmAuth({
 	oauth_secret: osmkeysec,
 	oauth_consumer_key: osmkeycon,
 	auto: true
 });
-
 /* eslint-enable */
 $('#authenticate,#authorize-btn').click(function () {
 	auth.authenticate(function () {
@@ -590,59 +505,53 @@ function getUser() {
 }
 /* eslint-enable */
 
+var weatherStations = new L.LayerGroup().addTo(map);
 
-
-// Fetch Pi Weather Stations database
-// Define WeatherStations Marker
-// var dataUicon;
-// create an empty layer for the data
-var weeStations = new L.LayerGroup().addTo(map);
-
-// handel the data
 function handle(response) {
 	console.log('Handle');
-	// Empty the current layergroup for clean update or refresh
-	weeStations.clearLayers();
-	// Loop over the newly retreived array
 	response.forEach(function (reps) {
-		// Define WeatherStations Popup
 		var popupPiw =
 		'<center>' + reps.description + '<br>' +
-		'<a href=' + reps.url + 'target="_blank">link</a></center>' +
-		new Date(Number(reps.last_seen)).toLocaleString();
+		'<a target=_blank href=' + reps.url + '>link</a></center>' +
+		reps.station;
+		// new Date(Number(reps.last_seen)).toLocaleString();
 		L.marker([reps.latitude, reps.longitude], {
 			icon: dataUicon
 		})
 		.bindPopup(popupPiw, {
 			className: 'uiconPopupcss'
 		})
-		.addTo(weeStations);
+		.addTo(weatherStations);
+		console.log('stations moved to weatherStations');
 	});
 }
-// keep it inside the controle Layer
 var overlayWstations = {
-	'Weather Stations': weeStations
+	'Weather Stations': weatherStations
 };
-L.control.layers(baseMaps, overlayWstations);
+L.control.layers(baseLayers, overlayWstations);
 
-// switch overlay weeStations
-// make them udpated every x times
-$('#weeStations').change(function () {
+var stations = [
+	'src/data/wospi.json',
+	'src/data/WeeWxStation.json',
+	'src/data/cwop.json'
+];
+
+$('#weatherStations').change(function () {
 	if ($(this).prop('checked')) {
-		var urlwwxs = 'src/data/WeeWxStation.json';
-		$.getJSON(urlwwxs, handle);
 
-		// render the Query on map
-		map.addLayer(weeStations);
+		for (var i = 0; i < stations.length; i++) {
+			$.getJSON(stations[i], handle);
+		}
+
+		map.addLayer(weatherStations);
 	} else {
-		map.removeLayer(weeStations);
-		weeStations.clearLayers();
+		map.removeLayer(weatherStations);
+		console.log('weatherStations Layer removed');
+		weatherStations.clearLayers();
+		console.log('weatherStations Layer cleared');
 	}
 });
 
-
-
-// Define EarthQuake Marker
 function earthqMarker(feature, latlng) {
 	return new L.CircleMarker(latlng, {
 		radius: feature.properties.mag * 3,
@@ -653,7 +562,7 @@ function earthqMarker(feature, latlng) {
 		fillOpacity: 0.35
 	});
 }
-// Define EarthQuake Popup
+
 function earthqPopup(feature, earthquakeLayer) {
 	if (feature.properties) {
 		var earthqPopup =
@@ -666,32 +575,31 @@ function earthqPopup(feature, earthquakeLayer) {
 		});
 	}
 }
-// Create an empty layer for the features
+
 var earthQuake = L.geoJson(false, {
 	pointToLayer: earthqMarker,
 	onEachFeature: earthqPopup
 });
 
-// keep it inside the controle Layer
 var overlayQuake = {
 	'Earthquake': earthQuake
 };
-L.control.layers(baseMaps, overlayQuake);
+L.control.layers(baseLayers, overlayQuake);
 
-// switch overlay earthQuake
 $('#earthQuake').change(function () {
 	if ($(this).prop('checked')) {
-		// render the Query on map
 		var eqUsgs =
 		// 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson';
 		'https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/src/data/significant_month.geojson';
 		$.getJSON(eqUsgs, function (resp) {
 			earthQuake.addData(resp);
-			console.log(resp);
+			console.log('earthQuake data loaded', resp);
 		});
 		map.addLayer(earthQuake);
 	} else {
 		map.removeLayer(earthQuake);
+		console.log('earthQuake Layer removed');
 		earthQuake.clearLayers();
+		console.log('earthQuake Layer cleared');
 	}
 });
