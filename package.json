@@ -1,12 +1,12 @@
 {
   "name": "cozy-map",
-  "version": "0.1.2",
+  "version": "0.1.21",
   "engines": [
     "*"
   ],
   "description": "Leaflet map suited for Cozy Platform.",
   "cozy-displayName": "Map",
-  "cozy-color": "#C122F9",
+  "cozy-color": "#D78EF1",
   "cozy-type": "static",
   "cozy-permissions": {},
   "icon-path": "main_icon.svg",
