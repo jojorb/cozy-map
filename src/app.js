@@ -56,6 +56,7 @@ $('#switch_lesri').click(function () {
 });
 $('#switch_lgibs').click(function () {
 	switchLayer(baseLayers, 'GIBS');
+	map.setZoom('5');
 });
 
 function switchLayer(collection, layerKey) {
@@ -509,6 +510,8 @@ var weatherStations = new L.LayerGroup().addTo(map);
 
 function handle(response) {
 	console.log('Handle');
+	// clenning for buggy render
+	// weatherStations.clearLayers();
 	response.forEach(function (reps) {
 		var popupPiw =
 		'<center>' + reps.description + '<br>' +
@@ -533,7 +536,8 @@ L.control.layers(baseLayers, overlayWstations);
 var stations = [
 	'src/data/wospi.json',
 	'src/data/WeeWxStation.json',
-	'src/data/cwop.json'
+	'src/data/cwop.json',
+	'src/data/pws.json'
 ];
 
 $('#weatherStations').change(function () {
