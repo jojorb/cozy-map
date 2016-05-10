@@ -457,7 +457,7 @@ map.on('moveend', function () {
 	var mapCenterlat  = map.getCenter().wrap().lat;
 	var mapCenterlng  = map.getCenter().wrap().lng;
 	var mapCenter     = mapCenterlat + '/' + mapCenterlng;
-	var tarBlk       = ' target=_blank>';
+	var tarBlk       	= ' target=_blank>';
 	var iDeditor      = 'https://www.openstreetmap.org/edit?editor=id#map=18/' + mapCenter;
 	var openiDeditor  = '<a href=' + iDeditor + tarBlk;
 
