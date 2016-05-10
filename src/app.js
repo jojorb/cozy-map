@@ -45,7 +45,8 @@ var map = new L.Map('map', {
 var baseLayers = {
 	'OSM': losm,
 	'ESRI': lesri,
-	'GIBS': lgibs
+	'GIBS': lgibs,
+	'MYRA': myRastertile
 };
 
 $('#switch_losm').click(function () {
@@ -57,6 +58,9 @@ $('#switch_lesri').click(function () {
 $('#switch_lgibs').click(function () {
 	switchLayer(baseLayers, 'GIBS');
 	map.setZoom('5');
+});
+$('#switch_myRastertile').click(function () {
+	switchLayer(baseLayers, 'MYRA');
 });
 
 function switchLayer(collection, layerKey) {
