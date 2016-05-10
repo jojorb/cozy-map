@@ -9,25 +9,23 @@
 </head>
 <body>
 	<div id="sidebar" class="sidebar collapsed">
-		<!-- Nav tabs -->
 		<div class="sidebar-tabs">
 			<ul role="tablist">
-				<li><a href="#explore" role="tab"><i class="fa fa-search">
-				</i></a></li>
-			<li><a href="#maplayers" role="tab"><i class="fa fa-map">
-				</i></a></li>
+				<li><a href="#explore" role="tab"><i class="fa fa-search"></i></a></li>
+				<li><a href="#maplayers" role="tab"><i class="fa fa-map"></i></a></li>
 			</ul>
 			<ul role="tablist">
-				<li><a href="#info" role="tab"><i class="fa fa-info">
-				</i></a></li>
-				<li><a href="#settings" role="tab"><i class="fa fa-gear">
-				</i></a></li>
+				<li><a href="#info" role="tab"><i class="fa fa-info"></i></a></li>
+				<li><a href="#osm" role="tab">
+					<center><img src="./styles/images/view/OpenStreetMap.png"
+					alt="osm" style="width:75%;height:75%;"></center>
+				</a></li>
 			</ul>
 		</div>
 		<div class="sidebar-content">
 			<div class="sidebar-pane" id="explore">
-				<h1 class="sidebar-header">Explore<span class="sidebar-close">
-					<i class="fa fa-angle-double-left"></i></span>
+				<h1 class="sidebar-header">Explore
+					<span class="sidebar-close"><i class="fa fa-angle-double-left"></i></span>
 				</h1>
 				<div id="searchiconbar" class="searchbar">
 					<table style="width:100%">
@@ -38,57 +36,24 @@
 							<th id="qsearchroute" class="searchqueryion sbs">
 								<i class="fa fa-car fa-2x"></i>
 							</th>
-							<th id="qsearchop" class="searchqueryion sbs">
-								<i class="fa fa-thumb-tack fa-2x"></i>
-							</th>
 						</tr>
 					</table>
 				</div>
 				<div id="sidebarex" class="search-divshow">
 					<h3><center><b>
-						Find a place</b><br>
-						need some help?
+						Find a place </b><br>
 						<a target='_blank'
-					href='https://github.com/RobyRemzy/cozy-map/wiki/apphelp#find-a-place'> Wiki</a>
-				</center></h3>
+						href='https://github.com/RobyRemzy/cozy-map/wiki/apphelp#find-a-place'>
+						<i class="fa fa-question-circle"></i></a>
+					</center></h3>
 				</div>
 				<div id="sidebarlrm" class="search-divhidden">
 					<h3><center><b>
 						Find a way</b><br>
-						need some help?
 						<a target='_blank'
-					href='https://github.com/RobyRemzy/cozy-map/wiki/apphelp#find-your-way'> Wiki</a>
-				</center></h3>
-				</div>
-				<div id="sidebaroverpass" class="search-divhidden">
-					<h3><center><b>
-						Easy data mining on OpenStreetMap<br>
-						with custom query
-					</b></center></h3>
-					<div id="optinput"></div>
-					<h3><center><b>
-						OR<br>Search with this marker to query all kind of nodes around
-						 a 25 meters radius.
-					</b></center></h3>
-					<div id="pineditor" align="center"></div>
-						<h3><center>
-							need some help?
-							<a target='_blank'
-						href='https://github.com/RobyRemzy/cozy-map/wiki/apphelp#easy-data-mining-on-openstreetmap'> Wiki</a>
+						href='https://github.com/RobyRemzy/cozy-map/wiki/apphelp#find-your-way'>
+						<i class="fa fa-question-circle"></i></a>
 					</center></h3>
-						<!-- <span>Search response:<br><span> -->
-						<!-- <div id="respineditor" align="left"> -->
-							<!-- here the loading, success, fail, popup pois -->
-							<!-- <i class="fa fa-refresh margin-right"></i>
-							<span class="sr-only">Stand by...</span> -->
-							<!-- <i class="fa fa-refresh fa-spin fa-fw margin-bottom"></i> -->
-							<!-- <span class="sr-only">Loading...</span> -->
-							<!-- <i class="fa fa-map-marker margin-bottom"></i> -->
-							<!-- <span class="sr-only">Success...</span> -->
-							<!-- <i class="fa fa-exclamation-triangle margin-bottom"></i> -->
-							<!-- <span class="sr-only">Fail...</span> -->
-						<!-- </div> -->
-					<!-- </span> -->
 				</div>
 			</div>
 			<div class="sidebar-pane" id="maplayers">
@@ -99,27 +64,25 @@
 					<h3><center>
 						<b>Map Base Layers</b>
 					</center></h3>
-					<div id="switch_lesri" class="viewmap_sat" ></div>
-					<div id="switch_losm" class="viewmap_carto" ></div>
-
+					<div id="switch_lesri" class="viewmap_karto" >Esri satellite</div>
+					<div id="switch_lgibs" class="viewmap_karto" >Near Live satellite view</div>
+					<div id="switch_losm" class="viewmap_karto" >open street map</div>
+					<div><center>
+						New Base Layers Address
+						<a target='_blank'
+						href='https://github.com/RobyRemzy/cozy-map/wiki/apphelp#basemap'>
+						<i class="fa fa-question-circle"></i></a>
+					</center></div>
+					<div id='myrtiles' class="newmapadd" ></div>
 					<h3><center>
 						<b>Map Database Overlay</b>
 					</center></h3>
 					<label><input
-						type="checkbox" id="weeStations"> Weather Stations
+						type="checkbox" id="weatherStations"> Weather Stations
 					</label><br>
 					<label><input
 						type="checkbox" id="earthQuake"> Earthquake USGS
 					</label>
-
-					<h3><center>
-						&#43; New Raster Map Address
-					</center></h3>
-					<div id='myrtiles' align="center" ></div>
-					<h3><center>
-						&#43; New Vector Map Address
-					</center></h3>
-					<div id='myvtiles' align="center" ></div>
 				</div>
 			</div>
 			<div class="sidebar-pane" id="info">
@@ -139,9 +102,10 @@
 					<i class="fa fa-github"></i> GitHub issues</a>
 				</center></p>
 				<h3><center><b>Beta Projects in progress</b></center></h3>
-				<p><b>Auth on OpenStreetMap in App</b><br>
-					Go to "Settings", is a test to explore the Auth protocol and should
-					ease any contributions.
+				<p><b>Auth and tools for OpenStreetMap</b><br>
+					Go to "osm" <img src="./styles/images/view/OpenStreetMap.png" alt="osm" style="width:20px;height:20px;">.
+					Auth on OSM is not needed to use the "query tool". this Feature need more
+					work to welcom open contributions InApp.
 				</p>
 				<p><b><i class="fa fa-location-arrow fa-rotate-90 fa-1x"></i>
 					Mapillary</b><br>
@@ -151,28 +115,41 @@
 					Tangrams TransitLand</b><br>
 					An open source project sponsored by Mapzen.
 				</p>
-			</div>
-			<div class="sidebar-pane" id="settings">
-				<h1 class="sidebar-header">Settings<span class="sidebar-close">
-					<i class="fa fa-angle-double-left"></i></span></h1>
-					<h2 class="sidebar-topics"><span><i class="fa fa-map-o">
-					</i> OpenStreetMap</span></h2><p></p>
-					<i class="urlzxy"></i>
-					<a href="#" id="authenticate"><i class="fa fa-user"></i> Log in</a><br>
-					<a href="#" id="logout"><i class="fa fa-user"></i> Log out</a><br>
 				<hr>
-				<span><center><a target='_blank'
+				<center><a target='_blank'
 					href='http://osmlab.github.io/attribution-mark/copyright?name=Cozy-Map'
-					style='background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAMAAACelLz8AAAB11BMVEXZ2dlkZGT///////////8mJibIyMj5+fm6urr///8sLCywsLBJSUn///9eXl7////////j4+P////////Q0ND////u7u7i4uIfHx/s7OxmZmZzc3P39/fw8PDg4OD5+fmNjY1cXFz5+flQUFBGRkaIiIhtbW3///////9hYWHS0tKlpaWsrKzZ2dmgoKCpqalycnLg4OCCgoJLS0tEREQlJSX9/f3///8/Pz/e3t4jIyP///////////+/v7+Ghobp6enDw8Pl5eVXV1f////////U1NT////////////////l5eW1tbX///+4uLj////////////////////////////w8PDNzc3GxsYuLi7w8PD///////9paWmvr6/c3NwhISHe3t5UVFQfHx/y8vLn5+d3d3eXl5f////09PTs7Oz///8zMzN8fHz///+UlJT////////u7u44ODj////p6en///86Ojqurq5ZWVlfX1////////8hISFBQUGioqIlJSXV1dV6enoqKioxMTH39/eLi4s4ODj///9ra2ubm5v9/f3Nzc28vLz///9LS0v///////////+FhYUdHR3////X19cjIyM2Njaenp7///8AAAAbGxtl93oXAAAAnXRSTlNzcE9udnpweG9Gem50TnI9Z3VgbHEWeHR9dnBvendzfG5ye3N0b3A4I3Fxbm5ybm5wdG5zdXt0NHVze14eMW9udW90cld4cUdSFx11bnJvHG1ANj8VQnlwcHl4H1xwb3N8dHN8eXZvbnV5d0t4byluAyd3dwt2VnZucnEvCn11bnxyb3p4e252BHBufXFvYnRzZQxvfWpyfHdufQB9fOn/1AAAAY5JREFUKM+V0mVvwzAQBuCMmZmZmZmZmZmZGcpMa7ukWXK5H7ukVbOpmqbt/WDZfiRLdz6C+8oqAPh6+8BqnANaOI74RoASydLisnzRdiGt9yQa9pVglC7LYws8advLTxEWoJaGx1x6ksx/LdQetI5R55xIE4O2+yvhwZDgwxUaobDh1kn6F/ud9vSMBu3p5lLgycqGAZosjneCe52zLTyjEB17DRAdERkva0Rk34h3x+gNinmy7FqyKOcWiDcWfw4QgL+TXC2sH8yOJ9V1AXRaUZmdkZqCALX4APDhotKjbcZ8LDkyoiyBp3I0ipRWgVgDORu768mJCFt3uEe4SXPA1wRFqgPatEVBJpyZSDcpFBR2mKzFubgGN5BfpjEb3GTVdJtNRqrq+DE9aQcMJFSKhIyW7UFsri7JUyHJqMhNhqT+UPL/iO+8ix4e5y1P38A6zv+X0Pln89jU7LT9mtU575mLkcmZV47/r/Y9+4temIKhARutVO/3H54Mc87ZuG1rFQfn8uq+r/dc7zp8AmmAXy4xp9xiAAAAAElFTkSuQmCC) no-repeat; background-size:26px 26px;width:24px;height:24px;display:block;z-index:1000;'></a></center></span>
+					style='background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAMAAACelLz8AAAB11BMVEXZ2dlkZGT///////////8mJibIyMj5+fm6urr///8sLCywsLBJSUn///9eXl7////////j4+P////////Q0ND////u7u7i4uIfHx/s7OxmZmZzc3P39/fw8PDg4OD5+fmNjY1cXFz5+flQUFBGRkaIiIhtbW3///////9hYWHS0tKlpaWsrKzZ2dmgoKCpqalycnLg4OCCgoJLS0tEREQlJSX9/f3///8/Pz/e3t4jIyP///////////+/v7+Ghobp6enDw8Pl5eVXV1f////////U1NT////////////////l5eW1tbX///+4uLj////////////////////////////w8PDNzc3GxsYuLi7w8PD///////9paWmvr6/c3NwhISHe3t5UVFQfHx/y8vLn5+d3d3eXl5f////09PTs7Oz///8zMzN8fHz///+UlJT////////u7u44ODj////p6en///86Ojqurq5ZWVlfX1////////8hISFBQUGioqIlJSXV1dV6enoqKioxMTH39/eLi4s4ODj///9ra2ubm5v9/f3Nzc28vLz///9LS0v///////////+FhYUdHR3////X19cjIyM2Njaenp7///8AAAAbGxtl93oXAAAAnXRSTlNzcE9udnpweG9Gem50TnI9Z3VgbHEWeHR9dnBvendzfG5ye3N0b3A4I3Fxbm5ybm5wdG5zdXt0NHVze14eMW9udW90cld4cUdSFx11bnJvHG1ANj8VQnlwcHl4H1xwb3N8dHN8eXZvbnV5d0t4byluAyd3dwt2VnZucnEvCn11bnxyb3p4e252BHBufXFvYnRzZQxvfWpyfHdufQB9fOn/1AAAAY5JREFUKM+V0mVvwzAQBuCMmZmZmZmZmZmZGcpMa7ukWXK5H7ukVbOpmqbt/WDZfiRLdz6C+8oqAPh6+8BqnANaOI74RoASydLisnzRdiGt9yQa9pVglC7LYws8advLTxEWoJaGx1x6ksx/LdQetI5R55xIE4O2+yvhwZDgwxUaobDh1kn6F/ud9vSMBu3p5lLgycqGAZosjneCe52zLTyjEB17DRAdERkva0Rk34h3x+gNinmy7FqyKOcWiDcWfw4QgL+TXC2sH8yOJ9V1AXRaUZmdkZqCALX4APDhotKjbcZ8LDkyoiyBp3I0ipRWgVgDORu768mJCFt3uEe4SXPA1wRFqgPatEVBJpyZSDcpFBR2mKzFubgGN5BfpjEb3GTVdJtNRqrq+DE9aQcMJFSKhIyW7UFsri7JUyHJqMhNhqT+UPL/iO+8ix4e5y1P38A6zv+X0Pln89jU7LT9mtU575mLkcmZV47/r/Y9+4temIKhARutVO/3H54Mc87ZuG1rFQfn8uq+r/dc7zp8AmmAXy4xp9xiAAAAAElFTkSuQmCC) no-repeat; background-size:26px 26px;width:24px;height:24px;display:block;z-index:1000;'></a>
+				</center>
 				<hr>
+			</div>
+			<div class="sidebar-pane" id="osm">
+				<h1 class="sidebar-header">OSM tools<span class="sidebar-close"><i class="fa fa-angle-double-left"></i></span></h1>
+				<div class="osmlogin">
+					<a href="#" id="authenticate"><i class="fa fa-user" ></i> Log in </a>
+					<a href="#" id="logout"><i class="fa fa-user" ></i> Log out </a>
+					<i class="urlzxy"></i>
+				</div>
+				<h3 class="sidebar-topics"><center>
+					Help with OSM tool<br>
+					<a target='_blank'href='https://github.com/RobyRemzy/cozy-map/wiki/apphelp#easy-data-mining-on-openstreetmap'>
+						<i class="fa fa-question-circle"></i>
+					</a></center>
+				</h3>
+				<div id="overpassapi">
+					<h3><center><b>
+						Easy data mining with custom query
+					</b></center></h3>
+					<div id="optinput"></div>
+					<h3><center><b>
+						Easy data mining with a marker query
+					</b></center></h3>
+					<div id="pineditor" align="center"></div>
+				</div>
 			</div>
 		</div>
 	</div>
 	<div id='map' class='sidebar-map'></div>
-	<!-- <script
-			  src="https://code.jquery.com/jquery-1.12.3.min.js"
-			  integrity="sha256-aaODHAgvwQW1bFOGXMeX+pC4PZIPsvn2h1sArYOhgXQ="
-			  crossorigin="anonymous"></script> -->
+
 	<!-- <script src="vendor/jquery.slim.min.js"></script> -->
 	<script src="vendor/jquery-1.12.3.min.js"></script>
 	<script src='vendor/cozysdk-client.js'></script>

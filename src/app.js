@@ -9,7 +9,7 @@ require('./leaflet.Hash.js');
 var osmAuth = require('osm-auth');
 var osmtogeojson = require('osmtogeojson');
 
-// specify the path to the leaflet images folder
+// path to the leaflet images folder
 L.Icon.Default.imagePath = 'node_modules/leaflet/dist/images/';
 
 
@@ -29,6 +29,17 @@ var lesri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Wo
 
 var myRastertile = L.tileLayer(null, {});
 
+var date = new Date();
+var jmoinszin = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + (date.getDate() - 1)).slice(-2);
+// var edjj = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+var viirs = 'VIIRS_SNPP_CorrectedReflectance_TrueColor';
+
+var lgibs = L.tileLayer('https://map1.vis.earthdata.nasa.gov/wmts-webmerc/' + viirs + '/default/' + jmoinszin + '/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg', {
+	minZoom: '3',
+	maxZoom: '9',
+	opacity: '1'
+});
+
 // disable zoomControl (which is topleft by default) when initializing map&options
 var map = new L.Map('map', {
 	layers: [losm],
@@ -36,16 +47,27 @@ var map = new L.Map('map', {
 	zoomControl: false
 });
 
+// enable the baselayer switch to avoid double raster loding
 var baseLayers = {
 	'OSM': losm,
-	'ESRI': lesri
+	'ESRI': lesri,
+	'GIBS': lgibs,
+	'MYRA': myRastertile
 };
 
+// switch layers function
 $('#switch_losm').click(function () {
 	switchLayer(baseLayers, 'OSM');
 });
 $('#switch_lesri').click(function () {
 	switchLayer(baseLayers, 'ESRI');
+});
+$('#switch_lgibs').click(function () {
+	switchLayer(baseLayers, 'GIBS');
+	map.setZoom('5');
+});
+$('#switch_myRastertile').click(function () {
+	switchLayer(baseLayers, 'MYRA');
 });
 
 function switchLayer(collection, layerKey) {
@@ -84,7 +106,7 @@ $(document).ready(function () {
 var mytileInput = document.createElement('input');
 mytileInput.id = 'mytileInput';
 mytileInput.type = 'text';
-mytileInput.className = 'overinput';
+mytileInput.className = 'nrminput';
 mytileInput.value = '';
 mytileInput.placeholder = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
 var pHtileinp = document.getElementById('myrtiles');
@@ -93,7 +115,7 @@ pHtileinp.appendChild(mytileInput);
 var mytileSubm = document.createElement('input');
 mytileSubm.id = 'mytileSubm';
 mytileSubm.type = 'submit';
-mytileSubm.className = 'overinputval';
+mytileSubm.className = 'nrminputval';
 mytileSubm.value = 'ok';
 mytileSubm.title = 'submit your query';
 var pHtilesub = document.getElementById('myrtiles');
@@ -104,13 +126,27 @@ pHtilesub.appendChild(mytileSubm);
 map.setView(new L.LatLng(46.8, 3.8), 3);
 
 
-// icon for the routing machine
+// icon used In App
 var startRicon = L.icon({
 	iconUrl: 'styles/images/pinstart.png',
 	iconRetinaUrl: 'styles/images/pinstart.png',
 	iconSize: [36, 47],
 	iconAnchor: [18, 47],
 	popupAnchor: [0, -48]
+});
+var dropUicon = L.icon({
+	iconUrl: 'styles/images/pinpoi.png',
+	iconRetinaUrl: 'styles/images/pinpoi.png',
+	iconSize: [36, 47],
+	iconAnchor: [18, 47],
+	popupAnchor: [0, -48]
+});
+var dataUicon = L.icon({
+	iconUrl: 'styles/images/datamarker.png',
+	iconRetinaUrl: 'styles/images/datamarker.png',
+	iconSize: [13, 23],
+	iconAnchor: [6.5, 23],
+	popupAnchor: [0, -24]
 });
 // var endRicon = L.icon({
 // 	iconUrl: 'styles/images/pinend.png',
@@ -120,23 +156,7 @@ var startRicon = L.icon({
 // 	popupAnchor: [0, -48]
 // });
 
-// icon drop by user
-var dropUicon = L.icon({
-	iconUrl: 'styles/images/pinpoi.png',
-	iconRetinaUrl: 'styles/images/pinpoi.png',
-	iconSize: [36, 47],
-	iconAnchor: [18, 47],
-	popupAnchor: [0, -48]
-});
 
-// data marker
-var dataUicon = L.icon({
-	iconUrl: 'styles/images/datamarker.png',
-	iconRetinaUrl: 'styles/images/datamarker.png',
-	iconSize: [13, 23],
-	iconAnchor: [6.5, 23],
-	popupAnchor: [0, -24]
-});
 
 // Routing machine features
 var sidebarlrm = L.Routing.control({
@@ -177,7 +197,7 @@ document.getElementById('sidebarex').appendChild(gecBlock);
 
 
 
-// search from OpenStreetMap with OverPass
+// search on OpenStreetMap with OverPass
 $(document).ready(function () {
 	$('#opsdAmenity').click(function () {
 
@@ -189,7 +209,7 @@ $(document).ready(function () {
 		var nelat = bounds.getNorthEast().lat;
 		var nelng = bounds.getNorthEast().lng;
 
-		// overpass query for searched amenity in bbox
+		// overpass query for amenity in bbox
 		var qsOverpass =
 		'http://overpass-api.de/api/interpreter?data=' +
 		'[out:json];node(' +
@@ -293,6 +313,7 @@ $('#pineditor').click(function () {
 	// first get the point where to drop the marker
 	var mCenterlat  = map.getCenter().lat;
 	var mCenterlng  = map.getCenter().lng;
+	var zfocus = map.getZoom();
 
 	// define the marker
 	var dropmaRk = new L.Marker([mCenterlat, mCenterlng], {
@@ -302,13 +323,16 @@ $('#pineditor').click(function () {
 
 	// define the first popup
 	var dropmaRkpop =
-	'Move the marker to a new place';
+	'<center>Drag marker to adjust location.<br>' +
+	'(double click on the marker to remove)</center>';
 
 	// drop the marker and open the popup
 	dropmaRk.addTo(map)
 	.bindPopup(dropmaRkpop, {
 		className: 'uiconPopupcss'
 	}).openPopup();
+	// focus on droped
+	map.setView(new L.LatLng(mCenterlat, mCenterlng), (zfocus + 7));
 
 
 	// get the LatLng after dragging the marker
@@ -356,7 +380,7 @@ $('#pineditor').click(function () {
 					var featLng = feature.geometry.coordinates[0];
 
 					var deepovquery = 'http://overpass-api.de/api/interpreter?data=' +
-					'[out:popup];' +
+					'[out:json];' +
 					'way(around:25,' + featLat + ',' + featLng + ')[highway];>->.a; ' +
 					'(node(around:5,' + featLat + ',' + featLng + ') - .a);' +
 					'out;';
@@ -418,22 +442,11 @@ $(document).ready(function () {
 			$('#sidebarex').addClass('search-divshow').removeClass('search-divhidden');
 			$('#qsearchroute').addClass('searchqueryion').removeClass('searchqueryioff');
 			$('#sidebarlrm').addClass('search-divhidden').removeClass('search-divshow');
-			$('#qsearchop').addClass('searchqueryion').removeClass('searchqueryioff');
-			$('#sidebaroverpass').addClass('search-divhidden').removeClass('search-divshow');
 		} else if (id === 'qsearchroute') {
 			$('#qsearchroute').removeClass('searchqueryion').addClass('searchqueryioff');
 			$('#sidebarlrm').addClass('search-divshow').removeClass('search-divhidden');
 			$('#qsearchplace').addClass('searchqueryion').removeClass('searchqueryioff');
 			$('#sidebarex').addClass('search-divhidden').removeClass('search-divshow');
-			$('#qsearchop').addClass('searchqueryion').removeClass('searchqueryioff');
-			$('#sidebaroverpass').addClass('search-divhidden').removeClass('search-divshow');
-		} else if (id === 'qsearchop') {
-			$('#qsearchop').removeClass('searchqueryion').addClass('searchqueryioff');
-			$('#sidebaroverpass').addClass('search-divshow').removeClass('search-divhidden');
-			$('#qsearchplace').addClass('searchqueryion').removeClass('searchqueryioff');
-			$('#sidebarex').addClass('search-divhidden').removeClass('search-divshow');
-			$('#qsearchroute').addClass('searchqueryion').removeClass('searchqueryioff');
-			$('#sidebarlrm').addClass('search-divhidden').removeClass('search-divshow');
 		}
 	});
 });
@@ -531,35 +544,26 @@ L.hash(map);
 map.on('moveend', function () {
 	var mapCenterlat  = map.getCenter().wrap().lat;
 	var mapCenterlng  = map.getCenter().wrap().lng;
-	// var mapBounds     = map.getBounds();
-	// var mapBoundleft  = mapBounds.getNorthWest().lng;
-	// var mapBoundright = mapBounds.getSouthEast().lng;
-	// var mapBoundtop   = mapBounds.getNorthWest().lat;
-	// var mapBoundtop   = mapBounds.getNorthEast().lat;
-	// var mapBoundbottom= mapBounds.getSouthEast().lat;
 	var mapCenter     = mapCenterlat + '/' + mapCenterlng;
-	var tarBlk       = ' target=_blank>';
+	var tarBlk       	= ' target=_blank>';
 	var iDeditor      = 'https://www.openstreetmap.org/edit?editor=id#map=18/' + mapCenter;
 	var openiDeditor  = '<a href=' + iDeditor + tarBlk;
 
 	// Side bar links
-	document.querySelector('i.urlzxy').innerHTML = openiDeditor +
-	'<i class="fa fa-share"></i> Edit with iDeditor in a new tab</a><br>';
+	document.querySelector('.urlzxy').innerHTML = openiDeditor +
+	'<img src="./styles/images/view/ideditor.png" alt="iD" style="width:25px;height:25px;"></a><br>';
 });
 
 /* eslint-disable */
-// OSM OAuth_secret
 var osmkeysec = 'FvTtE9DuFiRjMCOp9g2chQAMf9ikQualSEh1SRX1';
-// OSM OAuth_consumer_key
 var osmkeycon =  'xrtIUDNLPsEqGKGAOWeW8Jzm8F8LZJeFLvLLynlM';
-// OAuth ON OSM
 var auth = osmAuth({
 	oauth_secret: osmkeysec,
 	oauth_consumer_key: osmkeycon,
 	auto: true
 });
-
 /* eslint-enable */
+
 $('#authenticate,#authorize-btn').click(function () {
 	auth.authenticate(function () {
 		getUser();
@@ -606,48 +610,62 @@ function getUser() {
 // https://github.com/ghybs/Leaflet.FeatureGroup.SubGroup
 // var dataUicon;
 // create an empty layer for the data
-var weeStations = new L.LayerGroup().addTo(map);
+var weatherStations = new L.LayerGroup().addTo(map);
 
 // handel the data
 function handle(response) {
 	console.log('Handle');
-	// Empty the current layergroup for clean update or refresh
-	weeStations.clearLayers();
+	// clenning for buggy render
+	// weatherStations.clearLayers();
+
 	// Loop over the newly retreived array
 	response.forEach(function (reps) {
 		// Define WeatherStations Popup
 		var popupPiw =
 		'<center>' + reps.description + '<br>' +
-		'<a href=' + reps.url + 'target="_blank">link</a></center>' +
-		new Date(Number(reps.last_seen)).toLocaleString();
+		'<a target=_blank href=' + reps.url + '>link</a></center>' +
+		reps.station;
+		// new Date(Number(reps.last_seen)).toLocaleString();
 		L.marker([reps.latitude, reps.longitude], {
 			icon: dataUicon
 		})
 		.bindPopup(popupPiw, {
 			className: 'uiconPopupcss'
 		})
-		.addTo(weeStations);
+		.addTo(weatherStations);
+		console.log('stations moved to weatherStations');
 	});
 }
 // keep it inside the controle Layer
 var overlayWstations = {
-	'Weather Stations': weeStations
+	'Weather Stations': weatherStations
 };
 L.control.layers(baseLayers, overlayWstations);
+
+var stations = [
+	'src/data/wospi.json',
+	'src/data/WeeWxStation.json',
+	'src/data/cwop.json',
+	'src/data/pws.json'
+];
 
 // switch overlay weeStations
 // make them udpated every x times
 // http://stackoverflow.com/q/32575243
-$('#weeStations').change(function () {
+$('#weatherStations').change(function () {
 	if ($(this).prop('checked')) {
-		var urlwwxs = 'src/data/WeeWxStation.json';
-		$.getJSON(urlwwxs, handle);
+
+		for (var i = 0; i < stations.length; i++) {
+			$.getJSON(stations[i], handle);
+		}
 
 		// render the Query on map
-		map.addLayer(weeStations);
+		map.addLayer(weatherStations);
 	} else {
-		map.removeLayer(weeStations);
-		weeStations.clearLayers();
+		map.removeLayer(weatherStations);
+		console.log('weatherStations Layer removed');
+		weatherStations.clearLayers();
+		console.log('weatherStations Layer cleared');
 	}
 });
 
@@ -657,7 +675,7 @@ $('#weeStations').change(function () {
 function earthqMarker(feature, latlng) {
 	return new L.CircleMarker(latlng, {
 		radius: feature.properties.mag * 3,
-		color: '#0429ED',
+		color: '#0E3C96',
 		fillColor: feature.properties.alert,
 		weight: feature.properties.tsunami,
 		opacity: 0.45,
@@ -697,14 +715,17 @@ $('#earthQuake').change(function () {
 		// render the Query on map
 		var eqUsgs =
 		'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson';
+		// 'https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/src/data/significant_month.geojson';
 		$.getJSON(eqUsgs, function (resp) {
 			earthQuake.addData(resp);
-			console.log(resp);
+			console.log('earthQuake data loaded', resp);
 		});
 		map.addLayer(earthQuake);
 	} else {
 		map.removeLayer(earthQuake);
+		console.log('earthQuake Layer removed');
 		earthQuake.clearLayers();
+		console.log('earthQuake Layer cleared');
 	}
 });
 

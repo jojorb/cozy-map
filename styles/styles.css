@@ -718,6 +718,10 @@ hr {
   right: 0;
   top: 0;
 }
+.osmlogin {
+	text-align: right;
+	font-size: 0.9em;
+}
 .searchquery {
 	text-align: center;
 }
@@ -761,7 +765,6 @@ hr {
 	cursor: pointer;
 	position:relative;
 }
-/*http://stackoverflow.com/a/14741981*/
 .overinputref:before {
 	content: "\f021";
 	font-family: FontAwesome;
@@ -783,36 +786,39 @@ hr {
 	height: 35px;
 	cursor: pointer;
 }
-.viewmap_carto {
-background-image: url('images/view/carto.png');
-background-position: center;
-background-size: 180px 100px;
-background-repeat: no-repeat;
-margin: 0;
-display: inline-block;
+.viewmap_karto {
 align-items: center;
-height: 100px;
-width: 180px;
+width: 100%;
+background-color: rgba(196, 196, 196, 0.5);
+color: #3D3D3D;
 }
-.viewmap_carto:hover {
+.viewmap_karto:hover {
 cursor: pointer;
+background-color: #33A6FF;
 }
-
-.viewmap_sat {
-background-image: url('images/view/sat.png');
-background-position: center;
-background-size: 180px 100px;
-background-repeat: no-repeat;
-margin: 0;
-display: inline-block;
-align-items: center;
-height: 100px;
-width: 180px;
+.newmapadd {
+	align-items: center;
+	width: 100%;
 }
-.viewmap_sat:hover {
-cursor: pointer;
+.nrminput[type=text] {
+	background: rgba(196, 196, 196, 0.5);
+	color: #3D3D3D;
+	width: 90%;
+	height: 34px;
+	font-size: 100%;
+	margin: 3px 0 0 0;
+	border: none;
 }
-
+.nrminputval[type=submit] {
+	background: #86888B;
+	color: #33A6FF;
+	width: 10%;
+	height: 34px;
+	font-size: 100%;
+	margin: 0 0 0 0;
+	border: none;
+	cursor: pointer;
+}
 /*Overiding leaflet-routine-machine.css : images attribution*/
 .leaflet-routing-icon {
     background-image: url('images/leaflet.routing.icons.png');
@@ -1067,13 +1073,6 @@ cursor: pointer;
 .leaflet-control-geocoder {
 	background-color: rgba(196, 196, 196, 0.5);
 }
-.leaflet-control-geocoder a, .leaflet-control-geocoder .leaflet-control-geocoder-icon {
-	border-bottom-left-radius: 4px;
-	border-bottom-right-radius: 4px;
-	border-bottom: none;
-	display: inline-block;
-	}
-
 .leaflet-control-geocoder-form input {
 	font-size: 100%;
 	border: 0;
