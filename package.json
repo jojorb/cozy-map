@@ -1,6 +1,6 @@
 {
   "name": "cozy-map",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "engines": [
     "*"
   ],
@@ -9,7 +9,7 @@
   "cozy-color": "#D78EF1",
   "cozy-type": "static",
   "cozy-permissions": {},
-  "icon-path": "main_icon.svg",
+  "icon-path": "map.svg",
   "main": "src/app.js",
   "dependencies": {
   },
