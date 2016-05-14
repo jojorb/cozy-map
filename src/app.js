@@ -183,7 +183,7 @@ $(document).ready(function () {
 		var nelng = bounds.getNorthEast().lng;
 
 		var qsOverpass =
-		'http://overpass-api.de/api/interpreter?data=' +
+		'https://overpass-api.de/api/interpreter?data=' +
 		'[out:json];node(' +
 		swlat + ',' + swlng + ',' + nelat + ',' + nelng +
 		')' +
@@ -205,7 +205,7 @@ $(document).ready(function () {
 					feature.properties.type + ' (' + feature.properties.id + ')<br>' +
 					'&#9660 ' +
 					'<a href="' +
-					'http://overpass-api.de/api/interpreter?data=[out:popup];node(' +
+					'https://overpass-api.de/api/interpreter?data=[out:popup];node(' +
 					feature.geometry.coordinates[1] + ',' + feature.geometry.coordinates[0] + ',' +
 					feature.geometry.coordinates[1] + ',' + feature.geometry.coordinates[0] +
 					');out;' +
@@ -500,7 +500,7 @@ function getUser() {
 		}, function (err, details) {
 			var user = details.getElementsByTagName('user')[0].getAttribute('display_name');
 			$('#logout').html('<i class="fa fa-user"></i> Log out <span class="uk-text-bold">' + user + '</span>').show();
-			$('#user').html('<a href="http://www.openstreetmap.org/user/" +user+">"+user+"</a>"');
+			$('#user').html('<a href="https://www.openstreetmap.org/user/" +user+">"+user+"</a>"');
 			$('#authenticate').hide();
 		});
 	} else {
