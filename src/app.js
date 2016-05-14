@@ -8,6 +8,9 @@ require('./leaflet-sidebar.js');
 require('./leaflet.Hash.js');
 var osmAuth = require('osm-auth');
 var osmtogeojson = require('osmtogeojson');
+// var cozysdk = require('cozysdk-client');
+// var cozysdk = require('../vendor/cozysdk-client.js');
+// var _ = require('../vendor/underscore-min.js');
 
 // path to the leaflet images folder
 L.Icon.Default.imagePath = 'node_modules/leaflet/dist/images/';
@@ -590,7 +593,7 @@ function getUser() {
 		}, function (err, details) {
 			var user = details.getElementsByTagName('user')[0].getAttribute('display_name');
 			$('#logout').html('<i class="fa fa-user"></i> Log out <span class="uk-text-bold">' + user + '</span>').show();
-			$('#user').html('<a href="http://www.openstreetmap.org/user/" +user+">"+user+"</a>"');
+			$('#user').html('<a href="https://www.openstreetmap.org/user/" +user+">"+user+"</a>"');
 			$('#authenticate').hide();
 		});
 	} else {
