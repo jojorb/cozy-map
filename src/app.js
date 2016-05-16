@@ -8,9 +8,8 @@ require('./leaflet-sidebar.js');
 require('./leaflet.Hash.js');
 var osmAuth = require('osm-auth');
 var osmtogeojson = require('osmtogeojson');
+var _ = require('../vendor/underscore-min.js');
 // var cozysdk = require('cozysdk-client');
-// var cozysdk = require('../vendor/cozysdk-client.js');
-// var _ = require('../vendor/underscore-min.js');
 
 // path to the leaflet images folder
 L.Icon.Default.imagePath = 'node_modules/leaflet/dist/images/';
@@ -158,6 +157,13 @@ var dataUicon = L.icon({
 // 	iconAnchor: [18, 47],
 // 	popupAnchor: [0, -48]
 // });
+var clUicon = L.icon({
+	iconUrl: 'styles/images/pincl.png',
+	iconRetinaUrl: 'styles/images/pincl.png',
+	iconSize: [36, 47],
+	iconAnchor: [18, 47],
+	popupAnchor: [0, -48]
+});
 
 
 
@@ -214,7 +220,7 @@ $(document).ready(function () {
 
 		// overpass query for amenity in bbox
 		var qsOverpass =
-		'http://overpass-api.de/api/interpreter?data=' +
+		'https://overpass-api.de/api/interpreter?data=' +
 		'[out:json];node(' +
 		swlat + ',' + swlng + ',' + nelat + ',' + nelng +
 		')' +
@@ -227,6 +233,17 @@ $(document).ready(function () {
 		// render the Query on map
 		$.get(qsOverpass, function (resp) {
 			// console.log(resp);
+			// if (err) {
+			// 	var errThis = document.createElement('span');
+			// 	errThis.id = 'ovperr';
+			// 	errThis.className = 'ovperr';
+			// 	var errThism = document.createTextNode(err);
+			// 	errThis.appendChild(errThism);
+			// 	document.getElementById('optinputerr').appendChild(errThis);
+			// 	console.log('error happened with overpass query');
+			// 	// return console.log(err);
+			// }
+			// 	console.log('error happened with overpass query');
 
 			// osm resp .JSON to .GeoJson
 			var qsOntogeo = osmtogeojson(resp);
@@ -242,7 +259,7 @@ $(document).ready(function () {
 					feature.properties.type + ' (' + feature.properties.id + ')<br>' +
 					'&#9660 ' +
 					'<a href="' +
-					'http://overpass-api.de/api/interpreter?data=[out:popup];node(' +
+					'https://overpass-api.de/api/interpreter?data=[out:popup];node(' +
 					feature.geometry.coordinates[1] + ',' + feature.geometry.coordinates[0] + ',' +
 					feature.geometry.coordinates[1] + ',' + feature.geometry.coordinates[0] +
 					');out;' +
@@ -270,6 +287,12 @@ $(document).ready(function () {
 		}).done(function (qsoLayer, feature) {
 			console.log('Data Loaded: ' + feature);
 		});
+		// .fail(function (feature) {
+		// 	if (feature !== null && feature !== undefined) {
+		// 		console.log('err');
+		// 	}
+		// 	console.log('err');
+		// });
 		$('#opunAmenity').click(function () {
 			qsoLayer.clearLayers();
 			console.log('Data removed');
@@ -351,7 +374,7 @@ $('#pineditor').click(function () {
 
 		// define the OverPass Query
 		// [bbox:{{bbox}}];node[~"."~"."];out meta;
-		var ovquery = 'http://overpass-api.de/api/interpreter?data=' +
+		var ovquery = 'https://overpass-api.de/api/interpreter?data=' +
 		'[out:json];' +
 		'way(around:25,' + dmrkLat + ',' + dmrkLng + ')[highway];>->.a; ' +
 		'(node(around:25,' + dmrkLat + ',' + dmrkLng + ') - .a);' +
@@ -382,7 +405,7 @@ $('#pineditor').click(function () {
 					var featLat = feature.geometry.coordinates[1];
 					var featLng = feature.geometry.coordinates[0];
 
-					var deepovquery = 'http://overpass-api.de/api/interpreter?data=' +
+					var deepovquery = 'https://overpass-api.de/api/interpreter?data=' +
 					'[out:json];' +
 					'way(around:25,' + featLat + ',' + featLng + ')[highway];>->.a; ' +
 					'(node(around:5,' + featLat + ',' + featLng + ') - .a);' +
@@ -665,8 +688,8 @@ $('#weatherStations').change(function () {
 		// render the Query on map
 		map.addLayer(weatherStations);
 	} else {
-		map.removeLayer(weatherStations);
-		console.log('weatherStations Layer removed');
+		// map.removeLayer(weatherStations);
+		// console.log('weatherStations Layer removed');
 		weatherStations.clearLayers();
 		console.log('weatherStations Layer cleared');
 	}
@@ -717,8 +740,8 @@ $('#earthQuake').change(function () {
 
 		// render the Query on map
 		var eqUsgs =
-		'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson';
-		// 'https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/src/data/significant_month.geojson';
+		// 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson';
+		'https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/src/data/significant_month.geojson';
 		$.getJSON(eqUsgs, function (resp) {
 			earthQuake.addData(resp);
 			console.log('earthQuake data loaded', resp);
@@ -734,3 +757,128 @@ $('#earthQuake').change(function () {
 
 // save all marker on mapQuest
 // http://stackoverflow.com/questions/35125036/export-leaflet-map-to-geojson/35128471#35128471
+
+
+
+var upcontat = document.createElement('input');
+upcontat.id = 'upcontat';
+upcontat.type = 'button';
+upcontat.className = 'syncmycontact';
+upcontat.value = 'sync your contact';
+// <i class="fa fa-cloud-download"></i>
+var syncontact = document.getElementById('syncmycontact');
+syncontact.appendChild(upcontat);
+
+
+$('#syncmycontact').click(function () {
+	console.log('get contacts...');
+
+	var cList = 'function(doc) { emit(doc); }';
+	cozysdk.defineRequest('Contact', 'all', cList, function (err, res) {
+		if (err !== null) {
+			return alert(err);
+		}
+		console.log(res);
+
+		cozysdk.run('Contact', 'all', {}, function (err, res) {
+			if (err !== null) {
+				return alert(err);
+			}
+			console.log(res);
+
+			var i;
+			var HTML = '';
+			for (i = 0; i < res.length; i++) {
+
+				var mAd = _.findWhere(res[i].key.datapoints, {name: 'adr'}, {type: 'main'});
+
+				if (mAd !== undefined && mAd.value !== undefined) {
+					mAd.value.join('');
+					// console.log('cl mAd:', mAd.value);
+
+					var mAdz = mAd.value;
+					// console.log('cl mAdz', mAdz);
+					// console.log('cl mAdz', mAdz[2]);
+					console.log('contacts loaded!');
+
+					var template =
+					'<tr data-id="'  + res[i].id + '" class="cl"><th>' +
+					'<span class="data-name" id="dataname">' + res[i].key.fn + '</span>' +
+					'<p class="data-add" id="dataadd">' + mAdz[2] + '</p>' +
+					'<input type="text" class="datalatlng" id="datalat" value="" disabled="disabled" />' +
+					'<input type="text" class="datalatlng" id="datalng" value="" disabled="disabled" />' +
+					'<br></th></tr>';
+
+					HTML = HTML + template;
+				}
+			}
+			document.querySelector('.contact-list').innerHTML = HTML;
+			// return false;
+
+			// create an empty layer for the data
+			var contactsList = new L.LayerGroup().addTo(map);
+			// keep it inside the controle Layer
+			var overlayClist = {
+				'Contacts List': contactsList
+			};
+			L.control.layers(baseLayers, overlayClist);
+
+			// get address to geocoder and return lat, lng
+			$('tr.cl').click(function (event) {
+				console.log($(event.currentTarget));
+				// console.log($(this));
+				// console.log($(event.currentTarget.dataset.id));
+
+				var id = event.currentTarget.dataset.id;
+				console.log(id);
+
+				// define the geocoder params
+				geocoder = L.Control.Geocoder.nominatim();
+				L.Control.geocoder({
+					geocoder: geocoder
+				});
+
+				// get the right iteration address to build the right geocoder query
+				var m4dz = $('p.data-add').html();
+				console.log('m4dz said: ', m4dz);
+
+				// build a simple query with nominatim and get the results in .json
+				geocoder.geocode(m4dz, function (results) {
+					var r = results[0];
+					// console.log(results[0]);
+					console.log(results[0].name);
+					console.log(r.properties.boundingbox);
+
+					// define the marker
+					var clmaRk = new L.Marker([r.properties.lat, r.properties.lon], {
+						draggable: false,
+						icon: clUicon
+					});
+					// build a marker popup with the response name
+					clmaRk.bindPopup(r.name, {
+						className: 'uiconPopupcss'
+					});
+					// add the marker to the layer and open popup
+					clmaRk.addTo(contactsList)
+					.openPopup();
+					// fit the map view to the new droped marker with the bbox provided
+					map.fitBounds([
+						[r.bbox._southWest.lat, r.bbox._southWest.lng],
+						[r.bbox._northEast.lat, r.bbox._northEast.lng]
+					]);
+					// remove all the markers from the layer
+					clmaRk.on('dblclick', function () {
+						contactsList.clearLayers();
+					});
+					// render the lat and lng on inputs
+					var getContlat = r.properties.lat;
+					document.querySelector('#datalat').value = getContlat;
+					var getContlng = r.properties.lon;
+					document.querySelector('#datalng').value = getContlng;
+				});
+			});
+			return false;
+		});
+		return false;
+	});
+});

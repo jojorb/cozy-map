@@ -87,13 +87,18 @@
 				</div>
 			</div>
 			<div class="sidebar-pane" id="vcontact">
-				<h1 class="sidebar-header">Contact<span class="sidebar-close">
-					<i class="fa fa-angle-double-left"></i></span>
+				<h1 class="sidebar-header">
+					Contact
+					<span class="sidebar-close"><i class="fa fa-angle-double-left"></i></span>
 				</h1>
+				<div>
+					<h3><center><b>Contacts</b></center></h3>
+					<div align="center" id='syncmycontact'></div>
+					<br>
 					<div>
-						test
+						<table align="center" class="contact-list"></table>
 					</div>
-					<table align="center" class="contact-list"></table>
+				</div>
 			</div>
 			<div class="sidebar-pane" id="info">
 				<h1 class="sidebar-header">Info<span class="sidebar-close">
@@ -150,6 +155,7 @@
 						Easy data mining with custom query
 					</b></center></h3>
 					<div id="optinput"></div>
+					<span id="optinputerr"></span>
 					<h3><center><b>
 						Easy data mining with a marker query
 					</b></center></h3>
@@ -160,8 +166,8 @@
 	</div>
 	<div id='map' class='sidebar-map'></div>
 
-	<!-- <script src="vendor/jquery.slim.min.js"></script> -->
 	<script src="vendor/jquery-1.12.3.min.js"></script>
+	<script src="https://cdn.rawgit.com/cozy/cozy-browser-sdk/wip-v1/dist/cozysdk-client.js"></script>
 	<!-- <script src='vendor/cozysdk-client.js'></script> -->
 	<script src='build/map.min.js'></script>
 </body>
