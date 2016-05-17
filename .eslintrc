@@ -1,6 +1,7 @@
 {
   "globals": {
     "L": true,
+    "cozysdk": true,
   },
   "env": {
     "commonjs": true,
