@@ -41,6 +41,39 @@ var map = new L.Map('map', {
 	attributionControl: false,
 	zoomControl: false
 });
+map.setView(new L.LatLng(49.78, -21.97), 3);
+
+
+var userTz = function getUserTimeZone() {
+
+	var uTz = 'function(doc) { emit(doc); }';
+	cozysdk.defineRequest('User', 'all', uTz, function (err, res) {
+		console.log('Get timezone', res);
+		if (err !== null) {
+			return alert(err);
+		}
+		cozysdk.run('User', 'all', {}, function (err, res) {
+			if (err !== null) {
+				return alert(err);
+			}
+
+			var geocoder = L.Control.Geocoder.nominatim();
+			L.Control.geocoder({
+				geocoder: geocoder
+			});
+
+			var geLnior = res[0].key.timezone;
+
+			geocoder.geocode(geLnior, function (results) {
+				var r = results[0];
+				map.setView(new L.LatLng(r.properties.lat, r.properties.lon), 3);
+			});
+			return false;
+		});
+		return false;
+	});
+};
+
 
 var baseLayers = {
 	'OSM': losm,
@@ -114,8 +147,6 @@ mytileSubm.title = 'submit your query';
 var pHtilesub = document.getElementById('myrtiles');
 pHtilesub.appendChild(mytileSubm);
 
-
-map.setView(new L.LatLng(46.8, 3.8), 3);
 
 var startRicon = L.icon({
 	iconUrl: 'styles/images/pinstart.png',
@@ -446,6 +477,38 @@ L.control.locate(
 			maxZoom: 20
 		}
 	}).addTo(map);
+
+
+var userLocate = function () {
+
+	map.locate({setView: true, watch: true})
+	.on('locationfound', function () {
+		console.log('W3C Geolocation found');
+	})
+	.on('locationerror', function (e) {
+		console.log(e);
+		alert('Location access denied.');
+	});
+};
+
+var onStartnLoad = function () {
+	$('#mapLoad input').on('change', function () {
+		var mapLoading = $('input[name=radioLoc]:checked', '#mapLoad').val();
+		console.log(mapLoading);
+
+		if (mapLoading === ('userTz')) {
+			userTz('map');
+		}
+		if (mapLoading === ('userLocate')) {
+			userLocate('map');
+		}
+		if (mapLoading === ('null')) {
+			console.log('Default location');
+		}
+	});
+};
+// onStartnLoad('map');
+document.addEventListener('DOMContentLoaded', onStartnLoad);
 
 
 L.control.sidebar('sidebar').addTo(map);

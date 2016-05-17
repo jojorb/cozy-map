@@ -8,7 +8,11 @@
   "cozy-displayName": "Map",
   "cozy-color": "#C271DF",
   "cozy-type": "static",
-  "cozy-permissions": {},
+  "cozy-permissions": {
+		"User": {
+			"description": "Need for location with timezone."
+		}
+	},
   "icon-path": "map.svg",
   "main": "src/app.js",
   "dependencies": {
