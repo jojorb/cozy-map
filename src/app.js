@@ -492,20 +492,20 @@ var userLocate = function () {
 };
 
 var onStartnLoad = function () {
-	$('#mapLoad input').on('change', function () {
-		var mapLoading = $('input[name=radioLoc]:checked', '#mapLoad').val();
-		console.log(mapLoading);
+	// $('#mapLoad input').on('change', function () {
+	var mapLoading = $('input[name=radioLoc]:checked', '#mapLoad').val();
+	console.log(mapLoading);
 
-		if (mapLoading === ('userTz')) {
-			userTz('map');
-		}
-		if (mapLoading === ('userLocate')) {
-			userLocate('map');
-		}
-		if (mapLoading === ('null')) {
-			console.log('Default location');
-		}
-	});
+	if (mapLoading === ('userTz')) {
+		userTz('map');
+	}
+	if (mapLoading === ('userLocate')) {
+		userLocate('map');
+	}
+	if (mapLoading === ('null')) {
+		console.log('Default location');
+	}
+	// });
 };
 // onStartnLoad('map');
 document.addEventListener('DOMContentLoaded', onStartnLoad);
