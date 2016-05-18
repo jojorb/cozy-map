@@ -118,12 +118,13 @@ $(document).ready(function () {
 
 		map.removeLayer(losm);
 		map.removeLayer(lesri);
+		map.removeLayer(lgibs);
 		map.removeLayer(myRastertile);
 
 		var myTile = $('#mytileInput').val();
 		myRastertile.setUrl(myTile, {});
 		map.addLayer(myRastertile);
-		myRastertile.redraw(map);
+		// myRastertile.redraw(map);
 		console.log('TileLayer New url:', myTile);
 	});
 });
