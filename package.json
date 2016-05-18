@@ -1,6 +1,6 @@
 {
   "name": "cozy-map",
-  "version": "0.1.23",
+  "version": "0.1.24",
   "engines": [
     "*"
   ],
@@ -10,7 +10,7 @@
   "cozy-type": "static",
   "cozy-permissions": {
 		"User": {
-			"description": "Need for location with timezone."
+			"description": "Map location with your Cozy Timezone."
 		}
 	},
   "icon-path": "map.svg",
