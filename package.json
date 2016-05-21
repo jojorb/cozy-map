@@ -1,22 +1,23 @@
 {
   "name": "cozy-map",
-  "version": "0.1.21",
+  "version": "0.1.24",
   "engines": [
     "*"
   ],
   "description": "Leaflet map suited for Cozy Platform.",
   "cozy-displayName": "Map",
-  "cozy-color": "#D78EF1",
+  "cozy-color": "#C271DF",
   "cozy-type": "static",
   "cozy-permissions": {
-		"Contact": {
-			"description": "acces to contacts with address"
-		}
-	},
+    "User": {
+      "description": "Map location with your Cozy Timezone."
+    }
+  },
   "icon-path": "map.svg",
   "main": "src/app.js",
   "dependencies": {
-    "cozysdk-client": "0.0.5"
+    "geojson-elevation": "^1.1.0",
+    "node-hgt": "^1.2.0"
   },
   "devDependencies": {
     "browserify": "9.0.3",
@@ -24,6 +25,7 @@
     "eslint": "2.8.0",
     "eslint-config-mourner": "2.0.1",
     "leaflet": "0.7.7",
+    "leaflet.icon.glyph": "^0.2.0",
     "osm-auth": "^0.2.8",
     "osmtogeojson": "^2.2.11",
     "polyline": "0.2.0",

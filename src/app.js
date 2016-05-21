@@ -1,6 +1,6 @@
 // require modules
 var L = require('leaflet');
-require('./leaflet-routing-machine.js');
+// require('./leaflet-routing-machine.js');
 require('./Control.Geocoder.js');
 require('./leaflet.MiniMap.js');
 require('./leaflet.Locate.js');
@@ -10,6 +10,7 @@ var osmAuth = require('osm-auth');
 var osmtogeojson = require('osmtogeojson');
 var _ = require('../vendor/underscore-min.js');
 // var cozysdk = require('cozysdk-client');
+var RoutingControl = require('./routing-control.js');
 
 // path to the leaflet images folder
 L.Icon.Default.imagePath = 'node_modules/leaflet/dist/images/';
@@ -48,6 +49,39 @@ var map = new L.Map('map', {
 	attributionControl: false,
 	zoomControl: false
 });
+map.setView(new L.LatLng(49.78, -21.97), 3);
+
+
+var userTz = function getUserTimeZone() {
+
+	var uTz = 'function(doc) { emit(doc); }';
+	cozysdk.defineRequest('User', 'all', uTz, function (err, res) {
+		console.log('Get timezone', res);
+		if (err !== null) {
+			return alert(err);
+		}
+		cozysdk.run('User', 'all', {}, function (err, res) {
+			console.log(res);
+			if (err !== null) {
+				return alert(err);
+			}
+
+			var geocoder = L.Control.Geocoder.nominatim();
+			L.Control.geocoder({
+				geocoder: geocoder
+			});
+
+			var geLnior = res[0].key.timezone;
+
+			geocoder.geocode(geLnior, function (results) {
+				var r = results[0];
+				map.setView(new L.LatLng(r.properties.lat, r.properties.lon), 3);
+			});
+			return false;
+		});
+		return false;
+	});
+};
 
 // enable the baselayer switch to avoid double raster loding
 var baseLayers = {
@@ -94,12 +128,13 @@ $(document).ready(function () {
 
 		map.removeLayer(losm);
 		map.removeLayer(lesri);
+		map.removeLayer(lgibs);
 		map.removeLayer(myRastertile);
 
 		var myTile = $('#mytileInput').val();
 		myRastertile.setUrl(myTile, {});
 		map.addLayer(myRastertile);
-		myRastertile.redraw(map);
+		// myRastertile.redraw(map);
 		console.log('TileLayer New url:', myTile);
 	});
 });
@@ -124,18 +159,14 @@ var pHtilesub = document.getElementById('myrtiles');
 pHtilesub.appendChild(mytileSubm);
 
 
-// set the position and zoom level of the map
-map.setView(new L.LatLng(46.8, 3.8), 3);
-
-
 // icon used In App
-var startRicon = L.icon({
-	iconUrl: 'styles/images/pinstart.png',
-	iconRetinaUrl: 'styles/images/pinstart.png',
-	iconSize: [36, 47],
-	iconAnchor: [18, 47],
-	popupAnchor: [0, -48]
-});
+// var startRicon = L.icon({
+// 	iconUrl: 'styles/images/pinstart.png',
+// 	iconRetinaUrl: 'styles/images/pinstart.png',
+// 	iconSize: [36, 47],
+// 	iconAnchor: [18, 47],
+// 	popupAnchor: [0, -48]
+// });
 var dropUicon = L.icon({
 	iconUrl: 'styles/images/pinpoi.png',
 	iconRetinaUrl: 'styles/images/pinpoi.png',
@@ -150,13 +181,6 @@ var dataUicon = L.icon({
 	iconAnchor: [6.5, 23],
 	popupAnchor: [0, -24]
 });
-// var endRicon = L.icon({
-// 	iconUrl: 'styles/images/pinend.png',
-// 	iconRetinaUrl: 'styles/images/pinend.png',
-// 	iconSize: [36, 47],
-// 	iconAnchor: [18, 47],
-// 	popupAnchor: [0, -48]
-// });
 var clUicon = L.icon({
 	iconUrl: 'styles/images/pincl.png',
 	iconRetinaUrl: 'styles/images/pincl.png',
@@ -168,25 +192,53 @@ var clUicon = L.icon({
 
 
 // Routing machine features
-var sidebarlrm = L.Routing.control({
-	plan: L.Routing.plan(null, {
-		createMarker: function (i, startwp) {
-			return L.marker(startwp.latLng, {
-				draggable: true,
-				icon: startRicon
-			});
-		},
-		geocoder: L.Control.Geocoder.nominatim(),
-		routeWhileDragging: true,
-		reverseWaypoints: true,
-		draggable: true
-	}),
-	position: 'topleft',
-	collapsible: false,
-	routeWhileDragging: true,
-	routeDragTimeout: 250,
-	draggableWaypoints:true
-});
+// L.Routing.control({
+// 	plan: L.Routing.plan(null, {
+// 		createMarker: function (i, startwp) {
+// 			return L.marker(startwp.latLng, {
+// 				draggable: true,
+// 				icon: startRicon
+// 			});
+// 		},
+// 		geocoder: L.Control.Geocoder.nominatim(),
+// 		routeWhileDragging: true,
+// 		reverseWaypoints: true,
+// 		draggable: true
+// 	}),
+// 	createGeocoder: L.bind(function (i) {
+// 		var geocoder = L.Routing.GeocoderElement.prototype.options.createGeocoder.call(this, i, this.getPlan().getWaypoints().length, this.getPlan().options),
+// 		handle = L.DomUtil.create('div', 'geocoder-handle'),
+// 		geolocateBtn = L.DomUtil.create('span', 'geocoder-geolocate-btn', geocoder.container);
+//
+// 		handle.innerHTML = String.fromCharCode(65 + i);
+// 		geocoder.container.insertBefore(handle, geocoder.container.firstChild);
+//
+// 		geolocateBtn.title = 'my position';
+// 		geolocateBtn.innerHTML = '<i class="fa fa-location-arrow"></i>';
+// 		L.DomEvent.on(geolocateBtn, 'click', L.bind(function () {
+// 			geolocate(map, L.bind(function (err, p) {
+// 				if (err) {
+// 					return;
+// 				}
+//
+// 				this.spliceWaypoints(i, 1, p.latlng);
+// 			}, this));
+// 		}, this));
+//
+// 		// L.DomEvent.on(handle, 'click', function () {
+// 		// 	var wp = this.getWaypoints()[i];
+// 		// 	locationPopup(this, poiLayer, wp.latLng).openOn(this._map);
+// 		// }, this);
+//
+// 		return geocoder;
+// 	}),
+// 	position: 'topleft',
+// 	collapsible: false,
+// 	routeWhileDragging: true,
+// 	routeDragTimeout: 250,
+// 	draggableWaypoints:true
+// });
+var sidebarlrm = new RoutingControl(map);
 // include the routing machine into the sidebar
 var lrmBlock = sidebarlrm.onAdd(map);
 document.getElementById('sidebarlrm').appendChild(lrmBlock);
@@ -555,6 +607,37 @@ L.control.locate(
 		}
 	}).addTo(map);
 
+
+var userLocate = function () {
+
+	map.locate({setView: true, watch: true})
+	.on('locationfound', function () {
+		console.log('W3C Geolocation found');
+	})
+	.on('locationerror', function (e) {
+		console.log(e);
+		alert('Location access denied.');
+	});
+};
+
+var onStartnLoad = function () {
+	$('#mapLoad input').on('change', function () {
+		var mapLoading = $('input[name=radioLoc]:checked', '#mapLoad').val();
+		console.log(mapLoading);
+
+		if (mapLoading === ('userTz')) {
+			userTz('map');
+		}
+		if (mapLoading === ('userLocate')) {
+			userLocate('map');
+		}
+		if (mapLoading === ('null')) {
+			console.log('Default location');
+		}
+	});
+};
+	// onStartnLoad('map');
+document.addEventListener('DOMContentLoaded', onStartnLoad);
 
 
 // spawn the sidebar on map

@@ -61,6 +61,14 @@
 				<h1 class="sidebar-header">Map Layer<span class="sidebar-close">
 					<i class="fa fa-angle-double-left"></i></span>
 				</h1>
+				<h3><center>
+					<b>View finder</b>
+				</center></h3>
+				<form id="mapLoad">
+				<input type="radio" name="radioLoc" value="userTz" /> Timezone view <br />
+				<input type="radio" name="radioLoc" value="userLocate" /> Locate me <br />
+				<input type="radio" name="radioLoc" value="null" /> Default view <br />
+				</form>
 				<div id="maplayerselect">
 					<h3><center>
 						<b>Map Base Layers</b>
@@ -155,7 +163,6 @@
 						Easy data mining with custom query
 					</b></center></h3>
 					<div id="optinput"></div>
-					<span id="optinputerr"></span>
 					<h3><center><b>
 						Easy data mining with a marker query
 					</b></center></h3>
@@ -165,10 +172,9 @@
 		</div>
 	</div>
 	<div id='map' class='sidebar-map'></div>
-
 	<script src="vendor/jquery-1.12.3.min.js"></script>
-	<script src="https://cdn.rawgit.com/cozy/cozy-browser-sdk/wip-v1/dist/cozysdk-client.js"></script>
-	<!-- <script src='vendor/cozysdk-client.js'></script> -->
+	<!-- <script src="https://cdn.rawgit.com/cozy/cozy-browser-sdk/wip-v1/dist/cozysdk-client.js"></script> -->
+	<script src='vendor/cozysdk-client.js'></script>
 	<script src='build/map.min.js'></script>
 </body>
 </html>
