@@ -1,6 +1,6 @@
 {
   "name": "cozy-map",
-  "version": "0.1.24",
+  "version": "0.1.25",
   "engines": [
     "*"
   ],
@@ -23,6 +23,7 @@
 		"eslint": "2.8.0",
     "eslint-config-mourner": "2.0.1",
     "leaflet": "0.7.7",
+		"leaflet.icon.glyph": "^0.2.0",
     "osm-auth": "^0.2.8",
 		"osmtogeojson": "^2.2.11",
     "polyline": "0.2.0",
