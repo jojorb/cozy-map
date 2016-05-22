@@ -1,10 +1,11 @@
-var L = require('leaflet');
-require('./leaflet-routing-machine.js');
+var L = require('leaflet'),
+RoutingControl = require('./routing-control');
 require('./Control.Geocoder.js');
 require('./leaflet.MiniMap.js');
 require('./leaflet.Locate.js');
 require('./leaflet-sidebar.js');
 require('./leaflet.Hash.js');
+// var RoutingControl = require('./routing-control.js');
 var osmAuth = require('osm-auth');
 var osmtogeojson = require('osmtogeojson');
 
@@ -149,13 +150,6 @@ var pHtilesub = document.getElementById('myrtiles');
 pHtilesub.appendChild(mytileSubm);
 
 
-var startRicon = L.icon({
-	iconUrl: 'styles/images/pinstart.png',
-	iconRetinaUrl: 'styles/images/pinstart.png',
-	iconSize: [36, 47],
-	iconAnchor: [18, 47],
-	popupAnchor: [0, -48]
-});
 var dropUicon = L.icon({
 	iconUrl: 'styles/images/pinpoi.png',
 	iconRetinaUrl: 'styles/images/pinpoi.png',
@@ -172,25 +166,7 @@ var dataUicon = L.icon({
 });
 
 
-var sidebarlrm = L.Routing.control({
-	plan: L.Routing.plan(null, {
-		createMarker: function (i, startwp) {
-			return L.marker(startwp.latLng, {
-				draggable: true,
-				icon: startRicon
-			});
-		},
-		geocoder: L.Control.Geocoder.nominatim(),
-		routeWhileDragging: true,
-		reverseWaypoints: true,
-		draggable: true
-	}),
-	position: 'topleft',
-	collapsible: false,
-	routeWhileDragging: true,
-	routeDragTimeout: 250,
-	draggableWaypoints:true
-});
+var sidebarlrm = new RoutingControl(map);
 var lrmBlock = sidebarlrm.onAdd(map);
 document.getElementById('sidebarlrm').appendChild(lrmBlock);
 
