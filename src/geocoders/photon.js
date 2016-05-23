@@ -96,3 +96,4 @@ module.exports = {
 		return new L.Control.Geocoder.Photon(options);
 	}
 };
+
