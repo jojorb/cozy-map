@@ -4,7 +4,7 @@ var L = require('leaflet'),
 module.exports = {
 	class: L.Class.extend({
 		options: {
-			serviceUrl: '//search.mapzen.com/v1',
+			serviceUrl: 'https://search.mapzen.com/v1',
 			geocodingQueryParams: {},
 			reverseQueryParams: {}
 		},
@@ -56,11 +56,22 @@ module.exports = {
 					return L.circleMarker(latlng);
 				},
 				onEachFeature: function(feature, layer) {
-					var result = {};
-					result['name'] = layer.feature.properties.label;
-					result[bboxname] = layer.getBounds();
-					result['center'] = result[bboxname].getCenter();
-					result['properties'] = layer.feature.properties;
+					var result = {},
+						bbox,
+						center;
+
+					if (layer.getBounds) {
+						bbox = layer.getBounds();
+						center = bbox.getCenter();
+					} else {
+						center = layer.getLatLng();
+						bbox = L.latLngBounds(center, center);
+					}
+
+					result.name = layer.feature.properties.label;
+					result.center = center;
+					result[bboxname] = bbox;
+					result.properties = layer.feature.properties;
 					results.push(result);
 				}
 			});
