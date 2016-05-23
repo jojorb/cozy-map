@@ -741,6 +741,18 @@ hr {
   background: #86888B;
   border: 0;
 }
+a:link {
+	 color: #33A6FF;
+}
+a:visited {
+	 color: #33A6FF;
+}
+a:hover {
+	 color: #2B90DE;
+}
+a:active {
+	 color: #2B90DE;
+}
 #map {
   width: 100%;
   height: 100%;
