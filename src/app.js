@@ -5,7 +5,7 @@ require('./leaflet.MiniMap.js');
 require('./leaflet.Locate.js');
 require('./leaflet-sidebar.js');
 require('./leaflet.Hash.js');
-// var RoutingControl = require('./routing-control.js');
+require('leaflet.icon.glyph');
 var osmAuth = require('osm-auth');
 var osmtogeojson = require('osmtogeojson');
 
@@ -175,8 +175,49 @@ var geocoder = L.Control.geocoder({
 	position: 'topleft',
 	collapsed: false,
 	placeholder: 'search...',
+	showResultIcons: true,
 	errorMessage: '‘X’ never, ever marks the spot.'
 });
+
+geocoder.markGeocode = function (result) {
+	console.log(result);
+	map.fitBounds(result.bbox, {
+		maxZoom: 17
+	});
+	var uiconPopupcss = {
+		'className': 'uiconPopupcss'
+	};
+	var edosm = 'https://www.openstreetmap.org/edit?';
+	var stype = result.properties.osm_type;
+	var sosmid = result.properties.osm_id;
+	var slat = result.properties.lat;
+	var slng = result.properties.lon;
+
+	var spop = '<b>' + result.properties.display_name + '</b><br>' +
+	'&#9654 <a href="' + edosm + stype + sosmid + '#map=19/' + slat + '/' + slng +
+	'" target=_blank>Edit with iD</a>';
+	var itim = '<img src=' + result.icon + '>';
+
+	var babo = new L.Marker(result.center, {
+		icon: L.icon.glyph({
+			iconUrl: 'styles/images/geocodermarker.svg',
+			iconSize: [37, 50],
+			iconAnchor: [18.5, 50],
+			glyphAnchor: [0, 7],
+			popupAnchor: [0, -51],
+			prefix: '',
+			glyphColor: 'white',
+			glyphSize: '25px',
+			glyph: itim
+		})
+	})
+	.once('dblclick', function () {
+		map.removeLayer(babo);
+	})
+	.bindPopup(spop, uiconPopupcss)
+	.addTo(map)
+	.openPopup();
+};
 var gecBlock = geocoder.onAdd(map);
 document.getElementById('sidebarex').appendChild(gecBlock);
 
