@@ -196,27 +196,49 @@ geocoder.markGeocode = function (result) {
 	var spop = '<b>' + result.properties.display_name + '</b><br>' +
 	'&#9654 <a href="' + edosm + stype + sosmid + '#map=19/' + slat + '/' + slng +
 	'" target=_blank>Edit with iD</a>';
-	var itim = '<img src=' + result.icon + '>';
-
-	var babo = new L.Marker(result.center, {
-		icon: L.icon.glyph({
-			iconUrl: 'styles/images/geocodermarker.svg',
-			iconSize: [37, 50],
-			iconAnchor: [18.5, 50],
-			glyphAnchor: [0, 7],
-			popupAnchor: [0, -51],
-			prefix: '',
-			glyphColor: 'white',
-			glyphSize: '25px',
-			glyph: itim
+	if (result.icon === undefined) {
+		var xitim = '?';
+		var xbabo = new L.Marker(result.center, {
+			icon: L.icon.glyph({
+				iconUrl: 'styles/images/geocodermarker.svg',
+				iconSize: [37, 50],
+				iconAnchor: [18.5, 50],
+				glyphAnchor: [0, -8],
+				popupAnchor: [0, -51],
+				prefix: '',
+				glyphColor: 'white',
+				glyphSize: '23px',
+				glyph: xitim
+			})
 		})
-	})
-	.once('dblclick', function () {
-		map.removeLayer(babo);
-	})
-	.bindPopup(spop, uiconPopupcss)
-	.addTo(map)
-	.openPopup();
+		.once('dblclick', function () {
+			map.removeLayer(xbabo);
+		})
+		.bindPopup(spop, uiconPopupcss)
+		.addTo(map)
+		.openPopup();
+	} else {
+		var itim = '<img src=' + result.icon + '>';
+		var babo = new L.Marker(result.center, {
+			icon: L.icon.glyph({
+				iconUrl: 'styles/images/geocodermarker.svg',
+				iconSize: [37, 50],
+				iconAnchor: [18.5, 50],
+				glyphAnchor: [0, 7],
+				popupAnchor: [0, -51],
+				prefix: '',
+				glyphColor: 'white',
+				glyphSize: '25px',
+				glyph: itim
+			})
+		})
+		.once('dblclick', function () {
+			map.removeLayer(babo);
+		})
+		.bindPopup(spop, uiconPopupcss)
+		.addTo(map)
+		.openPopup();
+	}
 };
 var gecBlock = geocoder.onAdd(map);
 document.getElementById('sidebarex').appendChild(gecBlock);
@@ -453,32 +475,37 @@ L.control.zoom({
 	position:'bottomright'
 }).addTo(map);
 
-var markerLicon = {
-	iconUrl: 'styles/images/bluedot.png',
-	iconSize: [17, 17],
-	iconAnchor: [9, 9],
-	popupAnchor: [0, -10],
-	labelAnchor: [3, -4]
-};
+// var markerLicon = {
+// 	iconUrl: 'styles/images/bluedot.png',
+// 	iconSize: [17, 17],
+// 	iconAnchor: [9, 9],
+// 	popupAnchor: [0, -10],
+// 	labelAnchor: [3, -4]
+// };
 
 L.control.locate(
 	{
 		position: 'topright',
 		icon: 'fa fa-location-arrow',
 		iconLoading: 'fa fa-refresh fa-spin',
+		setView: 'untilPan',
+		// TODO make pulsing if folow
+		// markerClass: L.marker,
+		// markerStyle: {
+		// 	icon: L.icon(markerLicon),
+		// 	className: 'locatemarker-pulsate'
+		// },
 		drawCircle: true,
 		circlePadding: [20, 20],
-		circlestyles: {
-			color: '#FFF',
-			fillColor: '#000',
+		circleStyle: {
+			color: '#0E3C96',
+			fillColor: '#0aa9fb',
 			fillOpacity: '0.1',
 			weight: '2'
 		},
-		follow: true,
-		markerClass: L.marker,
-		markerStyle: {
-			icon: L.icon(markerLicon),
-			className: 'locatemarker-pulsate'
+		followCircleStyle: {
+			color: '#FFF',
+			fillColor: '#000'
 		},
 		metric: true,
 		strings: {
@@ -499,7 +526,7 @@ L.control.locate(
 
 var userLocate = function () {
 
-	map.locate({setView: true, watch: true})
+	map.locate({setView: true, watch: false})
 	.on('locationfound', function () {
 		console.log('W3C Geolocation found');
 	})
