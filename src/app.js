@@ -475,26 +475,12 @@ L.control.zoom({
 	position:'bottomright'
 }).addTo(map);
 
-// var markerLicon = {
-// 	iconUrl: 'styles/images/bluedot.png',
-// 	iconSize: [17, 17],
-// 	iconAnchor: [9, 9],
-// 	popupAnchor: [0, -10],
-// 	labelAnchor: [3, -4]
-// };
-
 L.control.locate(
 	{
 		position: 'topright',
 		icon: 'fa fa-location-arrow',
 		iconLoading: 'fa fa-refresh fa-spin',
 		setView: 'untilPan',
-		// TODO make pulsing if folow
-		// markerClass: L.marker,
-		// markerStyle: {
-		// 	icon: L.icon(markerLicon),
-		// 	className: 'locatemarker-pulsate'
-		// },
 		drawCircle: true,
 		circlePadding: [20, 20],
 		circleStyle: {
