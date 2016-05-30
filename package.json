@@ -11,6 +11,9 @@
   "cozy-permissions": {
     "User": {
       "description": "Map location with your Cozy Timezone."
+    },
+    "Contact": {
+      "description": "Edit your contacts."
     }
   },
   "icon-path": "map.svg",
