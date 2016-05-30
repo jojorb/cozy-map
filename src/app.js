@@ -181,13 +181,13 @@ var dataUicon = L.icon({
 	iconAnchor: [6.5, 23],
 	popupAnchor: [0, -24]
 });
-var clUicon = L.icon({
-	iconUrl: 'styles/images/pincl.png',
-	iconRetinaUrl: 'styles/images/pincl.png',
-	iconSize: [36, 47],
-	iconAnchor: [18, 47],
-	popupAnchor: [0, -48]
-});
+// var clUicon = L.icon({
+// 	iconUrl: 'styles/images/pincl.png',
+// 	iconRetinaUrl: 'styles/images/pincl.png',
+// 	iconSize: [36, 47],
+// 	iconAnchor: [18, 47],
+// 	popupAnchor: [0, -48]
+// });
 
 
 
@@ -875,35 +875,38 @@ $('#syncmycontact').click(function () {
 					mAd.value.join('');
 					var mAdz = mAd.value;
 					console.log('Success: Get Contacts Address');
-					// TODO stick a default user png if avatar empty
-					// var user = _.findWhere(res[i].key._attachments, {picture});
-					// if (user === undefined && user.value === undefined) {
-					// 	user.value.join('');
-					// 	var userPng = user.value('');
-					// } // end if userPics
-					// var altUpics =
-					// '<img src="./styles/images/user.png" alt="iD" style="width:42px;height:42px;"></a>';
+					// stick a default user png if avatar empty
+					var altUpics;
+					if (res[i].key._attachments === undefined) {
+						altUpics =
+						'<img src="./styles/images/user.png" alt="iD" style="width:42px;height:42px;">';
+					} else {
+						altUpics =
+						'<img height="42" width="42"src=../contacts/contacts/' + res[i].id + '/picture.png>';
+					}
 					var template =
-					'<tr data-id="'  + res[i].id + '" class="cl">' +
-						'<th rowspan="4" align="top">' +
-						'<img height="42" width="42"src=' +
-						'../contacts/contacts/' + res[i].id + '/picture.png' +
-						// res[i].key.avatar +
-						'>' +
+					'<tr>' +
+						'<th data-id="'  + res[i].id +
+						'" class="contactmap" rowspan="4" align="top">' + altUpics +
 						'</th>' +
 						'<th align="left">' + res[i].key.fn + '</th>' +
 					'</tr>' +
 					'<tr>' +
-						'<td class="data-add">' + mAdz[2] + '</td>' +
+						'<td class="data-add" id="updatecontact' + res[i].id + '">' +
+						'<a title="update ON Cozy-Contacts" href=../../#apps/contacts/contacts/' + res[i].id +
+						'>' +
+						'<i class="fa fa-pencil-square-o"></i>' +
+						'</a>' +
+						'<input name="cc" type="text" class="datamadz" id="dataadd" value="' +
+						mAdz[2] + '" readonly required />' +
+						 '</td>' +
 					'</tr>' +
 					'<tr>' +
 						'<td>' +
-						'<input type="text" class="datalatlng" id="datalat" value="" disabled="disabled" />' +
-						'<input type="text" class="datalatlng" id="datalng" value="" disabled="disabled" />' +
 						'</td>' +
 					'</tr>' +
 					'<tr>' +
-						'<td> link to </td>' +
+						// '<td></td>' +
 					'</tr>';
 					HTML = HTML + template;
 				}
@@ -916,17 +919,23 @@ $('#syncmycontact').click(function () {
 			};
 			L.control.layers(baseLayers, overlayClist);
 
-			$('tr.cl').click(function (event) {
+			$('th.contactmap').click(function (event) {
 				var id = event.currentTarget.dataset.id;
 				geocoder = L.Control.Geocoder.nominatim();
 				L.Control.geocoder({
 					geocoder: geocoder
 				});
-
 				cozysdk.find('Contact', id, function (err, r) {
 					console.log(r);
 					if (err !== null) {
 						return alert(err);
+					}
+					if (r._attachments === undefined) {
+						altUpics =
+						'<img src="./styles/images/user.png" alt="iD" style="width:30px;height:30px;">';
+					} else {
+						altUpics =
+						'<img height="30" width="30"src=../contacts/contacts/' + r._id + '/picture.png>';
 					}
 					var m4dzCheck = _.findWhere(r.datapoints, {name: 'adr'}, {type: 'main'});
 					if (m4dzCheck !== undefined && m4dzCheck.value !== undefined) {
@@ -934,12 +943,60 @@ $('#syncmycontact').click(function () {
 						var m4dz = m4dzCheck.value;
 						console.log('process for: ', m4dz, ' loading...');
 						geocoder.geocode(m4dz, function (results) {
+							if (results[0] === undefined) {
+								console.log('error with conctat address!', id);
+								// alert('error with conctat address!');
+								var cupdate = document.createElement('input');
+								cupdate.id = 'cupdate';
+								cupdate.type = 'button';
+								cupdate.className = 'updatecontact';
+								cupdate.name = 'Edit';
+								cupdate.value = 'Edit';
+								cupdate.title = 'edit this contact';
+								var updatec = document.getElementById('updatecontact' + id);
+								updatec.appendChild(cupdate);
+
+								$('[name="Edit"]').on('click', function () {
+									var prev = $(this).prev('input'),
+									ro = prev.prop('readonly');
+									prev.prop('readonly', !ro).focus();
+									$(this).val(ro ? 'Save' : 'Edit');
+								});
+
+								var upc = document.createElement('span');
+								upc.id = 'maptoc';
+								upc.title = 'update TO Cozy-Contacts';
+								upc.className = 'maptocontact';
+								var mupc = document.getElementById('updatecontact' + id);
+								mupc.appendChild(upc);
+
+								$('#maptoc').click(function () {
+									var caa = $(this).prevAll('input[name=cc]').val();
+									console.log(caa);
+									// {datapoints: [{name: 'adr'}, {type: 'main'}]}
+									var pushAdd = {'datapoints[0].value[2]': caa};
+									cozysdk.updateAttributes('Contact', id, pushAdd, function () {
+										console.log('contact Add pushed');
+									});
+								});
+
+							}
 							var r = results[0];
 							var clmaRk = new L.Marker([r.properties.lat, r.properties.lon], {
 								draggable: false,
-								icon: clUicon
+								icon: L.icon.glyph({
+									iconUrl: 'styles/images/pinuser.svg',
+									iconSize: [48, 48],
+									iconAnchor: [24, 50],
+									glyphAnchor: [0, 6],
+									popupAnchor: [0, -50],
+									prefix: '',
+									glyphColor: 'white',
+									glyphSize: '30px',
+									glyph: altUpics
+								})
 							});
-							// TODO update contactsList with nominatim LatLng
+							// update contactsList with nominatim LatLng
 							// https://en.wikipedia.org/wiki/Geo_URI_scheme
 							var uCoords = {geo: [r.properties.lat, r.properties.lon, null]};
 							cozysdk.updateAttributes('Contact', id, uCoords, function () {});
