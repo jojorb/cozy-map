@@ -758,7 +758,7 @@ $('#syncmycontact').click(function () {
 					'</tr>' +
 					'<tr>' +
 						'<td class="data-add" id="updatecontact' + res[i].id + '">' +
-						'<a title="update ON Cozy-Contacts" href=../../#apps/contacts/contacts/' + res[i].id +
+						'<a title="update ON Cozy-Contacts" href=../../apps/contacts/contacts/' + res[i].id +
 						'>' +
 						'<i class="fa fa-pencil-square-o"></i>' +
 						'</a>' +
