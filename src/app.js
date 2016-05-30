@@ -6,6 +6,7 @@ require('./leaflet.Locate.js');
 require('./leaflet-sidebar.js');
 require('./leaflet.Hash.js');
 require('leaflet.icon.glyph');
+var _ = require('../vendor/underscore-min.js');
 var osmAuth = require('osm-auth');
 var osmtogeojson = require('osmtogeojson');
 
@@ -705,3 +706,188 @@ $('#earthQuake').change(function () {
 		console.log('earthQuake Layer cleared');
 	}
 });
+
+
+var upcontat = document.createElement('input');
+upcontat.id = 'upcontat';
+upcontat.type = 'button';
+upcontat.className = 'syncmycontact';
+upcontat.value = 'sync your contact';
+// <i class="fa fa-cloud-download"></i>
+var syncontact = document.getElementById('syncmycontact');
+syncontact.appendChild(upcontat);
+
+
+$('#syncmycontact').click(function () {
+
+	var cList = 'function(doc) { emit(doc); }';
+	cozysdk.defineRequest('Contact', 'all', cList, function (err, res) {
+		if (err !== null) {
+			return alert(err);
+		}
+		console.log('Contacts: ', res);
+		cozysdk.run('Contact', 'all', {}, function (err, res) {
+			if (err !== null) {
+				return alert(err);
+			}
+			console.log('Contacts loading', res);
+			var i;
+			var HTML = '';
+			for (i = 0; i < res.length; i++) {
+				var mAd = _.findWhere(res[i].key.datapoints, {name: 'adr'}, {type: 'main'});
+				if (mAd !== undefined && mAd.value !== undefined) {
+					mAd.value.join('');
+					var mAdz = mAd.value;
+					console.log('Success: Get Contacts Address');
+					// stick a default user png if avatar empty
+					var altUpics;
+					if (res[i].key._attachments === undefined) {
+						altUpics =
+						'<img src="./styles/images/user.png" alt="iD" style="width:42px;height:42px;">';
+					} else {
+						altUpics =
+						'<img height="42" width="42"src=../contacts/contacts/' +
+						res[i].id + '/picture.png>';
+					}
+					var template =
+					'<tr>' +
+						'<th data-id="'  + res[i].id +
+						'" class="contactmap" rowspan="4" align="top">' + altUpics +
+						'</th>' +
+						'<th align="left">' + res[i].key.fn + '</th>' +
+					'</tr>' +
+					'<tr>' +
+						'<td class="data-add" id="updatecontact' + res[i].id + '">' +
+						'<a title="update ON Cozy-Contacts" href=../../#apps/contacts/contacts/' + res[i].id +
+						'>' +
+						'<i class="fa fa-pencil-square-o"></i>' +
+						'</a>' +
+						'<input name="cc" type="text" class="datamadz" id="dataadd" value="' +
+						mAdz[2] + '" readonly required />' +
+						 '</td>' +
+					'</tr>' +
+					'<tr>' +
+						'<td>' +
+						'</td>' +
+					'</tr>' +
+					'<tr>' +
+						// '<td></td>' +
+					'</tr>';
+					HTML = HTML + template;
+				}
+			} // end for
+			document.querySelector('.contact-list').innerHTML = HTML;
+
+			var contactsList = new L.LayerGroup().addTo(map);
+			var overlayClist = {
+				'Contacts List': contactsList
+			};
+			L.control.layers(baseLayers, overlayClist);
+
+			$('th.contactmap').click(function (event) {
+				var id = event.currentTarget.dataset.id;
+				geocoder = L.Control.Geocoder.nominatim();
+				L.Control.geocoder({
+					geocoder: geocoder
+				});
+				cozysdk.find('Contact', id, function (err, r) {
+					console.log(r);
+					if (err !== null) {
+						return alert(err);
+					}
+					if (r._attachments === undefined) {
+						altUpics =
+						'<img src="./styles/images/user.png" alt="iD" style="width:30px;height:30px;">';
+					} else {
+						altUpics =
+						'<img height="30" width="30"src=../contacts/contacts/' + r._id + '/picture.png>';
+					}
+					var m4dzCheck = _.findWhere(r.datapoints, {name: 'adr'}, {type: 'main'});
+					if (m4dzCheck !== undefined && m4dzCheck.value !== undefined) {
+						m4dzCheck.value.join('');
+						var m4dz = m4dzCheck.value;
+						console.log('process for: ', m4dz, ' loading...');
+						geocoder.geocode(m4dz, function (results) {
+							if (results[0] === undefined) {
+								console.log('error with conctat address!', id);
+								// alert('error with conctat address!');
+								var cupdate = document.createElement('input');
+								cupdate.id = 'cupdate';
+								cupdate.type = 'button';
+								cupdate.className = 'updatecontact';
+								cupdate.name = 'Edit';
+								cupdate.value = 'Edit';
+								cupdate.title = 'edit this contact';
+								var updatec = document.getElementById('updatecontact' + id);
+								updatec.appendChild(cupdate);
+
+								$('[name="Edit"]').on('click', function () {
+									var prev = $(this).prev('input'),
+									ro = prev.prop('readonly');
+									prev.prop('readonly', !ro).focus();
+									$(this).val(ro ? 'Save' : 'Edit');
+								});
+
+								var upc = document.createElement('span');
+								upc.id = 'maptoc';
+								upc.title = 'update TO Cozy-Contacts';
+								upc.className = 'maptocontact';
+								var mupc = document.getElementById('updatecontact' + id);
+								mupc.appendChild(upc);
+
+								$('#maptoc').click(function () {
+									var caa = $(this).prevAll('input[name=cc]').val();
+									console.log(caa);
+									// {datapoints: [{name: 'adr'}, {type: 'main'}]}
+									var pushAdd = {'datapoints[0].value[2]': caa};
+									cozysdk.updateAttributes('Contact', id, pushAdd, function () {
+										console.log('contact Add pushed');
+									});
+								});
+
+							}
+							var r = results[0];
+							var clmaRk = new L.Marker([r.properties.lat, r.properties.lon], {
+								draggable: false,
+								icon: L.icon.glyph({
+									iconUrl: 'styles/images/pinuser.svg',
+									iconSize: [48, 48],
+									iconAnchor: [24, 50],
+									glyphAnchor: [0, 6],
+									popupAnchor: [0, -50],
+									prefix: '',
+									glyphColor: 'white',
+									glyphSize: '30px',
+									glyph: altUpics
+								})
+							});
+							// update contactsList with nominatim LatLng
+							// https://en.wikipedia.org/wiki/Geo_URI_scheme
+							var uCoords = {geo: [r.properties.lat, r.properties.lon, null]};
+							cozysdk.updateAttributes('Contact', id, uCoords, function () {});
+
+							clmaRk.bindPopup(r.name, {
+								className: 'uiconPopupcss'
+							});
+							clmaRk.addTo(contactsList)
+							.openPopup();
+							map.fitBounds([
+								[r.bbox._southWest.lat, r.bbox._southWest.lng],
+								[r.bbox._northEast.lat, r.bbox._northEast.lng]
+							]);
+							console.log('contact: ', id, ' ON Map!');
+							clmaRk.on('dblclick', function () {
+								contactsList.clearLayers();
+							});
+							// TODO if result = err then check GEO and show r.datapoints.adr
+							// TODO if err result and no GEO ask to locate with a marker?
+						});// end geocoder
+					} // end if cz.find
+					return false;
+				}); // end cz.find
+			}); // end $('tr.cl')
+			return false;
+		}); // cz.run
+		return false;
+	}); // cz.defineRequest
+});// $('syncmycontact')
