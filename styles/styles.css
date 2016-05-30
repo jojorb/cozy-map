@@ -861,7 +861,27 @@ background-color: #33A6FF;
 	border: none;
 	cursor: pointer;
 }
-
+.contactmap {
+	cursor: pointer;
+}
+.updatecontact {
+	cursor: pointer;
+	color: #E80931;
+}
+.maptocontact {
+	color: #33A6FF;
+	cursor: pointer;
+	position:relative;
+}
+.maptocontact:before {
+	content: "\f0ee";
+	font-family: FontAwesome;
+	font-size: 16px;
+	padding-left: 0.5em;
+	position:absolute;
+	top: -15px;
+	left: 0;
+}
 /*Overiding leaflet-routine-machine.css : images attribution*/
 .leaflet-routing-icon {
     background-image: url('images/leaflet.routing.icons.png');
