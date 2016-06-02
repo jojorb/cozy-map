@@ -9,12 +9,36 @@ module.exports = {
 		timer: 2000,
 		showConfirmButton: false
 	}),
+	// error type undefined or so
+	bad: ({
+		title: 'Snap!',
+		text: 'Something went wrong!',
+		showConfirmButton: true
+	}),
+	// show during loading pers. weather
+	pws: ({
+		title: 'Will be loading',
+		text: 'over 1.000 personal weather stations accross the planet',
+		type: 'info',
+		showCancelButton: true,
+		closeOnConfirm: false,
+		showLoaderOnConfirm: true,
+		confirmButtonText: 'GO!'
+	}),
+	eq: ({
+		title: 'Earthquake',
+		text: 'last data over 5mg loaded',
+		timer: '800',
+		showConfirmButton: false
+	}),
+	// show during contact loading
 	lcl: ({
 		title: 'Loading...',
 		text: 'looking for Contact list',
 		timer: 1337,
 		showConfirmButton: false
 	}),
+	// show if err with contact address and Nominatim
 	clu: ({
 		title: 'Unknown address!',
 		text: '<span style="color:#3D3D3D">' +
