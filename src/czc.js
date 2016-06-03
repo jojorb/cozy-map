@@ -31,6 +31,13 @@ module.exports = {
 		timer: '800',
 		showConfirmButton: false
 	}),
+	// show during timezone loading
+	ltz: ({
+		title: 'Loading...',
+		text: 'looking for User timezone',
+		timer: 1500,
+		showConfirmButton: false
+	}),
 	// show during contact loading
 	lcl: ({
 		title: 'Loading...',
