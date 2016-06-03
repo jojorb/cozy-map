@@ -54,9 +54,10 @@ var userTz = function getUserTimeZone() {
 	var uTz = 'function(doc) { emit(doc); }';
 	cozysdk.defineRequest('User', 'all', uTz, function (err, res) {
 		console.log('Get timezone', res);
-		if (err !== undefined) {
+		if (err !== null) {
 			return swal(czc.err);
 		}
+		swal(czc.ltz);
 		cozysdk.run('User', 'all', {}, function (err, res) {
 			if (err !== null) {
 				return swal(czc.err);
@@ -644,12 +645,18 @@ var stations = [
 
 $('#weatherStations').change(function () {
 	if ($(this).prop('checked')) {
-
-		for (var i = 0; i < stations.length; i++) {
-			$.getJSON(stations[i], handle);
-		}
-
-		map.addLayer(weatherStations);
+		swal(czc.pws, function () {
+			for (var i = 0; i < stations.length; i++) {
+				$.getJSON(stations[i], handle);
+			}
+			setTimeout(function () {
+				swal('loaded!');
+			}, 2000);
+		}).done(function () {
+			map.addLayer(weatherStations);
+		}).fail(function () {
+			swal(czc.bad);
+		});
 	} else {
 		map.removeLayer(weatherStations);
 		console.log('weatherStations Layer removed');
@@ -698,10 +705,14 @@ $('#earthQuake').change(function () {
 		// 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson';
 		'https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/src/data/significant_month.geojson';
 		$.getJSON(eqUsgs, function (resp) {
-			earthQuake.addData(resp);
 			console.log('earthQuake data loaded', resp);
+		}).done(function (resp) {
+			earthQuake.addData(resp);
+			map.addLayer(earthQuake);
+			swal(czc.eq);
+		}).fail(function () {
+			swal(czc.bad);
 		});
-		map.addLayer(earthQuake);
 	} else {
 		map.removeLayer(earthQuake);
 		console.log('earthQuake Layer removed');
@@ -820,7 +831,7 @@ $('#syncmycontact').click(function () {
 					console.log(r);
 					var zer = r;
 					if (err !== null) {
-						return alert(err);
+						return swal(czc.bad);
 					}
 					// Get event contact avart or give him a default one
 					if (r._attachments === undefined) {
@@ -843,14 +854,7 @@ $('#syncmycontact').click(function () {
 								swal(czc.clu);
 
 								// if error with the address bring tool to mod the address
-								// // create a btn to edit address
-								// var cupdate = document.createElement('input');
-								// cupdate.id = 'cupdate';
-								// cupdate.type = 'button';
-								// cupdate.className = 'updatecontact';
-								// cupdate.name = 'Edit';
-								// cupdate.value = 'Edit';
-								// cupdate.title = 'edit this contact';
+								// // load btn to edit address
 								var updatec = document.getElementById('updatecontact' + id);
 								updatec.appendChild(cupdate);
 
@@ -866,11 +870,7 @@ $('#syncmycontact').click(function () {
 
 								});
 
-								// // create a btn to update the contact address
-								// var upc = document.createElement('span');
-								// upc.id = 'maptoc';
-								// upc.title = 'update TO Cozy-Contacts';
-								// upc.className = 'maptocontact';
+								// // load btn to update the contact address
 								var mupc = document.getElementById('updatecontact' + id);
 								mupc.appendChild(upc);
 
