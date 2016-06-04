@@ -1,6 +1,6 @@
 @import url("css/leaflet.css");
 /*@import url("../node_modules/leaflet/dist/leaflet.css");*/
-
+@import url("css/sw.css");
 
 
 /*@import url("styles/leaflet-routing-machine.css");*/
@@ -881,6 +881,20 @@ background-color: #33A6FF;
 	position:absolute;
 	top: -15px;
 	left: 0;
+}
+.syncmycontacto {
+	cursor: pointer;
+	color: #F8F9F9;
+	background-color: rgba(102, 99, 99, 0.68);
+	font-size: 16px;
+	text-align: center;
+	padding: 20px 65px;
+	/*width: 65%;*/
+	border-radius: 8px;
+	border: none;
+}
+.syncmycontacto:hover {
+	color: #33A6FF;
 }
 /*Overiding leaflet-routine-machine.css : images attribution*/
 .leaflet-routing-icon {
