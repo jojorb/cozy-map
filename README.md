@@ -15,16 +15,17 @@ This is a simple "carto-map" project to get your own mapping tool and will allow
 
 **"Done" features:**  
 - Tiles are https only.
-- search and query features with Nominatim and Overpass.
+- search and query features with Nominatim OSRM and Overpass.
 - Weather Stations mostly served from personal Raspberry Pi.
+- fetch Contacts from Cozy-Contact and diplay them on Map.
 
 **Working on (developer branch):**  
-- ease contributions/update osm nodes in app.
-- fetch data from Cozy-App
+- fetch data from Cozy-Files
 - working on konnectors.
 
 **Next stuff:**  
-- organize manage mapping tool and data
+- organize manage mapping tool and data.
+- ease contributions/update osm nodes in app.
 
 >Because sometimes contribute is the only thing we can do.  
 Load a Map to update or create Open Source data.  
