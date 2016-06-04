@@ -41,13 +41,19 @@ var lgibs = L.tileLayer('https://map1.vis.earthdata.nasa.gov/wmts-webmerc/' + vi
 	opacity: '1'
 });
 
+var lmpb = L.tileLayer('https://api.mapbox.com/styles/v1/robyremzy/cip0qeeez0003dnm6ixymeffw/tiles/{z}/{x}/{y}?access_token=' + czc.mpb, {
+	minZoom: '3',
+	maxZoom: '20',
+	opacity: '1'
+});
+
 var map = new L.Map('map', {
-	layers: [losm],
+	layers: [lmpb],
 	attributionControl: false,
 	zoomControl: false
 });
 map.setView(new L.LatLng(49.78, -21.97), 3);
-
+swal(czc.mpbx);
 
 var userTz = function getUserTimeZone() {
 
@@ -85,7 +91,8 @@ var baseLayers = {
 	'OSM': losm,
 	'ESRI': lesri,
 	'GIBS': lgibs,
-	'MYRA': myRastertile
+	'MYRA': myRastertile,
+	'MAPBOX': lmpb
 };
 
 $('#switch_losm').click(function () {
@@ -100,6 +107,9 @@ $('#switch_lgibs').click(function () {
 });
 $('#switch_myRastertile').click(function () {
 	switchLayer(baseLayers, 'MYRA');
+});
+$('#switch_lmpb').click(function () {
+	switchLayer(baseLayers, 'MAPBOX');
 });
 
 function switchLayer(collection, layerKey) {
@@ -125,6 +135,7 @@ $(document).ready(function () {
 		map.removeLayer(losm);
 		map.removeLayer(lesri);
 		map.removeLayer(lgibs);
+		map.removeLayer(lmpb);
 		map.removeLayer(myRastertile);
 
 		var myTile = $('#mytileInput').val();
@@ -630,6 +641,7 @@ function handle(response) {
 		.addTo(weatherStations);
 		console.log('stations moved to weatherStations');
 	});
+	swal(czc.pwss);
 }
 var overlayWstations = {
 	'Weather Stations': weatherStations
@@ -645,18 +657,15 @@ var stations = [
 
 $('#weatherStations').change(function () {
 	if ($(this).prop('checked')) {
-		swal(czc.pws, function () {
-			for (var i = 0; i < stations.length; i++) {
-				$.getJSON(stations[i], handle);
-			}
-			setTimeout(function () {
-				swal('loaded!');
-			}, 2000);
-		}).done(function () {
-			map.addLayer(weatherStations);
-		}).fail(function () {
-			swal(czc.bad);
-		});
+		swal(czc.pws);
+		for (var i = 0; i < stations.length; i++) {
+			$.getJSON(stations[i], handle);
+		}
+		// handle.done(function () {
+		// 	map.addLayer(weatherStations);
+		// }).fail(function () {
+		// 	swal(czc.bad);
+		// });
 	} else {
 		map.removeLayer(weatherStations);
 		console.log('weatherStations Layer removed');
@@ -721,34 +730,9 @@ $('#earthQuake').change(function () {
 	}
 });
 
-// create a Sync btn for Contact
-var upcontat = document.createElement('input');
-upcontat.id = 'upcontat';
-upcontat.type = 'button';
-upcontat.className = 'syncmycontact';
-upcontat.value = 'sync your contact';
-// <i class="fa fa-cloud-download"></i>
-var syncontact = document.getElementById('syncmycontact');
-syncontact.appendChild(upcontat);
 
-// create a btn to edit address
-var cupdate = document.createElement('input');
-cupdate.id = 'cupdate';
-cupdate.type = 'button';
-cupdate.className = 'updatecontact';
-cupdate.name = 'Edit';
-cupdate.value = 'Edit';
-cupdate.title = 'edit this contact';
-
-// create a btn to update the contact address
-var upc = document.createElement('span');
-upc.id = 'maptoc';
-upc.title = 'update TO Cozy-Contacts';
-upc.className = 'maptocontact';
-
-// Sync action onclick btn
-$('#syncmycontact').click(function () {
-	// define request for Contact liste
+// Sync Contacts
+$('#syncmycontacto').click(function () {
 	var cList = 'function(doc) { emit(doc); }';
 	cozysdk.defineRequest('Contact', 'all', cList, function (err, res) {
 		if (err !== null) {
@@ -756,7 +740,7 @@ $('#syncmycontact').click(function () {
 		}
 		console.log('Contacts: ', res);
 		swal(czc.lcl);
-		// Get le contact liste
+
 		cozysdk.run('Contact', 'all', {}, function (err, res) {
 			if (err !== null) {
 				return swal(czc.err);
@@ -764,14 +748,14 @@ $('#syncmycontact').click(function () {
 			console.log('Contacts loading', res);
 			var i;
 			var HTML = '';
-			// Get only contact with main address filled up
+
 			for (i = 0; i < res.length; i++) {
 				var mAd = _.findWhere(res[i].key.datapoints, {name: 'adr'}, {type: 'main'});
 				if (mAd !== undefined && mAd.value !== undefined) {
 					mAd.value.join('');
 					var mAdz = mAd.value;
 					console.log('Success: Get Contacts Address');
-					// stick a default user png if avatar empty
+
 					var altUpics;
 					if (res[i].key._attachments === undefined) {
 						altUpics =
@@ -781,59 +765,41 @@ $('#syncmycontact').click(function () {
 						'<img height="42" width="42"src=../contacts/contacts/' +
 						res[i].id + '/picture.png>';
 					}
-					// Display the contact liste into the sidebar
+
 					var template =
-					'<tr>' +
-						'<th data-id="'  + res[i].id +
-						'" class="contactmap" rowspan="4" align="top">' + altUpics +
-						'</th>' +
-						'<th align="left">' + res[i].key.fn + '</th>' +
-					'</tr>' +
-					'<tr>' +
-						'<td class="data-add" id="updatecontact' + res[i].id + '">' +
-						// '<a title="update ON Cozy-Contacts" href=../../#apps/contacts/contacts/' + res[i].id +
-						// '>' +
-						// '<i class="fa fa-pencil-square-o"></i>' +
-						// '</a>' +
-						'<input name="cc" type="text" class="datamadz" id="dataadd" value="' +
-						mAdz[2] + '" readonly required />' +
-						 '</td>' +
-					'</tr>' +
-					'<tr>' +
-						'<td>' +
-						'</td>' +
-					'</tr>' +
-					'<tr>' +
-						// '<td></td>' +
-					'</tr>';
+					'<tr><th data-id="'  + res[i].id +
+					'" class="contactmap" rowspan="4" align="top">' + altUpics +
+					'</th><th align="left">' + res[i].key.fn + '</th></tr><tr>' +
+					'<td class="data-add" id="updatecontact' + res[i].id + '">' +
+					'<input name="cc" type="text" class="datamadz" id="dataadd" value="' +
+					mAdz[2] + '" readonly required /></td></tr><tr><td></td></tr><tr></tr>';
+
 					HTML = HTML + template;
 				}
-			} // end for
+			}
 			document.querySelector('.contact-list').innerHTML = HTML;
-			swal('contact', 'loaded', 'success');
-			// Add a layer to display contacts marker on map
+			swal(czc.lcls);
+
 			var contactsList = new L.LayerGroup().addTo(map);
 			var overlayClist = {
 				'Contacts List': contactsList
 			};
 			L.control.layers(baseLayers, overlayClist);
-			// click on avatar to display the contact on map
+
+
 			$('th.contactmap').click(function (event) {
-				// Get the id with the event
 				var id = event.currentTarget.dataset.id;
-				// define the geocoder to send the address to geocode
 				geocoder = L.Control.Geocoder.nominatim();
 				L.Control.geocoder({
 					geocoder: geocoder
 				});
-				// Get event contact info
+
 				cozysdk.find('Contact', id, function (err, r) {
 					console.log(r);
-					var zer = r;
+
 					if (err !== null) {
 						return swal(czc.bad);
 					}
-					// Get event contact avart or give him a default one
 					if (r._attachments === undefined) {
 						altUpics =
 						'<img src="./styles/images/user.png" alt="iD" style="width:30px;height:30px;">';
@@ -841,60 +807,18 @@ $('#syncmycontact').click(function () {
 						altUpics =
 						'<img height="30" width="30"src=../contacts/contacts/' + r._id + '/picture.png>';
 					}
-					// Get event contact address with a clean string to geocode
+
 					var m4dzCheck = _.findWhere(r.datapoints, {name: 'adr'}, {type: 'main'});
 					if (m4dzCheck !== undefined && m4dzCheck.value !== undefined) {
 						m4dzCheck.value.join('');
 						var m4dz = m4dzCheck.value;
 						console.log('process for: ', m4dz, ' loading...');
-						// geocode the string address
+
 						geocoder.geocode(m4dz, function (results) {
 							if (results[0] === undefined) {
 								console.log('error with conctat address!', id);
 								swal(czc.clu);
-
-								// if error with the address bring tool to mod the address
-								// // load btn to edit address
-								var updatec = document.getElementById('updatecontact' + id);
-								updatec.appendChild(cupdate);
-
-								// $('[name="Edit"]').ready(function () {
-								// });
-
-								// unlock or lock the input to edit
-								$('[name="Edit"]').on('click', function () {
-									var prev = $(this).prev('input'),
-									ro = prev.prop('readonly');
-									prev.prop('readonly', !ro).focus();
-									$(this).val(ro ? 'Save' : 'Edit');
-
-								});
-
-								// // load btn to update the contact address
-								var mupc = document.getElementById('updatecontact' + id);
-								mupc.appendChild(upc);
-
-								// update to Cozy-contact DB the new input address
-								$('#maptoc').click(function () {
-									var caa = $(this).prevAll('input[name=cc]').val();
-									var inside = ['', '', caa, '', '', '', ''];
-									// var dps = zer.datapoints[0];
-									// var c = dps.value = inside;
-
-									var pushAdd = {
-										datapoints: [
-											{mediatype: '', name: 'adr', type: 'main', value: inside}
-										]
-									};
-									cozysdk.updateAttributes('Contact', id, pushAdd, function () {
-										console.log('contact :', id, 'Attr @Address:');
-										console.log(zer.datapoints[0], ' updated with -> ', pushAdd);
-										console.log(zer.datapoints);
-									});
-								});
 							}
-							// without error!
-							// get the lat, lng for the marker
 							var r = results[0];
 							var clmaRk = new L.Marker([r.properties.lat, r.properties.lon], {
 								draggable: false,
@@ -914,32 +838,38 @@ $('#syncmycontact').click(function () {
 							// https://en.wikipedia.org/wiki/Geo_URI_scheme
 							var uCoords = {geo: [r.properties.lat, r.properties.lon, null]};
 							cozysdk.updateAttributes('Contact', id, uCoords, function () {});
-							// define the popup on marker on map & diplay r.name info
 							clmaRk.bindPopup(r.name, {
 								className: 'uiconPopupcss'
 							});
-							// drop the maker on contact layer and open the popup
 							clmaRk.addTo(contactsList)
 							.openPopup();
-							// zoomin panto the maker with bbox provided by the nominatim zone
 							map.fitBounds([
 								[r.bbox._southWest.lat, r.bbox._southWest.lng],
 								[r.bbox._northEast.lat, r.bbox._northEast.lng]
 							]);
-							// how to remove the maker, All marker will be removed 'layer'
 							console.log('contact: ', id, ' ON Map!');
 							clmaRk.on('dblclick', function () {
 								contactsList.clearLayers();
 							});
 							// TODO if result = err then check GEO and show r.datapoints.adr
 							// TODO if err result and no GEO ask to locate with a marker?
-						});// end geocoder
-					} // end if cz.find
+						});
+					}
 					return false;
-				}); // end cz.find
-			}); // end $('tr.cl')
+				});
+			});
 			return false;
-		}); // cz.run
+		});
 		return false;
-	}); // cz.defineRequest
-});// $('syncmycontact')
+	});
+});
+
+
+
+// mapboxgl.accessToken = 'pk.eyJ1Ijoicm9ieXJlbXp5IiwiYSI6InBTSzNKZWMifQ.q-4jrI_7B-3Cjv8nPVimgg';
+// map = new mapboxgl.Map({
+// 	container: 'map',
+// 	style: 'mapbox://styles/mapbox/satellite-streets-v9',
+// 	center: [-77.38, 39],
+// 	zoom: 3
+// });
