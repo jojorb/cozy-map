@@ -5,7 +5,6 @@
 	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />
 	<link rel='stylesheet' href='styles/styles.css' />
 	<link rel='stylesheet' href='/fonts/fonts.css'>
-	<link rel="stylesheet" type="text/css" href="vendor/sweetalert.css">
 </head>
 <body>
 	<div id="sidebar" class="sidebar collapsed">
@@ -76,6 +75,7 @@
 					<div id="switch_lesri" class="viewmap_karto" >Esri satellite</div>
 					<div id="switch_lgibs" class="viewmap_karto" >Near Live satellite view</div>
 					<div id="switch_losm" class="viewmap_karto" >open street map</div>
+					<div id="switch_lmpb" class="viewmap_karto" >MapBox (week!)</div>
 					<div><center>
 						New Base Layers Address
 						<a target='_blank'
@@ -100,8 +100,11 @@
 					<span class="sidebar-close"><i class="fa fa-angle-double-left"></i></span>
 				</h1>
 				<div>
-					<h3><center><b>Contacts</b></center></h3>
-					<div align="center" id='syncmycontact'></div>
+					<br>
+					<div align="center" id='syncmycontact'>
+						<input type="button" id="syncmycontacto"  class="syncmycontacto"
+						value="Sync Contacts" />
+					</div>
 					<br>
 					<div>
 						<table align="left" class="contact-list"></table>
