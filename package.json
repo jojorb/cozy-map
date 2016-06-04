@@ -1,6 +1,6 @@
 {
   "name": "cozy-map",
-  "version": "0.1.28",
+  "version": "0.1.29",
   "engines": [
     "*"
   ],
@@ -13,7 +13,7 @@
       "description": "Map location with your Cozy Timezone."
     },
     "Contact": {
-      "description": "Edit your contacts."
+      "description": "Show contacts on map."
     }
   },
   "icon-path": "map.svg",
