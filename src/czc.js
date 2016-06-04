@@ -87,6 +87,6 @@ module.exports = {
 	mpbx: ({
 		title: 'Sneak Peek of MapBox!',
 		text: 'enjoy the Satellite view from Mapbox during a week',
-		imageUrl: '../styles/images/view/mapbox.png'
+		imageUrl: './styles/images/view/mapbox.png'
 	})
 };
