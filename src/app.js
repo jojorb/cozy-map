@@ -712,9 +712,10 @@ $('#syncmycontacto').click(function () {
 				var mAd = _.findWhere(res[i].key.datapoints, {name: 'adr'}, {type: 'main'});
 				if (mAd !== undefined && mAd.value !== undefined) {
 					// mAd.value.join('\n');
-					var mAdz = mAd.value.join('\n');
+					var adrr = mAd.value.join('');
+					var mAdz = adrr.replace(/\n/g, ' ');
 					console.log('Success: Get Contacts Address');
-					// console.log(mAdz);
+					// console.log(adrr);
 
 					var altUpics;
 					if (res[i].key._attachments === undefined) {
@@ -727,7 +728,7 @@ $('#syncmycontacto').click(function () {
 					}
 
 					var adrsidebar = '<textarea placeholder="' +
-					mAdz.replace('\n\g', ' ') + '" class=datamadz ></textarea>';
+					mAdz + '" class=datamadz ></textarea>';
 
 					var template =
 					'<tr><th data-id="'  + res[i].id +
