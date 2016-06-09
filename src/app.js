@@ -1,5 +1,7 @@
 var L = require('leaflet'),
-RoutingControl = require('./routing-control');
+RoutingControl = require('./routing-control'),
+baselayers = require('./baselayer'),
+czc = require('./czc');
 require('./Control.Geocoder.js');
 require('./leaflet.MiniMap.js');
 require('./leaflet.Locate.js');
@@ -8,52 +10,20 @@ require('./leaflet.Hash.js');
 require('leaflet.icon.glyph');
 var _ = require('../vendor/underscore-min.js');
 var swal = require('../vendor/sweetalert.min.js');
-var czc = require('./czc.js');
 var osmAuth = require('osm-auth');
 var osmtogeojson = require('osmtogeojson');
 
 L.Icon.Default.imagePath = 'node_modules/leaflet/dist/images/';
 
 
-var losm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-	maxZoom: '19',
-	opacity: '1'
-});
-
-var lesri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
-	maxZoom: '18',
-	opacity: '1'
-});
-
-var myRastertile = L.tileLayer(null, {});
-
-var date = new Date();
-var jmoinszin = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + (date.getDate() - 1)).slice(-2);
-// var edjj = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
-var viirs = 'VIIRS_SNPP_CorrectedReflectance_TrueColor';
-// var modis = 'MODIS_Terra_CorrectedReflectance_TrueColor';
-
-var lgibs = L.tileLayer('https://map1.vis.earthdata.nasa.gov/wmts-webmerc/' + viirs + '/default/' + jmoinszin + '/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg', {
-	minZoom: '3',
-	maxZoom: '9',
-	opacity: '1'
-});
-
-var lmpb = L.tileLayer('https://api.mapbox.com/styles/v1/robyremzy/cip0qeeez0003dnm6ixymeffw/tiles/{z}/{x}/{y}?access_token=' + czc.mpb, {
-	minZoom: '3',
-	maxZoom: '20',
-	opacity: '1'
-});
-
 var map = new L.Map('map', {
-	layers: [lmpb],
+	layers: [baselayers.losm],
 	attributionControl: false,
 	zoomControl: false
 });
+
 map.setView(new L.LatLng(49.78, -21.97), 3);
-swal(czc.mpbx);
+// swal(czc.mpbx);
 
 var userTz = function getUserTimeZone() {
 
@@ -86,13 +56,14 @@ var userTz = function getUserTimeZone() {
 	});
 };
 
+var myRastertile = L.tileLayer(null, {});
 
 var baseLayers = {
-	'OSM': losm,
-	'ESRI': lesri,
-	'GIBS': lgibs,
+	'OSM': baselayers.losm,
+	'ESRI': baselayers.lesri,
+	'GIBS': baselayers.lgibs,
 	'MYRA': myRastertile,
-	'MAPBOX': lmpb
+	'MAPBOX': baselayers.lmpb
 };
 
 $('#switch_losm').click(function () {
@@ -132,10 +103,10 @@ function switchLayer(collection, layerKey) {
 $(document).ready(function () {
 	$('#mytileSubm').click(function () {
 
-		map.removeLayer(losm);
-		map.removeLayer(lesri);
-		map.removeLayer(lgibs);
-		map.removeLayer(lmpb);
+		map.removeLayer(baselayers.losm);
+		map.removeLayer(baselayers.lesri);
+		map.removeLayer(baselayers.lgibs);
+		map.removeLayer(baselayers.lmpb);
 		map.removeLayer(myRastertile);
 
 		var myTile = $('#mytileInput').val();
@@ -473,14 +444,7 @@ $(document).ready(function () {
 });
 
 
-var esriUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
-var esriAttrib = 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community';
-var esri = new L.TileLayer(esriUrl, {
-	minZoom: 0,
-	maxZoom: 11,
-	attribution: esriAttrib
-});
-var miniMap = new L.Control.MiniMap(esri, {
+var miniMap = new L.Control.MiniMap(baselayers.lesri, {
 	position: 'bottomright',
 	width: 80,
 	height: 80
@@ -649,10 +613,10 @@ var overlayWstations = {
 L.control.layers(baseLayers, overlayWstations);
 
 var stations = [
-	'src/data/wospi.json',
-	'src/data/WeeWxStation.json',
 	'src/data/cwop.json',
-	'src/data/pws.json'
+	'src/data/pws.json',
+	'src/data/WeeWxStation.json',
+	'src/data/wospi.json'
 ];
 
 $('#weatherStations').change(function () {
@@ -661,11 +625,6 @@ $('#weatherStations').change(function () {
 		for (var i = 0; i < stations.length; i++) {
 			$.getJSON(stations[i], handle);
 		}
-		// handle.done(function () {
-		// 	map.addLayer(weatherStations);
-		// }).fail(function () {
-		// 	swal(czc.bad);
-		// });
 	} else {
 		map.removeLayer(weatherStations);
 		console.log('weatherStations Layer removed');
@@ -752,9 +711,10 @@ $('#syncmycontacto').click(function () {
 			for (i = 0; i < res.length; i++) {
 				var mAd = _.findWhere(res[i].key.datapoints, {name: 'adr'}, {type: 'main'});
 				if (mAd !== undefined && mAd.value !== undefined) {
-					mAd.value.join('');
-					var mAdz = mAd.value;
+					// mAd.value.join('\n');
+					var mAdz = mAd.value.join('\n');
 					console.log('Success: Get Contacts Address');
+					// console.log(mAdz);
 
 					var altUpics;
 					if (res[i].key._attachments === undefined) {
@@ -766,13 +726,18 @@ $('#syncmycontacto').click(function () {
 						res[i].id + '/picture.png>';
 					}
 
+					var adrsidebar = '<textarea placeholder="' +
+					mAdz.replace('\n\g', ' ') + '" class=datamadz ></textarea>';
+
 					var template =
 					'<tr><th data-id="'  + res[i].id +
 					'" class="contactmap" rowspan="4" align="top">' + altUpics +
 					'</th><th align="left">' + res[i].key.fn + '</th></tr><tr>' +
 					'<td class="data-add" id="updatecontact' + res[i].id + '">' +
-					'<input name="cc" type="text" class="datamadz" id="dataadd" value="' +
-					mAdz[2] + '" readonly required /></td></tr><tr><td></td></tr><tr></tr>';
+					adrsidebar +
+					// '<input name="cc" type="text" class="datamadz" id="dataadd" value="' +
+					// mAdz[2] + '" readonly required />' +
+					'</td></tr><tr><td></td></tr><tr></tr>';
 
 					HTML = HTML + template;
 				}
@@ -863,13 +828,3 @@ $('#syncmycontacto').click(function () {
 		return false;
 	});
 });
-
-
-
-// mapboxgl.accessToken = 'pk.eyJ1Ijoicm9ieXJlbXp5IiwiYSI6InBTSzNKZWMifQ.q-4jrI_7B-3Cjv8nPVimgg';
-// map = new mapboxgl.Map({
-// 	container: 'map',
-// 	style: 'mapbox://styles/mapbox/satellite-streets-v9',
-// 	center: [-77.38, 39],
-// 	zoom: 3
-// });
