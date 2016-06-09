@@ -896,6 +896,10 @@ background-color: #33A6FF;
 .syncmycontacto:hover {
 	color: #33A6FF;
 }
+.datamadz {
+	height: 55px;
+	width: 275px;
+}
 /*Overiding leaflet-routine-machine.css : images attribution*/
 .leaflet-routing-icon {
     background-image: url('images/leaflet.routing.icons.png');
