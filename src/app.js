@@ -776,11 +776,12 @@ $('#syncmycontacto').click(function () {
 
 					var m4dzCheck = _.findWhere(r.datapoints, {name: 'adr'}, {type: 'main'});
 					if (m4dzCheck !== undefined && m4dzCheck.value !== undefined) {
-						m4dzCheck.value.join('');
-						var m4dz = m4dzCheck.value;
-						console.log('process for: ', m4dz, ' loading...');
+						// m4dzCheck.value.join('');
+						var m4dz = m4dzCheck.value.join('');
+						var adrs = m4dz.replace(/\n/g, ' ');
+						console.log('process for: ', adrs, ' loading...');
 
-						geocoder.geocode(m4dz, function (results) {
+						geocoder.geocode(adrs, function (results) {
 							if (results[0] === undefined) {
 								console.log('error with conctat address!', id);
 								swal(czc.clu);
