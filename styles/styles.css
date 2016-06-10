@@ -897,6 +897,8 @@ background-color: #33A6FF;
 	color: #33A6FF;
 }
 .datamadz {
+	resize: none;
+	color: #000;
 	height: 55px;
 	width: 275px;
 }
