@@ -12,7 +12,7 @@ module.exports = {
 		'https://api.mapbox.com/styles/v1/robyremzy/cip0qeeez0003dnm6ixymeffw/tiles/{z}/{x}/{y}' + (L.Browser.retina ? '@2x' : '') + '?access_token=' + czc.mpb, {
 			attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 			minZoom: 3,
-			maxZoom: 20
+			maxZoom: 18
 		}),
 	'lmpbo': L.tileLayer(
 		'https://api.mapbox.com/styles/v1/mapbox/outdoors-v9/tiles/{z}/{x}/{y}' + (L.Browser.retina ? '@2x' : '') + '?access_token=' + czc.mpb, {
@@ -45,7 +45,7 @@ module.exports = {
 			maxZoom: 9
 		}),
 	'mini': L.tileLayer(
-		'https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v9/tiles/{z}/{x}/{y}' + (L.Browser.retina ? '@2x' : '') + '?access_token=' + czc.mpb, {
+		'https://api.mapbox.com/styles/v1/robyremzy/cip9jiy1u003qcunstx86hibr/tiles/{z}/{x}/{y}' + (L.Browser.retina ? '@2x' : '') + '?access_token=' + czc.mpb, {
 			attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 			minZoom: 0,
 			maxZoom: 11
