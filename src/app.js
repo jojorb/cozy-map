@@ -23,7 +23,7 @@ var map = new L.Map('map', {
 });
 
 map.setView(new L.LatLng(49.78, -21.97), 3);
-// swal(czc.mpbx);
+// welcome info: swal(czc.mpbx);
 
 var userTz = function getUserTimeZone() {
 
@@ -444,7 +444,7 @@ $(document).ready(function () {
 });
 
 
-var miniMap = new L.Control.MiniMap(baselayers.lesri, {
+var miniMap = new L.Control.MiniMap(baselayers.mini, {
 	position: 'bottomright',
 	width: 80,
 	height: 80
@@ -595,7 +595,6 @@ function handle(response) {
 		'<center>' + reps.description + '<br>' +
 		'<a target=_blank href=' + reps.url + '>link</a></center>' +
 		reps.station;
-		// new Date(Number(reps.last_seen)).toLocaleString();
 		L.marker([reps.latitude, reps.longitude], {
 			icon: dataUicon
 		})
@@ -715,7 +714,6 @@ $('#syncmycontacto').click(function () {
 					var adrr = mAd.value.join('');
 					var mAdz = adrr.replace(/\n/g, ' ');
 					console.log('Success: Get Contacts Address');
-					// console.log(adrr);
 
 					var altUpics;
 					if (res[i].key._attachments === undefined) {
@@ -728,7 +726,7 @@ $('#syncmycontacto').click(function () {
 					}
 
 					var adrsidebar = '<textarea placeholder="' +
-					mAdz + '" class=datamadz ></textarea>';
+					mAdz + '" rows="2" cols="42" readonly disabled class=datamadz ></textarea>';
 
 					var template =
 					'<tr><th data-id="'  + res[i].id +
@@ -736,8 +734,6 @@ $('#syncmycontacto').click(function () {
 					'</th><th align="left">' + res[i].key.fn + '</th></tr><tr>' +
 					'<td class="data-add" id="updatecontact' + res[i].id + '">' +
 					adrsidebar +
-					// '<input name="cc" type="text" class="datamadz" id="dataadd" value="' +
-					// mAdz[2] + '" readonly required />' +
 					'</td></tr><tr><td></td></tr><tr></tr>';
 
 					HTML = HTML + template;
