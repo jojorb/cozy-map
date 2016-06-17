@@ -96,33 +96,19 @@ module.exports = {
 		},
 
 		markGeocode: function(result) {
-		            this._map.fitBounds(result.bbox);
-								// Add Custom Icon result
-										var addSicon = new L.icon({
-										    iconUrl: 'styles/images/pinpfs.png',
-										    iconRetinaUrl: 'styles/images/pinpfs.png',
-										    iconSize: [36, 47],
-										    iconAnchor: [18, 47],
-										    popupAnchor: [0, -48],
-										});
-										var uiconPopupcss = {
-										  'className': 'uiconPopupcss'
-										};
-		            if (this._geocodeMarker) {
-		                this._map.removeLayer(this._geocodeMarker);
-		            }
-		            this._geocodeMarker = new L.Marker(result.center, {icon: addSicon})
-		                .bindPopup(result.html || result.name, uiconPopupcss)
-		                .addTo(this._map)
-		                .openPopup();
-		            var _this = this;
-		            this._geocodeMarker.once("dblclick", function () {
-		                _this._map.removeLayer(_this._geocodeMarker);
-		                _this._geocodeMarker = null;
-		            });
+			this._map.fitBounds(result.bbox);
 
-		            return this;
-		        },
+			if (this._geocodeMarker) {
+				this._map.removeLayer(this._geocodeMarker);
+			}
+
+			this._geocodeMarker = new L.Marker(result.center)
+				.bindPopup(result.html || result.name)
+				.addTo(this._map)
+				.openPopup();
+
+			return this;
+		},
 
 		_geocode: function(event) {
 			L.DomEvent.preventDefault(event);
@@ -185,7 +171,7 @@ module.exports = {
 			li.setAttribute('data-result-index', index);
 
 			if (result.html) {
-				a.innerHTML = result.html;
+				a.innerHTML = a.innerHTML + result.html;
 			} else {
 				a.appendChild(text);
 			}
@@ -246,10 +232,97 @@ module.exports = {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./geocoders/nominatim":7}],2:[function(require,module,exports){
+},{"./geocoders/nominatim":9}],2:[function(require,module,exports){
 (function (global){
 var L = (typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null),
-	Util = require('./util.js');
+	Util = require('./util');
+
+module.exports = {
+	"class": L.Class.extend({
+		options: {
+			service_url: 'http://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer'
+		},
+
+		initialize: function(accessToken, options) {
+			L.setOptions(this, options);
+			this._accessToken = accessToken;
+		},
+
+		geocode: function(query, cb, context) {
+			var params = {
+				SingleLine: query,
+				outFields: 'Addr_Type',
+				forStorage: false,
+				maxLocations: 10,
+				f: 'json'
+			};
+
+			if (this._key && this._key.length) {
+				params.token = this._key;
+			}
+
+			Util.getJSON(this.options.service_url + '/findAddressCandidates', params, function(data) {
+				var results = [],
+					loc,
+					latLng,
+					latLngBounds;
+
+				if (data.candidates && data.candidates.length) {
+					for (var i = 0; i <= data.candidates.length - 1; i++) {
+						loc = data.candidates[i];
+						latLng = L.latLng(loc.location.y, loc.location.x);
+						latLngBounds = L.latLngBounds(L.latLng(loc.extent.ymax, loc.extent.xmax), L.latLng(loc.extent.ymin, loc.extent.xmin));
+						results[i] = {
+								name: loc.address,
+								bbox: latLngBounds,
+								center: latLng
+						};
+					}
+				}
+
+				cb.call(context, results);
+			});
+		},
+
+		suggest: function(query, cb, context) {
+			return this.geocode(query, cb, context);
+		},
+
+		reverse: function(location, scale, cb, context) {
+			var params = {
+				location: encodeURIComponent(location.lng) + ',' + encodeURIComponent(location.lat),
+				distance: 100,
+				f: 'json'
+			};
+
+			Util.getJSON(this.options.service_url + '/reverseGeocode', params, function(data) {
+				var result = [],
+					loc;
+
+				if (data && !data.error) {
+					loc = L.latLng(data.location.y, data.location.x);
+					result.push({
+						name: data.address.Match_addr,
+						center: loc,
+						bounds: L.latLngBounds(loc, loc)
+					});
+				}
+
+				cb.call(context, result);
+			});
+		}
+	}),
+
+	factory: function(accessToken, options) {
+		return new L.Control.Geocoder.ArcGis(accessToken, options);
+	}
+};
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./util":13}],3:[function(require,module,exports){
+(function (global){
+var L = (typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null),
+	Util = require('./util');
 
 module.exports = {
 	"class": L.Class.extend({
@@ -303,7 +376,7 @@ module.exports = {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./util":11}],3:[function(require,module,exports){
+},{"./util":13}],4:[function(require,module,exports){
 (function (global){
 var L = (typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null),
 	Util = require('./util');
@@ -396,7 +469,81 @@ module.exports = {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./util":11}],4:[function(require,module,exports){
+},{"./util":13}],5:[function(require,module,exports){
+(function (global){
+var L = (typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null),
+    Util = require('./util');
+
+module.exports = {
+    "class": L.Class.extend({
+        options: {
+            geocodeUrl: 'http://geocoder.api.here.com/6.2/geocode.json',
+            reverseGeocodeUrl: 'http://reverse.geocoder.api.here.com/6.2/reversegeocode.json',
+            app_id: '<insert your app_id here>',
+            app_code: '<insert your app_code here>',
+            geocodingQueryParams: {},
+            reverseQueryParams: {}
+        },
+
+        initialize: function(options) {
+            L.setOptions(this, options);
+        },
+
+        geocode: function(query, cb, context) {
+            var params = {
+                searchtext: query,
+                gen: 9,
+                app_id: this.options.app_id,
+                app_code: this.options.app_code,
+                jsonattributes: 1
+            };
+            params = L.Util.extend(params, this.options.geocodingQueryParams);
+            this.getJSON(this.options.geocodeUrl, params, cb, context);
+        },
+
+        reverse: function(location, scale, cb, context) {
+            var params = {
+                prox: encodeURIComponent(location.lat) + ',' + encodeURIComponent(location.lng),
+                mode: 'retrieveAddresses',
+                app_id: this.options.app_id,
+                app_code: this.options.app_code,
+                gen: 9,
+                jsonattributes: 1
+            };
+            params = L.Util.extend(params, this.options.reverseQueryParams);
+            this.getJSON(this.options.reverseGeocodeUrl, params, cb, context);
+        },
+
+        getJSON: function(url, params, cb, context) {
+            Util.getJSON(url, params, function(data) {
+                var results = [],
+                    loc,
+                    latLng,
+                    latLngBounds;
+                if (data.response.view && data.response.view.length) {
+                    for (var i = 0; i <= data.response.view[0].result.length - 1; i++) {
+                        loc = data.response.view[0].result[i].location;
+                        latLng = L.latLng(loc.displayPosition.latitude, loc.displayPosition.longitude);
+                        latLngBounds = L.latLngBounds(L.latLng(loc.mapView.topLeft.latitude, loc.mapView.topLeft.longitude), L.latLng(loc.mapView.bottomRight.latitude, loc.mapView.bottomRight.longitude));
+                        results[i] = {
+                            name: loc.address.label,
+                            bbox: latLngBounds,
+                            center: latLng
+                        };
+                    }
+                }
+                cb.call(context, results);
+            })
+        }
+    }),
+
+    factory: function(options) {
+        return new L.Control.Geocoder.HERE(options);
+    }
+};
+
+}).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
+},{"./util":13}],6:[function(require,module,exports){
 (function (global){
 var L = (typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null),
 	Util = require('./util');
@@ -488,7 +635,7 @@ module.exports = {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./util":11}],5:[function(require,module,exports){
+},{"./util":13}],7:[function(require,module,exports){
 (function (global){
 var L = (typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null),
 	Util = require('./util');
@@ -577,7 +724,7 @@ module.exports = {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./util":11}],6:[function(require,module,exports){
+},{"./util":13}],8:[function(require,module,exports){
 (function (global){
 var L = (typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null),
 	Util = require('./util');
@@ -611,12 +758,12 @@ module.exports = {
 			Util.getJSON(this.options.serviceUrl + "/autocomplete", L.extend({
 				'api_key': this._apiKey,
 				'text': query
-			}, this.options.geocodingQueryParams), function(data) {
+			}, this.options.geocodingQueryParams), L.bind(function(data) {
 				if (data.geocoding.timestamp > this._lastSuggest) {
 					this._lastSuggest = data.geocoding.timestamp;
 					cb.call(context, _this._parseResults(data, "bbox"));
 				}
-			});
+			}, this));
 		},
 
 		reverse: function(location, scale, cb, context) {
@@ -655,7 +802,7 @@ module.exports = {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./util":11}],7:[function(require,module,exports){
+},{"./util":13}],9:[function(require,module,exports){
 (function (global){
 var L = (typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null),
 	Util = require('./util');
@@ -673,9 +820,9 @@ module.exports = {
 					parts.push('{building} {road} {house_number}');
 				}
 
-				if (a.city || a.town || a.village) {
+				if (a.city || a.town || a.village || a.hamlet) {
 					parts.push('<span class="' + (parts.length > 0 ? 'leaflet-control-geocoder-address-detail' : '') +
-						'">{postcode} {city} {town} {village}</span>');
+						'">{postcode} {city} {town} {village} {hamlet}</span>');
 				}
 
 				if (a.state || a.country) {
@@ -753,7 +900,7 @@ module.exports = {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./util":11}],8:[function(require,module,exports){
+},{"./util":13}],10:[function(require,module,exports){
 (function (global){
 var L = (typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null),
 	Util = require('./util');
@@ -761,7 +908,7 @@ var L = (typeof window !== "undefined" ? window['L'] : typeof global !== "undefi
 module.exports = {
 	"class": L.Class.extend({
 		options: {
-			serviceUrl: 'https://photon.komoot.de/api/',
+			serviceUrl: '//photon.komoot.de/api/',
 			reverseUrl: '//photon.komoot.de/reverse/',
 			nameProperties: [
 				'name',
@@ -856,7 +1003,7 @@ module.exports = {
 
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./util":11}],9:[function(require,module,exports){
+},{"./util":13}],11:[function(require,module,exports){
 (function (global){
 var L = (typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null),
 	Util = require('./util');
@@ -924,7 +1071,7 @@ module.exports = {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./util":11}],10:[function(require,module,exports){
+},{"./util":13}],12:[function(require,module,exports){
 (function (global){
 var L = (typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null),
 	Control = require('./control'),
@@ -935,7 +1082,9 @@ var L = (typeof window !== "undefined" ? window['L'] : typeof global !== "undefi
 	What3Words = require('./geocoders/what3words'),
 	Google = require('./geocoders/google'),
 	Photon = require('./geocoders/photon'),
-	Mapzen = require('./geocoders/mapzen');
+	Mapzen = require('./geocoders/mapzen'),
+	ArcGis = require('./geocoders/arcgis'),
+	HERE = require('./geocoders/here');
 
 module.exports = L.Util.extend(Control["class"], {
 	Nominatim: Nominatim["class"],
@@ -953,7 +1102,11 @@ module.exports = L.Util.extend(Control["class"], {
 	Photon: Photon["class"],
 	photon: Photon.factory,
 	Mapzen: Mapzen["class"],
-	mapzen: Mapzen.factory
+	mapzen: Mapzen.factory,
+	ArcGis: ArcGis["class"],
+	arcgis: ArcGis.factory,
+	HERE: HERE["class"],
+	here: HERE.factory
 });
 
 L.Util.extend(L.Control, {
@@ -962,7 +1115,7 @@ L.Util.extend(L.Control, {
 });
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./control":1,"./geocoders/bing":2,"./geocoders/google":3,"./geocoders/mapbox":4,"./geocoders/mapquest":5,"./geocoders/mapzen":6,"./geocoders/nominatim":7,"./geocoders/photon":8,"./geocoders/what3words":9}],11:[function(require,module,exports){
+},{"./control":1,"./geocoders/arcgis":2,"./geocoders/bing":3,"./geocoders/google":4,"./geocoders/here":5,"./geocoders/mapbox":6,"./geocoders/mapquest":7,"./geocoders/mapzen":8,"./geocoders/nominatim":9,"./geocoders/photon":10,"./geocoders/what3words":11}],13:[function(require,module,exports){
 (function (global){
 var L = (typeof window !== "undefined" ? window['L'] : typeof global !== "undefined" ? global['L'] : null),
 	lastCallbackId = 0,
@@ -1048,4 +1201,4 @@ module.exports = {
 };
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}]},{},[10]);
+},{}]},{},[12]);

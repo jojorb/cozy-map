@@ -1,6 +1,6 @@
 @import url("css/leaflet.css");
 /*@import url("../node_modules/leaflet/dist/leaflet.css");*/
-
+@import url("css/sw.css");
 
 
 /*@import url("styles/leaflet-routing-machine.css");*/
@@ -741,6 +741,18 @@ hr {
   background: #86888B;
   border: 0;
 }
+a:link {
+	 color: #33A6FF;
+}
+a:visited {
+	 color: #33A6FF;
+}
+a:hover {
+	 color: #2B90DE;
+}
+a:active {
+	 color: #2B90DE;
+}
 #map {
   width: 100%;
   height: 100%;
@@ -869,6 +881,26 @@ background-color: #33A6FF;
 	position:absolute;
 	top: -15px;
 	left: 0;
+}
+.syncmycontacto {
+	cursor: pointer;
+	color: #F8F9F9;
+	background-color: rgba(102, 99, 99, 0.68);
+	font-size: 16px;
+	text-align: center;
+	padding: 20px 65px;
+	/*width: 65%;*/
+	border-radius: 8px;
+	border: none;
+}
+.syncmycontacto:hover {
+	color: #33A6FF;
+}
+.datamadz {
+	resize: none;
+	color: #000;
+	height: 55px;
+	width: 275px;
 }
 /*Overiding leaflet-routine-machine.css : images attribution*/
 .leaflet-routing-icon {

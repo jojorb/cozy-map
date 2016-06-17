@@ -1,6 +1,6 @@
 {
   "name": "cozy-map",
-  "version": "0.1.24",
+  "version": "0.1.31",
   "engines": [
     "*"
   ],
@@ -11,13 +11,14 @@
   "cozy-permissions": {
     "User": {
       "description": "Map location with your Cozy Timezone."
+    },
+    "Contact": {
+      "description": "Show contacts on map."
     }
   },
   "icon-path": "map.svg",
   "main": "src/app.js",
   "dependencies": {
-    "geojson-elevation": "^1.1.0",
-    "node-hgt": "^1.2.0"
   },
   "devDependencies": {
     "browserify": "9.0.3",
@@ -46,6 +47,8 @@
     "cozy",
     "leaflet",
     "geocoder",
+		"routing",
+		"overpass",
     "map",
     "gis"
   ],

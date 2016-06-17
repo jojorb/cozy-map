@@ -1,56 +1,31 @@
 // require modules
-var L = require('leaflet');
-// require('./leaflet-routing-machine.js');
+var L = require('leaflet'),
+RoutingControl = require('./routing-control'),
+baselayers = require('./baselayer'),
+czc = require('./czc');
 require('./Control.Geocoder.js');
 require('./leaflet.MiniMap.js');
 require('./leaflet.Locate.js');
 require('./leaflet-sidebar.js');
 require('./leaflet.Hash.js');
+require('leaflet.icon.glyph');
+var _ = require('../vendor/underscore-min.js');
+var swal = require('../vendor/sweetalert.min.js');
 var osmAuth = require('osm-auth');
 var osmtogeojson = require('osmtogeojson');
-var _ = require('../vendor/underscore-min.js');
-// var cozysdk = require('cozysdk-client');
-var RoutingControl = require('./routing-control.js');
 
-// path to the leaflet images folder
 L.Icon.Default.imagePath = 'node_modules/leaflet/dist/images/';
 
 
-
-// BaseLayer
-var losm = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-	maxZoom: '19',
-	opacity: '1'
-});
-
-var lesri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
-	maxZoom: '18',
-	opacity: '1'
-});
-
-var myRastertile = L.tileLayer(null, {});
-
-var date = new Date();
-var jmoinszin = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + (date.getDate() - 1)).slice(-2);
-// var edjj = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
-var viirs = 'VIIRS_SNPP_CorrectedReflectance_TrueColor';
-
-var lgibs = L.tileLayer('https://map1.vis.earthdata.nasa.gov/wmts-webmerc/' + viirs + '/default/' + jmoinszin + '/GoogleMapsCompatible_Level9/{z}/{y}/{x}.jpg', {
-	minZoom: '3',
-	maxZoom: '9',
-	opacity: '1'
-});
-
 // disable zoomControl (which is topleft by default) when initializing map&options
 var map = new L.Map('map', {
-	layers: [losm],
+	layers: [baselayers.losm],
 	attributionControl: false,
 	zoomControl: false
 });
-map.setView(new L.LatLng(49.78, -21.97), 3);
 
+map.setView(new L.LatLng(49.78, -21.97), 3);
+// welcome info: swal(czc.mpbx);
 
 var userTz = function getUserTimeZone() {
 
@@ -58,12 +33,12 @@ var userTz = function getUserTimeZone() {
 	cozysdk.defineRequest('User', 'all', uTz, function (err, res) {
 		console.log('Get timezone', res);
 		if (err !== null) {
-			return alert(err);
+			return swal(czc.err);
 		}
+		swal(czc.ltz);
 		cozysdk.run('User', 'all', {}, function (err, res) {
-			console.log(res);
 			if (err !== null) {
-				return alert(err);
+				return swal(czc.err);
 			}
 
 			var geocoder = L.Control.Geocoder.nominatim();
@@ -84,11 +59,14 @@ var userTz = function getUserTimeZone() {
 };
 
 // enable the baselayer switch to avoid double raster loding
+var myRastertile = L.tileLayer(null, {});
+
 var baseLayers = {
-	'OSM': losm,
-	'ESRI': lesri,
-	'GIBS': lgibs,
-	'MYRA': myRastertile
+	'OSM': baselayers.losm,
+	'ESRI': baselayers.lesri,
+	'GIBS': baselayers.lgibs,
+	'MYRA': myRastertile,
+	'MAPBOX': baselayers.lmpb
 };
 
 // switch layers function
@@ -104,6 +82,9 @@ $('#switch_lgibs').click(function () {
 });
 $('#switch_myRastertile').click(function () {
 	switchLayer(baseLayers, 'MYRA');
+});
+$('#switch_lmpb').click(function () {
+	switchLayer(baseLayers, 'MAPBOX');
 });
 
 function switchLayer(collection, layerKey) {
@@ -126,9 +107,10 @@ function switchLayer(collection, layerKey) {
 $(document).ready(function () {
 	$('#mytileSubm').click(function () {
 
-		map.removeLayer(losm);
-		map.removeLayer(lesri);
-		map.removeLayer(lgibs);
+		map.removeLayer(baselayers.losm);
+		map.removeLayer(baselayers.lesri);
+		map.removeLayer(baselayers.lgibs);
+		map.removeLayer(baselayers.lmpb);
 		map.removeLayer(myRastertile);
 
 		var myTile = $('#mytileInput').val();
@@ -159,14 +141,6 @@ var pHtilesub = document.getElementById('myrtiles');
 pHtilesub.appendChild(mytileSubm);
 
 
-// icon used In App
-// var startRicon = L.icon({
-// 	iconUrl: 'styles/images/pinstart.png',
-// 	iconRetinaUrl: 'styles/images/pinstart.png',
-// 	iconSize: [36, 47],
-// 	iconAnchor: [18, 47],
-// 	popupAnchor: [0, -48]
-// });
 var dropUicon = L.icon({
 	iconUrl: 'styles/images/pinpoi.png',
 	iconRetinaUrl: 'styles/images/pinpoi.png',
@@ -181,63 +155,8 @@ var dataUicon = L.icon({
 	iconAnchor: [6.5, 23],
 	popupAnchor: [0, -24]
 });
-// var clUicon = L.icon({
-// 	iconUrl: 'styles/images/pincl.png',
-// 	iconRetinaUrl: 'styles/images/pincl.png',
-// 	iconSize: [36, 47],
-// 	iconAnchor: [18, 47],
-// 	popupAnchor: [0, -48]
-// });
 
 
-
-// Routing machine features
-// L.Routing.control({
-// 	plan: L.Routing.plan(null, {
-// 		createMarker: function (i, startwp) {
-// 			return L.marker(startwp.latLng, {
-// 				draggable: true,
-// 				icon: startRicon
-// 			});
-// 		},
-// 		geocoder: L.Control.Geocoder.nominatim(),
-// 		routeWhileDragging: true,
-// 		reverseWaypoints: true,
-// 		draggable: true
-// 	}),
-// 	createGeocoder: L.bind(function (i) {
-// 		var geocoder = L.Routing.GeocoderElement.prototype.options.createGeocoder.call(this, i, this.getPlan().getWaypoints().length, this.getPlan().options),
-// 		handle = L.DomUtil.create('div', 'geocoder-handle'),
-// 		geolocateBtn = L.DomUtil.create('span', 'geocoder-geolocate-btn', geocoder.container);
-//
-// 		handle.innerHTML = String.fromCharCode(65 + i);
-// 		geocoder.container.insertBefore(handle, geocoder.container.firstChild);
-//
-// 		geolocateBtn.title = 'my position';
-// 		geolocateBtn.innerHTML = '<i class="fa fa-location-arrow"></i>';
-// 		L.DomEvent.on(geolocateBtn, 'click', L.bind(function () {
-// 			geolocate(map, L.bind(function (err, p) {
-// 				if (err) {
-// 					return;
-// 				}
-//
-// 				this.spliceWaypoints(i, 1, p.latlng);
-// 			}, this));
-// 		}, this));
-//
-// 		// L.DomEvent.on(handle, 'click', function () {
-// 		// 	var wp = this.getWaypoints()[i];
-// 		// 	locationPopup(this, poiLayer, wp.latLng).openOn(this._map);
-// 		// }, this);
-//
-// 		return geocoder;
-// 	}),
-// 	position: 'topleft',
-// 	collapsible: false,
-// 	routeWhileDragging: true,
-// 	routeDragTimeout: 250,
-// 	draggableWaypoints:true
-// });
 var sidebarlrm = new RoutingControl(map);
 // include the routing machine into the sidebar
 var lrmBlock = sidebarlrm.onAdd(map);
@@ -250,8 +169,71 @@ var geocoder = L.Control.geocoder({
 	position: 'topleft',
 	collapsed: false,
 	placeholder: 'search...',
+	showResultIcons: true,
 	errorMessage: '‘X’ never, ever marks the spot.'
 });
+
+geocoder.markGeocode = function (result) {
+	console.log(result);
+	map.fitBounds(result.bbox, {
+		maxZoom: 17
+	});
+	var uiconPopupcss = {
+		'className': 'uiconPopupcss'
+	};
+	var edosm = 'https://www.openstreetmap.org/edit?';
+	var stype = result.properties.osm_type;
+	var sosmid = result.properties.osm_id;
+	var slat = result.properties.lat;
+	var slng = result.properties.lon;
+
+	var spop = '<b>' + result.properties.display_name + '</b><br>' +
+	'&#9654 <a href="' + edosm + stype + sosmid + '#map=19/' + slat + '/' + slng +
+	'" target=_blank>Edit with iD</a>';
+	if (result.icon === undefined) {
+		var xitim = '?';
+		var xbabo = new L.Marker(result.center, {
+			icon: L.icon.glyph({
+				iconUrl: 'styles/images/geocodermarker.svg',
+				iconSize: [37, 50],
+				iconAnchor: [18.5, 50],
+				glyphAnchor: [0, -8],
+				popupAnchor: [0, -51],
+				prefix: '',
+				glyphColor: 'white',
+				glyphSize: '23px',
+				glyph: xitim
+			})
+		})
+		.once('dblclick', function () {
+			map.removeLayer(xbabo);
+		})
+		.bindPopup(spop, uiconPopupcss)
+		.addTo(map)
+		.openPopup();
+	} else {
+		var itim = '<img src=' + result.icon + '>';
+		var babo = new L.Marker(result.center, {
+			icon: L.icon.glyph({
+				iconUrl: 'styles/images/geocodermarker.svg',
+				iconSize: [37, 50],
+				iconAnchor: [18.5, 50],
+				glyphAnchor: [0, 7],
+				popupAnchor: [0, -51],
+				prefix: '',
+				glyphColor: 'white',
+				glyphSize: '25px',
+				glyph: itim
+			})
+		})
+		.once('dblclick', function () {
+			map.removeLayer(babo);
+		})
+		.bindPopup(spop, uiconPopupcss)
+		.addTo(map)
+		.openPopup();
+	}
+};
 // include the geocoder into the sidebar
 var gecBlock = geocoder.onAdd(map);
 document.getElementById('sidebarex').appendChild(gecBlock);
@@ -263,9 +245,7 @@ $(document).ready(function () {
 	$('#opsdAmenity').click(function () {
 
 		var bounds = map.getBounds();
-		// console.log(bounds);
 		var swlat = bounds.getSouthWest().lat;
-		// console.log(swlat);
 		var swlng = bounds.getSouthWest().lng;
 		var nelat = bounds.getNorthEast().lat;
 		var nelng = bounds.getNorthEast().lng;
@@ -284,20 +264,7 @@ $(document).ready(function () {
 
 		// render the Query on map
 		$.get(qsOverpass, function (resp) {
-			// console.log(resp);
-			// if (err) {
-			// 	var errThis = document.createElement('span');
-			// 	errThis.id = 'ovperr';
-			// 	errThis.className = 'ovperr';
-			// 	var errThism = document.createTextNode(err);
-			// 	errThis.appendChild(errThism);
-			// 	document.getElementById('optinputerr').appendChild(errThis);
-			// 	console.log('error happened with overpass query');
-			// 	// return console.log(err);
-			// }
-			// 	console.log('error happened with overpass query');
 
-			// osm resp .JSON to .GeoJson
 			var qsOntogeo = osmtogeojson(resp);
 			// move GeoJson into the layer created
 			qsoLayer = new L.GeoJSON(qsOntogeo, {
@@ -339,12 +306,6 @@ $(document).ready(function () {
 		}).done(function (qsoLayer, feature) {
 			console.log('Data Loaded: ' + feature);
 		});
-		// .fail(function (feature) {
-		// 	if (feature !== null && feature !== undefined) {
-		// 		console.log('err');
-		// 	}
-		// 	console.log('err');
-		// });
 		$('#opunAmenity').click(function () {
 			qsoLayer.clearLayers();
 			console.log('Data removed');
@@ -531,21 +492,8 @@ $(document).ready(function () {
 
 
 
-// MiniMap layer Options
-var esriUrl = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
-
-// set MiniMap attribution
-var esriAttrib = 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community';
-
-// set MiniMap features
-var esri = new L.TileLayer(esriUrl, {
-	minZoom: 0,
-	maxZoom: 11,
-	attribution: esriAttrib
-});
-
 // set MiniMap on map
-var miniMap = new L.Control.MiniMap(esri, {
+var miniMap = new L.Control.MiniMap(baselayers.mini, {
 	position: 'bottomright',
 	width: 80,
 	height: 80
@@ -562,34 +510,24 @@ L.control.zoom({
 
 
 
-// icon for locate
-var markerLicon = {
-	iconUrl: 'styles/images/bluedot.png',
-	iconSize: [17, 17],
-	iconAnchor: [9, 9],
-	popupAnchor: [0, -10],
-	labelAnchor: [3, -4]
-};
-
 // locate controle on the top right side
 L.control.locate(
 	{
 		position: 'topright',
 		icon: 'fa fa-location-arrow',
 		iconLoading: 'fa fa-refresh fa-spin',
+		setView: 'untilPan',
 		drawCircle: true,
 		circlePadding: [20, 20],
-		circlestyles: {
-			color: '#FFF',
-			fillColor: '#000',
+		circleStyle: {
+			color: '#0E3C96',
+			fillColor: '#0aa9fb',
 			fillOpacity: '0.1',
 			weight: '2'
 		},
-		follow: true,
-		markerClass: L.marker,
-		markerStyle: {
-			icon: L.icon(markerLicon),
-			className: 'locatemarker-pulsate'
+		followCircleStyle: {
+			color: '#FFF',
+			fillColor: '#000'
 		},
 		metric: true,
 		strings: {
@@ -610,7 +548,7 @@ L.control.locate(
 
 var userLocate = function () {
 
-	map.locate({setView: true, watch: true})
+	map.locate({setView: true, watch: false})
 	.on('locationfound', function () {
 		console.log('W3C Geolocation found');
 	})
@@ -672,7 +610,6 @@ var auth = osmAuth({
 	auto: true
 });
 /* eslint-enable */
-
 $('#authenticate,#authorize-btn').click(function () {
 	auth.authenticate(function () {
 		getUser();
@@ -734,7 +671,7 @@ function handle(response) {
 		'<center>' + reps.description + '<br>' +
 		'<a target=_blank href=' + reps.url + '>link</a></center>' +
 		reps.station;
-		// new Date(Number(reps.last_seen)).toLocaleString();
+
 		L.marker([reps.latitude, reps.longitude], {
 			icon: dataUicon
 		})
@@ -744,6 +681,7 @@ function handle(response) {
 		.addTo(weatherStations);
 		console.log('stations moved to weatherStations');
 	});
+	swal(czc.pwss);
 }
 // keep it inside the controle Layer
 var overlayWstations = {
@@ -752,10 +690,10 @@ var overlayWstations = {
 L.control.layers(baseLayers, overlayWstations);
 
 var stations = [
-	'src/data/wospi.json',
-	'src/data/WeeWxStation.json',
 	'src/data/cwop.json',
-	'src/data/pws.json'
+	'src/data/pws.json',
+	'src/data/WeeWxStation.json',
+	'src/data/wospi.json'
 ];
 
 // switch overlay weeStations
@@ -763,16 +701,13 @@ var stations = [
 // http://stackoverflow.com/q/32575243
 $('#weatherStations').change(function () {
 	if ($(this).prop('checked')) {
-
+		swal(czc.pws);
 		for (var i = 0; i < stations.length; i++) {
 			$.getJSON(stations[i], handle);
 		}
-
-		// render the Query on map
-		map.addLayer(weatherStations);
 	} else {
-		// map.removeLayer(weatherStations);
-		// console.log('weatherStations Layer removed');
+		map.removeLayer(weatherStations);
+		console.log('weatherStations Layer removed');
 		weatherStations.clearLayers();
 		console.log('weatherStations Layer cleared');
 	}
@@ -824,13 +759,17 @@ $('#earthQuake').change(function () {
 		// render the Query on map
 		var eqUsgs =
 		// '/src/data/significant_month.geojson';
-		'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson';
-		// 'https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/src/data/significant_month.geojson';
+		// 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson';
+		'https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/src/data/significant_month.geojson';
 		$.getJSON(eqUsgs, function (resp) {
-			earthQuake.addData(resp);
 			console.log('earthQuake data loaded', resp);
+		}).done(function (resp) {
+			earthQuake.addData(resp);
+			map.addLayer(earthQuake);
+			swal(czc.eq);
+		}).fail(function () {
+			swal(czc.bad);
 		});
-		map.addLayer(earthQuake);
 	} else {
 		map.removeLayer(earthQuake);
 		console.log('earthQuake Layer removed');
@@ -844,74 +783,58 @@ $('#earthQuake').change(function () {
 
 
 
-var upcontat = document.createElement('input');
-upcontat.id = 'upcontat';
-upcontat.type = 'button';
-upcontat.className = 'syncmycontact';
-upcontat.value = 'sync your contact';
-// <i class="fa fa-cloud-download"></i>
-var syncontact = document.getElementById('syncmycontact');
-syncontact.appendChild(upcontat);
-
-
-$('#syncmycontact').click(function () {
-
+// Sync Contacts
+$('#syncmycontacto').click(function () {
 	var cList = 'function(doc) { emit(doc); }';
 	cozysdk.defineRequest('Contact', 'all', cList, function (err, res) {
 		if (err !== null) {
-			return alert(err);
+			return swal(czc.err);
 		}
 		console.log('Contacts: ', res);
+		swal(czc.lcl);
+
 		cozysdk.run('Contact', 'all', {}, function (err, res) {
 			if (err !== null) {
-				return alert(err);
+				return swal(czc.err);
 			}
 			console.log('Contacts loading', res);
 			var i;
 			var HTML = '';
+
 			for (i = 0; i < res.length; i++) {
 				var mAd = _.findWhere(res[i].key.datapoints, {name: 'adr'}, {type: 'main'});
 				if (mAd !== undefined && mAd.value !== undefined) {
-					mAd.value.join('');
-					var mAdz = mAd.value;
+					// mAd.value.join('\n');
+					var adrr = mAd.value.join('');
+					var mAdz = adrr.replace(/\n/g, ' ');
 					console.log('Success: Get Contacts Address');
-					// stick a default user png if avatar empty
+
 					var altUpics;
 					if (res[i].key._attachments === undefined) {
 						altUpics =
 						'<img src="./styles/images/user.png" alt="iD" style="width:42px;height:42px;">';
 					} else {
 						altUpics =
-						'<img height="42" width="42"src=../contacts/contacts/' + res[i].id + '/picture.png>';
+						'<img height="42" width="42"src=../contacts/contacts/' +
+						res[i].id + '/picture.png>';
 					}
+
+					var adrsidebar = '<textarea placeholder="' +
+					mAdz + '" rows="2" cols="42" readonly disabled class=datamadz ></textarea>';
+
 					var template =
-					'<tr>' +
-						'<th data-id="'  + res[i].id +
-						'" class="contactmap" rowspan="4" align="top">' + altUpics +
-						'</th>' +
-						'<th align="left">' + res[i].key.fn + '</th>' +
-					'</tr>' +
-					'<tr>' +
-						'<td class="data-add" id="updatecontact' + res[i].id + '">' +
-						'<a title="update ON Cozy-Contacts" href=../../#apps/contacts/contacts/' + res[i].id +
-						'>' +
-						'<i class="fa fa-pencil-square-o"></i>' +
-						'</a>' +
-						'<input name="cc" type="text" class="datamadz" id="dataadd" value="' +
-						mAdz[2] + '" readonly required />' +
-						 '</td>' +
-					'</tr>' +
-					'<tr>' +
-						'<td>' +
-						'</td>' +
-					'</tr>' +
-					'<tr>' +
-						// '<td></td>' +
-					'</tr>';
+					'<tr><th data-id="'  + res[i].id +
+					'" class="contactmap" rowspan="4" align="top">' + altUpics +
+					'</th><th align="left">' + res[i].key.fn + '</th></tr><tr>' +
+					'<td class="data-add" id="updatecontact' + res[i].id + '">' +
+					adrsidebar +
+					'</td></tr><tr><td></td></tr><tr></tr>';
+
 					HTML = HTML + template;
 				}
-			} // end for
+			}
 			document.querySelector('.contact-list').innerHTML = HTML;
+			swal(czc.lcls);
 
 			var contactsList = new L.LayerGroup().addTo(map);
 			var overlayClist = {
@@ -919,16 +842,19 @@ $('#syncmycontact').click(function () {
 			};
 			L.control.layers(baseLayers, overlayClist);
 
+
 			$('th.contactmap').click(function (event) {
 				var id = event.currentTarget.dataset.id;
 				geocoder = L.Control.Geocoder.nominatim();
 				L.Control.geocoder({
 					geocoder: geocoder
 				});
+
 				cozysdk.find('Contact', id, function (err, r) {
 					console.log(r);
+
 					if (err !== null) {
-						return alert(err);
+						return swal(czc.bad);
 					}
 					if (r._attachments === undefined) {
 						altUpics =
@@ -937,49 +863,18 @@ $('#syncmycontact').click(function () {
 						altUpics =
 						'<img height="30" width="30"src=../contacts/contacts/' + r._id + '/picture.png>';
 					}
+
 					var m4dzCheck = _.findWhere(r.datapoints, {name: 'adr'}, {type: 'main'});
 					if (m4dzCheck !== undefined && m4dzCheck.value !== undefined) {
-						m4dzCheck.value.join('');
-						var m4dz = m4dzCheck.value;
-						console.log('process for: ', m4dz, ' loading...');
-						geocoder.geocode(m4dz, function (results) {
+						// m4dzCheck.value.join('');
+						var m4dz = m4dzCheck.value.join('');
+						var adrs = m4dz.replace(/\n/g, ' ');
+						console.log('process for: ', adrs, ' loading...');
+
+						geocoder.geocode(adrs, function (results) {
 							if (results[0] === undefined) {
 								console.log('error with conctat address!', id);
-								// alert('error with conctat address!');
-								var cupdate = document.createElement('input');
-								cupdate.id = 'cupdate';
-								cupdate.type = 'button';
-								cupdate.className = 'updatecontact';
-								cupdate.name = 'Edit';
-								cupdate.value = 'Edit';
-								cupdate.title = 'edit this contact';
-								var updatec = document.getElementById('updatecontact' + id);
-								updatec.appendChild(cupdate);
-
-								$('[name="Edit"]').on('click', function () {
-									var prev = $(this).prev('input'),
-									ro = prev.prop('readonly');
-									prev.prop('readonly', !ro).focus();
-									$(this).val(ro ? 'Save' : 'Edit');
-								});
-
-								var upc = document.createElement('span');
-								upc.id = 'maptoc';
-								upc.title = 'update TO Cozy-Contacts';
-								upc.className = 'maptocontact';
-								var mupc = document.getElementById('updatecontact' + id);
-								mupc.appendChild(upc);
-
-								$('#maptoc').click(function () {
-									var caa = $(this).prevAll('input[name=cc]').val();
-									console.log(caa);
-									// {datapoints: [{name: 'adr'}, {type: 'main'}]}
-									var pushAdd = {'datapoints[0].value[2]': caa};
-									cozysdk.updateAttributes('Contact', id, pushAdd, function () {
-										console.log('contact Add pushed');
-									});
-								});
-
+								swal(czc.clu);
 							}
 							var r = results[0];
 							var clmaRk = new L.Marker([r.properties.lat, r.properties.lon], {
@@ -1000,7 +895,6 @@ $('#syncmycontact').click(function () {
 							// https://en.wikipedia.org/wiki/Geo_URI_scheme
 							var uCoords = {geo: [r.properties.lat, r.properties.lon, null]};
 							cozysdk.updateAttributes('Contact', id, uCoords, function () {});
-
 							clmaRk.bindPopup(r.name, {
 								className: 'uiconPopupcss'
 							});
@@ -1016,13 +910,13 @@ $('#syncmycontact').click(function () {
 							});
 							// TODO if result = err then check GEO and show r.datapoints.adr
 							// TODO if err result and no GEO ask to locate with a marker?
-						});// end geocoder
-					} // end if cz.find
+						});
+					}
 					return false;
-				}); // end cz.find
-			}); // end $('tr.cl')
+				});
+			});
 			return false;
-		}); // cz.run
+		});
 		return false;
-	}); // cz.defineRequest
-});// $('syncmycontact')
+	});
+});
