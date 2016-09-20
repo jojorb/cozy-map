@@ -13,24 +13,46 @@ This is a simple "carto-map" project to get your own mapping tool and will allow
 
 --
 
-**"Done" features:**  
-- Tiles are https only.
-- search and query features with Nominatim OSRM and Overpass.
-- Weather Stations mostly served from personal Raspberry Pi.
-- fetch Contacts from Cozy-Contact and diplay them on Map.
+**Cozy developer**  
 
-**Working on (developer branch):**  
-- fetch data from Cozy-Files
-- working on konnectors.
+>https://github.com/cozy-labs/cozy-sdk
 
-**Next stuff:**  
-- organize manage mapping tool and data.
-- ease contributions/update osm nodes in app.
+`npm install -g cozy-sdk`
+
+```shell
+git clone https://github.com/RobyRemzy/cozy-map.git
+cd cozy-map
+npm install
+npm run start
+
+cozy-sdk . --remote https://user.cozycloud.cc/
+```
+
+**Non Cozy user**  
+
+```shell
+git clone https://github.com/RobyRemzy/cozy-map.git
+cd cozy-map
+npm install
+npm run start
+```
+
+use you favorite server like `http-server`
+
+```shell
+npm install http-server -g
+http-server -p9099 -o -s -i --cors
+```
+
+>need to mod some files to acces the contact database you Want
+
+`src/app.js`
+
+Update the index.html to include [fontawesome](http://fontawesome.io/)
 
 >Because sometimes contribute is the only thing we can do.  
 Load a Map to update or create Open Source data.  
 Discussion on the [Cozy.io/Forum](https://forum.cozy.io/t/app-leaflet-map-here-i-am-there-you-go/2114)
-
 
 ## Want to help?
 
