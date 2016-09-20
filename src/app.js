@@ -179,10 +179,12 @@ geocoder.markGeocode = function (result) {
 	var sosmid = result.properties.osm_id;
 	var slat = result.properties.lat;
 	var slng = result.properties.lon;
+	var sosm = 'http://www.openstreetmap.org/?mlat=';
 
 	var spop = '<b>' + result.properties.display_name + '</b><br>' +
 	'&#9654 <a href="' + edosm + stype + sosmid + '#map=19/' + slat + '/' + slng +
-	'" target=_blank>Edit with iD</a>';
+	'" target=_blank>Edit with iD</a><br>&#9654 <a href="' + sosm + slat + '&mlon=' +
+	slng + '#map=17/' + slat + '/' + slng + '&layers=T" target=_blank>Share with OSM</a>';
 	if (result.icon === undefined) {
 		var xitim = '?';
 		var xbabo = new L.Marker(result.center, {
