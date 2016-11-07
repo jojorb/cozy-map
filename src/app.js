@@ -725,7 +725,7 @@ var overlayNevents = {
 };
 L.control.layers(baseLayers, overlayNevents);
 
-var eonet = 'http://eonet.sci.gsfc.nasa.gov/api/v2.1/events?days=60';
+var eonet = 'https://eonet.sci.gsfc.nasa.gov/api/v2.1/events?days=60';
 
 $('#natEvents').change(function () {
 	if ($(this).prop('checked')) {
