@@ -1,9 +1,11 @@
 var L = require('leaflet'),
+moment = require('moment'),
 RoutingControl = require('./routing-control'),
 baselayers = require('./baselayer'),
 czc = require('./czc');
 require('./Control.Geocoder.js');
 require('./leaflet.MiniMap.js');
+require('./L.Control.Basemaps.js');
 require('./leaflet.Locate.js');
 require('./leaflet-sidebar.js');
 require('./leaflet.Hash.js');
@@ -56,63 +58,32 @@ var userTz = function getUserTimeZone() {
 	});
 };
 
-var myRastertile = L.tileLayer(null, {});
+var baseLayers = {};
 
-var baseLayers = {
-	'OSM': baselayers.losm,
-	'ESRI': baselayers.lesri,
-	'GIBS': baselayers.lgibs,
-	'MYRA': myRastertile,
-	'MAPBOX': baselayers.lmpb
-};
-
-$('#switch_losm').click(function () {
-	switchLayer(baseLayers, 'OSM');
-});
-$('#switch_lesri').click(function () {
-	switchLayer(baseLayers, 'ESRI');
-});
-$('#switch_lgibs').click(function () {
-	switchLayer(baseLayers, 'GIBS');
-	map.setZoom('5');
-});
-$('#switch_myRastertile').click(function () {
-	switchLayer(baseLayers, 'MYRA');
-});
-$('#switch_lmpb').click(function () {
-	switchLayer(baseLayers, 'MAPBOX');
-});
-
-function switchLayer(collection, layerKey) {
-	if (layerKey in collection) {
-		$.each(collection, function (key, layer) {
-			if (key === layerKey) {
-				if (!map.hasLayer(layer)) {
-					map.addLayer(layer);
-				}
-			} else if (map.hasLayer(layer)) {
-				map.removeLayer(layer);
-			}
-		});
-	} else {
-		console.log('There is no layer key by the name "' + layerKey + '" in the specified object.');
-	}
-}
-
+var basemaps = [
+	baselayers.losm,
+	baselayers.lmpb,
+	baselayers.thoutdoors,
+	baselayers.cartodbd,
+	baselayers.lgibs,
+	baselayers.myRastertile
+];
 
 $(document).ready(function () {
 	$('#mytileSubm').click(function () {
 
 		map.removeLayer(baselayers.losm);
-		map.removeLayer(baselayers.lesri);
+		map.removeLayer(baselayers.cartodbd);
 		map.removeLayer(baselayers.lgibs);
 		map.removeLayer(baselayers.lmpb);
-		map.removeLayer(myRastertile);
+		map.removeLayer(baselayers.thoutdoors);
+		map.removeLayer(baselayers.myRastertile);
 
 		var myTile = $('#mytileInput').val();
-		myRastertile.setUrl(myTile, {});
-		map.addLayer(myRastertile);
-		// myRastertile.redraw(map);
+		baselayers.myRastertile.setUrl(myTile, {});
+		map.addLayer(baselayers.myRastertile);
+		baselayers.myRastertile.redraw(map);
+
 		console.log('TileLayer New url:', myTile);
 	});
 });
@@ -334,8 +305,8 @@ document.getElementById('pineditor').appendChild(pinThis);
 
 
 $('#pineditor').click(function () {
-	var mCenterlat  = map.getCenter().lat;
-	var mCenterlng  = map.getCenter().lng;
+	var mCenterlat = map.getCenter().lat;
+	var mCenterlng = map.getCenter().lng;
 	var zfocus = map.getZoom();
 	var dropmaRk = new L.Marker([mCenterlat, mCenterlng], {
 		draggable: true,
@@ -446,12 +417,19 @@ $(document).ready(function () {
 });
 
 
-var miniMap = new L.Control.MiniMap(baselayers.mini, {
-	position: 'bottomright',
-	width: 80,
-	height: 80
-});
-miniMap.addTo(map);
+// var miniMap = new L.Control.MiniMap(baselayers.mini, {
+// 	position: 'bottomright',
+// 	width: 80,
+// 	height: 80
+// });
+// miniMap.addTo(map);
+
+map.addControl(L.control.basemaps({
+	basemaps: basemaps,
+	tileX: 0,
+	tileY: 0,
+	tileZ: 0
+}));
 
 L.control.zoom({
 	position:'bottomright'
@@ -515,9 +493,6 @@ var onStartnLoad = function () {
 		if (mapLoading === ('userLocate')) {
 			userLocate('map');
 		}
-		if (mapLoading === ('null')) {
-			console.log('Default location');
-		}
 	});
 };
 // onStartnLoad('map');
@@ -530,12 +505,12 @@ L.hash(map);
 
 
 map.on('moveend', function () {
-	var mapCenterlat  = map.getCenter().wrap().lat;
-	var mapCenterlng  = map.getCenter().wrap().lng;
-	var mapCenter     = mapCenterlat + '/' + mapCenterlng;
-	var tarBlk       	= ' target=_blank>';
-	var iDeditor      = 'https://www.openstreetmap.org/edit?editor=id#map=18/' + mapCenter;
-	var openiDeditor  = '<a href=' + iDeditor + tarBlk;
+	var mapCenterlat	= map.getCenter().wrap().lat;
+	var mapCenterlng	= map.getCenter().wrap().lng;
+	var mapCenter			= mapCenterlat + '/' + mapCenterlng;
+	var tarBlk			 	= ' target=_blank>';
+	var iDeditor			= 'https://www.openstreetmap.org/edit?editor=id#map=18/' + mapCenter;
+	var openiDeditor	= '<a href=' + iDeditor + tarBlk;
 
 	document.querySelector('.urlzxy').innerHTML = openiDeditor +
 	'<img src="./styles/images/view/ideditor.png" alt="iD" style="width:25px;height:25px;"></a><br>';
@@ -543,7 +518,7 @@ map.on('moveend', function () {
 
 /* eslint-disable */
 var osmkeysec = 'FvTtE9DuFiRjMCOp9g2chQAMf9ikQualSEh1SRX1';
-var osmkeycon =  'xrtIUDNLPsEqGKGAOWeW8Jzm8F8LZJeFLvLLynlM';
+var osmkeycon = 'xrtIUDNLPsEqGKGAOWeW8Jzm8F8LZJeFLvLLynlM';
 var auth = osmAuth({
 	oauth_secret: osmkeysec,
 	oauth_consumer_key: osmkeycon,
@@ -591,7 +566,7 @@ var weatherStations = new L.LayerGroup().addTo(map);
 function handle(response) {
 	console.log('Handle');
 	// clenning for buggy render
-	// weatherStations.clearLayers();
+	weatherStations.clearLayers();
 	response.forEach(function (reps) {
 		var popupPiw =
 		'<center>' + reps.description + '<br>' +
@@ -627,8 +602,8 @@ $('#weatherStations').change(function () {
 			$.getJSON(stations[i], handle);
 		}
 	} else {
-		map.removeLayer(weatherStations);
-		console.log('weatherStations Layer removed');
+		// map.removeLayer(weatherStations);
+		// console.log('weatherStations Layer removed');
 		weatherStations.clearLayers();
 		console.log('weatherStations Layer cleared');
 	}
@@ -672,7 +647,8 @@ $('#earthQuake').change(function () {
 	if ($(this).prop('checked')) {
 		var eqUsgs =
 		// 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson';
-		'https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/src/data/significant_month.geojson';
+		// 'https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/src/data/significant_month.geojson';
+		'https://u4h2tjydjl.execute-api.us-west-2.amazonaws.com/remotepixel/https?url=http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson';
 		$.getJSON(eqUsgs, function (resp) {
 			console.log('earthQuake data loaded', resp);
 		}).done(function (resp) {
@@ -689,6 +665,82 @@ $('#earthQuake').change(function () {
 		console.log('earthQuake Layer cleared');
 	}
 });
+
+
+
+var natEvents = new L.LayerGroup().addTo(map);
+
+function proc(response) {
+	console.log('Processing');
+	// clenning for buggy render
+	natEvents.clearLayers();
+
+	response.events.forEach(function (reps) {
+		if (reps.geometries[0].type === 'Point' &&
+		reps.categories[0].title !== 'Earthquakes') {
+			var lat = reps.geometries[0].coordinates[1];
+			var lng = reps.geometries[0].coordinates[0];
+			var title = reps.title;
+			var temps = reps.geometries[0].date;
+			var id = reps.sources[0].id;
+			var url = reps.sources[0].url;
+			var pp =
+			'<center>' + title + '<br>' +
+			moment.utc(temps).format('YYYY-MM-DD') + '<br>' +
+			id + ': <a target=_blank href=' + url + '>link</a></center>';
+			var ll = [lat, lng];
+			var tt;
+
+			if (reps.categories[0].title === 'Severe Storms') {
+				tt = '<img src=styles/images/Storms.svg>';
+			} else {
+				tt = '<img src=styles/images/' + reps.categories[0].title + '.svg>';
+			}
+			var nateventicon = L.icon.glyph({
+				iconUrl: 'styles/images/geocodermarker.svg',
+				iconSize: [37, 50],
+				iconAnchor: [18.5, 50],
+				glyphAnchor: [0, 0],
+				popupAnchor: [0, -51],
+				prefix: '',
+				glyphColor: 'black',
+				glyphSize: '3px',
+				glyph: tt
+			});
+			L.marker(ll, {
+				icon: nateventicon
+			})
+			.bindPopup(pp, {
+				className: 'uiconPopupcss'
+			})
+			.addTo(natEvents);
+			console.log('Events moved to natEvents');
+		}
+	});
+	// swal(czc.pwss);
+}
+
+var overlayNevents = {
+	'Natural Events': natEvents
+};
+L.control.layers(baseLayers, overlayNevents);
+
+var eonet = 'http://eonet.sci.gsfc.nasa.gov/api/v2.1/events?days=60';
+
+$('#natEvents').change(function () {
+	if ($(this).prop('checked')) {
+		// swal(czc.pws);
+		for (var i = 0; i < eonet[i].length; i++) {
+			$.getJSON(eonet, proc);
+		}
+	} else {
+		// map.removeLayer(natEvents);
+		// console.log('natEvents Layer removed');
+		natEvents.clearLayers();
+		console.log('natEvents Layer cleared');
+	}
+});
+
 
 
 // Sync Contacts
@@ -731,7 +783,7 @@ $('#syncmycontacto').click(function () {
 					mAdz + '" rows="2" cols="42" readonly disabled class=datamadz ></textarea>';
 
 					var template =
-					'<tr><th data-id="'  + res[i].id +
+					'<tr><th data-id="' + res[i].id +
 					'" class="contactmap" rowspan="4" align="top">' + altUpics +
 					'</th><th align="left">' + res[i].key.fn + '</th></tr><tr>' +
 					'<td class="data-add" id="updatecontact' + res[i].id + '">' +

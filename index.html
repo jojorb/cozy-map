@@ -11,15 +11,12 @@
 		<div class="sidebar-tabs">
 			<ul role="tablist">
 				<li><a href="#explore" role="tab"><i class="fa fa-search"></i></a></li>
-				<li><a href="#maplayers" role="tab"><i class="fa fa-map"></i></a></li>
+				<li><a href="#maplayers" role="tab"><i class="ms ms-layers-overlay"></i></a></li>
 				<li><a href="#vcontact" role="tab"><i class="fa fa-user"></i></a></li>
 			</ul>
 			<ul role="tablist">
 				<li><a href="#info" role="tab"><i class="fa fa-info"></i></a></li>
-				<li><a href="#osm" role="tab">
-					<center><img src="./styles/images/view/OpenStreetMap.png"
-					alt="osm" style="width:75%;height:75%;"></center>
-				</a></li>
+				<li><a href="#osm" role="tab"><i class="ms ms-osm"></i></a></li>
 			</ul>
 		</div>
 		<div class="sidebar-content">
@@ -57,43 +54,39 @@
 				</div>
 			</div>
 			<div class="sidebar-pane" id="maplayers">
-				<h1 class="sidebar-header">Map Layer<span class="sidebar-close">
+				<h1 class="sidebar-header">Map Layers<span class="sidebar-close">
 					<i class="fa fa-angle-double-left"></i></span>
 				</h1>
-				<h3><center>
-					<b>View finder</b>
-				</center></h3>
-				<form id="mapLoad">
-				<input type="radio" name="radioLoc" value="userTz" /> Timezone view <br />
-				<input type="radio" name="radioLoc" value="userLocate" /> Locate me <br />
-				<input type="radio" name="radioLoc" value="null" /> Default view <br />
-				</form>
-				<div id="maplayerselect">
-					<h3><center>
-						<b>Map Base Layers</b>
-					</center></h3>
-					<div id="switch_lesri" class="viewmap_karto" >Esri satellite</div>
-					<div id="switch_lgibs" class="viewmap_karto" >Near Live satellite view</div>
-					<div id="switch_losm" class="viewmap_karto" >open street map</div>
-					<div id="switch_lmpb" class="viewmap_karto" >MapBox</div>
-					<!-- <div id="switch_lmpbo" class="viewmap_karto" >MapBox Outdoors</div>
-					<div id="switch_lmpbd" class="viewmap_karto" >MapBox Dark</div> -->
-					<div><center>
-						New Base Layers Address
-						<a target='_blank'
-						href='https://github.com/RobyRemzy/cozy-map/wiki/apphelp#basemap'>
-						<i class="fa fa-question-circle"></i></a>
-					</center></div>
-					<div id='myrtiles' class="newmapadd" ></div>
-					<h3><center>
-						<b>Map Database Overlay</b>
-					</center></h3>
-					<label><input
-						type="checkbox" id="weatherStations"> Weather Stations
-					</label><br>
-					<label><input
-						type="checkbox" id="earthQuake"> Earthquake USGS
-					</label>
+				<div class="block-control">
+					<h1>Forecast and Events</h1>
+					<p>
+						<input id="weatherStations" type="checkbox"/>
+						<label for="weatherStations">Personal Weather Forecast</label>
+						<br>
+						<small>
+							A pool of personal or small weather stations brodcasting online.
+						</small>
+					</p>
+					<p>
+						<input id="earthQuake" type="checkbox"/>
+						<label for="earthQuake">Earthquakes (Magnitude > 4.5)</label>
+						<br>
+						<small>
+							Latest earthquakes above 4.5 Magn. from USGS
+							(<a target='_blank' href="http://earthquake.usgs.gov/earthquakes/map/">link</a>).
+						</small>
+					</p>
+					<p>
+						<input id="natEvents" type="checkbox"/>
+						<label for="natEvents">Natural events from EONET</label>
+						<br>
+						<small>
+							EONET is the Earth Observatory Natural Event Tracker,
+							a repository of metadata about natural events accessible via web
+							services (<a target='_blank' href="http://eonet.sci.gsfc.nasa.gov/">link</a>).
+						</small>
+					</p>
+					TEST : <a target='_blank' href="/public/#4/42.78/3.48">public link</a>
 				</div>
 			</div>
 			<div class="sidebar-pane" id="vcontact">
@@ -131,7 +124,7 @@
 				</center></p>
 				<h3><center><b>Beta Projects in progress</b></center></h3>
 				<p><b>Auth and tools for OpenStreetMap</b><br>
-					Go to "osm" <img src="./styles/images/view/OpenStreetMap.png" alt="osm" style="width:20px;height:20px;">.
+					Go to "osm" <i class="ms ms-osm"></i>.
 					Auth on OSM is not needed to use the "query tool". this Feature need more
 					work to welcom open contributions InApp.
 				</p>
@@ -157,22 +150,40 @@
 					<a href="#" id="logout"><i class="fa fa-user" ></i> Log out </a>
 					<i class="urlzxy"></i>
 				</div>
-				<h3 class="sidebar-topics"><center>
+				<h1><center>
 					Help with OSM tool<br>
 					<a target='_blank'href='https://github.com/RobyRemzy/cozy-map/wiki/apphelp#easy-data-mining-on-openstreetmap'>
 						<i class="fa fa-question-circle"></i>
 					</a></center>
-				</h3>
+				</h1>
 				<div id="overpassapi">
 					<h3><center><b>
-						Easy data mining with custom query
+						Easy data mining with OverPass API<br>
+						custom query
 					</b></center></h3>
 					<div id="optinput"></div>
 					<h3><center><b>
-						Easy data mining with a marker query
+						Drop a marker to query nodes 25 meters around
 					</b></center></h3>
 					<div id="pineditor" align="center"></div>
 				</div>
+				<hr>
+				<h1><center>Some Features</center></h1>
+
+				<div id="maplayerselect">
+					<center>
+						Add New Tile Layers Address
+						<a target='_blank'
+						href='https://github.com/RobyRemzy/cozy-map/wiki/apphelp#basemap'>
+						<i class="fa fa-question-circle"></i></a>
+					</center>
+					<div id='myrtiles' class="newmapadd" ></div>
+				</div>
+				<form id="mapLoad">
+				<input type="radio" name="radioLoc" value="userTz" /> Locate with Cozy Timezone <br />
+				<input type="radio" name="radioLoc" value="userLocate" /> Regular W3C Locate <br />
+				</form>
+				<hr>
 			</div>
 		</div>
 	</div>

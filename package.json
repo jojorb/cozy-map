@@ -27,6 +27,7 @@
     "eslint-config-mourner": "2.0.1",
     "leaflet": "0.7.7",
     "leaflet.icon.glyph": "^0.2.0",
+    "moment": "^2.15.2",
     "osm-auth": "^0.2.8",
     "osmtogeojson": "^2.2.11",
     "polyline": "0.2.0",
@@ -47,8 +48,8 @@
     "cozy",
     "leaflet",
     "geocoder",
-		"routing",
-		"overpass",
+    "routing",
+    "overpass",
     "map",
     "gis"
   ],
