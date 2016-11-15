@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+
+	<link rel="stylesheet" href="http://leafletjs.com/docs/css/normalize.css" />
+	<link rel="stylesheet" href="http://leafletjs.com/docs/css/main.css" />
+	<script src="http://leafletjs.com/docs/highlight/highlight.pack.js"></script>
+	<link rel="stylesheet" href="http://leafletjs.com/docs/highlight/styles/github-gist.css" />
+	<link rel="stylesheet" href="http://leafletjs.com/dist/leaflet.css" />
+	<script src="http://leafletjs.com/dist/leaflet.js"></script>
+</head>
+<body class='api-page'>
+	<div class='container'>
+
+	<h2>Leaflet Control Geocodcer API reference</h2>
+	<div id="toc" class="clearfix">
+	</div>
+
+	<h2 id='l-control'>L.Control</h2>
+
+<h2 id='geocoder'>Geocoder</h2>
+<p>This is the geocoder control. It works like any other Leaflet control, and is added to the map.</p>
+
+<h3 id='geocoder-example'>Usage example</h3>
+
+
+
+
+<pre><code> var map = L.map(&#39;map&#39;).setView([0, 0], 2);
+    L.tileLayer(&#39;http://{s}.tile.osm.org/{z}/{x}/{y}.png&#39;, {
+        attribution: &#39;&amp;copy; &lt;a href=&quot;http://osm.org/copyright&quot;&gt;OpenStreetMap&lt;/a&gt; contributors&#39;
+    }).addTo(map);
+    L.Control.geocoder().addTo(map);
+</code></pre>
+
+
+<h3 id='geocoder-factory'>Creation</h3>
+
+
+
+<table><thead>
+	<tr>
+		<th>Factory</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='geocoder-l-control-geocoder'>
+		<td><code><b>L.Control.geocoder</b>(<nobr>&lt;Geocoder options&gt;</nobr> <i>options?</i>)</nobr></code></td>
+		<td>Instantiates a new geocoder control, by default using Nominatim for search, unless another<br>
+<a href="#geocoder"><code>geocoder</code></a> is specified in the options.</td>
+	</tr>
+</tbody></table>
+
+<h3 id='geocoder-option'>Options</h3>
+
+
+
+<table><thead>
+	<tr>
+		<th>Option</th>
+		<th>Type</th>
+		<th>Default</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='geocoder-showresulticon'>
+		<td><code><b>showResultIcon</b></code></td>
+		<td><code>Boolean</code>
+		<td><code>false</code></td>
+		<td>Enable icons describing result type, if available</td>
+	</tr>
+	<tr id='geocoder-collapsed'>
+		<td><code><b>collapsed</b></code></td>
+		<td><code>Boolean</code>
+		<td><code>true</code></td>
+		<td>Search field is collapsed (minimized) by default</td>
+	</tr>
+	<tr id='geocoder-expand'>
+		<td><code><b>expand</b></code></td>
+		<td><code>String</code>
+		<td><code>&quot;click&quot;</code></td>
+		<td>Method used for expanding the control; should be &quot;click&quot; or &quot;hover&quot;</td>
+	</tr>
+	<tr id='geocoder-position'>
+		<td><code><b>position</b></code></td>
+		<td><code>String</code>
+		<td><code>&quot;topright&quot;</code></td>
+		<td>Sets the control&#39;s position, see <a href="http://leafletjs.com/reference.html#control">Leaflet&#39;s <code>Control</code> docs</a></td>
+	</tr>
+	<tr id='geocoder-placeholder'>
+		<td><code><b>placeholder</b></code></td>
+		<td><code>String</code>
+		<td><code>&quot;Search...&quot;</code></td>
+		<td>Search field&#39;s placeholder text</td>
+	</tr>
+	<tr id='geocoder-errormessage'>
+		<td><code><b>errorMessage</b></code></td>
+		<td><code>String</code>
+		<td><code>&quot;Nothing found.&quot;</code></td>
+		<td>Message shown when an error occurs, or no results are found</td>
+	</tr>
+	<tr id='geocoder-geocoder'>
+		<td><code><b>geocoder</b></code></td>
+		<td><code><a href='#igeocoder'>IGeocoder</a></code>
+		<td><code>L.Routing.Geocoder.nominatim()</code></td>
+		<td>Geocoder backend to use when searching</td>
+	</tr>
+</tbody></table>
+
+<h3 id='geocoder-method'>Methods</h3>
+
+
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='geocoder-markgeocode'>
+		<td><code><b>markGeocode</b>(<nobr>&lt;<a href='#igeocoderesult'>IGeocodeResult</a>&gt;</nobr> <i>result</i>)</nobr></code></td>
+		<td><code></code></td>
+		<td>Called when a geocoding result is selected by the user. Default<br>
+implementation opens a marker on the result&#39;s location and opens a popup
+with the result&#39;s name.</td>
+	</tr>
+</tbody></table>
+
+<h2 id='igeocoder'>IGeocoder</h2>
+<p>An interface implemented to respond to geocoding queries.</p>
+
+<h3 id='igeocoder-method'>Methods</h3>
+
+
+
+<table><thead>
+	<tr>
+		<th>Method</th>
+		<th>Returns</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='igeocoder-geocode'>
+		<td><code><b>geocode</b>(<nobr>&lt;String&gt;</nobr> <i>query</i>, <nobr>&lt;Function&gt;</nobr> <i>callback</i>, <nobr>&lt;Object&gt;</nobr> <i>context?</i>)</nobr></code></td>
+		<td><code></code></td>
+		<td>Performs a geocoding query (search). When the search completes, the <code>callback</code> is called<br>
+with an array of <a href="#igeocoderesult"><a href="#igeocoderesult"><code>IGeocodeResult</code></a></a>s as argument</td>
+	</tr>
+	<tr id='igeocoder-reverse'>
+		<td><code><b>reverse</b>(<nobr>&lt;L.LatLng&gt;</nobr> <i>latLng</i>, <nobr>&lt;Function&gt;</nobr> <i>callback</i>, <nobr>&lt;Object&gt;</nobr> <i>context?</i>)</nobr></code></td>
+		<td><code></code></td>
+		<td>Tries to find locations close to the coordinate <code>latLng</code>. When the search completes,<br>
+the <code>callback</code> is called
+with an array of <a href="#igeocoderesult"><a href="#igeocoderesult"><code>IGeocodeResult</code></a></a>s as argument.</td>
+	</tr>
+	<tr id='igeocoder-suggest'>
+		<td><code><b>suggest</b>(<nobr>&lt;String&gt;</nobr> <i>query</i>, <nobr>&lt;Function&gt;</nobr> <i>callback</i>, <nobr>&lt;Object&gt;</nobr> <i>context?</i>)</nobr></code></td>
+		<td><code></code></td>
+		<td>Tries to find suggestions given a (possibly incomplete) search query. When the search completes,<br>
+the <code>callback</code> is called
+with an array of <a href="#igeocoderesult"><a href="#igeocoderesult"><code>IGeocodeResult</code></a></a>s as argument. This method is optional to implement.</td>
+	</tr>
+</tbody></table>
+
+<h2 id='igeocoderesult'>IGeocodeResult</h2>
+<p>An object that represents a result from a geocoding query.
+Note that there is not concrete implementation of <a href="#igeocoderesult"><code>IGeocodeResult</code></a>, it
+is the contract (interface) geocoders are expected to use when returning
+results.</p>
+
+<h3 id='igeocoderesult-property'>Properties</h3>
+
+
+
+<table><thead>
+	<tr>
+		<th>Property</th>
+		<th>Type</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='igeocoderesult-name'>
+		<td><code><b>name</b>
+		<td><code>String</code></td>
+		<td>Name if found location</td>
+	</tr>
+	<tr id='igeocoderesult-bounds'>
+		<td><code><b>bounds</b>
+		<td><code>L.LatLngBounds</code></td>
+		<td>Bounds of the location (possibly a single point)</td>
+	</tr>
+	<tr id='igeocoderesult-center'>
+		<td><code><b>center</b>
+		<td><code>L.LatLng</code></td>
+		<td>Center coordinate of the location</td>
+	</tr>
+	<tr id='igeocoderesult-icon?'>
+		<td><code><b>icon?</b>
+		<td><code>String</code></td>
+		<td>URL for icon representing result; optional</td>
+	</tr>
+	<tr id='igeocoderesult-html?'>
+		<td><code><b>html?</b>
+		<td><code>String</code></td>
+		<td>HTML formatted representation of the name</td>
+	</tr>
+</tbody></table>
+
+<h2 id='nominatim'>Nominatim</h2>
+<p>Geocoder using OpenStreetMap&#39;s <a href="http://wiki.openstreetmap.org/wiki/Nominatim">Nominatim</a> service.</p>
+
+<h3 id='nominatim-option'>Options</h3>
+
+
+
+<table><thead>
+	<tr>
+		<th>Option</th>
+		<th>Type</th>
+		<th>Default</th>
+		<th>Description</th>
+	</tr>
+	</thead><tbody>
+	<tr id='nominatim-serviceurl'>
+		<td><code><b>serviceUrl</b></code></td>
+		<td><code>String</code>
+		<td><code>&#x27;//nominatim.openstreetmap.org/&#x27;</code></td>
+		<td>URL used to locate the Nominatim service</td>
+	</tr>
+	<tr id='nominatim-geocodingqueryparams'>
+		<td><code><b>geocodingQueryParams</b></code></td>
+		<td><code>Object</code>
+		<td><code>{}</code></td>
+		<td>Parameters added to each geocoding request</td>
+	</tr>
+	<tr id='nominatim-reversequeryparams'>
+		<td><code><b>reverseQueryParams</b></code></td>
+		<td><code>Object</code>
+		<td><code>{}</code></td>
+		<td>Parameters added to each reverse geocoding request</td>
+	</tr>
+	<tr id='nominatim-htmltemplate'>
+		<td><code><b>htmlTemplate</b></code></td>
+		<td><code>Function</code>
+		<td><code></code></td>
+		<td>Function used to generate the HTML representation of a geocoding response;<br>
+the function will be passed a parsed Nominatim geocoding response and should return a <code>String</code></td>
+	</tr>
+</tbody></table>
+
+
+
+	</div>
+	<script src="http://leafletjs.com/docs/js/docs.js"></script>
+	<script>
+	hljs.configure({tabReplace: '    '});
+	hljs.initHighlightingOnLoad();
+
+	var elems = document.querySelectorAll('h2, h3, h4, tr');
+
+	for (var i = 0, len = elems.length; i < len; i++) {
+		var el = elems[i];
+
+		if (el.id) {
+			var anchor = document.createElement('a');
+			anchor.setAttribute('anchor', el.id);
+			if (!el.children.length) {
+				// For headers, insert the anchor before.
+				el.parentNode.insertBefore(anchor, el);
+			} else {
+				// For table rows, insert the anchor inside the first <td>
+				el.querySelector('td').appendChild(anchor);
+			}
+		}
+	}
+
+	elems = document.querySelectorAll('div.accordion');
+	for (var i = 0, len = elems.length; i < len; i++) {
+		var el = elems[i];
+
+		el.querySelector('label').addEventListener('click', function(c){
+			return function() {
+				if (c.className === 'accordion expanded') {
+					c.className = 'accordion collapsed';
+				} else {
+					c.className = 'accordion expanded';
+				}
+				console.log(c);
+			};
+		}(el));
+
+// 		el.className = 'accordion collapsed';
+// 		el.querySelector('.accordion-content').style.display = 'none';
+	}
+
+</script>
+<style>
+	div.accordion {
+		width: 100%;
+		overflow: hidden;
+	}
+
+	div.accordion > label {
+		width: 100%;
+		cursor: pointer;
+		display: block;
+		background: #EEE;
+		padding: 0.5em 1em;
+		font-weight: bold;
+		font-size: 12px;
+	}
+
+	div.accordion > div.accordion-content {
+		max-height: 0;
+		display: none;
+	}
+
+	div.accordion.collapsed > div.accordion-content {
+		animation-duration: 0.4s;
+		animation-name: collapse;
+/* 		height: 0; */
+		max-height: 0;
+		display: block;
+	}
+
+	div.accordion.expanded > div.accordion-content {
+		animation-duration: 0.4s;
+		animation-name: expand;
+/* 		height: auto; */
+		max-height: none;
+		display: block;
+	}
+
+	@keyframes collapse {
+		0% { max-height: 100vh; }
+		100% { max-height: 0; }
+	}
+
+	@keyframes expand {
+		0% { max-height: 0; }
+		100% { max-height: 100vh; }
+	}
+
+/*	div.accordion > div.accordion-content {
+		transition: max-height 0.4s ease-out 0s;
+	}*/
+
+	div.accordion.expanded > label > span.expander {
+		transform: rotate(90deg);
+	}
+
+	div.accordion > label > span.expander {
+		transition: transform 0.4s ease-out 0s;
+		display: inline-block;
+	}
+
+	table {
+		margin-bottom: 0;
+	}
+
+</style>
+</body></html>

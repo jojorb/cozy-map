@@ -1,0 +1,1 @@
+keycode  46 = l L l L U1F342 Lstroke lstroke
