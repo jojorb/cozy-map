@@ -1,38 +1,44 @@
 {
   "name": "cozy-map",
-  "version": "0.1.32",
+  "version": "0.1.21",
   "engines": [
     "*"
   ],
-  "description": "Leaflet map suited for Cozy Platform.",
+  "description": "Map suited to cross your Cozy data.",
   "cozy-displayName": "Map",
-  "cozy-color": "#C271DF",
+  "cozy-color": "#D78EF1",
   "cozy-type": "static",
   "cozy-permissions": {
-    "User": {
-      "description": "Map location with your Cozy Timezone."
-    },
     "Contact": {
-      "description": "Show contacts on map."
+      "description": "Can sync your contacts list and display them on map"
     }
   },
   "icon-path": "map.svg",
   "main": "src/app.js",
   "dependencies": {
+    "cozysdk-client": "0.0.5"
   },
   "devDependencies": {
-    "browserify": "9.0.3",
+    "browserify": "^9.0.3",
     "corslite": "0.0.7",
-    "eslint": "2.8.0",
-    "eslint-config-mourner": "2.0.1",
-    "leaflet": "0.7.7",
-    "leaflet.icon.glyph": "^0.2.0",
-    "moment": "^2.15.2",
-    "osm-auth": "^0.2.8",
+    "eslint": "^2.8.0",
+    "eslint-config-mourner": "^2.0.1",
+    "leaflet": "1.0.1",
+    "leaflet-control-geocoder": "1.5.4",
+    "leaflet.icon.glyph": "0.2.0",
+    "leaflet.locatecontrol": "0.56.0",
+    "leaflet-minimap": "3.4.0",
+    "leaflet-rotatedmarker": "^0.1.1",
+    "leaflet-routing-machine": "3.2.4",
+    "mapillary-js": "2.0.0",
+    "moment": "^2.16.0",
+    "osm-auth": "0.2.8",
     "osmtogeojson": "^2.2.11",
     "polyline": "0.2.0",
-    "uglify-js": "2.4.17",
-    "watchify": "2.5.0"
+    "uglify-js": "^2.4.17",
+    "underscore": "^1.8.3",
+    "sidebar-v2": "0.3.1",
+    "watchify": "^2.5.0"
   },
   "scripts": {
     "start": "node_modules/.bin/watchify src/app.js -o ./build/map.min.js -v -d .",
@@ -47,14 +53,13 @@
   "keywords": [
     "cozy",
     "leaflet",
+    "mapillary",
     "geocoder",
-    "routing",
-    "overpass",
     "map",
-    "gis"
+    "geodata"
   ],
   "author": {
-    "name": "Remi Roubin",
+    "name": "Robyremzy",
     "url": "https://github.com/RobyRemzy/"
   },
   "homepage": "https://github.com/robyremzy/cozy-map",

@@ -4,14 +4,14 @@
 
 ![screeshot](https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/screenshot.png)  
 
-This is a simple "carto-map" project to get your own mapping tool and will allow you to contribute to open sourced projects like Open Street Map with ease.  
 
 
-- NPM leaflet package version: "0.7.7"
-- [Leaflet doc](http://leafletjs.com)
-- [Leaflet on GutHub](https://github.com/Leaflet/Leaflet)
+## basic map services to cross with your Cozy data.
 
---
+- leafletjs 1.0.1
+- mapillary-js v2.0.0
+- cozysdk-client
+
 
 **Cozy developer**  
 
@@ -44,19 +44,10 @@ npm install http-server -g
 http-server -p9099 -o -s -i --cors
 ```
 
->need to mod some files to acces the contact database you Want
+>Some services may not work like sync contacts.
 
-`src/app.js`
 
-Update the index.html to include [fontawesome](http://fontawesome.io/)
 
->Because sometimes contribute is the only thing we can do.  
-Load a Map to update or create Open Source data.  
-Discussion on the [Cozy.io/Forum](https://forum.cozy.io/t/app-leaflet-map-here-i-am-there-you-go/2114)
-
-## Want to help?
-
-More informations on the [wiki](https://github.com/RobyRemzy/cozy-map/wiki)
 
 ## What is Cozy?
 
@@ -78,7 +69,10 @@ You can reach the Cozy Community by:
 * Mentioning us on [Twitter](http://twitter.com/mycozycloud)
 
 ## Thanks
-To the [contributors](https://github.com/RobyRemzy/cozy-map/graphs/contributors), and this app relies also on a variety of plugins, but most importantly on the work of
+To the [contributors](https://github.com/RobyRemzy/cozy-map/graphs/contributors)
+
+ But this app relies also on a variety of plugins, but most importantly on the work of
 [Vladimir Agafonkin](https://github.com/mourner),
 [Per Liedman](https://github.com/perliedman),
-[Tobias Bieniek](https://github.com/Turbo87).
+[Tobias Bieniek](https://github.com/Turbo87),
+[Stefano Cudini](https://github.com/stefanocudini)

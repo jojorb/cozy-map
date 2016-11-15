@@ -57,8 +57,12 @@
 				<h1 class="sidebar-header">Map Layers<span class="sidebar-close">
 					<i class="fa fa-angle-double-left"></i></span>
 				</h1>
+				<!-- <h1><center>Change the map Layers</center></h1>
+				<div id="mylayerssb" class="divtiles">
+					<center><i class="ms ms-layers-active"></i></center>
+				</div> -->
 				<div class="block-control">
-					<h1>Forecast and Events</h1>
+					<h1><center>Forecast and Events</center></h1>
 					<p>
 						<input id="weatherStations" type="checkbox"/>
 						<label for="weatherStations">Personal Weather Forecast</label>
@@ -86,7 +90,7 @@
 							services (<a target='_blank' href="http://eonet.sci.gsfc.nasa.gov/">link</a>).
 						</small>
 					</p>
-					TEST : <a target='_blank' href="/public/#4/42.78/3.48">public link</a>
+					TEST : <a target='_blank' href="./public/index.html">public link</a>
 				</div>
 			</div>
 			<div class="sidebar-pane" id="vcontact">
@@ -95,12 +99,10 @@
 					<span class="sidebar-close"><i class="fa fa-angle-double-left"></i></span>
 				</h1>
 				<div>
-					<br>
-					<div align="center" id='syncmycontact'>
-						<input type="button" id="syncmycontacto"  class="syncmycontacto"
-						value="Sync Contacts" />
-					</div>
-					<br>
+					<center>
+						<h1>Sync Cozy contacts</h1>
+						<img id='syncmycontacto' class="svg logoCozy" src="./styles/images/happycloud.svg" />
+					</cener>
 					<div>
 						<table align="left" class="contact-list"></table>
 					</div>
@@ -110,56 +112,61 @@
 				<h1 class="sidebar-header">Info<span class="sidebar-close">
 					<i class="fa fa-angle-double-left"></i></span>
 				</h1>
-				<h3><center><b>Documentation
-					<a target='_blank'
-					href='https://github.com/RobyRemzy/cozy-map/wiki'>Map Wiki</a>
-				</b></center></h3>
-				<p><center>
-					<a target='_blank'
-					href='https://github.com/RobyRemzy/cozy-map/wiki/improvement'>
-					<i class="fa fa-github"></i> GitHub wiki new ideas</a><br>
-					<a target='_blank'
-					href='https://github.com/RobyRemzy/cozy-map/issues'>
-					<i class="fa fa-github"></i> GitHub issues</a>
-				</center></p>
-				<h3><center><b>Beta Projects in progress</b></center></h3>
-				<p><b>Auth and tools for OpenStreetMap</b><br>
-					Go to "osm" <i class="ms ms-osm"></i>.
-					Auth on OSM is not needed to use the "query tool". this Feature need more
-					work to welcom open contributions InApp.
+				<center>
+					<h1>Map's
+						<a target='_blank'
+						href='https://github.com/RobyRemzy/cozy-map/wiki'>Github Wiki</a>
+					</h1>
+					<small>
+						<a target='_blank'
+						href='https://github.com/RobyRemzy/cozy-map/issues'>
+						<i class="fa fa-github"></i> submit issues/improvements</a>
+					</small>
+				</center>
+				<h3><center><b>Credits for the community of</b></center></h3>
+				<p><b><i class="ms ms-osm"></i>
+					Open Street Map </b><a target='_blank'href='https://www.openstreetmap.org/about'>(link)</a><br>
+					OpenStreetMap is a map of the world, created by people like you and free to use under an open license.
 				</p>
-				<p><b><i class="fa fa-location-arrow fa-rotate-90 fa-1x"></i>
-					Mapillary</b><br>
+				<p><b><i class="ms ms-leaflet"></i>
+					Leaflet Js </b><a target='_blank'href='http://leafletjs.com/'>(link)</a><br>
+					An Open Source JavaScript Library for Mobile Friendly Interactive Maps.
+				</p>
+				<p><b><i class="ms ms-mapbox"></i>
+					Mapbox </b><a target='_blank'href='https://mapbox.com'>(link)</a><br>
+					Interactive vector maps in mobile, desktop, server, and embedded applications, powered by OpenGL.
+				</p>
+				<p><b><i class="cm cm-mapillary"></i>
+					Mapillary </b><a target='_blank'href='https://www.mapillary.com/'>(link)</a><br>
 					Mapillary's WebGL JavaScript library for displaying street level imagery anywhere!
 				</p>
-				<p><b><i class="fa fa-subway"></i>
-					Tangrams TransitLand</b><br>
-					An open source project sponsored by Mapzen.
+				<p><b><i class="cm cm-node"></i>
+					TransitLand </b><a target='_blank'href='https://transit.land/'>(link)</a><br>
+					<i>"in progress"</i> A community-edited data service aggregating transit networks across metropolitan and rural areas around the world.
 				</p>
 				<hr>
 				<center><a target='_blank'
-					href='http://osmlab.github.io/attribution-mark/copyright?name=Cozy-Map'
+					href='https://osmlab.github.io/attribution-mark/copyright?name=Cozy-Map'
 					style='background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABoAAAAaCAMAAACelLz8AAAB11BMVEXZ2dlkZGT///////////8mJibIyMj5+fm6urr///8sLCywsLBJSUn///9eXl7////////j4+P////////Q0ND////u7u7i4uIfHx/s7OxmZmZzc3P39/fw8PDg4OD5+fmNjY1cXFz5+flQUFBGRkaIiIhtbW3///////9hYWHS0tKlpaWsrKzZ2dmgoKCpqalycnLg4OCCgoJLS0tEREQlJSX9/f3///8/Pz/e3t4jIyP///////////+/v7+Ghobp6enDw8Pl5eVXV1f////////U1NT////////////////l5eW1tbX///+4uLj////////////////////////////w8PDNzc3GxsYuLi7w8PD///////9paWmvr6/c3NwhISHe3t5UVFQfHx/y8vLn5+d3d3eXl5f////09PTs7Oz///8zMzN8fHz///+UlJT////////u7u44ODj////p6en///86Ojqurq5ZWVlfX1////////8hISFBQUGioqIlJSXV1dV6enoqKioxMTH39/eLi4s4ODj///9ra2ubm5v9/f3Nzc28vLz///9LS0v///////////+FhYUdHR3////X19cjIyM2Njaenp7///8AAAAbGxtl93oXAAAAnXRSTlNzcE9udnpweG9Gem50TnI9Z3VgbHEWeHR9dnBvendzfG5ye3N0b3A4I3Fxbm5ybm5wdG5zdXt0NHVze14eMW9udW90cld4cUdSFx11bnJvHG1ANj8VQnlwcHl4H1xwb3N8dHN8eXZvbnV5d0t4byluAyd3dwt2VnZucnEvCn11bnxyb3p4e252BHBufXFvYnRzZQxvfWpyfHdufQB9fOn/1AAAAY5JREFUKM+V0mVvwzAQBuCMmZmZmZmZmZmZGcpMa7ukWXK5H7ukVbOpmqbt/WDZfiRLdz6C+8oqAPh6+8BqnANaOI74RoASydLisnzRdiGt9yQa9pVglC7LYws8advLTxEWoJaGx1x6ksx/LdQetI5R55xIE4O2+yvhwZDgwxUaobDh1kn6F/ud9vSMBu3p5lLgycqGAZosjneCe52zLTyjEB17DRAdERkva0Rk34h3x+gNinmy7FqyKOcWiDcWfw4QgL+TXC2sH8yOJ9V1AXRaUZmdkZqCALX4APDhotKjbcZ8LDkyoiyBp3I0ipRWgVgDORu768mJCFt3uEe4SXPA1wRFqgPatEVBJpyZSDcpFBR2mKzFubgGN5BfpjEb3GTVdJtNRqrq+DE9aQcMJFSKhIyW7UFsri7JUyHJqMhNhqT+UPL/iO+8ix4e5y1P38A6zv+X0Pln89jU7LT9mtU575mLkcmZV47/r/Y9+4temIKhARutVO/3H54Mc87ZuG1rFQfn8uq+r/dc7zp8AmmAXy4xp9xiAAAAAElFTkSuQmCC) no-repeat; background-size:26px 26px;width:24px;height:24px;display:block;z-index:1000;'></a>
 				</center>
 				<hr>
 			</div>
 			<div class="sidebar-pane" id="osm">
 				<h1 class="sidebar-header">OSM tools<span class="sidebar-close"><i class="fa fa-angle-double-left"></i></span></h1>
-				<div class="osmlogin">
+				<!-- <div class="osmlogin">
 					<a href="#" id="authenticate"><i class="fa fa-user" ></i> Log in </a>
 					<a href="#" id="logout"><i class="fa fa-user" ></i> Log out </a>
 					<i class="urlzxy"></i>
-				</div>
+				</div> -->
 				<h1><center>
-					Help with OSM tool<br>
+					Data Mining on OSM<br>
 					<a target='_blank'href='https://github.com/RobyRemzy/cozy-map/wiki/apphelp#easy-data-mining-on-openstreetmap'>
 						<i class="fa fa-question-circle"></i>
 					</a></center>
 				</h1>
 				<div id="overpassapi">
 					<h3><center><b>
-						Easy data mining with OverPass API<br>
-						custom query
+						Custom query with OverPass API
 					</b></center></h3>
 					<div id="optinput"></div>
 					<h3><center><b>
@@ -168,28 +175,52 @@
 					<div id="pineditor" align="center"></div>
 				</div>
 				<hr>
-				<h1><center>Some Features</center></h1>
-
-				<div id="maplayerselect">
-					<center>
-						Add New Tile Layers Address
-						<a target='_blank'
-						href='https://github.com/RobyRemzy/cozy-map/wiki/apphelp#basemap'>
-						<i class="fa fa-question-circle"></i></a>
-					</center>
-					<div id='myrtiles' class="newmapadd" ></div>
-				</div>
-				<form id="mapLoad">
-				<input type="radio" name="radioLoc" value="userTz" /> Locate with Cozy Timezone <br />
-				<input type="radio" name="radioLoc" value="userLocate" /> Regular W3C Locate <br />
-				</form>
+				<h1><center>
+					Custom Layers<br>
+					<a target='_blank'
+					href='https://github.com/RobyRemzy/cozy-map/wiki/apphelp#basemap'>
+					<i class="fa fa-question-circle"></i></a></center>
+				</h1>
+				<h3><center><b>
+					Add Raster Tile Layer
+				</b></center></h3>
+				<div id='myrtiles' class="newmapadd"></div>
+				<h3><center><b>
+					Mapillary Layer
+				</b></center></h3>
+				<p>
+					<input id="MapillaryLayer" type="checkbox"/>
+					<label for="MapillaryLayer">Switch the Mapillary Street Level view Layer</label>
+					<br>
+					<small>
+						An easy way to check on the local activity of the Mapillary's data (Only available at 1 to 16 zoom level).
+					</small>
+				</p>
 				<hr>
 			</div>
 		</div>
 	</div>
+
+	<div id="mapi">
+		<img id='mpl' class="svg logoMapillary" src="./styles/images/mapillary.svg" />
+	</div>
+	<div class="mly-wrapper">
+		<h5 class="unselectable" id="minimize">
+			<i class="ms ms-minus"></i>
+		</h5>
+		<h5 class="unselectable" id="maxamize">
+			<i class="ms ms-max-extent"></i>
+		</h5>
+		<h5 class="unselectable" id="reduced">
+			<i class="ms ms-min-extent"></i>
+		</h5>
+		<div class="loader"></div>
+		<div id='mly'></div>
+	</div>
 	<div id='map' class='sidebar-map'></div>
+
 	<script src="vendor/jquery-1.12.3.min.js"></script>
-	<!-- <script src="https://cdn.rawgit.com/cozy/cozy-browser-sdk/wip-v1/dist/cozysdk-client.js"></script> -->
+	<script src='vendor/svg.js'></script>
 	<script src='vendor/cozysdk-client.js'></script>
 	<script src='build/map.min.js'></script>
 </body>

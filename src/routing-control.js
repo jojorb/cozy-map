@@ -1,7 +1,9 @@
 var L = require('leaflet'),
 geolocate = require('./geolocate');
-require('./leaflet-routing-machine.js');
+// mk = require('./markers');
+require('leaflet-routing-machine');
 require('leaflet.icon.glyph');
+
 
 
 module.exports = L.Routing.Control.extend({
@@ -42,6 +44,7 @@ module.exports = L.Routing.Control.extend({
 						glyphSize: '15px',
 						glyph: String.fromCharCode(65 + i)
 					}),
+					// icon: mk.route,
 					draggable: true
 				});
 			},
