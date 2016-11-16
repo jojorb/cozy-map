@@ -313,16 +313,18 @@ L.Control.ShareMap = L.Control.extend({
 				var smrkLng = smRk.lng;
 
 				// PopUp share Updated
+				// cozydb.api.getCozyInstance for full address
+				// https://github.com/cozy/cozy-calendar/blob/da36ca6db78b95c8c5551e4c3ec6555737a2a1b7/server.coffee#L19
 				var shareMrkrPop = '<b>Share with</b><br>&#9654' +
 				'<a href="' + sosm + smrkLat + '&mlon=' + smrkLng + '#map=' + mzoom + '/' +
 				smrkLat + '/' + smrkLng + '&layers=T" target=_blank>OSM</a> ' +
 				'&#9654<a href="' + smpy + smrkLat + '&lng=' + smrkLng + '&z=' + mzoom + '" target=_blank>MAPILLARY</a> ' +
 				'&#9654<a href="' + sgog + smrkLat + ',' + smrkLng + '//@' + smrkLat + ',' + smrkLng + ',' + mzoom + 'z" target=_blank>GMAP</a><br>' +
 				'<center><a target=_blank href="' +
-				'../public/map/index.html#' + mzoom + '/' + smrkLng + '/' + smrkLat + '">' +
+				'../../public/map/#' + mzoom + '/' + smrkLat + '/' + smrkLng + '">' +
 				'<img class="svg svgccpp" src=./styles/images/happycloud.svg /></a><br>' +
-				'<input type=url value="../public/map/index.html#' + mzoom + smrkLng +
-				smrkLat + '" readonly>';
+				'<input type=url value="CozyInstance/public/map/#' + mzoom + smrkLat +
+				smrkLng + '" readonly>';
 
 				shareMrkr.update(map)
 				.bindPopup(shareMrkrPop, {

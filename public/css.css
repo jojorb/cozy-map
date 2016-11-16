@@ -1,16 +1,47 @@
-/*body { margin:0; padding:0; background-color: #C6C6C6; }
+/* Public map css*/
+* {
+	box-sizing: border-box;
+}
+html, body {
+	margin: 0;
+	padding: 0;
+	background: #3D3D3D;
+}
+body {
+	-webkit-overflow-scrolling: touch;
+	overflow: hidden;
+	color:#3D3D3D;
+	font-family: "Roboto Slab", serif;
+	font-size: 1em;
+	font-weight: 500;
+}
 h1 {
+	-webkit-font-smoothing: antialiased;
 	margin-top: .8em;
 	margin-bottom: .4em;
 	font-family: "Roboto Slab", serif;
-	font-weight: lighter;
-	color: #3787D0;
-	-webkit-font-smoothing: antialiased;
-	text-align: center;
+	font-weight: 600;
 	font-size: 1.5em;
+	text-align: center;
 	line-height: 1.6em;
 	letter-spacing: .03em;
+	color: #33A6FF;
 }
-a {
-	color: #E9564D;
-}*/
+a:link {
+	color: #33A6FF;
+}
+a:visited {
+	color: #33A6FF;
+}
+a:hover {
+	color: #2B90DE;
+}
+a:active {
+	color: #2B90DE;
+}
+#map{
+	position:absolute;
+	top:0;
+	bottom:0;
+	width:100%;
+}

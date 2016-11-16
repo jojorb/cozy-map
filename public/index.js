@@ -1,6 +1,7 @@
+/* Public map js*/
 var mapboxToken = 'pk.eyJ1Ijoicm9ieXJlbXp5IiwiYSI6ImNpc2RtemNqazAwMTkyeG82MHBlemx6aTMifQ.wSeiG1ERx30Dwc27idsDfQ';
-
 mapboxgl.accessToken = mapboxToken;
+
 var map = new mapboxgl.Map({
 	container: 'map',
 	style: 'mapbox://styles/mapbox/streets-v9',
@@ -15,11 +16,9 @@ map.addControl(nav);
 
 map.on('style.load', function () {
 
-	// map.setCenter([33, 10]);
 	var mCenterlat = map.getCenter().lat;
 	var mCenterlng = map.getCenter().lng;
 
-	// Add circle marker
 	map.addSource('markers', {
 		'type': 'geojson',
 		'data': {
@@ -28,10 +27,10 @@ map.on('style.load', function () {
 				'type': 'Feature',
 				'geometry': {
 					'type': 'Point',
-					'coordinates': [mCenterlng, mCenterlat]
+					'coordinates': [mCenterlat, mCenterlng]
 				},
 				'properties': {
-					'title': 'test'
+					'title': 'From my Cozy!'
 				}
 			}]
 		}
@@ -48,4 +47,30 @@ map.on('style.load', function () {
 			'circle-opacity': 0.65
 		}
 	});
+});
+
+var popup = new mapboxgl.Popup({
+	closeButton: false,
+	closeOnClick: false
+});
+
+map.on('mousemove', function (e) {
+	var features = map.queryRenderedFeatures(e.point, {
+		layers: ['markers']
+	});
+
+	map.getCanvas().style.cursor = (features.length) ? 'pointer' : '';
+
+	if (!features.length) {
+		popup.remove();
+		return;
+	}
+
+	var feature = features[0];
+
+	popup.setLngLat(feature.geometry.coordinates)
+	.setHTML(
+		feature.properties.title
+	)
+	.addTo(map);
 });
