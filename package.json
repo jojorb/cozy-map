@@ -10,7 +10,10 @@
   "cozy-type": "static",
   "cozy-permissions": {
     "Contact": {
-      "description": "Can sync your contacts list and display them on map"
+      "description": "Sync your contacts to display them on map"
+    },
+    "CozyInstance": {
+      "description": "Share POI"
     }
   },
   "icon-path": "map.svg",

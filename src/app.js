@@ -283,6 +283,17 @@ L.Control.ShareMap = L.Control.extend({
 		.addListener(controlDiv, 'click', L.DomEvent.preventDefault)
 		.addListener(controlDiv, 'click', function () {
 
+			var CozyIst = 'function(doc) { emit(doc); }';
+			cozysdk.defineRequest('CozyInstance', 'all', CozyIst, function (res) {
+				console.log('Get Ci', res);
+
+				cozysdk.run('CozyInstance', 'all', {}, function (res) {
+					console.log('Get CozyInstance', res);
+				});
+			});
+
+
+
 			var sosm = 'https://www.openstreetmap.org/?mlat=';
 			var smpy = 'https://www.mapillary.com/app/?lat=';
 			var sgog = 'https://www.google.com/maps/dir/';
