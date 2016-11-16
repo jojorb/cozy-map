@@ -21,25 +21,52 @@ require('leaflet-rotatedmarker');
 
 // path to the leaflet images folder
 L.Icon.Default.imagePath = 'node_modules/leaflet/dist/images/';
+$('.spinnerz').hide();
 
 // disable zoomControl (which is topleft by default) when initializing map&options
 var map = new L.Map('map', {
-	layers: [bs.losm],
 	attributionControl: false,
 	zoomControl: false
 });
 
-map.setView(new L.LatLng(49.78, -21.97), 3);
-L.hash(map);
 
-// var basemaps = {
-// 	osm: bs.losm,
-// 	mapbox: bs.lmpb,
-// 	thunderforest: bs.thoutdoors,
-// 	cartodb: bs.cartodbd,
-// 	earthdata: bs.lgibs,
-// 	rasterTile: bs.myRastertile
-// };
+
+var baseMaps = {
+	osm: bs.losm,
+	mapbox: bs.lmpb,
+	thunderforest: bs.thoutdoors,
+	cartodb: bs.cartodbd,
+	earthdata: bs.lgibs,
+	rasterTile: bs.myRastertile
+};
+
+var baseTiles = [
+	{
+		name: 'osm',
+		layer: bs.losm
+	},
+	{
+		name: 'mapbox',
+		layer: bs.lmpb
+	},
+	{
+		name: 'thunderforest',
+		layer: bs.thoutdoors
+	},
+	{
+		name: 'cartodb',
+		layer: bs.cartodbd
+	},
+	{
+		name: 'earthdata',
+		layer: bs.lgibs
+	},
+	{
+		name: 'rasterTile',
+		layer: bs.myRastertile
+	}
+];
+console.log(baseTiles);
 
 var minibasemaps = {
 	osm: bs.mini,
@@ -54,15 +81,22 @@ var baseLayers = {};
 
 
 
-// var lclbb = L.control.layers(basemaps, baseLayers, {
-// 	position: 'bottomleft'
-// });
-// lclbb.addTo(map);
-//
-// var mmlc = lclbb
-// // .expand()
-// .onAdd(map);
-// document.getElementById('mylayerssb').appendChild(mmlc);
+map.setView(new L.LatLng(49.78, -21.97), 3);
+map.addLayer(bs.losm);
+
+
+
+var lclbb = L.control.layers(baseMaps, baseLayers, {
+	position: 'bottomleft'
+});
+lclbb.addTo(map);
+
+var mmlc = lclbb.onAdd(map);
+document.getElementById('mylayerssb').appendChild(mmlc);
+
+
+
+L.hash(map);
 
 
 
@@ -175,6 +209,7 @@ L.Control.ZoomHome = L.Control.extend({
 					return console.log('nope'); // swal(czc.err);
 				}
 				// swal(czc.ltz);
+				$('.spinnerz').show();
 				cozysdk.run('User', 'all', {}, function (err, res) {
 					if (err !== null) {
 						// return swal(czc.err);
@@ -190,6 +225,7 @@ L.Control.ZoomHome = L.Control.extend({
 					geocoder.geocode(geLnior, function (results) {
 						var r = results[0];
 						map.setView([r.properties.lat, r.properties.lon], 3);
+						$('.spinnerz').hide();
 					});
 					return false;
 				});
@@ -281,7 +317,12 @@ L.Control.ShareMap = L.Control.extend({
 				'<a href="' + sosm + smrkLat + '&mlon=' + smrkLng + '#map=' + mzoom + '/' +
 				smrkLat + '/' + smrkLng + '&layers=T" target=_blank>OSM</a> ' +
 				'&#9654<a href="' + smpy + smrkLat + '&lng=' + smrkLng + '&z=' + mzoom + '" target=_blank>MAPILLARY</a> ' +
-				'&#9654<a href="' + sgog + smrkLat + ',' + smrkLng + '//@' + smrkLat + ',' + smrkLng + ',' + mzoom + 'z" target=_blank>GMAP</a>';
+				'&#9654<a href="' + sgog + smrkLat + ',' + smrkLng + '//@' + smrkLat + ',' + smrkLng + ',' + mzoom + 'z" target=_blank>GMAP</a><br>' +
+				'<center><a target=_blank href="' +
+				'../public/map/index.html#' + mzoom + '/' + smrkLng + '/' + smrkLat + '">' +
+				'<img class="svg svgccpp" src=./styles/images/happycloud.svg /></a><br>' +
+				'<input type=url value="../public/map/index.html#' + mzoom + smrkLng +
+				smrkLat + '" readonly>';
 
 				shareMrkr.update(map)
 				.bindPopup(shareMrkrPop, {
@@ -443,7 +484,7 @@ var weatherStations = new L.LayerGroup().addTo(map);
 function handle(response) {
 	console.log('Handle');
 	// clenning for buggy render
-	weatherStations.clearLayers();
+	// weatherStations.clearLayers();
 	response.forEach(function (reps) {
 		var popupPiw =
 		'<center>' + reps.description + '<br>' +
@@ -459,6 +500,7 @@ function handle(response) {
 		console.log('stations moved to weatherStations');
 	});
 	// swal(czc.pwss);
+	$('.spinnerz').hide();
 }
 
 var overlayWstations = {
@@ -476,6 +518,7 @@ var stations = [
 $('#weatherStations').change(function () {
 	if ($(this).prop('checked')) {
 		// swal(czc.pws);
+		$('.spinnerz').show();
 		for (var i = 0; i < stations.length; i++) {
 			$.getJSON(stations[i], handle);
 		}
@@ -491,6 +534,7 @@ $('#weatherStations').change(function () {
 
 // EarthQuake Request
 function earthqMarker(feature, latlng) {
+	$('.spinnerz').hide();
 	return new L.CircleMarker(latlng, {
 		radius: feature.properties.mag * 3,
 		color: '#0E3C96',
@@ -526,6 +570,7 @@ L.control.layers(baseLayers, overlayQuake);
 
 $('#earthQuake').change(function () {
 	if ($(this).prop('checked')) {
+		$('.spinnerz').show();
 		var eqUsgs =
 		// 'http://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson';
 		// 'https://raw.githubusercontent.com/RobyRemzy/cozy-map/master/src/data/significant_month.geojson';
@@ -597,6 +642,7 @@ function proc(response) {
 			})
 			.addTo(natEvents);
 			console.log('Events moved to natEvents');
+			$('.spinnerz').hide();
 		}
 	});
 	// swal(czc.pwss);
@@ -612,6 +658,7 @@ var eonet = 'https://eonet.sci.gsfc.nasa.gov/api/v2.1/events?days=60';
 $('#natEvents').change(function () {
 	if ($(this).prop('checked')) {
 		// swal(czc.pws);
+		$('.spinnerz').show();
 		for (var i = 0; i < eonet[i].length; i++) {
 			$.getJSON(eonet, proc);
 		}
@@ -634,6 +681,7 @@ $('#syncmycontacto').click(function () {
 		}
 		console.log('Contacts: ', res);
 		// swal(czc.lcl);
+		$('.spinnerz').show();
 
 		cozysdk.run('Contact', 'all', {}, function (err, res) {
 			if (err !== null) {
@@ -677,6 +725,7 @@ $('#syncmycontacto').click(function () {
 			}
 			document.querySelector('.contact-list').innerHTML = HTML;
 			// swal(czc.lcls);
+			$('.spinnerz').hide();
 
 			var contactsList = new L.LayerGroup().addTo(map);
 			var overlayClist = {
@@ -769,6 +818,8 @@ $('#syncmycontacto').click(function () {
 $(document).ready(function () {
 	$('#opsdAmenity').click(function () {
 
+		$('.spinnerz').show();
+
 		var bounds = map.getBounds();
 		var swlat = bounds.getSouthWest().lat;
 		var swlng = bounds.getSouthWest().lng;
@@ -822,6 +873,7 @@ $(document).ready(function () {
 				}
 			}).addTo(map);
 			map.fitBounds(qsoLayer.getBounds());
+			$('.spinnerz').hide();
 		}).done(function (qsoLayer, feature) {
 			console.log('Data Loaded: ' + feature);
 		});

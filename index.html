@@ -57,10 +57,10 @@
 				<h1 class="sidebar-header">Map Layers<span class="sidebar-close">
 					<i class="fa fa-angle-double-left"></i></span>
 				</h1>
-				<!-- <h1><center>Change the map Layers</center></h1>
+				<h1><center>Change the map Layers</center></h1>
 				<div id="mylayerssb" class="divtiles">
 					<center><i class="ms ms-layers-active"></i></center>
-				</div> -->
+				</div>
 				<div class="block-control">
 					<h1><center>Forecast and Events</center></h1>
 					<p>
@@ -90,7 +90,6 @@
 							services (<a target='_blank' href="http://eonet.sci.gsfc.nasa.gov/">link</a>).
 						</small>
 					</p>
-					TEST : <a target='_blank' href="./public/index.html">public link</a>
 				</div>
 			</div>
 			<div class="sidebar-pane" id="vcontact">
@@ -217,7 +216,12 @@
 		<div class="loader"></div>
 		<div id='mly'></div>
 	</div>
-	<div id='map' class='sidebar-map'></div>
+	<div id='map' class='sidebar-map'>
+		<div class="spinnerz">
+			<div class="double-bounce1"></div>
+			<div class="double-bounce2"></div>
+		</div>
+	</div>
 
 	<script src="vendor/jquery-1.12.3.min.js"></script>
 	<script src='vendor/svg.js'></script>

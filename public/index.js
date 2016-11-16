@@ -3,7 +3,7 @@ var mapboxToken = 'pk.eyJ1Ijoicm9ieXJlbXp5IiwiYSI6ImNpc2RtemNqazAwMTkyeG82MHBlem
 mapboxgl.accessToken = mapboxToken;
 var map = new mapboxgl.Map({
 	container: 'map',
-	style: 'mapbox://styles/mapbox/outdoors-v9',
+	style: 'mapbox://styles/mapbox/streets-v9',
 	zoom: 4,
 	scrollZoom: false,
 	attributionControl: true,
