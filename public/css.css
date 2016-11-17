@@ -17,14 +17,14 @@ body {
 }
 h1 {
 	-webkit-font-smoothing: antialiased;
-	margin-top: .8em;
-	margin-bottom: .4em;
+	margin-top: .01em;
+	margin-bottom: .01em;
 	font-family: "Roboto Slab", serif;
 	font-weight: 600;
-	font-size: 1.5em;
+	font-size: 2.5em;
 	text-align: center;
-	line-height: 1.6em;
-	letter-spacing: .03em;
+	line-height: 2.6em;
+	letter-spacing: .04em;
 	color: #33A6FF;
 }
 a:link {

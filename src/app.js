@@ -326,6 +326,8 @@ L.Control.ShareMap = L.Control.extend({
 						var smrkLat = smRk.lat;
 						var smrkLng = smRk.lng;
 
+						map.setView(new L.LatLng(smRk.lat, smRk.lng), mzoom);
+
 						// PopUp share Updated
 						var shareMrkrPop = '<b>Share with</b><br>&#9654' +
 						'<a href="' + sosm + smrkLat + '&mlon=' + smrkLng + '#map=' + mzoom + '/' +
