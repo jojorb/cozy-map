@@ -6,20 +6,20 @@
   ],
   "description": "Map suited to cross your Cozy data.",
   "cozy-displayName": "Map",
-  "cozy-color": "#D78EF1",
+  "cozy-color": "#3D3D3D",
   "cozy-type": "static",
   "cozy-permissions": {
     "Contact": {
-      "description": "Sync your contacts to display them on map"
+      "description": "Used to sync your contacts list"
     },
     "CozyInstance": {
-      "description": "Share POI"
+      "description": "Used to recover your cozy's domain"
     }
   },
   "icon-path": "map.svg",
   "main": "src/app.js",
   "dependencies": {
-    "cozysdk-client": "0.0.5"
+    "cozysdk-client": "0.0.7"
   },
   "devDependencies": {
     "browserify": "^9.0.3",
@@ -62,7 +62,7 @@
     "geodata"
   ],
   "author": {
-    "name": "Robyremzy",
+    "name": "Robyremzy <@remstw> (http://robyremzy.github.io)",
     "url": "https://github.com/RobyRemzy/"
   },
   "homepage": "https://github.com/robyremzy/cozy-map",

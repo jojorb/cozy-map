@@ -8,9 +8,9 @@
 
 ## basic map services to cross with your Cozy data.
 
-- leafletjs 1.0.1
+- leafletjs v1.0.1
 - mapillary-js v2.0.0
-- cozysdk-client
+- cozysdk-client v0.0.7
 
 
 **Cozy developer**  

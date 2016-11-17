@@ -283,17 +283,6 @@ L.Control.ShareMap = L.Control.extend({
 		.addListener(controlDiv, 'click', L.DomEvent.preventDefault)
 		.addListener(controlDiv, 'click', function () {
 
-			var CozyIst = 'function(doc) { emit(doc); }';
-			cozysdk.defineRequest('CozyInstance', 'all', CozyIst, function (res) {
-				console.log('Get Ci', res);
-
-				cozysdk.run('CozyInstance', 'all', {}, function (res) {
-					console.log('Get CozyInstance', res);
-				});
-			});
-
-
-
 			var sosm = 'https://www.openstreetmap.org/?mlat=';
 			var smpy = 'https://www.mapillary.com/app/?lat=';
 			var sgog = 'https://www.google.com/maps/dir/';
@@ -318,34 +307,47 @@ L.Control.ShareMap = L.Control.extend({
 
 			map.setView(new L.LatLng(mlat, mlng), (mzoom + 7));
 
-			shareMrkr.on('dragend', function (e) {
-				var smRk = e.target.getLatLng();
-				var smrkLat = smRk.lat;
-				var smrkLng = smRk.lng;
+			cozysdk.defineRequest(
+				'CozyInstance',
+				'all',
+				function (doc) { emit(doc._id, doc); }, // eslint-disable-line no-undef
+				function (error) { console.error(error); }
+				);
 
-				// PopUp share Updated
-				// cozydb.api.getCozyInstance for full address
-				// https://github.com/cozy/cozy-calendar/blob/da36ca6db78b95c8c5551e4c3ec6555737a2a1b7/server.coffee#L19
-				var shareMrkrPop = '<b>Share with</b><br>&#9654' +
-				'<a href="' + sosm + smrkLat + '&mlon=' + smrkLng + '#map=' + mzoom + '/' +
-				smrkLat + '/' + smrkLng + '&layers=T" target=_blank>OSM</a> ' +
-				'&#9654<a href="' + smpy + smrkLat + '&lng=' + smrkLng + '&z=' + mzoom + '" target=_blank>MAPILLARY</a> ' +
-				'&#9654<a href="' + sgog + smrkLat + ',' + smrkLng + '//@' + smrkLat + ',' + smrkLng + ',' + mzoom + 'z" target=_blank>GMAP</a><br>' +
-				'<center><a target=_blank href="' +
-				'../../public/map/#' + mzoom + '/' + smrkLat + '/' + smrkLng + '">' +
-				'<img class="svg svgccpp" src=./styles/images/happycloud.svg /></a><br>' +
-				'<input type=url value="CozyInstance/public/map/#' + mzoom + smrkLat +
-				smrkLng + '" readonly>';
+			cozysdk.run('CozyInstance', 'all', {}).then(
+				function (res) {
+					// console.log('Get CozyInstance', res);
 
-				shareMrkr.update(map)
-				.bindPopup(shareMrkrPop, {
-					className: 'uiconPopupcss'
-				})
-				.openPopup();
-				shareMrkr.on('dblclick', function () {
-					map.removeLayer(shareMrkr);
+					var ci = res[0].value.domain;
+
+					shareMrkr.on('dragend', function (e) {
+
+						var smRk = e.target.getLatLng();
+						var smrkLat = smRk.lat;
+						var smrkLng = smRk.lng;
+
+						// PopUp share Updated
+						var shareMrkrPop = '<b>Share with</b><br>&#9654' +
+						'<a href="' + sosm + smrkLat + '&mlon=' + smrkLng + '#map=' + mzoom + '/' +
+						smrkLat + '/' + smrkLng + '&layers=T" target=_blank>OSM</a> ' +
+						'&#9654<a href="' + smpy + smrkLat + '&lng=' + smrkLng + '&z=' + mzoom + '" target=_blank>MAPILLARY</a> ' +
+						'&#9654<a href="' + sgog + smrkLat + ',' + smrkLng + '//@' + smrkLat + ',' + smrkLng + ',' + mzoom + 'z" target=_blank>GMAP</a><br>' +
+						'<center><a target=_blank href="' +
+						'../../public/map/#' + mzoom + '/' + smrkLat + '/' + smrkLng + '">' +
+						'<img class="svg svgccpp" src=./styles/images/happycloud.svg /></a><br>' +
+						'<input type=url value="https://' + ci + '/public/map/#' + mzoom + smrkLat +
+						smrkLng + '" readonly>';
+
+						shareMrkr.update(map)
+						.bindPopup(shareMrkrPop, {
+							className: 'uiconPopupcss'
+						})
+						.openPopup();
+						shareMrkr.on('dblclick', function () {
+							map.removeLayer(shareMrkr);
+						});
+					});
 				});
-			});
 		});
 
 		var options = this.options;
