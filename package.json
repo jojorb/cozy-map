@@ -1,12 +1,12 @@
 {
   "name": "cozy-map",
-  "version": "0.1.21",
+  "version": "0.2.0",
   "engines": [
     "*"
   ],
   "description": "Map suited to cross your Cozy data.",
   "cozy-displayName": "Map",
-  "cozy-color": "#3D3D3D",
+  "cozy-color": "#36AF6D",
   "cozy-type": "static",
   "cozy-permissions": {
     "Contact": {
