@@ -40,33 +40,33 @@ var baseMaps = {
 	rasterTile: bs.myRastertile
 };
 
-var baseTiles = [
-	{
-		name: 'osm',
-		layer: bs.losm
-	},
-	{
-		name: 'mapbox',
-		layer: bs.lmpb
-	},
-	{
-		name: 'thunderforest',
-		layer: bs.thoutdoors
-	},
-	{
-		name: 'cartodb',
-		layer: bs.cartodbd
-	},
-	{
-		name: 'earthdata',
-		layer: bs.lgibs
-	},
-	{
-		name: 'rasterTile',
-		layer: bs.myRastertile
-	}
-];
-console.log(baseTiles);
+// var baseTiles = [
+// 	{
+// 		name: 'osm',
+// 		layer: bs.losm
+// 	},
+// 	{
+// 		name: 'mapbox',
+// 		layer: bs.lmpb
+// 	},
+// 	{
+// 		name: 'thunderforest',
+// 		layer: bs.thoutdoors
+// 	},
+// 	{
+// 		name: 'cartodb',
+// 		layer: bs.cartodbd
+// 	},
+// 	{
+// 		name: 'earthdata',
+// 		layer: bs.lgibs
+// 	},
+// 	{
+// 		name: 'rasterTile',
+// 		layer: bs.myRastertile
+// 	}
+// ];
+// console.log(baseTiles);
 
 var minibasemaps = {
 	osm: bs.mini,
@@ -335,8 +335,7 @@ L.Control.ShareMap = L.Control.extend({
 						'<center><a target=_blank href="' +
 						'../../public/map/#' + mzoom + '/' + smrkLat + '/' + smrkLng + '">' +
 						'<img class="svg svgccpp" src=./styles/images/happycloud.svg /></a><br>' +
-						'<input type=url value="https://' + ci + '/public/map/#' + mzoom + smrkLat +
-						smrkLng + '" readonly>';
+						'<input type=url value="https://' + ci + '/public/map/#' + mzoom + '/' + smrkLat + '/' + smrkLng + '" readonly>';
 
 						shareMrkr.update(map)
 						.bindPopup(shareMrkrPop, {
@@ -1233,8 +1232,8 @@ $('#mpl').click(function () {
 			tempiLlary.addData(res);
 
 
-			// if ($('.leaflet-control-minimap').hide()) {
 			mly.on('nodechanged', function (node) {
+				// console.log(node);
 				if (!mapillaring) {
 					mapillaring = L.marker(node.latLon, {
 						icon: mk.mIcon,
@@ -1247,18 +1246,28 @@ $('#mpl').click(function () {
 
 			map.on('click', function (e) {
 				mly.moveCloseTo(e.latlng.lat, e.latlng.lng);
+
+				var bounds = map.getBounds();
+				var swlat = bounds.getSouthWest().lat;
+				var swlng = bounds.getSouthWest().lng;
+				var nelat = bounds.getNorthEast().lat;
+				var nelng = bounds.getNorthEast().lng;
+				var secn  = 500;
+				var getsec = 'https://a.mapillary.com/v2/search/s/geojson?client_id=' +
+				bs.mpy + '&max_lat=' + swlat + '&max_lon=' + swlng + '&min_lat=' + nelat +
+				'&min_lon=' + nelng + '&limit=' + secn + '&page=0';
+
+				$.getJSON(getsec, function (res2) {
+					tempiLlary.addData(res2);
+					// console.log('moved more data', res2);
+				});
+
 			});
-			// }
-
-
 
 		});
 		map.addLayer(tempiLlary);
 
-
-
 	}); // END GetImg
-
 
 	// map.on('moveend', function () {
 	// });
@@ -1274,6 +1283,7 @@ $('#minimize').click(function () {
 	$('.leaflet-control-minimap').fadeIn('slow');
 	map.removeLayer(tempiLlary);
 	// tempiLlary.clearLayers();
+	console.log('removed all Mapillary features');
 	visible = false;
 });
 
@@ -1313,23 +1323,3 @@ $('#reduced').click(function () {
 	$('.mapillary-js').css('right', 10 + 'px');
 	mly.resize();
 });
-
-// function instantiateViewer() {
-// 	mly = new Mapillary.Viewer(
-// 		'mly',
-// 		bs.mpy,
-// 		'', {
-// 			cover: false,
-// 			renderMode: Mapillary.RenderMode.Fill
-// 		});
-//
-// 	mly.on('nodechanged', function (node) {
-// 		mly.resize();
-// 		$('.loader').hide();
-// 		var latlng = [node.latLon.lat, node.latLon.lon];
-// 		L.marker.setLatLng(L.latLng(latlng));
-// 	});
-// 	mly.on('loadingchanged', function (node) {
-// 		$('.loader').hide();
-// 	});
-// }
